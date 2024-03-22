@@ -1,22 +1,16 @@
-<?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-configuration PUBLIC
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
 <hibernate-configuration>
     <session-factory>
-        <!-- Database connection settings -->
         <property name="hibernate.connection.driver_class">org.hsqldb.jdbc.JDBCDriver</property>
         <property name="hibernate.connection.url">jdbc:hsqldb:file:/Users/ezequielrickert/projects/lab1/Database/hsqldb-2.7.2/hsqldb</property>
         <property name="hibernate.connection.username">sa</property>
-        <property name="hibernate.connection.password"/>
-
-        <!-- SQL dialect -->
+        <property name="hibernate.connection.password"></property>
         <property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property>
-
-        <!-- Enable Hibernate's automatic session context management -->
-        <property name="hibernate.current_session_context_class">thread</property>
-
-        <!-- Echo all executed SQL to stdout -->
-        <property name="hibernate.show_sql">true</property>
+        <property name="show_sql">true</property>
+        <property name="hbm2ddl.auto">update</property>
+        <mapping class="Client"/>
     </session-factory>
 </hibernate-configuration>

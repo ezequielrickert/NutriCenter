@@ -14,12 +14,12 @@ public class Client {
     @Column(nullable = false, unique = true)
     private String clientEmail;
 
-    @Column(nullable = true, unique = false)
-    private HashMap<String, Integer> goals;
 
-    @Column(nullable = false, unique = false)
-    private ArrayList<String> dietType;
+    public void setClientName(String name) {
+        this.clientName = name;
+    }
 
-    @Column(nullable = true, unique = false)
-    private ArrayList<String> allergies;
+    public void setClientEmail(String mail) {
+        this.clientEmail = mail;
+    }
 }

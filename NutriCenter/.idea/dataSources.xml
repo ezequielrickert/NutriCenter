@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="HSQLDB (Local)" uuid="fc7cd59d-0970-4f9e-8db2-9f83f7c5de5d">
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="a1b7142e-aa93-4562-a869-ddc7f86cbfd4">
       <driver-ref>hsqldb.local</driver-ref>
       <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+/Users/ezequielrickert/projects/lab1/NutriCenter/src/main/resources/hibernate.cfg.xml</remarks>
       <jdbc-driver>org.hsqldb.jdbc.JDBCDriver</jdbc-driver>
-      <jdbc-url>jdbc:hsqldb:file:;ifexists=true</jdbc-url>
+      <jdbc-url>jdbc:hsqldb:file:$PROJECT_DIR$/../Database/hsqldb-2.7.2/hsqldb</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>
