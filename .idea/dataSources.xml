@@ -15,5 +15,41 @@ C:/Users/ezequ/projects/NutriCenter/NutriCenter/src/main/resources/hibernate.cfg
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="42ccb1e9-94fc-4533-a823-d7015221b271">
+      <driver-ref>hsqldb.local</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/Users/ezequ/projects/NutriCenter/NutriCenter/src/main/resources/hibernate.cfg.xml</remarks>
+      <jdbc-driver>org.hsqldb.jdbc.JDBCDriver</jdbc-driver>
+      <jdbc-url>jdbc:hsqldb:file:C:\Users\ezequ\projects\NutriCenter\Database\hsqldb-2.7.2\hsqldb</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="e41bc96c-27d1-491f-b7a3-d9efd6cb910d">
+      <driver-ref>hsqldb.local</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/Users/ezequ/projects/NutriCenter/NutriCenter/src/main/resources/hibernate.cfg.xml</remarks>
+      <jdbc-driver>org.hsqldb.jdbc.JDBCDriver</jdbc-driver>
+      <jdbc-url>jdbc:hsqldb:file:$PROJECT_DIR$/Database/hsqldb-2.7.2/hsqldb/hsqldb</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
+      </jdbc-additional-properties>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="9f4eb9ce-db03-433f-a4bf-7f4534e33133">
+      <driver-ref>hsqldb.local</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/Users/ezequ/projects/NutriCenter/NutriCenter/src/main/resources/hibernate.cfg.xml</remarks>
+      <jdbc-driver>org.hsqldb.jdbc.JDBCDriver</jdbc-driver>
+      <jdbc-url>jdbc:hsqldb:file:C:\Users\ezequ\projects\NutriCenter\Database\hsqldb-2.7.2\hsqldb</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

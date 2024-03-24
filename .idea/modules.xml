@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NutriCenter.iml" filepath="$PROJECT_DIR$/.idea/modules/NutriCenter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NutriCenter.main.iml" filepath="$PROJECT_DIR$/.idea/modules/NutriCenter.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/lab1.iml" filepath="$PROJECT_DIR$/.idea/lab1.iml" />
     </modules>
   </component>
