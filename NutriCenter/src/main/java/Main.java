@@ -1,36 +1,40 @@
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import org.example.Client;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class Main {
     public static void main(String[] args) {
-        // Create a configuration instance
-        Configuration configuration = new Configuration();
+        // Create an EntityManagerFactory
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ClientPU");
 
-        // Load the hibernate configuration file
-        configuration.configure("hibernate.cfg.xml");
-
-        // Create a session factory
-        SessionFactory sessionFactory = configuration.buildSessionFactory();
-
-        // Create a new session
-        Session session = sessionFactory.openSession();
+        // Create an EntityManager
+        EntityManager em = emf.createEntityManager();
 
         // Begin a transaction
-        session.beginTransaction();
+        em.getTransaction().begin();
 
         // Create a new Client
         Client client = new Client();
         client.setClientName("John Doe");
         client.setClientEmail("john.doe@example.com");
+        Client client2 = new Client();
+        client2.setClientName("John Doe Jr");
+        client2.setClientEmail("john.doejr@example.com");
 
-        // Save the Client
-        session.save(client);
+        // Persist the Client
+        em.persist(client);
+        em.persist(client2);
 
         // Commit the transaction
-        session.getTransaction().commit();
+        em.getTransaction().commit();
 
-        // Close the session
-        session.close();
+        // Close the EntityManager
+        em.close();
+
+        // Close the EntityManagerFactory
+        emf.close();
     }
 }
+
