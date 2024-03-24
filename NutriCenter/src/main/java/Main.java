@@ -16,12 +16,9 @@ public class Main {
         em.getTransaction().begin();
 
         // Create a new Client
-        Client client = new Client();
-        client.setClientName("John Doe");
-        client.setClientEmail("john.doe@example.com");
-        Client client2 = new Client();
-        client2.setClientName("John Doe Jr");
-        client2.setClientEmail("john.doejr@example.com");
+        Client client = new Client("John Doe", "john.doe@example.com");
+        Client client2 = new Client("John Doe Jr", "john.doejr@example.com");
+
 
         // Persist the Client
         em.persist(client);

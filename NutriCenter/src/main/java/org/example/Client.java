@@ -16,9 +16,13 @@ public class Client {
     private String clientEmail;
 
 
+    public Client(String clientName, String clientEmail) {
+        this.clientName = clientName;
+        this.clientEmail = clientEmail;
+    }
+
     public Client() {
-        this.clientName = "Test";
-        this.clientEmail = "test@test.Test";
+
     }
 
 
