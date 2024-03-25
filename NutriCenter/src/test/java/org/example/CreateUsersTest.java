@@ -1,12 +1,14 @@
 package org.example;
 
+import org.example.entity.Client;
+import org.example.entity.Nutritionist;
+import org.example.entity.Store;
 import org.junit.jupiter.api.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CreateUsersTest {
 
     private EntityManagerFactory emf;

@@ -1,3 +1,5 @@
+package org.example.entity;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 

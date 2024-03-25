@@ -297,7 +297,7 @@ public class LibrariesForLibs extends AbstractExternalDependencyFactory {
         public OrgHibernateHibernateVersionAccessors(ProviderFactory providers, DefaultVersionCatalog config) { super(providers, config); }
 
         /**
-         * Version alias <b>org.hibernate.hibernate.core</b> with value <b>6.5.0.Final</b>
+         * Version alias <b>org.hibernate.hibernate.core</b> with value <b>6.4.4.Final</b>
          * <p>
          * If the version is a rich version and cannot be represented as a
          * single version string, an empty string is returned.
@@ -307,7 +307,7 @@ public class LibrariesForLibs extends AbstractExternalDependencyFactory {
         public Provider<String> getCore() { return getVersion("org.hibernate.hibernate.core"); }
 
         /**
-         * Version alias <b>org.hibernate.hibernate.java8</b> with value <b>6.5.0.Final</b>
+         * Version alias <b>org.hibernate.hibernate.java8</b> with value <b>6.4.4.Final</b>
          * <p>
          * If the version is a rich version and cannot be represented as a
          * single version string, an empty string is returned.

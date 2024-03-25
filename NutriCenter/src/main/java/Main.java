@@ -1,37 +1,21 @@
-import org.example.Client;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import org.example.controller.ClientController;
+import org.example.service.client.UserRepositoryImp;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Main {
-    public static void main(String[] args) {
-        // Create an EntityManagerFactory
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ClientPU");
-
-        // Create an EntityManager
-        EntityManager em = emf.createEntityManager();
-
-        // Begin a transaction
-        em.getTransaction().begin();
-
-        // Create a new Client
-        Client client = new Client("John Doe", "john.doe@example.com");
-        Client client2 = new Client("John Doe Jr", "john.doejr@example.com");
-
-
-        // Persist the Client
-        em.persist(client);
-        em.persist(client2);
-
-        // Commit the transaction
-        em.getTransaction().commit();
-
-        // Close the EntityManager
-        em.close();
-
-        // Close the EntityManagerFactory
-        emf.close();
+    public static void main(String[] args) throws SQLException {
+      ClientController clientController = new ClientController();
+      clientController.createClient("erickert", "erickert@mail.austral.edu.ar");
+      clientController.createClient("hlagos", "hlagos@mail.austral.edu.ar");
+      clientController.createClient("tbernardez", "tbernardez@mail.austral.edu.ar");
+      clientController.readClient(1L);
+      clientController.readClient(2L);
+      clientController.readClient(3L);
+      clientController.updateClient(1L, "eballesteros", "eballesteros@mail.austral.edu.ar");
+      clientController.deleteClient(1L);
     }
 }
 
