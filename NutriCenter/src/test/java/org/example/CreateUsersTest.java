@@ -1,8 +1,8 @@
 package org.example;
 
-import org.example.entity.Client;
-import org.example.entity.Nutritionist;
-import org.example.entity.Store;
+import org.example.model.Client;
+import org.example.model.Nutritionist;
+import org.example.model.Store;
 import org.junit.jupiter.api.*;
 
 import javax.persistence.EntityManager;

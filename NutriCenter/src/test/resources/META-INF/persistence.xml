@@ -5,12 +5,12 @@
              version="2.2">
     <persistence-unit name="UserPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>org.example.entity.Client</class>
-        <class>org.example.entity.Store</class>
-        <class>org.example.entity.Nutritionist</class>
+        <class>org.example.model.Client</class>
+        <class>org.example.model.Store</class>
+        <class>org.example.model.Nutritionist</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbc.JDBCDriver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:file:/Users/ezequielrickert/projects/lab1/Database/hsqldb-2.7.2/hsqldb"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:hsql://localhost/testdb"/>
             <property name="javax.persistence.jdbc.user" value="sa"/>
             <property name="javax.persistence.jdbc.password" value=""/>
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>

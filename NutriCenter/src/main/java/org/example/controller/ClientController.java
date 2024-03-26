@@ -1,9 +1,7 @@
 package org.example.controller;
 
+import org.example.model.Client;
 import org.example.service.client.UserRepositoryImp;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class ClientController {
   UserRepositoryImp userRepositoryImp;
@@ -14,18 +12,14 @@ public class ClientController {
     userRepositoryImp.createUser(username, email);
   }
 
-  public void readClient(Long inClientId) throws SQLException {
-    ResultSet resultSet = userRepositoryImp.readUser(inClientId);
-    if (resultSet.next()) {
-      Long clientId = resultSet.getLong("clientId");
-      String clientName = resultSet.getString("clientName");
-      String clientEmail = resultSet.getString("clientEmail");
-
-      System.out.println("Client ID: " + clientId);
-      System.out.println("Client Name: " + clientName);
-      System.out.println("Client Email: " + clientEmail);
+  public void readClient(Long inClientId) {
+    Client client = userRepositoryImp.readUser(inClientId);
+    if (client != null) {
+      System.out.println("Client ID: " + client.getClientId());
+      System.out.println("Client Name: " + client.getClientName());
+      System.out.println("Client Email: " + client.getClientEmail());
     } else {
-      System.out.println("No user found with the provided ID.");
+      System.out.println("Client not found");
     }
   }
 

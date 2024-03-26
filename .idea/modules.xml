@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/NutriCenter.iml" filepath="$PROJECT_DIR$/.idea/modules/NutriCenter.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/lab1.iml" filepath="$PROJECT_DIR$/.idea/lab1.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.example.NutriCenter.test.iml" filepath="$PROJECT_DIR$/.idea/modules/org.example.NutriCenter.test.iml" />
     </modules>
   </component>

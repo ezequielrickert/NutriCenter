@@ -1,61 +1,108 @@
 package org.example.service.client;
 
-import java.sql.*;
+import org.example.model.Client;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+import org.example.persistence.*;
 
-public class UserRepositoryImp implements UserRepository{
-  private static final String URL = "jdbc:hsqldb:file:/Users/ezequielrickert/projects/lab1/Database/hsqldb-2.7.2/hsqldb";
-  private static final String USER = "sa";
-  private static final String PASSWORD = "";
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+
+
+public class UserRepositoryImp implements UserRepository {
+
+  EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
+
   @Override
   public void createUser(String username, String email) {
-    try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD)) {
-      String sql = "INSERT INTO Client (clientName, clientEmail) VALUES (?, ?)";
-      PreparedStatement pst = con.prepareStatement(sql);
-      pst.setString(1, username);
-      pst.setString(2, email);
-      pst.executeUpdate();
-    } catch (SQLException ex) {
-      ex.printStackTrace();
-    }
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+
+    Client client = new Client();
+    client.setClientName(username);
+    client.setClientEmail(email);
+
+    entityManager.persist(client);
+
+    entityManager.getTransaction().commit();
+//    try (Session session = HibernateUtil.getSessionFactory().getCurrentSession();) {
+//      transaction = session.beginTransaction();
+//
+//      Client client = new Client();
+//      client.setClientName(username);
+//      client.setClientEmail(email);
+//
+//      session.save(client);
+//      transaction.commit();
+//    } catch (Exception ex) {
+//      if (transaction != null) {
+//        transaction.rollback();
+//      }
+//      ex.printStackTrace();
+//    }
   }
 
   @Override
-  public ResultSet readUser(Long clientId) {
-    try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD)) {
-      String sql = "SELECT * FROM Client WHERE clientId = ?";
-      PreparedStatement pst = con.prepareStatement(sql);
-      pst.setLong(1, clientId);
-      ResultSet resultSet = pst.executeQuery();
-      return resultSet;
-    } catch (SQLException ex) {
-      ex.printStackTrace();
-    }
-    return null;
+  public Client readUser(Long clientId) {
+    Transaction transaction = null;
+    Client client = null;
+//    try (Session session = new Configuration().configure().buildSessionFactory().openSession()) {
+//      transaction = session.beginTransaction();
+//
+//      client = session.get(Client.class, clientId);
+//
+//      transaction.commit();
+//    } catch (Exception ex) {
+//      if (transaction != null) {
+//        transaction.rollback();
+//      }
+//      ex.printStackTrace();
+//    }
+    return client;
   }
 
   @Override
   public void updateUser(Long clientId, String username, String email) {
-    try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD)) {
-      String sql = "UPDATE Client SET clientName = ?, clientEmail = ? WHERE clientId = ?";
-      PreparedStatement pst = con.prepareStatement(sql);
-      pst.setString(1, username);
-      pst.setString(2, email);
-      pst.setLong(3, clientId);
-      pst.executeUpdate();
-    } catch (SQLException ex) {
-      ex.printStackTrace();
-    }
+    Transaction transaction = null;
+//    try (Session session = new Configuration().configure().buildSessionFactory().openSession()) {
+//      transaction = session.beginTransaction();
+//
+//      Client client = session.get(Client.class, clientId);
+//      if (client != null) {
+//        client.setClientName(username);
+//        client.setClientEmail(email);
+//      }
+//
+//      session.update(client);
+//      transaction.commit();
+//    } catch (Exception ex) {
+//      if (transaction != null) {
+//        transaction.rollback();
+//      }
+//      ex.printStackTrace();
+//    }
   }
 
   @Override
   public void deleteUser(Long clientId) {
-    try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD)) {
-      String sql = "DELETE FROM Client WHERE clientId = ?";
-      PreparedStatement pst = con.prepareStatement(sql);
-      pst.setLong(1, clientId);
-      pst.executeUpdate();
-    } catch (SQLException ex) {
-      ex.printStackTrace();
-    }
+    Transaction transaction = null;
+//    try (Session session = new Configuration().configure().buildSessionFactory().openSession()) {
+//      transaction = session.beginTransaction();
+//
+//      Client client = session.get(Client.class, clientId);
+//      if (client != null) {
+//        session.delete(client);
+//      }
+//
+//      transaction.commit();
+//    } catch (Exception ex) {
+//      if (transaction != null) {
+//        transaction.rollback();
+//      }
+//      ex.printStackTrace();
+//    }
   }
 }
