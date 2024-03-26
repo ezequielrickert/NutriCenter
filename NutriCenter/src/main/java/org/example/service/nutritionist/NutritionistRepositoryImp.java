@@ -1,15 +1,9 @@
 package org.example.service.nutritionist;
 
-import org.example.model.Client;
 import org.example.model.Nutritionist;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-import org.example.persistence.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 public class NutritionistRepositoryImp implements NutritionistRepository{
 
@@ -25,6 +19,7 @@ public class NutritionistRepositoryImp implements NutritionistRepository{
     entityManager.persist(nutritionist);
 
     entityManager.getTransaction().commit();
+    entityManager.getTransaction();
   }
 
   @Override

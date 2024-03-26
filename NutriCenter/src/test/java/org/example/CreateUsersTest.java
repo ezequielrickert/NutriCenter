@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.model.Client;
+import org.example.model.Customer;
 import org.example.model.Nutritionist;
 import org.example.model.Store;
 import org.junit.jupiter.api.*;
@@ -43,9 +43,9 @@ public class CreateUsersTest {
 
 
         // Create a new Client
-        Client ezequiel = new Client("Ezequiel Rickert", "erickert@mail.austral.edu.ar");
-        Client tomas = new Client("Tomas Bernardez", "tbernardez@mail.austral.edu.ar");
-        Client hilario = new Client("Hilario Lagos", "hlagos@mail.austral.edu.ar");
+        Customer ezequiel = new Customer("Ezequiel Rickert", "erickert@mail.austral.edu.ar");
+        Customer tomas = new Customer("Tomas Bernardez", "tbernardez@mail.austral.edu.ar");
+        Customer hilario = new Customer("Hilario Lagos", "hlagos@mail.austral.edu.ar");
 
         // Persist the Client
         em.persist(ezequiel);

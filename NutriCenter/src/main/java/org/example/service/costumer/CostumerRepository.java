@@ -1,10 +1,10 @@
-package org.example.service.client;
+package org.example.service.costumer;
 
-import org.example.model.Client;
+import org.example.model.Customer;
 
-public interface UserRepository {
+public interface CostumerRepository {
   public void createUser(String username, String email);
-  public Client readUser(Long clientId);
+  public Customer readUser(Long clientId);
 
   public void updateUser(Long clientId, String username, String email);
   public void deleteUser(Long clientId);

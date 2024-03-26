@@ -2,8 +2,8 @@ package org.example.model;
 
 import javax.persistence.*;
 
-@Entity
-public class Client {
+@Entity(name = "CUSTOMER")
+public class Customer {
 
     @Id
     @GeneratedValue(generator = "userGen", strategy = GenerationType.IDENTITY)
@@ -16,12 +16,12 @@ public class Client {
     private String clientEmail;
 
 
-    public Client(String clientName, String clientEmail) {
+    public Customer(String clientName, String clientEmail) {
         this.clientName = clientName;
         this.clientEmail = clientEmail;
     }
 
-    public Client() {
+    public Customer() {
 
     }
 
