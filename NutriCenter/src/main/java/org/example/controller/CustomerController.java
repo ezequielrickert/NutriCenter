@@ -3,10 +3,12 @@ package org.example.controller;
 import org.example.model.Customer;
 import org.example.service.costumer.CostumerRepositoryImp;
 
+import javax.persistence.EntityManager;
+
 public class CustomerController {
   CostumerRepositoryImp costumerRepositoryImp;
-  public CustomerController() {
-    this.costumerRepositoryImp = new CostumerRepositoryImp();
+  public CustomerController(EntityManager entityManager) {
+    this.costumerRepositoryImp = new CostumerRepositoryImp(entityManager);
   }
   public void createClient(String username, String email) {
     costumerRepositoryImp.createUser(username, email);

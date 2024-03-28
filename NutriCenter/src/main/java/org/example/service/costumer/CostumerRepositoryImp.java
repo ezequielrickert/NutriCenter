@@ -10,45 +10,41 @@ import javax.persistence.Persistence;
 
 public class CostumerRepositoryImp implements CostumerRepository {
 
-  EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
+  EntityManager entityManager;
+  public CostumerRepositoryImp(EntityManager entityManager){
+    this.entityManager = entityManager;
+  }
 
   @Override
   public void createUser(String username, String email) {
-    EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     Customer customer = new Customer();
     customer.setClientName(username);
     customer.setClientEmail(email);
     entityManager.persist(customer);
     entityManager.getTransaction().commit();
-    entityManager.close();
   }
 
   @Override
   public Customer readUser(Long clientId) {
-    EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     Customer customer = entityManager.find(Customer.class, clientId);
     entityManager.getTransaction().commit();
-    entityManager.close();
     return customer;
   }
 
   @Override
   public void updateUser(Long clientId, String username, String email) {
-    EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     Customer customer = entityManager.find(Customer.class, clientId);
     customer.setClientName(username);
     customer.setClientEmail(email);
     entityManager.persist(customer);
     entityManager.getTransaction().commit();
-    entityManager.close();
   }
 
   @Override
   public void deleteUser(Long clientId) {
-    EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
 
     Customer customer = entityManager.find(Customer.class, clientId);
@@ -57,6 +53,5 @@ public class CostumerRepositoryImp implements CostumerRepository {
     }
 
     entityManager.getTransaction().commit();
-    entityManager.close();
   }
 }

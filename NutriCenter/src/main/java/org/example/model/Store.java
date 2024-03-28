@@ -2,7 +2,7 @@ package org.example.model;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "STORE")
 public class Store {
 
     @Id
@@ -22,6 +22,18 @@ public class Store {
         this.storeName = name;
         this.storeMail = mail;
         this.storeNumber = number;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+
+    public void setStoreMail(String storeEmail) {
+        this.storeMail = storeEmail;
+    }
+
+    public void setStoreNumber(String storeNumber) {
+        this.storeNumber = storeNumber;
     }
 
     public Store() {

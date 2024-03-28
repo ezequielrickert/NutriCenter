@@ -24,6 +24,18 @@ public class Nutritionist {
         educationDiploma = diploma;
     }
 
+    public void setNutritionistName(String nutritionistName) {
+        this.nutritionistName = nutritionistName;
+    }
+
+    public void setNutritionistEmail(String nutritionistEmail) {
+        this.nutritionistEmail = nutritionistEmail;
+    }
+
+    public void setEducationDiploma(String diploma) {
+        this.educationDiploma = diploma;
+    }
+
     public Nutritionist() {
 
     }
