@@ -1,5 +1,7 @@
 package org.example.model;
 
+import com.google.gson.Gson;
+
 import javax.persistence.*;
 
 @Entity(name = "NUTRITIONIST")
@@ -38,5 +40,10 @@ public class Nutritionist {
 
     public Nutritionist() {
 
+    }
+
+    public String asJson() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 }
