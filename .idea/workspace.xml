@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5bdafd8e-40e9-4e0e-98bd-e5e6e9f5402c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/checksums/checksums.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/checksums/sha1-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/dependencies-accessors/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/vcs-1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/NutriCenter.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/NutriCenter.main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/NutriCenter.test.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/org.example.NutriCenter.test.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/checksums/checksums.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/checksums/md5-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/checksums/sha1-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibs$BundleAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibs$ComLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibs$ComSparkjavaLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibs$ComSparkjavaSparkLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibs$ComSparkjavaSparkVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibs$ComSparkjavaVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibs$ComVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibs$OrgHibernateHibernateLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibs$OrgHibernateHibernateVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibs$OrgHibernateLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibs$OrgHibernateVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibs$OrgHsqldbLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibs$OrgHsqldbVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibs$OrgLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibs$OrgVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibs$PluginAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibs$VersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibs.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$BundleAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$ComLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$ComSparkjavaLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$ComSparkjavaSparkLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$ComSparkjavaSparkVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$ComSparkjavaVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$ComVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$OrgHibernateHibernateLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$OrgHibernateHibernateVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$OrgHibernateLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$OrgHibernateVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$OrgHsqldbLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$OrgHsqldbVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$OrgLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$OrgVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$PluginAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$VersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/metadata.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/sources/org/gradle/accessors/dm/LibrariesForLibs.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6-a43ad6d1-2452-4869-9195-8d020d6b761b/sources/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibs$BundleAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibs$ComLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibs$ComSparkjavaLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibs$ComSparkjavaSparkLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibs$ComSparkjavaSparkVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibs$ComSparkjavaVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibs$ComVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibs$OrgHibernateHibernateLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibs$OrgHibernateHibernateVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibs$OrgHibernateLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibs$OrgHibernateVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibs$OrgHsqldbLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibs$OrgHsqldbVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibs$OrgLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibs$OrgVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibs$PluginAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibs$VersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibs.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$BundleAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$ComLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$ComSparkjavaLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$ComSparkjavaSparkLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$ComSparkjavaSparkVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$ComSparkjavaVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$ComVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$OrgHibernateHibernateLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$OrgHibernateHibernateVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$OrgHibernateLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$OrgHibernateVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$OrgHsqldbLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$OrgHsqldbVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$OrgLibraryAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$OrgVersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$PluginAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$VersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/metadata.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/sources/org/gradle/accessors/dm/LibrariesForLibs.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/sources/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/dependencies-accessors/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/executionHistory/executionHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/fileHashes/resourceHashesCache.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/8.7/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/file-system.probe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.gradle/vcs-1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/gradle/libs.versions.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/sampleCreate.ddl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/sampleDrop.ddl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/settings.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/src/main/java/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/src/main/java/org/example/controller/CustomerController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/src/main/java/org/example/controller/NutritionistController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/src/main/java/org/example/controller/StoreController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/src/main/java/org/example/model/Customer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/src/main/java/org/example/model/DietDay.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/src/main/java/org/example/model/Nutritionist.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/src/main/java/org/example/model/Store.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/src/main/java/org/example/model/WeeklyHistory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/src/main/java/org/example/model/ingredientId.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/src/main/java/org/example/persistence/HibernateUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/src/main/java/org/example/service/costumer/CostumerRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/src/main/java/org/example/service/costumer/CostumerRepositoryImp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/src/main/java/org/example/service/nutritionist/NutritionistRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/src/main/java/org/example/service/nutritionist/NutritionistRepositoryImp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/src/main/java/org/example/service/store/StoreRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/src/main/java/org/example/service/store/StoreRepositoryImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/src/main/js/front/newClientCostumer/newCostumerUserPage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/src/main/resources/META-INF/persistence.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/src/test/java/org/example/CreateUsersTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutriCenter/src/test/resources/META-INF/persistence.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sampleCreate.ddl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sampleDrop.ddl" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/Database/hsqldb-2.7.2/hsqldb/build">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/NutriCenter">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/Database/hsqldb-2.7.2/hsqldb/build">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="hsqldb" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="hsqldb" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JSX File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2dadPwVRkGvspsCPlFcNqLgVFYT" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build NutriCenter.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build build.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CreateUsersTest.executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.NutriCenter [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenDatabaseViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/ezequielrickert/projects/lab1&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main (1)">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="org.example.NutriCenter.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.web.Main" />
+      <module name="org.example.NutriCenter.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.web.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CreateUsersTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/NutriCenter" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;org.example.CreateUsersTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Gradle.CreateUsersTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-15.0.10-azul-15.0.10-4caba194b151-3b0166d7" />
+        <option value="jdk-21.0.2-corretto-21.0.2-4caba194b151-221dcadf" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5bdafd8e-40e9-4e0e-98bd-e5e6e9f5402c" name="Changes" comment="" />
+      <created>1710250102226</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710250102226</updated>
+      <workItem from="1710250103275" duration="3393000" />
+      <workItem from="1711367272898" duration="1119000" />
+      <workItem from="1711371242067" duration="642000" />
+      <workItem from="1711391214904" duration="7924000" />
+      <workItem from="1711451467614" duration="11026000" />
+      <workItem from="1711463535632" duration="5334000" />
+      <workItem from="1711626404602" duration="7197000" />
+      <workItem from="1711635008849" duration="339000" />
+      <workItem from="1711635570590" duration="50000" />
+      <workItem from="1711635680855" duration="42000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/NutriCenter" />
+    </ignored-roots>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/NutriCenter/src/test/java/org/example/CreateUsersTest.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/NutriCenter/src/main/java/org/example/persistence/HibernateUtil.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/NutriCenter/src/main/java/org/example/service/store/StoreRepositoryImpl.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
