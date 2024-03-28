@@ -19,6 +19,9 @@ dependencies {
     implementation("org.hibernate:hibernate-core:5.4.27.Final")
     // Hibernate EntityManager
     implementation("org.hibernate:hibernate-entitymanager:5.4.27.Final")
+    implementation("com.google.guava:guava:31.1-jre")
+    implementation("com.google.code.gson:gson:2.9.0")
+
 }
 
 group = "org.example"

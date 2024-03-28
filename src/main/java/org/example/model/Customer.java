@@ -1,5 +1,7 @@
 package org.example.model;
 
+import com.google.gson.Gson;
+
 import javax.persistence.*;
 
 @Entity(name = "CUSTOMER")
@@ -34,7 +36,7 @@ public class Customer {
         this.clientEmail = mail;
     }
 
-  public Long getClientId() {
+    public Long getClientId() {
     return clientId;
   }
 
@@ -45,4 +47,9 @@ public class Customer {
     public String getClientEmail() {
         return clientEmail;
     }
+
+  public String asJson() {
+    Gson gson = new Gson();
+    return gson.toJson(this);
+  }
 }
