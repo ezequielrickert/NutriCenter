@@ -1,20 +1,21 @@
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './views/home';
+import Login from './views/login';
 import './App.css';
 
 function App() {
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <form action='/home' method='POST'>
-          <label htmlFor="fname">First name:</label><br/>
-          <input type="text" id="fname" name="fname"/><br/>
-          <label htmlFor="lname">Last name:</label><br/>
-          <input type="text" id="lname" name="lname"/><br/>
-          <input type="submit"/>
-        </form>
-      </header>
-    </div>
-  );
+    return (
+        <Router>
+            <div className="App">
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
+                </Routes>
+            </div>
+        </Router>
+    );
 }
 
 export default App;
