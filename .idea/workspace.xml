@@ -5,44 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5bdafd8e-40e9-4e0e-98bd-e5e6e9f5402c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/js/front/src/view/login/login.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/startDB.sh" beforeDir="false" afterPath="$PROJECT_DIR$/bin/startDB.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/CustomerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/NutritionistController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/NutritionistController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/StoreController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/StoreController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Customer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/model/DietDay.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/model/DietDay.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Nutritionist.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Nutritionist.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Store.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Store.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/model/WeeklyHistory.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/model/WeeklyHistory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/model/ingredientId.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/model/ingredientId.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/persistence/HibernateUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/persistence/HibernateUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/service/costumer/CostumerRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/service/costumer/CostumerRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/service/costumer/CostumerRepositoryImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/service/costumer/CostumerRepositoryImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/service/nutritionist/NutritionistRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/service/nutritionist/NutritionistRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/service/nutritionist/NutritionistRepositoryImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/service/nutritionist/NutritionistRepositoryImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/service/store/StoreRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/service/store/StoreRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/service/store/StoreRepositoryImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/service/store/StoreRepositoryImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/js/front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/js/front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/view/login/login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/view/login/login.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,33 +83,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main (1).executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build NutriCenter.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build build.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build lab1.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.CreateUsersTest.executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.NutriCenter [:Application.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.NutriCenter [:Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.lab1 [:Application.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.lab1 [:Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenDatabaseViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;eze&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/ezequielrickert/projects/lab1&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main (1).executor": "Run",
+    "Gradle.Build NutriCenter.executor": "Run",
+    "Gradle.Build build.executor": "Run",
+    "Gradle.Build lab1.executor": "Run",
+    "Gradle.CreateUsersTest.executor": "Debug",
+    "Gradle.NutriCenter [:Application.main()].executor": "Debug",
+    "Gradle.NutriCenter [:Main.main()].executor": "Run",
+    "Gradle.lab1 [:Application.main()].executor": "Run",
+    "Gradle.lab1 [:Main.main()].executor": "Run",
+    "RunOnceActivity.OpenDatabaseViewOnStart": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "eze",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/ezequielrickert/projects/lab1",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -236,7 +210,7 @@
       <workItem from="1711635008849" duration="339000" />
       <workItem from="1711635570590" duration="50000" />
       <workItem from="1711635680855" duration="6754000" />
-      <workItem from="1712417854418" duration="6579000" />
+      <workItem from="1712417854418" duration="13044000" />
     </task>
     <servers />
   </component>
@@ -265,6 +239,16 @@
           <url>file://$PROJECT_DIR$/NutriCenter/src/main/java/org/example/service/store/StoreRepositoryImpl.java</url>
           <line>34</line>
           <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/controller/CustomerController.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/Application.java</url>
+          <line>57</line>
+          <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/main/js/front/src/App.js</url>

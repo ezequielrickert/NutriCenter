@@ -5,14 +5,12 @@ import axios from 'axios';
 const Login =  () => {
 
 
-    const [fname, setFname] = useState('');
-    const [lname, setLname] = useState('');
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('')
 
     const loginData = {
-        fname: fname,
-        lname: lname,
-        email: email,
+        clientName: username,
+        clientEmail: email,
     }
 
     const handleSubmit = async (event) => {
@@ -26,12 +24,9 @@ const Login =  () => {
         <div className="App">
             <header className="App-header">
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="fname">First name:</label><br/>
-                    <input type="text" id="fname" name="fname" value={fname}
-                           onChange={e => setFname(e.target.value)}/><br/>
-                    <label htmlFor="lname">Last name:</label><br/>
-                    <input type="text" id="lname" name="lname" value={lname}
-                           onChange={e => setLname(e.target.value)}/><br/>
+                    <label htmlFor="username"> Username:</label><br/>
+                    <input type="text" id="username" name="username" value={username}
+                           onChange={e => setUsername(e.target.value)}/><br/>
                     <label htmlFor="email">Enter eMail:</label><br/>
                     <input type="text" id="email" name="email" value={email}
                            onChange={e => setEmail(e.target.value)}/><br/>

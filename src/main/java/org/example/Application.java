@@ -3,8 +3,6 @@ package org.example;
 import com.google.common.base.Strings;
 import com.google.gson.Gson;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import org.example.controller.CustomerController;
 import org.example.controller.NutritionistController;
 import org.example.controller.StoreController;
@@ -17,6 +15,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.io.Console;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
@@ -30,11 +29,11 @@ public class Application {
 
     Spark.port(8080);
 
-    storedCustomer(entityManagerFactory.createEntityManager());
-
-    storedNutritionist(entityManagerFactory.createEntityManager());
-
-    storedStore(entityManagerFactory.createEntityManager());
+//    storedCustomer(entityManagerFactory.createEntityManager());
+//
+//    storedNutritionist(entityManagerFactory.createEntityManager());
+//
+//    storedStore(entityManagerFactory.createEntityManager());
 
       Spark.options("/*", (request, response) -> {
 
@@ -55,15 +54,21 @@ public class Application {
 
 
       Spark.post("/createCustomer", (req, res) -> {
-          JsonObject jsonObject = new JsonParser().parse(req.body()).getAsJsonObject();
-          String fname = jsonObject.get("fname").getAsString();
-          String lname = jsonObject.get("lname").getAsString();
-          String email = jsonObject.get("email").getAsString();
-          CustomerController customerController = new CustomerController(entityManagerFactory.createEntityManager());
-          customerController.createClient(fname + lname, email);
-          return req.body();
-      });
-
+          String body = req.body();
+          Customer newCustomer = gson.fromJson(body, Customer.class);
+          String username = newCustomer.getClientName();
+          String email = newCustomer.getClientEmail();
+          System.out.println("Username: " + username);
+          System.out.println("Email: " + email);
+          EntityManager entityManager = entityManagerFactory.createEntityManager();
+          CustomerController customerController = new CustomerController(entityManager);
+          try {
+              customerController.createClient(username, email);
+          } catch (Exception e) {
+              e.printStackTrace();
+          }
+          return newCustomer;
+      }, gson::toJson);
     /* Dynamic Content from Db */
     Spark.get("/persisted-customers/:id",
             (req, resp) -> {
