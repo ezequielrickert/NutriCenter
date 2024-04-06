@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bdafd8e-40e9-4e0e-98bd-e5e6e9f5402c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/js/front/src/views/home.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/js/front/src/views/home.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/js/front/src/views/login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/js/front/src/views/login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/65c70a5a-d3d9-4775-883f-7e8bd5d18d02.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/65c70a5a-d3d9-4775-883f-7e8bd5d18d02.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/js/front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/js/front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/App.js" afterDir="false" />
+    <list default="true" id="5bdafd8e-40e9-4e0e-98bd-e5e6e9f5402c" name="Changes" comment="Changes to support view structures and Router">
+      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/views/login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/views/login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/views/signUp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/views/signUp.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,8 +53,8 @@
         <option value="Interface" />
         <option value="Class" />
         <option value="JavaScript File" />
-        <option value="JSX File" />
         <option value="CSS File" />
+        <option value="JSX File" />
       </list>
     </option>
   </component>
@@ -211,6 +203,15 @@
       <workItem from="1712143497668" duration="245000" />
       <workItem from="1712410031275" duration="2110000" />
     </task>
+    <task id="LOCAL-00001" summary="Changes to support view structures and Router">
+      <option name="closed" value="true" />
+      <created>1712424982536</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1712424982536</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,6 +221,8 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/NutriCenter" />
     </ignored-roots>
+    <MESSAGE value="Changes to support view structures and Router" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes to support view structures and Router" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

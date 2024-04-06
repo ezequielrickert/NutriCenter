@@ -3,12 +3,12 @@ import './login.css';
 
 function Login() {
     const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
         // Handle form submission here
-        console.log(`Name: ${name}, Email: ${email}`);
+        console.log(`Name: ${name}, Password: ${password}`);
     };
 
     return (
@@ -19,8 +19,8 @@ function Login() {
                     <input type="text" value={name} onChange={e => setName(e.target.value)} />
                 </label>
                 <label>
-                    Email:
-                    <input type="email" value={email} onChange={e => setEmail(e.target.value)} />
+                    Password:
+                    <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
                 </label>
                 <input type="submit" value="Submit" />
             </form>
