@@ -15,9 +15,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.time.Instant;
-import java.util.Arrays;
-import java.util.List;
+
 
 public class Application {
 
@@ -33,6 +31,24 @@ public class Application {
     storedNutritionist(entityManagerFactory.createEntityManager());
 
     storedStore(entityManagerFactory.createEntityManager());
+
+      Spark.get("/created",
+              (req, resp) -> "User created successfully!!"
+      );
+
+      Spark.get("/home",
+              (req, resp) -> {
+                  final String fname = req.queryParams("fname");
+                  final String lname = req.queryParams("lname");
+
+                  CustomerController customerController = new CustomerController(entityManagerFactory.createEntityManager());
+                  customerController.createClient(fname + " " +lname, fname+lname+ "@mail.austral.edu.ar");
+
+                  resp.type("application/json");
+                  return null;
+              }
+      );
+
 
     /* Dynamic Content from Db */
     Spark.get("/persisted-customers/:id",
