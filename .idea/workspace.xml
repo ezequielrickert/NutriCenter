@@ -5,18 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5bdafd8e-40e9-4e0e-98bd-e5e6e9f5402c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/js/front/src/view/signup/signup.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/CustomerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Customer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/service/costumer/CostumerRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/service/costumer/CostumerRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/service/costumer/CostumerRepositoryImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/service/costumer/CostumerRepositoryImp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Application.class.uniqueId0" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/costumer/CostumerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/costumer/CostumerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/costumer/CostumerRepositoryImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/costumer/CostumerRepositoryImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/js/front/src/view/login/login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/view/login/login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/CreateUsersTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/CreateUsersTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,9 +72,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JSX File" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="JSX File" />
       </list>
     </option>
   </component>
@@ -90,7 +105,7 @@
     "Gradle.Build build.executor": "Run",
     "Gradle.Build lab1.executor": "Run",
     "Gradle.CreateUsersTest.executor": "Debug",
-    "Gradle.NutriCenter [:Application.main()].executor": "Debug",
+    "Gradle.NutriCenter [:Application.main()].executor": "Run",
     "Gradle.NutriCenter [:Main.main()].executor": "Run",
     "Gradle.lab1 [:Application.main()].executor": "Run",
     "Gradle.lab1 [:Main.main()].executor": "Run",
@@ -210,7 +225,7 @@
       <workItem from="1711635008849" duration="339000" />
       <workItem from="1711635570590" duration="50000" />
       <workItem from="1711635680855" duration="6754000" />
-      <workItem from="1712417854418" duration="13044000" />
+      <workItem from="1712417854418" duration="16428000" />
     </task>
     <servers />
   </component>
@@ -241,19 +256,23 @@
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/controller/CustomerController.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/Application.java</url>
           <line>57</line>
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/main/js/front/src/App.js</url>
-          <line>10</line>
+          <line>17</line>
           <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/model/Customer.java</url>
+          <line>24</line>
+          <properties class="org.example.model.Customer" method="&lt;init&gt;">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="44" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

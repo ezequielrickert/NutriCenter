@@ -29,11 +29,11 @@ public class Application {
 
     Spark.port(8080);
 
-//    storedCustomer(entityManagerFactory.createEntityManager());
-//
-//    storedNutritionist(entityManagerFactory.createEntityManager());
-//
-//    storedStore(entityManagerFactory.createEntityManager());
+    storedCustomer(entityManagerFactory.createEntityManager());
+
+    storedNutritionist(entityManagerFactory.createEntityManager());
+
+    storedStore(entityManagerFactory.createEntityManager());
 
       Spark.options("/*", (request, response) -> {
 
@@ -56,19 +56,27 @@ public class Application {
       Spark.post("/createCustomer", (req, res) -> {
           String body = req.body();
           Customer newCustomer = gson.fromJson(body, Customer.class);
-          String username = newCustomer.getClientName();
-          String email = newCustomer.getClientEmail();
-          System.out.println("Username: " + username);
-          System.out.println("Email: " + email);
+          String username = newCustomer.getCustomerName();
+          String email = newCustomer.getCustomerEmail();
+          String password = newCustomer.getCustomerPassword();
           EntityManager entityManager = entityManagerFactory.createEntityManager();
           CustomerController customerController = new CustomerController(entityManager);
           try {
-              customerController.createClient(username, email);
+              customerController.createClient(username, email, password);
           } catch (Exception e) {
               e.printStackTrace();
           }
           return newCustomer;
       }, gson::toJson);
+
+      Spark.post("/fetchCustomer", (req, res) -> {
+          String body = req.body();
+          Customer newCustomer = gson.fromJson(body, Customer.class);
+          String username = newCustomer.getCustomerName();
+          String password = newCustomer.getCustomerPassword();
+          return req;
+      }, gson::toJson);
+
     /* Dynamic Content from Db */
     Spark.get("/persisted-customers/:id",
             (req, resp) -> {
@@ -125,9 +133,9 @@ public class Application {
 
   private static void storedCustomer(EntityManager entityManager) {
     CustomerController customerController = new CustomerController(entityManager);
-    customerController.createClient("erickert", "erickert@mail.austral.edu.ar");
-    customerController.createClient("hlagos", "hlagos@mail.austral.edu.ar");
-    customerController.createClient("tbernardez", "tbernardez@mail.austral.edu.ar");
+    customerController.createClient("erickert", "erickert@mail.austral.edu.ar", "lal");
+    customerController.createClient("hlagos", "hlagos@mail.austral.edu.ar", "lal");
+    customerController.createClient("tbernardez", "tbernardez@mail.austral.edu.ar", "lal");
   }
 
   private static void storedNutritionist(EntityManager entityManager){
