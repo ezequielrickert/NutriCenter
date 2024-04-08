@@ -43,9 +43,9 @@ public class CreateUsersTest {
 
 
         // Create a new Client
-        Customer ezequiel = new Customer("Ezequiel Rickert", "erickert@mail.austral.edu.ar");
-        Customer tomas = new Customer("Tomas Bernardez", "tbernardez@mail.austral.edu.ar");
-        Customer hilario = new Customer("Hilario Lagos", "hlagos@mail.austral.edu.ar");
+        Customer ezequiel = new Customer("Ezequiel Rickert", "erickert@mail.austral.edu.ar", "lal");
+        Customer tomas = new Customer("Tomas Bernardez", "tbernardez@mail.austral.edu.ar", "lal");
+        Customer hilario = new Customer("Hilario Lagos", "hlagos@mail.austral.edu.ar", "lal");
 
         // Persist the Client
         em.persist(ezequiel);

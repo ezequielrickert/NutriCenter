@@ -10,16 +10,16 @@ public class CustomerController {
   public CustomerController(EntityManager entityManager) {
     this.costumerRepositoryImp = new CostumerRepositoryImp(entityManager);
   }
-  public void createClient(String username, String email) {
-    costumerRepositoryImp.createUser(username, email);
+  public void createClient(String username, String email, String password) {
+    costumerRepositoryImp.createUser(username, email, password);
   }
 
   public void readClient(Long inClientId) {
     Customer customer = costumerRepositoryImp.readUser(inClientId);
     if (customer != null) {
-      System.out.println("Client ID: " + customer.getClientId());
-      System.out.println("Client Name: " + customer.getClientName());
-      System.out.println("Client Email: " + customer.getClientEmail());
+      System.out.println("Client ID: " + customer.getCustomerId());
+      System.out.println("Client Name: " + customer.getCustomerName());
+      System.out.println("Client Email: " + customer.getCustomerEmail());
     } else {
       System.out.println("Client not found");
     }

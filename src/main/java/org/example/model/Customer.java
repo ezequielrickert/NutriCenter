@@ -1,6 +1,7 @@
 package org.example.model;
 
 import com.google.gson.Gson;
+import org.checkerframework.checker.units.qual.C;
 
 import javax.persistence.*;
 
@@ -9,18 +10,22 @@ public class Customer {
 
     @Id
     @GeneratedValue(generator = "userGen", strategy = GenerationType.IDENTITY)
-    private Long clientId;
+    private Long customerId;
 
     @Column(nullable = false, unique = false)
-    private String clientName;
+    private String customerName;
 
     @Column(nullable = false, unique = true)
-    private String clientEmail;
+    private String customerEmail;
+
+    @Column(nullable = false, unique = false)
+    private String customerPassword;
 
 
-    public Customer(String clientName, String clientEmail) {
-        this.clientName = clientName;
-        this.clientEmail = clientEmail;
+    public Customer(String customerName, String customerEmail, String customerPassword) {
+        this.customerName = customerName;
+        this.customerEmail = customerEmail;
+        this.customerPassword = customerPassword;
     }
 
     public Customer() {
@@ -28,25 +33,29 @@ public class Customer {
     }
 
 
-    public void setClientName(String name) {
-        this.clientName = name;
+    public void setCustomerName(String name) {
+        this.customerName = name;
     }
 
-    public void setClientEmail(String mail) {
-        this.clientEmail = mail;
+    public void setCustomerEmail(String mail) {
+        this.customerEmail = mail;
     }
 
-    public Long getClientId() {
-    return clientId;
+    public void setCustomerPassword(String password) { this.customerPassword = password; }
+
+    public Long getCustomerId() {
+    return customerId;
   }
 
-    public String getClientName() {
-        return clientName;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public String getClientEmail() {
-        return clientEmail;
+    public String getCustomerEmail() {
+        return customerEmail;
     }
+
+    public String getCustomerPassword() { return customerPassword; }
 
   public String asJson() {
     Gson gson = new Gson();

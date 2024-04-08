@@ -15,7 +15,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-
+import java.io.Console;
+import java.time.Instant;
+import java.util.Arrays;
+import java.util.List;
 
 public class Application {
 
@@ -32,23 +35,47 @@ public class Application {
 
     storedStore(entityManagerFactory.createEntityManager());
 
-      Spark.get("/created",
-              (req, resp) -> "User created successfully!!"
-      );
+      Spark.options("/*", (request, response) -> {
 
-      Spark.get("/home",
-              (req, resp) -> {
-                  final String fname = req.queryParams("fname");
-                  final String lname = req.queryParams("lname");
+          String accessControlRequestHeaders = request.headers("Access-Control-Request-Headers");
+          if (accessControlRequestHeaders != null) {
+              response.header("Access-Control-Allow-Headers", accessControlRequestHeaders);
+          }
 
-                  CustomerController customerController = new CustomerController(entityManagerFactory.createEntityManager());
-                  customerController.createClient(fname + " " +lname, fname+lname+ "@mail.austral.edu.ar");
+          String accessControlRequestMethod = request.headers("Access-Control-Request-Method");
+          if (accessControlRequestMethod != null) {
+              response.header("Access-Control-Allow-Methods", accessControlRequestMethod);
+          }
 
-                  resp.type("application/json");
-                  return null;
-              }
-      );
+          return "OK";
+      });
 
+      Spark.before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
+
+
+      Spark.post("/createCustomer", (req, res) -> {
+          String body = req.body();
+          Customer newCustomer = gson.fromJson(body, Customer.class);
+          String username = newCustomer.getCustomerName();
+          String email = newCustomer.getCustomerEmail();
+          String password = newCustomer.getCustomerPassword();
+          EntityManager entityManager = entityManagerFactory.createEntityManager();
+          CustomerController customerController = new CustomerController(entityManager);
+          try {
+              customerController.createClient(username, email, password);
+          } catch (Exception e) {
+              e.printStackTrace();
+          }
+          return newCustomer;
+      }, gson::toJson);
+
+      Spark.post("/fetchCustomer", (req, res) -> {
+          String body = req.body();
+          Customer newCustomer = gson.fromJson(body, Customer.class);
+          String username = newCustomer.getCustomerName();
+          String password = newCustomer.getCustomerPassword();
+          return req;
+      }, gson::toJson);
 
     /* Dynamic Content from Db */
     Spark.get("/persisted-customers/:id",
@@ -106,9 +133,9 @@ public class Application {
 
   private static void storedCustomer(EntityManager entityManager) {
     CustomerController customerController = new CustomerController(entityManager);
-    customerController.createClient("erickert", "erickert@mail.austral.edu.ar");
-    customerController.createClient("hlagos", "hlagos@mail.austral.edu.ar");
-    customerController.createClient("tbernardez", "tbernardez@mail.austral.edu.ar");
+    customerController.createClient("erickert", "erickert@mail.austral.edu.ar", "lal");
+    customerController.createClient("hlagos", "hlagos@mail.austral.edu.ar", "lal");
+    customerController.createClient("tbernardez", "tbernardez@mail.austral.edu.ar", "lal");
   }
 
   private static void storedNutritionist(EntityManager entityManager){
