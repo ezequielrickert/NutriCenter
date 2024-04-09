@@ -126,6 +126,20 @@ public class Application {
             }
     );
 
+      // Post to create Nutritionist
+      Spark.post("/createNutritionist", (req, res) -> {
+          String body = req.body();
+          Nutritionist nutritionist = gson.fromJson(body, Nutritionist.class);
+          String username = nutritionist.getNutritionistName();
+          String email = nutritionist.getNutritionistEmail();
+          String diploma = nutritionist.getEducationDiploma();
+          String password = nutritionist.getNutritionistPassword();
+          EntityManager entityManager = entityManagerFactory.createEntityManager();
+          NutritionistController nutritionistController = new NutritionistController(entityManager);
+          nutritionistController.createNutritionist(username, email, password, diploma);
+          return nutritionist;
+      } , gson::toJson);
+
     Spark.get("/persisted-store/:id",
             (req, resp) -> {
               final String id = req.params("id");
@@ -154,8 +168,8 @@ public class Application {
 
   private static void storedNutritionist(EntityManager entityManager){
     NutritionistController nutritionistController = new NutritionistController(entityManager);
-    nutritionistController.createNutritionist("yael", "yael@test.com", "UA 4 year diploma");
-    nutritionistController.createNutritionist("paola", "paola@test.com", "UBA 4 year diploma");
+    nutritionistController.createNutritionist("yael", "yael@test.com", "sas","UA 4 year diploma");
+    nutritionistController.createNutritionist("paola", "paola@test.com", "sas", "UBA 4 year diploma");
   }
 
   private static void storedStore(EntityManager entityManager){

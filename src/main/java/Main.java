@@ -22,9 +22,9 @@ public class Main {
       customerController.updateClient(1L, "eballesteros", "eballesteros@mail.austral.edu.ar");
       customerController.deleteClient(2L);
       NutritionistController nutritionistController = new NutritionistController(entityManager);
-      nutritionistController.createNutritionist("yael", "yael@test.com", "UA 4 year diploma");
-      nutritionistController.createNutritionist("paola", "paola@test.com", "UBA 4 year diploma");
-      nutritionistController.updateNutritionist(2L, "silvina", "silvina@test.com", "UBA 4 year diploma");
+      nutritionistController.createNutritionist("yael", "yael@test.com", "sas", "UA 4 year diploma");
+      nutritionistController.createNutritionist("paola", "paola@test.com", "sas", "UBA 4 year diploma");
+      nutritionistController.updateNutritionist(2L, "silvina", "silvina@test.com", "sas", "UBA 4 year diploma");
       nutritionistController.deleteNutritionist(1L);
       StoreController storeController = new StoreController(entityManager);
       storeController.createStore("New Garden", "newgarden@gmail.com", "1122223333");
