@@ -1,11 +1,7 @@
 import React, {useState} from "react";
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-
-
 
 const SignUpCustomer =  () => {
-
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('')
@@ -27,6 +23,7 @@ const SignUpCustomer =  () => {
     return (
         <div className="App">
             <header className="App-header">
+                <h1>Customer SignUp</h1>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="username"> Username:</label><br/>
                     <input type="text" id="username" name="username" value={username}

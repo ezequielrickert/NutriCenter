@@ -21,6 +21,7 @@ const Login =  () => {
     return (
         <div className="App">
             <header className="App-header">
+                <h1>Customer Login</h1>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="username"> Username:</label><br/>
                     <input type="text" id="username" name="username" value={username}
