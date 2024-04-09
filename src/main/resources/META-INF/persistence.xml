@@ -8,6 +8,7 @@
         <class>org.example.model.Customer</class>
         <class>org.example.model.Store</class>
         <class>org.example.model.Nutritionist</class>
+        <class>org.example.model.SuperAdmin</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbc.JDBCDriver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:hsql://localhost/testdb"/>

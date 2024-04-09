@@ -6,9 +6,11 @@ import com.google.gson.Gson;
 import org.example.controller.CustomerController;
 import org.example.controller.NutritionistController;
 import org.example.controller.StoreController;
+import org.example.controller.SuperAdminController;
 import org.example.model.Customer;
 import org.example.model.Nutritionist;
 import org.example.model.Store;
+import org.example.model.SuperAdmin;
 import spark.Spark;
 
 import javax.persistence.EntityManager;
@@ -35,6 +37,8 @@ public class Application {
 
     storedStore(entityManagerFactory.createEntityManager());
 
+    createSuperAdmin(entityManagerFactory.createEntityManager());
+
       Spark.options("/*", (request, response) -> {
 
           String accessControlRequestHeaders = request.headers("Access-Control-Request-Headers");
@@ -52,7 +56,7 @@ public class Application {
 
       Spark.before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
 
-
+      // Post to create Customer
       Spark.post("/createCustomer", (req, res) -> {
           String body = req.body();
           Customer newCustomer = gson.fromJson(body, Customer.class);
@@ -61,14 +65,12 @@ public class Application {
           String password = newCustomer.getCustomerPassword();
           EntityManager entityManager = entityManagerFactory.createEntityManager();
           CustomerController customerController = new CustomerController(entityManager);
-          try {
-              customerController.createClient(username, email, password);
-          } catch (Exception e) {
-              e.printStackTrace();
-          }
+          customerController.createClient(username, email, password);
           return newCustomer;
       }, gson::toJson);
 
+
+      // Post to fetch Customer (proably wrong...)
       Spark.post("/fetchCustomer", (req, res) -> {
           String body = req.body();
           Customer newCustomer = gson.fromJson(body, Customer.class);
@@ -76,6 +78,18 @@ public class Application {
           String password = newCustomer.getCustomerPassword();
           return req;
       }, gson::toJson);
+
+      // Post to create SuperAdmin
+      Spark.post("/createSuperAdmin", (req, res) -> {
+         String body = req.body();
+         SuperAdmin superAdmin = gson.fromJson(body, SuperAdmin.class);
+         String username = superAdmin.getAdminUsername();
+         String password = superAdmin.getAdminPassword();
+         EntityManager entityManager = entityManagerFactory.createEntityManager();
+         SuperAdminController superAdminController = new SuperAdminController(entityManager);
+         superAdminController.createSuperAdmin(username, password);
+         return superAdmin;
+      } , gson::toJson);
 
     /* Dynamic Content from Db */
     Spark.get("/persisted-customers/:id",
@@ -152,5 +166,10 @@ public class Application {
   }
   private static String capitalized(String name) {
     return Strings.isNullOrEmpty(name) ? name : name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+  }
+
+  private static void createSuperAdmin(EntityManager entityManager) {
+      SuperAdminController superAdminController = new SuperAdminController(entityManager);
+      superAdminController.createSuperAdmin("God", "God");
   }
 }

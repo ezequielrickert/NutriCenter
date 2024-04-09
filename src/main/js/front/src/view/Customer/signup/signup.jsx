@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 
 
-const SignUp =  () => {
+const SignUpCustomer =  () => {
 
 
     const [username, setUsername] = useState('');
@@ -44,4 +44,4 @@ const SignUp =  () => {
     );
 }
 
-export default SignUp;
+export default SignUpCustomer;

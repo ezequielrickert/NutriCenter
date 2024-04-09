@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="testdb@localhost">
+  <database-model serializer="dbm" dbms="HSQLDB" family-id="HSQLDB" format-version="4.52">
+    <root id="1">
+      <ServerVersion>2.7.2</ServerVersion>
+    </root>
+    <database id="2" parent="1" name="PUBLIC">
+      <Current>1</Current>
+    </database>
+    <schema id="3" parent="2" name="INFORMATION_SCHEMA"/>
+    <schema id="4" parent="2" name="PUBLIC">
+      <Current>1</Current>
+      <LastIntrospectionLocalTimestamp>2024-04-09.13:25:31</LastIntrospectionLocalTimestamp>
+    </schema>
+    <schema id="5" parent="2" name="SYSTEM_LOBS"/>
+    <table id="6" parent="4" name="CUSTOMER"/>
+    <table id="7" parent="4" name="NUTRITIONIST"/>
+    <table id="8" parent="4" name="STORE"/>
+    <table id="9" parent="4" name="SUPER_ADMIN"/>
+    <column id="10" parent="6" name="CUSTOMERID">
+      <DasType>BIGINT|-5s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="11" parent="6" name="CUSTOMEREMAIL">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="12" parent="6" name="CUSTOMERNAME">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="13" parent="6" name="CUSTOMERPASSWORD">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <index id="14" parent="6" name="SYS_PK_12210">
+      <ColNames>CUSTOMERID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <index id="15" parent="6" name="UK_MHGGAEOAE36209S61GBYXIV1N">
+      <ColNames>CUSTOMEREMAIL</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="16" parent="6" name="SYS_PK_12210">
+      <ColNames>CUSTOMERID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <key id="17" parent="6" name="UK_MHGGAEOAE36209S61GBYXIV1N">
+      <ColNames>CUSTOMEREMAIL</ColNames>
+    </key>
+    <column id="18" parent="7" name="NUTRITIONISTID">
+      <DasType>BIGINT|-5s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="19" parent="7" name="EDUCATIONDIPLOMA">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="20" parent="7" name="NUTRITIONISTEMAIL">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="21" parent="7" name="NUTRITIONISTNAME">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <index id="22" parent="7" name="SYS_PK_12217">
+      <ColNames>NUTRITIONISTID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <index id="23" parent="7" name="UK_ILY1O9O878EJ1U91NR02KBNK3">
+      <ColNames>NUTRITIONISTEMAIL</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="24" parent="7" name="SYS_PK_12217">
+      <ColNames>NUTRITIONISTID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <key id="25" parent="7" name="UK_ILY1O9O878EJ1U91NR02KBNK3">
+      <ColNames>NUTRITIONISTEMAIL</ColNames>
+    </key>
+    <column id="26" parent="8" name="STOREID">
+      <DasType>BIGINT|-5s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="27" parent="8" name="STOREMAIL">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="28" parent="8" name="STORENAME">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="29" parent="8" name="STORENUMBER">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <index id="30" parent="8" name="SYS_PK_12224">
+      <ColNames>STOREID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <index id="31" parent="8" name="UK_T9M0QM0K4V6FCEYHNOYQH32A2">
+      <ColNames>STOREMAIL</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="32" parent="8" name="UK_IH38VM7GKH4C58RTXDM14GYQF">
+      <ColNames>STORENUMBER</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="33" parent="8" name="SYS_PK_12224">
+      <ColNames>STOREID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <key id="34" parent="8" name="UK_T9M0QM0K4V6FCEYHNOYQH32A2">
+      <ColNames>STOREMAIL</ColNames>
+    </key>
+    <key id="35" parent="8" name="UK_IH38VM7GKH4C58RTXDM14GYQF">
+      <ColNames>STORENUMBER</ColNames>
+    </key>
+    <column id="36" parent="9" name="ADMINID">
+      <DasType>BIGINT|-5s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="37" parent="9" name="ADMINPASSWORD">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="38" parent="9" name="ADMINUSERNAME">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <index id="39" parent="9" name="SYS_PK_12230">
+      <ColNames>ADMINID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <index id="40" parent="9" name="UK_HL36IVN4PW6AWKST8AJUTK2V">
+      <ColNames>ADMINUSERNAME</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="41" parent="9" name="SYS_PK_12230">
+      <ColNames>ADMINID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <key id="42" parent="9" name="UK_HL36IVN4PW6AWKST8AJUTK2V">
+      <ColNames>ADMINUSERNAME</ColNames>
+    </key>
+  </database-model>
+</dataSource>

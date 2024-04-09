@@ -1,16 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Login from './view/login/login'
-import SignUp from "./view/signup/signup";
+import LoginCustomer from './view/Customer/login/login'
+import SignUpCustomer from "./view/Customer/signup/signup";
+import SignupSuperAdmin from "./view/SuperAdmin/signup/signup";
 
 function App() {
   return (
       <Router>
         <div className="App">
           <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signUp" element={<SignUp />} />
+            <Route path="/loginCustomer" element={<LoginCustomer />} />
+            <Route path="/signUpCustomer" element={<SignUpCustomer />} />
+              <Route path="/signUpSuperAdmin" element={<SignupSuperAdmin />} />
           </Routes>
         </div>
       </Router>

@@ -11,6 +11,7 @@ import javax.persistence.Persistence;
 public class CostumerRepositoryImp implements CostumerRepository {
 
   EntityManager entityManager;
+
   public CostumerRepositoryImp(EntityManager entityManager){
     this.entityManager = entityManager;
   }
