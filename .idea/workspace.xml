@@ -4,9 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bdafd8e-40e9-4e0e-98bd-e5e6e9f5402c" name="Changes" comment="Changes to support view structures and Router">
-      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/views/login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/views/login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/views/signUp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/views/signUp.jsx" afterDir="false" />
+    <list default="true" id="5bdafd8e-40e9-4e0e-98bd-e5e6e9f5402c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/SuperAdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/model/SuperAdmin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/superadmin/SuperAdminRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/superadmin/SuperAdminRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/js/front/src/view/SuperAdmin/signup/signup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/startDB.sh" beforeDir="false" afterPath="$PROJECT_DIR$/bin/startDB.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/costumer/CostumerRepositoryImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/costumer/CostumerRepositoryImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/view/login/login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/view/Customer/login/login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/view/signup/signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/view/Customer/signup/signup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,8 +66,6 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
-        <option value="JavaScript File" />
-        <option value="CSS File" />
         <option value="JSX File" />
       </list>
     </option>
@@ -66,6 +78,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ezequielrickert&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ezequielrickert/NutriCenter.git&quot;,
+    &quot;accountId&quot;: &quot;838875d5-cc65-4c76-ab05-a67ae18d8090&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -80,7 +104,6 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Application.executor": "Run",
     "Application.Main (1).executor": "Run",
     "Gradle.Build NutriCenter.executor": "Run",
     "Gradle.Build build.executor": "Run",
@@ -90,31 +113,29 @@
     "Gradle.NutriCenter [:Main.main()].executor": "Run",
     "Gradle.lab1 [:Application.main()].executor": "Run",
     "Gradle.lab1 [:Main.main()].executor": "Run",
-    "Node.js.App.js.executor": "Run",
     "RunOnceActivity.OpenDatabaseViewOnStart": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "hilu2",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/ezequielrickert/projects/NutriCenter",
-    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "npm.start.executor": "Run",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/js/front/src/view/Customer" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="Application.Application">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Application" />
       <module name="NutriCenter.main" />
@@ -150,34 +171,44 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="App.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/main/js/front/src/App.js" working-dir="$PROJECT_DIR$/src/main/js/front/src">
-      <method v="2" />
-    </configuration>
-    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/src/main/js/front/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="start" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
+    <configuration name="CreateUsersTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/NutriCenter" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;org.example.CreateUsersTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start" />
-        <item itemvalue="Node.js.App.js" />
+        <item itemvalue="Application.Application" />
         <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Application" />
+        <item itemvalue="Gradle.CreateUsersTest" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-20.0.2-corretto-20.0.2.1-4caba194b151-d89c1816" />
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
       </set>
     </attachedChunks>
   </component>
@@ -199,19 +230,13 @@
       <workItem from="1711635008849" duration="339000" />
       <workItem from="1711635570590" duration="50000" />
       <workItem from="1711635680855" duration="6754000" />
-      <workItem from="1712093808416" duration="7182000" />
-      <workItem from="1712143497668" duration="245000" />
-      <workItem from="1712410031275" duration="2110000" />
+      <workItem from="1712417854418" duration="16512000" />
+      <workItem from="1712596193638" duration="19000" />
+      <workItem from="1712623464979" duration="142000" />
+      <workItem from="1712623649173" duration="169000" />
+      <workItem from="1712661696788" duration="7000" />
+      <workItem from="1712664634401" duration="5062000" />
     </task>
-    <task id="LOCAL-00001" summary="Changes to support view structures and Router">
-      <option name="closed" value="true" />
-      <created>1712424982536</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1712424982536</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,8 +246,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/NutriCenter" />
     </ignored-roots>
-    <MESSAGE value="Changes to support view structures and Router" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes to support view structures and Router" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -242,10 +265,19 @@
           <line>34</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/Application.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="22" />
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/main/js/front/src/App.js</url>
+          <line>19</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/model/Customer.java</url>
+          <line>24</line>
+          <properties class="org.example.model.Customer" method="&lt;init&gt;">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="44" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

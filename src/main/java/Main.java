@@ -13,9 +13,9 @@ public class Main {
       EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
       EntityManager entityManager = entityManagerFactory.createEntityManager();;
       CustomerController customerController = new CustomerController(entityManager);
-      customerController.createClient("erickert", "erickert@mail.austral.edu.ar");
-      customerController.createClient("hlagos", "hlagos@mail.austral.edu.ar");
-      customerController.createClient("tbernardez", "tbernardez@mail.austral.edu.ar");
+      customerController.createClient("erickert", "erickert@mail.austral.edu.ar", "lal");
+      customerController.createClient("hlagos", "hlagos@mail.austral.edu.ar", "lal");
+      customerController.createClient("tbernardez", "tbernardez@mail.austral.edu.ar", "lal");
       customerController.readClient(1L);
       customerController.readClient(2L);
       customerController.readClient(3L);

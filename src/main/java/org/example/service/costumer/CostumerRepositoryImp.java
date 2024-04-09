@@ -11,16 +11,18 @@ import javax.persistence.Persistence;
 public class CostumerRepositoryImp implements CostumerRepository {
 
   EntityManager entityManager;
+
   public CostumerRepositoryImp(EntityManager entityManager){
     this.entityManager = entityManager;
   }
 
   @Override
-  public void createUser(String username, String email) {
+  public void createUser(String username, String email, String password) {
     entityManager.getTransaction().begin();
     Customer customer = new Customer();
-    customer.setClientName(username);
-    customer.setClientEmail(email);
+    customer.setCustomerName(username);
+    customer.setCustomerEmail(email);
+    customer.setCustomerPassword(password);
     entityManager.persist(customer);
     entityManager.getTransaction().commit();
   }
@@ -37,8 +39,8 @@ public class CostumerRepositoryImp implements CostumerRepository {
   public void updateUser(Long clientId, String username, String email) {
     entityManager.getTransaction().begin();
     Customer customer = entityManager.find(Customer.class, clientId);
-    customer.setClientName(username);
-    customer.setClientEmail(email);
+    customer.setCustomerName(username);
+    customer.setCustomerEmail(email);
     entityManager.persist(customer);
     entityManager.getTransaction().commit();
   }

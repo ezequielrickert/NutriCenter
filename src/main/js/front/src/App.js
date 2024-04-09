@@ -1,23 +1,22 @@
-// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './views/home';
-import Login from './views/login';
 import './App.css';
-import SignUp from "./views/signUp";
+import LoginCustomer from './view/Customer/login/login'
+import SignUpCustomer from "./view/Customer/signup/signup";
+import SignupSuperAdmin from "./view/SuperAdmin/signup/signup";
 
 function App() {
-    return (
-        <Router>
-            <div className="App">
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/signUp" element={<SignUp />} />
-                </Routes>
-            </div>
-        </Router>
-    );
+  return (
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route path="/loginCustomer" element={<LoginCustomer />} />
+            <Route path="/signUpCustomer" element={<SignUpCustomer />} />
+              <Route path="/signUpSuperAdmin" element={<SignupSuperAdmin />} />
+          </Routes>
+        </div>
+      </Router>
+  );
 }
 
 export default App;
