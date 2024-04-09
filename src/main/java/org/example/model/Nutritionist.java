@@ -18,11 +18,15 @@ public class Nutritionist {
     private String nutritionistEmail;
 
     @Column(nullable = false, unique = false)
+    private String nutritionistPassword;
+
+    @Column(nullable = false, unique = false)
     private String educationDiploma;
 
-    public Nutritionist(String name, String mail, String diploma) {
+    public Nutritionist(String name, String mail, String password, String diploma) {
         nutritionistName = name;
         nutritionistEmail = mail;
+        nutritionistPassword = password;
         educationDiploma = diploma;
     }
 
@@ -34,8 +38,32 @@ public class Nutritionist {
         this.nutritionistEmail = nutritionistEmail;
     }
 
+    public void setNutritionistPassword(String password) {
+        this.nutritionistPassword = password;
+    }
+
     public void setEducationDiploma(String diploma) {
         this.educationDiploma = diploma;
+    }
+
+    public Long getNutritionistId() {
+        return nutritionistId;
+    }
+
+    public String getNutritionistName() {
+        return nutritionistName;
+    }
+
+    public String getNutritionistEmail() {
+        return nutritionistEmail;
+    }
+
+    public String getNutritionistPassword() {
+        return nutritionistPassword;
+    }
+
+    public String getEducationDiploma() {
+        return educationDiploma;
     }
 
     public Nutritionist() {

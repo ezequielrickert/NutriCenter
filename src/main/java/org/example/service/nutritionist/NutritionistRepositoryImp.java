@@ -15,15 +15,14 @@ public class NutritionistRepositoryImp implements NutritionistRepository{
     this.entityManager = entityManager;
   }
   @Override
-  public void createNutritionist(String username, String email, String diploma) {
+  public void createNutritionist(String username, String email, String password, String diploma) {
     entityManager.getTransaction().begin();
 
-    Nutritionist nutritionist = new Nutritionist(username, email, diploma);
+    Nutritionist nutritionist = new Nutritionist(username, email, password, diploma);
 
     entityManager.persist(nutritionist);
 
     entityManager.getTransaction().commit();
-    entityManager.getTransaction();
   }
 
   @Override
@@ -35,11 +34,12 @@ public class NutritionistRepositoryImp implements NutritionistRepository{
   }
 
   @Override
-  public void updateNutritionist(Long nutritionistId, String username, String email, String diploma) {
+  public void updateNutritionist(Long nutritionistId, String username, String email, String password, String diploma) {
     entityManager.getTransaction().begin();
     Nutritionist nutritionist = entityManager.find(Nutritionist.class, nutritionistId);
     nutritionist.setNutritionistName(username);
     nutritionist.setNutritionistEmail(email);
+    nutritionist.setNutritionistPassword(password);
     nutritionist.setEducationDiploma(diploma);
     entityManager.persist(nutritionist);
     entityManager.getTransaction().commit();
