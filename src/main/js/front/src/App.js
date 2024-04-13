@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import InitialPage from "./view/Home/initial";
-import LoginCustomer from "./view/Customer/login/login";
-import SignUpCustomer from "./view/Customer/signup/signup";
-import SignUpNutritionist from "./view/nutritionist/signup/signup";
-import SignupSuperAdmin from "./view/SuperAdmin/signup/signup";
+import { InitialPage, LoginDefault, SignUpDefault } from './view';
+import { LoginCustomer, SignUpCustomer } from './view';
+import { LoginNutritionist, SignUpNutritionist } from './view';
+import { LoginStore, SignUpStore } from './view';
+import { LoginSuperAdmin, SignUpSuperAdmin } from './view';
 
 function App() {
   return (
@@ -13,10 +13,21 @@ function App() {
         <div className="App">
           <Routes>
               <Route path="/" element={<InitialPage />} />
-              <Route path="/signUpCustomer" element={<SignUpCustomer />} />
+
+              <Route path="/defaultLogin" element={<LoginDefault />} />
+              <Route path="/defaultSignUp" element={<SignUpDefault />} />
+
               <Route path="/loginCustomer" element={<LoginCustomer />} />
+              <Route path="/signUpCustomer" element={<SignUpCustomer />} />
+
+              <Route path="/loginNutritionist" element={<LoginNutritionist />} />
               <Route path="/signUpNutritionist" element={<SignUpNutritionist />} />
-              <Route path="/signUpSuperAdmin" element={<SignupSuperAdmin />} />
+
+              <Route path="/loginStore" element={<LoginStore />} />
+              <Route path="/signUpStore" element={<SignUpStore />} />
+
+              <Route path="/loginSuperAdmin" element={<LoginSuperAdmin />} />
+              <Route path="/signUpSuperAdmin" element={<SignUpSuperAdmin />} />
           </Routes>
         </div>
       </Router>

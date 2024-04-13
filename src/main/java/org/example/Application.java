@@ -124,13 +124,13 @@ public class Application {
       Spark.post("/createNutritionist", (req, res) -> {
           String body = req.body();
           Nutritionist nutritionist = gson.fromJson(body, Nutritionist.class);
-          String username = nutritionist.getNutritionistName();
-          String email = nutritionist.getNutritionistEmail();
+          String name = nutritionist.getNutritionistName();
+          String mail = nutritionist.getNutritionistEmail();
           String diploma = nutritionist.getEducationDiploma();
           String password = nutritionist.getNutritionistPassword();
           EntityManager entityManager = entityManagerFactory.createEntityManager();
           NutritionistController nutritionistController = new NutritionistController(entityManager);
-          nutritionistController.createNutritionist(username, email, password, diploma);
+          nutritionistController.createNutritionist(name, mail, password, diploma);
           return nutritionist;
       } , gson::toJson);
 

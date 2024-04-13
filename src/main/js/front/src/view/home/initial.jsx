@@ -5,10 +5,10 @@ const InitialPage = () => {
     return (
         <div>
             <h1>Welcome to our site!</h1>
-            <Link to="/loginCustomer">
+            <Link to="/defaultLogin">
                 <button>Login</button>
             </Link>
-            <Link to="/signUpCustomer">
+            <Link to="/defaultSignUp">
                 <button>Sign Up</button>
             </Link>
         </div>
