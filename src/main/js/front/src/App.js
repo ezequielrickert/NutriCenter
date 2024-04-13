@@ -4,6 +4,7 @@ import './App.css';
 import InitialPage from "./view/Home/initial";
 import LoginCustomer from "./view/Customer/login/login";
 import SignUpCustomer from "./view/Customer/signup/signup";
+import SignUpNutritionist from "./view/nutritionist/signup/signup";
 import SignupSuperAdmin from "./view/SuperAdmin/signup/signup";
 
 function App() {
@@ -14,8 +15,7 @@ function App() {
               <Route path="/" element={<InitialPage />} />
               <Route path="/signUpCustomer" element={<SignUpCustomer />} />
               <Route path="/loginCustomer" element={<LoginCustomer />} />
-              <Route path="/signUpStore" element={<SignUpCustomer />} />
-              <Route path="/loginStore" element={<SignupSuperAdmin />} />
+              <Route path="/signUpNutritionist" element={<SignUpNutritionist />} />
               <Route path="/signUpSuperAdmin" element={<SignupSuperAdmin />} />
           </Routes>
         </div>

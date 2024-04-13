@@ -3,14 +3,8 @@ package org.example;
 import com.google.common.base.Strings;
 import com.google.gson.Gson;
 
-import org.example.controller.CustomerController;
-import org.example.controller.NutritionistController;
-import org.example.controller.StoreController;
-import org.example.controller.SuperAdminController;
-import org.example.model.Customer;
-import org.example.model.Nutritionist;
-import org.example.model.Store;
-import org.example.model.SuperAdmin;
+import org.example.controller.*;
+import org.example.model.*;
 import spark.Spark;
 
 import javax.persistence.EntityManager;
@@ -70,7 +64,7 @@ public class Application {
       }, gson::toJson);
 
 
-      // Post to fetch Customer (proably wrong...)
+      // Post to fetch Customer (probably wrong...)
       Spark.post("/fetchCustomer", (req, res) -> {
           String body = req.body();
           Customer newCustomer = gson.fromJson(body, Customer.class);
@@ -140,6 +134,24 @@ public class Application {
           return nutritionist;
       } , gson::toJson);
 
+      // Post to create Ingredient
+      Spark.post("/createIngredient", (req, res) -> {
+          String body = req.body();
+          Ingredient ingredient = gson.fromJson(body, Ingredient.class);
+          String name = ingredient.getIngredientName();
+          Allergy allergy = ingredient.getAllergy();
+          int protein = ingredient.getProtein();
+          int sodium = ingredient.getSodium();
+          int calories = ingredient.getCalories();
+          int totalFat = ingredient.getTotalFat();
+          int cholesterol = ingredient.getCholesterol();
+          int totalCarbohydrate = ingredient.getTotalCarbohydrate();
+          EntityManager entityManager = entityManagerFactory.createEntityManager();
+          IngredientController ingredientController = new IngredientController(entityManager);
+          ingredientController.createIngredient(name, allergy, protein, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
+          return ingredient;
+      } , gson::toJson);
+
     Spark.get("/persisted-store/:id",
             (req, resp) -> {
               final String id = req.params("id");
@@ -178,6 +190,7 @@ public class Application {
     storeController.createStore("Green Food", "greenfood@gmail.com", "1133334444");
     storeController.createStore("Green Life", "greenlife@gmail.com", "1144445555");
   }
+
   private static String capitalized(String name) {
     return Strings.isNullOrEmpty(name) ? name : name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
   }

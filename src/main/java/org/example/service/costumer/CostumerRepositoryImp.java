@@ -53,7 +53,6 @@ public class CostumerRepositoryImp implements CostumerRepository {
     if (customer != null) {
       entityManager.remove(customer);
     }
-
     entityManager.getTransaction().commit();
   }
 }
