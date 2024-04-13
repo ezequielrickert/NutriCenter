@@ -36,6 +36,7 @@ const SignUpNutritionist =  () => {
                     <label htmlFor="email">Enter password:</label><br/>
                     <input type="text" id="password" name="password" value={password}
                            onChange={e => setPassword(e.target.value)}/><br/>
+                    <label htmlFor="diploma">Enter diploma:</label><br/>
                     <input type="text" id="diploma" name="diploma" value={diploma}
                            onChange={e => setDiploma(e.target.value)}/><br/>
                     <input type="submit"/>
