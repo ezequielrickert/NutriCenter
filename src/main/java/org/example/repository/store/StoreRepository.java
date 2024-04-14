@@ -1,4 +1,4 @@
-package org.example.service.store;
+package org.example.repository.store;
 
 import org.example.model.Store;
 

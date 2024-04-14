@@ -1,4 +1,4 @@
-package org.example.service.superadmin;
+package org.example.repository.superadmin;
 
 import org.example.model.SuperAdmin;
 

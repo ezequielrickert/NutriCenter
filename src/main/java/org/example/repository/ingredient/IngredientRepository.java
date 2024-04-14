@@ -1,4 +1,4 @@
-package org.example.service.ingredient;
+package org.example.repository.ingredient;
 import org.example.model.Ingredient;
 import org.example.model.Allergy;
 

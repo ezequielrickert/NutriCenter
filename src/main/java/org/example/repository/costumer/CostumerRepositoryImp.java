@@ -1,11 +1,8 @@
-package org.example.service.costumer;
+package org.example.repository.costumer;
 
 import org.example.model.Customer;
-import org.hibernate.Transaction;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 
 public class CostumerRepositoryImp implements CostumerRepository {

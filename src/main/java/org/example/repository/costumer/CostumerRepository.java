@@ -1,4 +1,4 @@
-package org.example.service.costumer;
+package org.example.repository.costumer;
 
 import org.example.model.Customer;
 

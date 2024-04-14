@@ -1,11 +1,8 @@
-package org.example.service.store;
+package org.example.repository.store;
 
-import org.example.model.Customer;
 import org.example.model.Store;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 public class StoreRepositoryImpl implements StoreRepository{
 

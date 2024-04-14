@@ -1,4 +1,4 @@
-package org.example.service.allergy;
+package org.example.repository.allergy;
 import org.example.model.Allergy;
 import javax.persistence.EntityManager;
 

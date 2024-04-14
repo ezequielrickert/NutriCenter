@@ -1,7 +1,7 @@
 package org.example.controller;
 
 import org.example.model.Store;
-import org.example.service.store.StoreRepositoryImpl;
+import org.example.repository.store.StoreRepositoryImpl;
 
 import javax.persistence.EntityManager;
 

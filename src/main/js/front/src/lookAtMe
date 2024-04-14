@@ -1,0 +1,50 @@
+import React, {useEffect, useState} from "react";
+import axios from 'axios';
+
+const UpdateIngredient = () => {
+    // ... existing state variables ...
+
+    // Add a new state variable for the ingredients
+    const [ingredients, setIngredients] = useState([]);
+
+    useEffect(() => {
+        // ... existing useEffect code ...
+
+        // Fetch the list of ingredients when the component mounts
+        axios.get('http://localhost:8080/ingredients')
+            .then(response => {
+                setIngredients(response.data);
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
+    }, []);
+
+    // ... existing code ...
+
+    return (
+        <div className="App">
+            <header className="App-header">
+                <h1>Create Ingredient</h1>
+                <form onSubmit={handleSubmit}>
+
+                    {/* ... existing form fields ... */}
+
+                    <label htmlFor="ingredient">Ingredient:</label><br/>
+                    <select id="ingredient" style={{width: '200px'}}>
+                        <option value="">Select an ingredient</option>
+                        {ingredients.map((ingredient, index) => (
+                            <option key={index} value={ingredient.ingredientName}>{ingredient.ingredientName}</option>
+                        ))}
+                    </select><br/>
+
+                    {/* ... existing form fields ... */}
+
+                    <input type="submit" disabled={!isFormValid}/>
+                </form>
+            </header>
+        </div>
+    );
+}
+
+export default UpdateIngredient;

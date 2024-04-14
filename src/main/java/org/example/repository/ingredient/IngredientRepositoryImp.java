@@ -1,4 +1,4 @@
-package org.example.service.ingredient;
+package org.example.repository.ingredient;
 import org.example.model.Allergy;
 import org.example.model.Ingredient;
 import javax.persistence.EntityManager;

@@ -1,12 +1,9 @@
-package org.example.service.nutritionist;
+package org.example.repository.nutritionist;
 
-import org.example.model.Customer;
 import org.example.model.Nutritionist;
-import org.example.model.Store;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+
 public class NutritionistRepositoryImp implements NutritionistRepository{
 
 

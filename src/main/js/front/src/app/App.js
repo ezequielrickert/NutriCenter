@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { InitialPage, LoginDefault, SignUpDefault } from './view';
-import { LoginCustomer, SignUpCustomer } from './view';
-import { LoginNutritionist, SignUpNutritionist } from './view';
-import { LoginStore, SignUpStore } from './view';
-import { LoginSuperAdmin, SignUpSuperAdmin, InitialEditor, IngredientEditor, RecipeEditor } from './view';
+import { InitialPage, LoginDefault, SignUpDefault } from '../view';
+import { LoginCustomer, SignUpCustomer } from '../view';
+import { LoginNutritionist, SignUpNutritionist } from '../view';
+import { LoginStore, SignUpStore } from '../view';
+import { LoginSuperAdmin, SignUpSuperAdmin, InitialEditor, IngredientEditor, RecipeEditor } from '../view';
 
 function App() {
   return (

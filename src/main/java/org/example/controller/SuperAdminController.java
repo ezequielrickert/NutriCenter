@@ -1,7 +1,7 @@
 package org.example.controller;
 
 import org.example.model.SuperAdmin;
-import org.example.service.superadmin.SuperAdminRepositoryImpl;
+import org.example.repository.superadmin.SuperAdminRepositoryImpl;
 
 import javax.persistence.EntityManager;
 

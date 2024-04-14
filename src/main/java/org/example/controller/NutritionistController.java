@@ -1,7 +1,7 @@
 package org.example.controller;
 
 import org.example.model.Nutritionist;
-import org.example.service.nutritionist.NutritionistRepositoryImp;
+import org.example.repository.nutritionist.NutritionistRepositoryImp;
 
 import javax.persistence.EntityManager;
 

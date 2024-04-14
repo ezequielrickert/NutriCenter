@@ -151,6 +151,14 @@ public class Application {
           return ingredient;
       } , gson::toJson);
 
+      // Gets a list of all ingredients
+      Spark.get("/ingredients", (req, res) -> {
+          EntityManager entityManager = entityManagerFactory.createEntityManager();
+          IngredientController ingredientController = new IngredientController(entityManager);
+          return ingredientController.getIngredientsOrderedByName(entityManager);
+      }, gson::toJson);
+
+      //post to update ingredient
       Spark.post("/updateIngredient", (req, res) -> {
           String body = req.body();
           Ingredient ingredient = gson.fromJson(body, Ingredient.class);
@@ -165,6 +173,17 @@ public class Application {
           EntityManager entityManager = entityManagerFactory.createEntityManager();
           IngredientController ingredientController = new IngredientController(entityManager);
           ingredientController.updateIngredient(name, allergy, protein, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
+          return ingredient;
+      } , gson::toJson);
+
+      //post to delete ingredient
+      Spark.post("/deleteIngredient", (req, res) -> {
+          String body = req.body();
+          Ingredient ingredient = gson.fromJson(body, Ingredient.class);
+          String name = ingredient.getIngredientName();
+          EntityManager entityManager = entityManagerFactory.createEntityManager();
+          IngredientController ingredientController = new IngredientController(entityManager);
+          ingredientController.deleteIngredient(name);
           return ingredient;
       } , gson::toJson);
 

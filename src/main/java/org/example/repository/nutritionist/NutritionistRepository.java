@@ -1,8 +1,6 @@
-package org.example.service.nutritionist;
+package org.example.repository.nutritionist;
 
 import org.example.model.Nutritionist;
-
-import java.sql.ResultSet;
 
 public interface NutritionistRepository {
   public void createNutritionist(String username, String email, String password, String diploma);

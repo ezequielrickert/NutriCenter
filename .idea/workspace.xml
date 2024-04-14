@@ -4,23 +4,80 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bdafd8e-40e9-4e0e-98bd-e5e6e9f5402c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/SuperAdminController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/model/SuperAdmin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/superadmin/SuperAdminRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/superadmin/SuperAdminRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/js/front/src/view/SuperAdmin/signup/signup.jsx" afterDir="false" />
+    <list default="true" id="5bdafd8e-40e9-4e0e-98bd-e5e6e9f5402c" name="Changes" comment="Views and Application for Ingredient and SuperAdmin editor capabilities">
+      <change afterPath="$PROJECT_DIR$/src/main/js/front/src/lookAtMe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/metadata.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/dependencies-accessors/2df544aa7c4a4d975c4567572ca28b960655a6d6/metadata.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/65c70a5a-d3d9-4775-883f-7e8bd5d18d02.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/65c70a5a-d3d9-4775-883f-7e8bd5d18d02.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_08_04_2024__2_14PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_08_04_2024__2_14PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/startDB.sh" beforeDir="false" afterPath="$PROJECT_DIR$/bin/startDB.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/CustomerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/NutritionistController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/NutritionistController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/StoreController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/StoreController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/SuperAdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/SuperAdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Customer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/model/DietDay.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Nutritionist.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Nutritionist.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Store.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Store.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/model/SuperAdmin.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/model/SuperAdmin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/model/WeeklyHistory.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/model/WeeklyHistory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/model/ingredientId.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/persistence/HibernateUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/persistence/HibernateUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/service/costumer/CostumerRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/service/costumer/CostumerRepositoryImp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/service/nutritionist/NutritionistRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/service/nutritionist/NutritionistRepositoryImp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/service/store/StoreRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/service/store/StoreRepositoryImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/service/superadmin/SuperAdminRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/service/superadmin/SuperAdminRepositoryImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Application.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/costumer/CostumerRepositoryImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/costumer/CostumerRepositoryImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/view/login/login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/view/Customer/login/login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/view/signup/signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/view/Customer/signup/signup.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/AllergyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/AllergyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/IngredientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/IngredientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/NutritionistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/NutritionistController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/StoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/SuperAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/SuperAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/allergy/AllergyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/allergy/AllergyRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/allergy/AllergyRepositoryImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/allergy/AllergyRepositoryImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/costumer/CostumerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/costumer/CostumerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/costumer/CostumerRepositoryImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/costumer/CostumerRepositoryImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/ingredient/IngredientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/ingredient/IngredientRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/ingredient/IngredientRepositoryImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/ingredient/IngredientRepositoryImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/nutritionist/NutritionistRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/nutritionist/NutritionistRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/nutritionist/NutritionistRepositoryImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/nutritionist/NutritionistRepositoryImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/store/StoreRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/store/StoreRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/store/StoreRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/store/StoreRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/superadmin/SuperAdminRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/superadmin/SuperAdminRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/superadmin/SuperAdminRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/superadmin/SuperAdminRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/app/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/app/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/app/App.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/app/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/app/logo.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/reportWebVitals.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/app/reportWebVitals.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/setupTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/app/setupTests.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/view/superAdmin/edition/ingredientActions/deleteIngredient.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/view/superAdmin/edition/ingredientActions/deleteIngredient.jsx" afterDir="false" />
+    </list>
+    <list id="85b6883c-5175-46a5-b1b7-09822fa32ed5" name="Changes by Tomás Bernardez" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/js/front/src/view/superAdmin/edition/editors/recipeEditor.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/IngredientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/IngredientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/view/superAdmin/edition/ingredientActions/updateIngredient.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/view/superAdmin/edition/ingredientActions/updateIngredient.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +123,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="JavaScript File" />
         <option value="JSX File" />
       </list>
     </option>
@@ -87,9 +145,18 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/ezequielrickert/NutriCenter.git&quot;,
-    &quot;accountId&quot;: &quot;838875d5-cc65-4c76-ab05-a67ae18d8090&quot;
+    &quot;accountId&quot;: &quot;52e3422d-5708-452d-9662-04c9a9bf93ac&quot;
   }
 }</component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/org/example/controller/IngredientController.java">
+      <ranges>
+        <range start1="4" end1="5" start2="4" end2="5" changelist="5bdafd8e-40e9-4e0e-98bd-e5e6e9f5402c" />
+        <range start1="7" end1="7" start2="7" end2="11" changelist="85b6883c-5175-46a5-b1b7-09822fa32ed5" />
+        <range start1="37" end1="37" start2="41" end2="50" changelist="85b6883c-5175-46a5-b1b7-09822fa32ed5" />
+      </ranges>
+    </file>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -109,7 +176,7 @@
     "Gradle.Build build.executor": "Run",
     "Gradle.Build lab1.executor": "Run",
     "Gradle.CreateUsersTest.executor": "Debug",
-    "Gradle.NutriCenter [:Application.main()].executor": "Run",
+    "Gradle.NutriCenter [:Application.main()].executor": "Debug",
     "Gradle.NutriCenter [:Main.main()].executor": "Run",
     "Gradle.lab1 [:Application.main()].executor": "Run",
     "Gradle.lab1 [:Main.main()].executor": "Run",
@@ -117,7 +184,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "views",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/ezequielrickert/projects/NutriCenter",
     "node.js.detected.package.eslint": "true",
@@ -125,17 +192,21 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "npm.start.executor": "Run",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "ts.external.directory.path": "C:\\Users\\hilul\\AppData\\Local\\Programs\\IntelliJ IDEA Ultimate\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\hilul\projects\lab1\NutriCenter\src\main\js\front\src" />
+      <recent name="C:\Users\hilul\projects\lab1\NutriCenter\src\main\js\front\src\app" />
       <recent name="$PROJECT_DIR$/src/main/js/front/src/view/Customer" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Application">
+  <component name="RunManager" selected="npm.start">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Application" />
       <module name="NutriCenter.main" />
@@ -195,12 +266,23 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/src/main/js/front/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Application" />
+        <item itemvalue="npm.start" />
+        <item itemvalue="Gradle.CreateUsersTest" />
         <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Gradle.CreateUsersTest" />
+        <item itemvalue="Application.Application" />
       </list>
     </recent_temporary>
   </component>
@@ -236,16 +318,73 @@
       <workItem from="1712623649173" duration="169000" />
       <workItem from="1712661696788" duration="7000" />
       <workItem from="1712664634401" duration="5062000" />
+      <workItem from="1712676964868" duration="702000" />
+      <workItem from="1712677683757" duration="643000" />
+      <workItem from="1712682244820" duration="12000" />
+      <workItem from="1713013068783" duration="13056000" />
+      <workItem from="1713029778606" duration="138000" />
+      <workItem from="1713035440951" duration="2365000" />
+      <workItem from="1713058198183" duration="3839000" />
+      <workItem from="1713104457638" duration="4694000" />
     </task>
+    <task id="LOCAL-00001" summary="Added and deleted files">
+      <option name="closed" value="true" />
+      <created>1712676806945</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1712676806945</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Ingredient and Allergy added">
+      <option name="closed" value="true" />
+      <created>1713026299996</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1713026299996</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Views for login completed">
+      <option name="closed" value="true" />
+      <created>1713037765192</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1713037765192</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Views and Application for Ingredient and SuperAdmin editor capabilities">
+      <option name="closed" value="true" />
+      <created>1713062035517</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1713062035517</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
       <path value="$PROJECT_DIR$/NutriCenter" />
     </ignored-roots>
+    <MESSAGE value="Added and deleted files" />
+    <MESSAGE value="Ingredient and Allergy added" />
+    <MESSAGE value="Views for login completed" />
+    <MESSAGE value="Views and Application for Ingredient and SuperAdmin editor capabilities" />
+    <option name="LAST_COMMIT_MESSAGE" value="Views and Application for Ingredient and SuperAdmin editor capabilities" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -265,19 +404,10 @@
           <line>34</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/main/js/front/src/App.js</url>
-          <line>19</line>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/Application.java</url>
+          <line>155</line>
           <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/model/Customer.java</url>
-          <line>24</line>
-          <properties class="org.example.model.Customer" method="&lt;init&gt;">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="44" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -1,7 +1,7 @@
 package org.example.controller;
 
 import org.example.model.Customer;
-import org.example.service.costumer.CostumerRepositoryImp;
+import org.example.repository.costumer.CostumerRepositoryImp;
 
 import javax.persistence.EntityManager;
 

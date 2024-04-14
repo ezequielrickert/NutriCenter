@@ -2,9 +2,13 @@ package org.example.controller;
 
 import org.example.model.Allergy;
 import org.example.model.Ingredient;
-import org.example.service.ingredient.IngredientRepositoryImp;
+import org.example.repository.ingredient.IngredientRepositoryImp;
 
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.List;
 
 public class IngredientController {
 
@@ -34,5 +38,14 @@ public class IngredientController {
 
     public void deleteIngredient(String ingredientName){
         ingredientRepository.deleteIngredient(ingredientName);
+    }
+
+    public List<Ingredient> getIngredientsOrderedByName(EntityManager entityManager) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Ingredient> cq = cb.createQuery(Ingredient.class);
+        Root<Ingredient> root = cq.from(Ingredient.class);
+        cq.select(root);
+        cq.orderBy(cb.asc(root.get("ingredientName")));
+        return entityManager.createQuery(cq).getResultList();
     }
 }
