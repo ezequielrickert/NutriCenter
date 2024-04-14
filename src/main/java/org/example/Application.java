@@ -152,7 +152,41 @@ public class Application {
           return ingredient;
       } , gson::toJson);
 
-    Spark.get("/persisted-store/:id",
+      Spark.post("/updateIngredient", (req, res) -> {
+          String body = req.body();
+          Ingredient ingredient = gson.fromJson(body, Ingredient.class);
+          String name = ingredient.getIngredientName();
+          Allergy allergy = ingredient.getAllergy();
+          int protein = ingredient.getProtein();
+          int sodium = ingredient.getSodium();
+          int calories = ingredient.getCalories();
+          int totalFat = ingredient.getTotalFat();
+          int cholesterol = ingredient.getCholesterol();
+          int totalCarbohydrate = ingredient.getTotalCarbohydrate();
+          EntityManager entityManager = entityManagerFactory.createEntityManager();
+          IngredientController ingredientController = new IngredientController(entityManager);
+          ingredientController.updateIngredient(name, allergy, protein, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
+          return ingredient;
+      } , gson::toJson);
+
+      Spark.post("/updateIngredient", (req, res) -> {
+          String body = req.body();
+          Ingredient ingredient = gson.fromJson(body, Ingredient.class);
+          String name = ingredient.getIngredientName();
+          Allergy allergy = ingredient.getAllergy();
+          int protein = ingredient.getProtein();
+          int sodium = ingredient.getSodium();
+          int calories = ingredient.getCalories();
+          int totalFat = ingredient.getTotalFat();
+          int cholesterol = ingredient.getCholesterol();
+          int totalCarbohydrate = ingredient.getTotalCarbohydrate();
+          EntityManager entityManager = entityManagerFactory.createEntityManager();
+          IngredientController ingredientController = new IngredientController(entityManager);
+          ingredientController.updateIngredient(name, allergy, protein, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
+          return ingredient;
+      } , gson::toJson);
+
+      Spark.get("/persisted-store/:id",
             (req, resp) -> {
               final String id = req.params("id");
 

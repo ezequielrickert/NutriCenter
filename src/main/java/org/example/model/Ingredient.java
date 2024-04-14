@@ -10,7 +10,7 @@ public class Ingredient {
     @GeneratedValue(generator = "ingredientGen", strategy = GenerationType.IDENTITY)
     private Long ingredientId;
 
-    @Column(nullable = false, unique = false)
+    @Column(nullable = false, unique = true)
     private String ingredientName;
 
     //this column has stored an Allergy instance not an id

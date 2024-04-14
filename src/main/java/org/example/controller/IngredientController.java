@@ -28,11 +28,11 @@ public class IngredientController {
         }
     }
 
-    public void updateIngredient(long id, Allergy allergy, int protein, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate){
-        ingredientRepository.updateIngredient(id, allergy, protein, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
+    public void updateIngredient(String ingredientName, Allergy allergy, int protein, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate){
+        ingredientRepository.updateIngredient(ingredientName, allergy, protein, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
     }
 
-    public void deleteIngredient(long id){
-        ingredientRepository.deleteIngredient(id);
+    public void deleteIngredient(String ingredientName){
+        ingredientRepository.deleteIngredient(ingredientName);
     }
 }

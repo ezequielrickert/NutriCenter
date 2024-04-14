@@ -8,7 +8,7 @@ public interface IngredientRepository {
 
     Ingredient readIngredient(Long ingredientId);
 
-    void updateIngredient(Long IngredientId, Allergy allergy, int protein, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate);
+    void updateIngredient(String ingredientName, Allergy allergy, int protein, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate);
 
-    void deleteIngredient(Long IngredientId);
+    void deleteIngredient(String ingredientName);
 }

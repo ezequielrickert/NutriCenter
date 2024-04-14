@@ -5,7 +5,7 @@ import { InitialPage, LoginDefault, SignUpDefault } from './view';
 import { LoginCustomer, SignUpCustomer } from './view';
 import { LoginNutritionist, SignUpNutritionist } from './view';
 import { LoginStore, SignUpStore } from './view';
-import { LoginSuperAdmin, SignUpSuperAdmin } from './view';
+import { LoginSuperAdmin, SignUpSuperAdmin, InitialEditor, IngredientEditor, RecipeEditor } from './view';
 
 function App() {
   return (
@@ -28,6 +28,9 @@ function App() {
 
               <Route path="/loginSuperAdmin" element={<LoginSuperAdmin />} />
               <Route path="/signUpSuperAdmin" element={<SignUpSuperAdmin />} />
+              <Route path="/initialEditor" element={<InitialEditor />} />
+              <Route path="/ingredientEditor" element={<IngredientEditor />} />
+              <Route path="/recipeEditor" element={<RecipeEditor />} />
           </Routes>
         </div>
       </Router>
