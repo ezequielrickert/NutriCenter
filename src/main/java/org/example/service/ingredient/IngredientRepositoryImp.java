@@ -12,9 +12,9 @@ public class IngredientRepositoryImp implements IngredientRepository{
     }
 
     @Override
-    public void createIngredient(String name, Allergy allergy, int protein, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate) {
+    public void createIngredient(String name, Allergy allergy, int proteins, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate) {
         entityManager.getTransaction().begin();
-        Ingredient ingredient = new Ingredient(name, allergy, protein, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
+        Ingredient ingredient = new Ingredient(name, allergy, proteins, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
         entityManager.persist(ingredient);
         entityManager.getTransaction().commit();
     }
@@ -28,11 +28,11 @@ public class IngredientRepositoryImp implements IngredientRepository{
     }
 
     @Override
-    public void updateIngredient(String ingredientName, Allergy allergy, int protein, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate) {
+    public void updateIngredient(String ingredientName, Allergy allergy, int proteins, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate) {
         entityManager.getTransaction().begin();
         Ingredient ingredient = entityManager.find(Ingredient.class, ingredientName);
         ingredient.setAllergy(allergy);
-        ingredient.setProtein(protein);
+        ingredient.setProteins(proteins);
         ingredient.setSodium(sodium);
         ingredient.setCalories(calories);
         ingredient.setTotalFat(totalFat);

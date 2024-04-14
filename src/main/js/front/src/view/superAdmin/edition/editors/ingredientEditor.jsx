@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import CreateIngredient from './createIngredient';
-import UpdateIngredient from './updateIngredient';
-import DeleteIngredient from './deleteIngredient';
+import CreateIngredient from '../ingredientActions/createIngredient';
+import UpdateIngredient from '../ingredientActions/updateIngredient';
+import DeleteIngredient from '../ingredientActions/deleteIngredient';
 
 const IngredientEditor = () => {
     const [operation, setOperation] = useState('');

@@ -1,6 +1,5 @@
 package org.example.model;
 import com.google.gson.Gson;
-
 import javax.persistence.*;
 
 @Entity(name = "INGREDIENT")
@@ -19,7 +18,7 @@ public class Ingredient {
     private Allergy allergy;
 
     @Column(nullable = false, unique = false)
-    private int protein;
+    private int proteins;
 
     @Column(nullable = false, unique = false)
     private int sodium;
@@ -37,10 +36,10 @@ public class Ingredient {
     private int totalCarbohydrate;
 
 
-    public Ingredient(String ingredientName, Allergy allergy, int protein, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate) {
+    public Ingredient(String ingredientName, Allergy allergy, int proteins, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate) {
         this.ingredientName = ingredientName;
         this.allergy = allergy;
-        this.protein = protein;
+        this.proteins = proteins;
         this.sodium = sodium;
         this.calories = calories;
         this.totalFat = totalFat;
@@ -54,7 +53,7 @@ public class Ingredient {
 
     public void setAllergy(Allergy allergy) { this.allergy = allergy; }
 
-    public void setProtein(int protein) { this.protein = protein; }
+    public void setProteins(int proteins) { this.proteins = proteins; }
 
     public void setSodium(int sodium ) {
         this.sodium = sodium;
@@ -82,7 +81,7 @@ public class Ingredient {
         return allergy;
     }
 
-    public int getProtein() { return protein; }
+    public int getProteins() { return proteins; }
 
     public int getSodium() {
         return sodium;

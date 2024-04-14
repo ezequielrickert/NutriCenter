@@ -14,8 +14,8 @@ public class IngredientController {
         ingredientRepository = new IngredientRepositoryImp(entityManager);
     }
 
-    public void createIngredient(String name, Allergy allergy, int protein, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate){
-        ingredientRepository.createIngredient(name, allergy, protein, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
+    public void createIngredient(String name, Allergy allergy, int proteins, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate){
+        ingredientRepository.createIngredient(name, allergy, proteins, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
     }
 
     public void readIngredient(long ingredientId) {
@@ -28,8 +28,8 @@ public class IngredientController {
         }
     }
 
-    public void updateIngredient(String ingredientName, Allergy allergy, int protein, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate){
-        ingredientRepository.updateIngredient(ingredientName, allergy, protein, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
+    public void updateIngredient(String ingredientName, Allergy allergy, int proteins, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate){
+        ingredientRepository.updateIngredient(ingredientName, allergy, proteins, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
     }
 
     public void deleteIngredient(String ingredientName){

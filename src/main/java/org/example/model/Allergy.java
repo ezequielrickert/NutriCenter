@@ -1,10 +1,7 @@
 package org.example.model;
-
 import com.google.gson.Gson;
-
 import javax.persistence.*;
 import java.util.List;
-
 
 @Entity(name = "ALLERGY")
 public class Allergy {

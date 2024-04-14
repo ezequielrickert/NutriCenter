@@ -15,5 +15,5 @@ export { default as SignUpStore } from './store/signUp/signupStore';
 export { default as LoginSuperAdmin } from './superAdmin/login/loginSuperAdmin';
 export { default as SignUpSuperAdmin } from './superAdmin/signUp/signUpSuperAdmin';
 export { default as InitialEditor } from './superAdmin/edition/initialEditor';
-export { default as IngredientEditor } from './superAdmin/edition/ingredientEditor';
-export { default as RecipeEditor } from './superAdmin/edition/ingredientEditor';
+export { default as IngredientEditor } from './superAdmin/edition/editors/ingredientEditor';
+export { default as RecipeEditor } from './superAdmin/edition/editors/recipeEditor';

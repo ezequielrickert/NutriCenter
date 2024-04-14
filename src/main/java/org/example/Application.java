@@ -11,9 +11,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.io.Console;
-import java.time.Instant;
-import java.util.Arrays;
 import java.util.List;
 
 public class Application {
@@ -32,6 +29,8 @@ public class Application {
     storedStore(entityManagerFactory.createEntityManager());
 
     createSuperAdmin(entityManagerFactory.createEntityManager());
+
+    createAllergies(entityManagerFactory.createEntityManager());
 
       Spark.options("/*", (request, response) -> {
 
@@ -138,9 +137,9 @@ public class Application {
       Spark.post("/createIngredient", (req, res) -> {
           String body = req.body();
           Ingredient ingredient = gson.fromJson(body, Ingredient.class);
-          String name = ingredient.getIngredientName();
+          String ingredientName = ingredient.getIngredientName();
           Allergy allergy = ingredient.getAllergy();
-          int protein = ingredient.getProtein();
+          int proteins = ingredient.getProteins();
           int sodium = ingredient.getSodium();
           int calories = ingredient.getCalories();
           int totalFat = ingredient.getTotalFat();
@@ -148,7 +147,7 @@ public class Application {
           int totalCarbohydrate = ingredient.getTotalCarbohydrate();
           EntityManager entityManager = entityManagerFactory.createEntityManager();
           IngredientController ingredientController = new IngredientController(entityManager);
-          ingredientController.createIngredient(name, allergy, protein, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
+          ingredientController.createIngredient(ingredientName, allergy, proteins, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
           return ingredient;
       } , gson::toJson);
 
@@ -157,7 +156,7 @@ public class Application {
           Ingredient ingredient = gson.fromJson(body, Ingredient.class);
           String name = ingredient.getIngredientName();
           Allergy allergy = ingredient.getAllergy();
-          int protein = ingredient.getProtein();
+          int protein = ingredient.getProteins();
           int sodium = ingredient.getSodium();
           int calories = ingredient.getCalories();
           int totalFat = ingredient.getTotalFat();
@@ -169,38 +168,26 @@ public class Application {
           return ingredient;
       } , gson::toJson);
 
-      Spark.post("/updateIngredient", (req, res) -> {
-          String body = req.body();
-          Ingredient ingredient = gson.fromJson(body, Ingredient.class);
-          String name = ingredient.getIngredientName();
-          Allergy allergy = ingredient.getAllergy();
-          int protein = ingredient.getProtein();
-          int sodium = ingredient.getSodium();
-          int calories = ingredient.getCalories();
-          int totalFat = ingredient.getTotalFat();
-          int cholesterol = ingredient.getCholesterol();
-          int totalCarbohydrate = ingredient.getTotalCarbohydrate();
+      Spark.get("/allergies", (req, res) -> {
           EntityManager entityManager = entityManagerFactory.createEntityManager();
-          IngredientController ingredientController = new IngredientController(entityManager);
-          ingredientController.updateIngredient(name, allergy, protein, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
-          return ingredient;
-      } , gson::toJson);
+          AllergyController allergyController = new AllergyController(entityManager);
+          return allergyController.getAllergiesOrderedByName(entityManager);
+      }, gson::toJson);
 
-      Spark.get("/persisted-store/:id",
-            (req, resp) -> {
-              final String id = req.params("id");
+      Spark.get("/persisted-store/:id", (req, resp) -> {
+          final String id = req.params("id");
 
-              /* Business Logic */
-              final EntityManager entityManager = entityManagerFactory.createEntityManager();
-              final EntityTransaction tx = entityManager.getTransaction();
-              tx.begin();
-              Store store = entityManager.find(Store.class, Long.valueOf(id));
-              tx.commit();
-              entityManager.close();
+          /* Business Logic */
+          final EntityManager entityManager = entityManagerFactory.createEntityManager();
+          final EntityTransaction tx = entityManager.getTransaction();
+          tx.begin();
+          Store store = entityManager.find(Store.class, Long.valueOf(id));
+          tx.commit();
+          entityManager.close();
 
-              resp.type("application/json");
-              return store.asJson();
-            }
+          resp.type("application/json");
+          return store.asJson();
+        }
     );
 
   }
@@ -232,5 +219,11 @@ public class Application {
   private static void createSuperAdmin(EntityManager entityManager) {
       SuperAdminController superAdminController = new SuperAdminController(entityManager);
       superAdminController.createSuperAdmin("God", "God");
+  }
+
+  private static void createAllergies(EntityManager entityManager) {
+      AllergyController allergyController = new AllergyController(entityManager);
+      allergyController.createAllergy("lactose", "intolerante a la lactosa");
+      allergyController.createAllergy("tacc", "celiaco");
   }
 }

@@ -2,6 +2,10 @@ package org.example.controller;
 import org.example.model.Allergy;
 import org.example.service.allergy.AllergyRepositoryImp;
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.List;
 
 public class AllergyController {
 
@@ -32,5 +36,14 @@ public class AllergyController {
 
     public void deleteAllergy(long allergyId) {
         allergyRepositoryImp.deleteAllergy(allergyId);
+    }
+
+    public List<Allergy> getAllergiesOrderedByName(EntityManager entityManager) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Allergy> cq = cb.createQuery(Allergy.class);
+        Root<Allergy> root = cq.from(Allergy.class);
+        cq.select(root);
+        cq.orderBy(cb.asc(root.get("allergyName")));
+        return entityManager.createQuery(cq).getResultList();
     }
 }
