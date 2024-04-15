@@ -1,0 +1,458 @@
+Index: .idea/shelf/Uncommitted_changes_before_Merge_at_08_04_2024__2_14PM__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Merge_at_08_04_2024__2_14PM__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Merge_at_08_04_2024__2_14PM__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Merge_at_08_04_2024__2_14PM__Changes_.xml	(revision 71ca0bca9b92c460ca00b75e10ad40e3dee6ae44)
++++ /dev/null	(revision 71ca0bca9b92c460ca00b75e10ad40e3dee6ae44)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Merge_at_08_04_2024,_2_14 PM_[Changes]" date="1712596553008" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_08_04_2024,_2_14 PM_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Merge at 08/04/2024, 2:14 PM [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Merge_at_08_04_2024,_2_14 PM_[Changes]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Merge_at_08_04_2024,_2_14 PM_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Merge_at_08_04_2024,_2_14 PM_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Merge_at_08_04_2024,_2_14 PM_[Changes]/shelved.patch	(revision 71ca0bca9b92c460ca00b75e10ad40e3dee6ae44)
++++ /dev/null	(revision 71ca0bca9b92c460ca00b75e10ad40e3dee6ae44)
+@@ -1,147 +0,0 @@
+-Index: .idea/dataSources/65c70a5a-d3d9-4775-883f-7e8bd5d18d02.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/dataSources/65c70a5a-d3d9-4775-883f-7e8bd5d18d02.xml b/.idea/dataSources/65c70a5a-d3d9-4775-883f-7e8bd5d18d02.xml
+-deleted file mode 100644
+---- a/.idea/dataSources/65c70a5a-d3d9-4775-883f-7e8bd5d18d02.xml	(revision 9822e5e742697ba84976e6d7a476860ab452f798)
+-+++ /dev/null	(revision 9822e5e742697ba84976e6d7a476860ab452f798)
+-@@ -1,136 +0,0 @@
+--<?xml version="1.0" encoding="UTF-8"?>
+--<dataSource name="testdb@localhost">
+--  <database-model serializer="dbm" dbms="HSQLDB" family-id="HSQLDB" format-version="4.51">
+--    <root id="1">
+--      <ServerVersion>2.7.2</ServerVersion>
+--    </root>
+--    <database id="2" parent="1" name="PUBLIC">
+--      <Current>1</Current>
+--    </database>
+--    <schema id="3" parent="2" name="INFORMATION_SCHEMA"/>
+--    <schema id="4" parent="2" name="PUBLIC">
+--      <Current>1</Current>
+--      <LastIntrospectionLocalTimestamp>2024-04-02.21:41:18</LastIntrospectionLocalTimestamp>
+--    </schema>
+--    <schema id="5" parent="2" name="SYSTEM_LOBS"/>
+--    <table id="6" parent="4" name="CUSTOMER"/>
+--    <table id="7" parent="4" name="NUTRITIONIST"/>
+--    <table id="8" parent="4" name="STORE"/>
+--    <column id="9" parent="6" name="CLIENTID">
+--      <DasType>BIGINT|-5s</DasType>
+--      <NotNull>1</NotNull>
+--      <Position>1</Position>
+--      <SequenceIdentity>null</SequenceIdentity>
+--    </column>
+--    <column id="10" parent="6" name="CLIENTEMAIL">
+--      <DasType>VARCHAR(255)|12s</DasType>
+--      <NotNull>1</NotNull>
+--      <Position>2</Position>
+--    </column>
+--    <column id="11" parent="6" name="CLIENTNAME">
+--      <DasType>VARCHAR(255)|12s</DasType>
+--      <NotNull>1</NotNull>
+--      <Position>3</Position>
+--    </column>
+--    <index id="12" parent="6" name="SYS_PK_10109">
+--      <ColNames>CLIENTID</ColNames>
+--      <NameSurrogate>1</NameSurrogate>
+--      <Unique>1</Unique>
+--    </index>
+--    <index id="13" parent="6" name="UK_26ED72DPV3FNNJ2XPCN7LWREW">
+--      <ColNames>CLIENTEMAIL</ColNames>
+--      <Unique>1</Unique>
+--    </index>
+--    <key id="14" parent="6" name="SYS_PK_10109">
+--      <ColNames>CLIENTID</ColNames>
+--      <NameSurrogate>1</NameSurrogate>
+--      <Primary>1</Primary>
+--    </key>
+--    <key id="15" parent="6" name="UK_26ED72DPV3FNNJ2XPCN7LWREW">
+--      <ColNames>CLIENTEMAIL</ColNames>
+--    </key>
+--    <column id="16" parent="7" name="NUTRITIONISTID">
+--      <DasType>BIGINT|-5s</DasType>
+--      <NotNull>1</NotNull>
+--      <Position>1</Position>
+--      <SequenceIdentity>null</SequenceIdentity>
+--    </column>
+--    <column id="17" parent="7" name="EDUCATIONDIPLOMA">
+--      <DasType>VARCHAR(255)|12s</DasType>
+--      <NotNull>1</NotNull>
+--      <Position>2</Position>
+--    </column>
+--    <column id="18" parent="7" name="NUTRITIONISTEMAIL">
+--      <DasType>VARCHAR(255)|12s</DasType>
+--      <NotNull>1</NotNull>
+--      <Position>3</Position>
+--    </column>
+--    <column id="19" parent="7" name="NUTRITIONISTNAME">
+--      <DasType>VARCHAR(255)|12s</DasType>
+--      <NotNull>1</NotNull>
+--      <Position>4</Position>
+--    </column>
+--    <index id="20" parent="7" name="SYS_PK_10115">
+--      <ColNames>NUTRITIONISTID</ColNames>
+--      <NameSurrogate>1</NameSurrogate>
+--      <Unique>1</Unique>
+--    </index>
+--    <index id="21" parent="7" name="UK_ILY1O9O878EJ1U91NR02KBNK3">
+--      <ColNames>NUTRITIONISTEMAIL</ColNames>
+--      <Unique>1</Unique>
+--    </index>
+--    <key id="22" parent="7" name="SYS_PK_10115">
+--      <ColNames>NUTRITIONISTID</ColNames>
+--      <NameSurrogate>1</NameSurrogate>
+--      <Primary>1</Primary>
+--    </key>
+--    <key id="23" parent="7" name="UK_ILY1O9O878EJ1U91NR02KBNK3">
+--      <ColNames>NUTRITIONISTEMAIL</ColNames>
+--    </key>
+--    <column id="24" parent="8" name="STOREID">
+--      <DasType>BIGINT|-5s</DasType>
+--      <NotNull>1</NotNull>
+--      <Position>1</Position>
+--      <SequenceIdentity>null</SequenceIdentity>
+--    </column>
+--    <column id="25" parent="8" name="STOREMAIL">
+--      <DasType>VARCHAR(255)|12s</DasType>
+--      <NotNull>1</NotNull>
+--      <Position>2</Position>
+--    </column>
+--    <column id="26" parent="8" name="STORENAME">
+--      <DasType>VARCHAR(255)|12s</DasType>
+--      <NotNull>1</NotNull>
+--      <Position>3</Position>
+--    </column>
+--    <column id="27" parent="8" name="STORENUMBER">
+--      <DasType>VARCHAR(255)|12s</DasType>
+--      <NotNull>1</NotNull>
+--      <Position>4</Position>
+--    </column>
+--    <index id="28" parent="8" name="SYS_PK_10122">
+--      <ColNames>STOREID</ColNames>
+--      <NameSurrogate>1</NameSurrogate>
+--      <Unique>1</Unique>
+--    </index>
+--    <index id="29" parent="8" name="UK_T9M0QM0K4V6FCEYHNOYQH32A2">
+--      <ColNames>STOREMAIL</ColNames>
+--      <Unique>1</Unique>
+--    </index>
+--    <index id="30" parent="8" name="UK_IH38VM7GKH4C58RTXDM14GYQF">
+--      <ColNames>STORENUMBER</ColNames>
+--      <Unique>1</Unique>
+--    </index>
+--    <key id="31" parent="8" name="SYS_PK_10122">
+--      <ColNames>STOREID</ColNames>
+--      <NameSurrogate>1</NameSurrogate>
+--      <Primary>1</Primary>
+--    </key>
+--    <key id="32" parent="8" name="UK_T9M0QM0K4V6FCEYHNOYQH32A2">
+--      <ColNames>STOREMAIL</ColNames>
+--    </key>
+--    <key id="33" parent="8" name="UK_IH38VM7GKH4C58RTXDM14GYQF">
+--      <ColNames>STORENUMBER</ColNames>
+--    </key>
+--  </database-model>
+--</dataSource>
+-\ No newline at end of file
+Index: src/main/java/Main.java
+===================================================================
+diff --git a/src/main/java/Main.java b/src/main/java/Main.java
+deleted file mode 100644
+--- a/src/main/java/Main.java	(revision 71ca0bca9b92c460ca00b75e10ad40e3dee6ae44)
++++ /dev/null	(revision 71ca0bca9b92c460ca00b75e10ad40e3dee6ae44)
+@@ -1,40 +0,0 @@
+-
+-import org.example.controller.CustomerController;
+-import org.example.controller.NutritionistController;
+-import org.example.controller.StoreController;
+-
+-import javax.persistence.EntityManager;
+-import javax.persistence.EntityManagerFactory;
+-import javax.persistence.Persistence;
+-
+-
+-public class Main {
+-    public static void main(String[] args) {
+-      EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
+-      EntityManager entityManager = entityManagerFactory.createEntityManager();;
+-      CustomerController customerController = new CustomerController(entityManager);
+-      customerController.createClient("erickert", "erickert@mail.austral.edu.ar", "lal");
+-      customerController.createClient("hlagos", "hlagos@mail.austral.edu.ar", "lal");
+-      customerController.createClient("tbernardez", "tbernardez@mail.austral.edu.ar", "lal");
+-      customerController.readClient(1L);
+-      customerController.readClient(2L);
+-      customerController.readClient(3L);
+-      customerController.updateClient(1L, "eballesteros", "eballesteros@mail.austral.edu.ar");
+-      customerController.deleteClient(2L);
+-      NutritionistController nutritionistController = new NutritionistController(entityManager);
+-      nutritionistController.createNutritionist("yael", "yael@test.com", "sas", "UA 4 year diploma");
+-      nutritionistController.createNutritionist("paola", "paola@test.com", "sas", "UBA 4 year diploma");
+-      nutritionistController.updateNutritionist(2L, "silvina", "silvina@test.com", "sas", "UBA 4 year diploma");
+-      nutritionistController.deleteNutritionist(1L);
+-      StoreController storeController = new StoreController(entityManager);
+-      storeController.createStore("New Garden", "newgarden@gmail.com", "1122223333");
+-      storeController.createStore("Green Food", "greenfood@gmail.com", "1133334444");
+-      storeController.createStore("Green Life", "greenlife@gmail.com", "1144445555");
+-      storeController.readStore(1L);
+-      storeController.readStore(2L);
+-      storeController.readStore(3L);
+-      storeController.deleteStore(3L);
+-      storeController.updateStore(2L, "Green Life", "greenlife@gmail.com", "1133334444");
+-    }
+-}
+-
+Index: src/main/java/org/example/service/costumer/CostumerRepositoryImp.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.example.service.costumer;\n\nimport org.example.model.Customer;\nimport org.hibernate.Transaction;\n\nimport javax.persistence.EntityManager;\nimport javax.persistence.EntityManagerFactory;\nimport javax.persistence.Persistence;\n\n\npublic class CostumerRepositoryImp implements CostumerRepository {\n\n  EntityManager entityManager;\n\n  public CostumerRepositoryImp(EntityManager entityManager){\n    this.entityManager = entityManager;\n  }\n\n  @Override\n  public void createUser(String username, String email, String password) {\n    entityManager.getTransaction().begin();\n    Customer customer = new Customer();\n    customer.setCustomerName(username);\n    customer.setCustomerEmail(email);\n    customer.setCustomerPassword(password);\n    entityManager.persist(customer);\n    entityManager.getTransaction().commit();\n  }\n\n  @Override\n  public Customer readUser(Long clientId) {\n    entityManager.getTransaction().begin();\n    Customer customer = entityManager.find(Customer.class, clientId);\n    entityManager.getTransaction().commit();\n    return customer;\n  }\n\n  @Override\n  public void updateUser(Long clientId, String username, String email) {\n    entityManager.getTransaction().begin();\n    Customer customer = entityManager.find(Customer.class, clientId);\n    customer.setCustomerName(username);\n    customer.setCustomerEmail(email);\n    entityManager.persist(customer);\n    entityManager.getTransaction().commit();\n  }\n\n  @Override\n  public void deleteUser(Long clientId) {\n    entityManager.getTransaction().begin();\n\n    Customer customer = entityManager.find(Customer.class, clientId);\n    if (customer != null) {\n      entityManager.remove(customer);\n    }\n    entityManager.getTransaction().commit();\n  }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/service/costumer/CostumerRepositoryImp.java b/src/main/java/org/example/service/costumer/CostumerRepositoryImp.java
+--- a/src/main/java/org/example/service/costumer/CostumerRepositoryImp.java	(revision 71ca0bca9b92c460ca00b75e10ad40e3dee6ae44)
++++ b/src/main/java/org/example/service/costumer/CostumerRepositoryImp.java	(date 1713213496811)
+@@ -28,9 +28,9 @@
+   }
+ 
+   @Override
+-  public Customer readUser(Long clientId) {
++  public Customer readUser(String costumer) {
+     entityManager.getTransaction().begin();
+-    Customer customer = entityManager.find(Customer.class, clientId);
++    Customer customer = entityManager.find(Customer.class, costumer);
+     entityManager.getTransaction().commit();
+     return customer;
+   }
+Index: src/main/java/org/example/controller/LoginController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/controller/LoginController.java b/src/main/java/org/example/controller/LoginController.java
+new file mode 100644
+--- /dev/null	(date 1713213496816)
++++ b/src/main/java/org/example/controller/LoginController.java	(date 1713213496816)
+@@ -0,0 +1,29 @@
++package org.example.controller;
++
++import org.example.model.SuperAdmin;
++
++import java.security.SecureRandom;
++import java.util.Base64;
++import java.util.HashMap;
++import java.util.Map;
++import java.util.Objects;
++
++public class LoginController{
++
++    static Map<String, String> usernameTokenMap = new HashMap<>();
++    private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
++    private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder(); //threadsafe
++
++    public boolean verifyLogin(String username, String token) {
++        String savedToken = usernameTokenMap.get(username);
++        return Objects.equals(savedToken, token);
++    }
++
++
++    public static String generateNewToken() {
++        byte[] randomBytes = new byte[24];
++        secureRandom.nextBytes(randomBytes);
++        return base64Encoder.encodeToString(randomBytes);
++    }
++
++}
+Index: src/main/java/org/example/service/costumer/CostumerRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.example.service.costumer;\n\nimport org.example.model.Customer;\n\npublic interface CostumerRepository {\n  public void createUser(String username, String email, String password);\n  public Customer readUser(Long clientId);\n\n  public void updateUser(Long clientId, String username, String email);\n  public void deleteUser(Long clientId);\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/service/costumer/CostumerRepository.java b/src/main/java/org/example/service/costumer/CostumerRepository.java
+--- a/src/main/java/org/example/service/costumer/CostumerRepository.java	(revision 71ca0bca9b92c460ca00b75e10ad40e3dee6ae44)
++++ b/src/main/java/org/example/service/costumer/CostumerRepository.java	(date 1713213496814)
+@@ -4,9 +4,11 @@
+ 
+ public interface CostumerRepository {
+   public void createUser(String username, String email, String password);
+-  public Customer readUser(Long clientId);
++
++  public Customer readUser(String username);
+ 
+   public void updateUser(Long clientId, String username, String email);
++
+   public void deleteUser(Long clientId);
+ 
+ }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"5bdafd8e-40e9-4e0e-98bd-e5e6e9f5402c\" name=\"Changes\" comment=\"\">\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/org/example/controller/SuperAdminController.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/org/example/model/SuperAdmin.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/org/example/service/superadmin/SuperAdminRepository.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/org/example/service/superadmin/SuperAdminRepositoryImpl.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/main/js/front/src/view/SuperAdmin/signup/signup.jsx\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.gradle/file-system.probe\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/file-system.probe\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/bin/startDB.sh\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/bin/startDB.sh\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/build/resources/main/META-INF/persistence.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/build/resources/main/META-INF/persistence.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/example/Application.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/example/Application.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/example/service/costumer/CostumerRepositoryImp.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/example/service/costumer/CostumerRepositoryImp.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/js/front/src/App.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/js/front/src/App.js\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/js/front/src/view/login/login.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/js/front/src/view/Customer/login/login.jsx\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/js/front/src/view/signup/signup.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/js/front/src/view/Customer/signup/signup.jsx\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"ExternalProjectsData\">\n    <projectState path=\"$PROJECT_DIR$\">\n      <ProjectState />\n    </projectState>\n    <projectState path=\"$PROJECT_DIR$/Database/hsqldb-2.7.2/hsqldb/build\">\n      <ProjectState />\n    </projectState>\n    <projectState path=\"$PROJECT_DIR$/NutriCenter\">\n      <ProjectState />\n    </projectState>\n  </component>\n  <component name=\"ExternalProjectsManager\">\n    <system id=\"GRADLE\">\n      <state>\n        <task path=\"$PROJECT_DIR$/Database/hsqldb-2.7.2/hsqldb/build\">\n          <activation />\n        </task>\n        <task path=\"$PROJECT_DIR$/NutriCenter\">\n          <activation />\n        </task>\n        <projects_view>\n          <tree_state>\n            <expand>\n              <path>\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\n                <item name=\"NutriCenter\" type=\"f1a62948:ProjectNode\" />\n              </path>\n            </expand>\n            <select />\n          </tree_state>\n        </projects_view>\n      </state>\n    </system>\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Interface\" />\n        <option value=\"Class\" />\n        <option value=\"JSX File\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;ezequielrickert&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;https://github.com/ezequielrickert/NutriCenter.git&quot;,\n    &quot;accountId&quot;: &quot;838875d5-cc65-4c76-ab05-a67ae18d8090&quot;\n  }\n}</component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 7\n}</component>\n  <component name=\"ProjectId\" id=\"2dadPwVRkGvspsCPlFcNqLgVFYT\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"Application.Main (1).executor\": \"Run\",\n    \"Gradle.Build NutriCenter.executor\": \"Run\",\n    \"Gradle.Build build.executor\": \"Run\",\n    \"Gradle.Build lab1.executor\": \"Run\",\n    \"Gradle.CreateUsersTest.executor\": \"Debug\",\n    \"Gradle.NutriCenter [:Application.main()].executor\": \"Run\",\n    \"Gradle.NutriCenter [:Main.main()].executor\": \"Run\",\n    \"Gradle.lab1 [:Application.main()].executor\": \"Run\",\n    \"Gradle.lab1 [:Main.main()].executor\": \"Run\",\n    \"RunOnceActivity.OpenDatabaseViewOnStart\": \"true\",\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"git-widget-placeholder\": \"main\",\n    \"kotlin-language-version-configured\": \"true\",\n    \"last_opened_file_path\": \"/Users/ezequielrickert/projects/NutriCenter\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"nodejs_package_manager_path\": \"npm\",\n    \"settings.editor.selected.configurable\": \"preferences.keymap\",\n    \"vue.rearranger.settings.migration\": \"true\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/src/main/js/front/src/view/Customer\" />\n      <recent name=\"$PROJECT_DIR$\" />\n    </key>\n  </component>\n  <component name=\"RunManager\" selected=\"Application.Application\">\n    <configuration name=\"Application\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"org.example.Application\" />\n      <module name=\"NutriCenter.main\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"org.example.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"Main (1)\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"ALTERNATIVE_JRE_PATH\" value=\"corretto-21\" />\n      <option name=\"ALTERNATIVE_JRE_PATH_ENABLED\" value=\"true\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\n      <module name=\"NutriCenter.main\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"org.example.web.Main\" />\n      <module name=\"org.example.NutriCenter.main\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"org.example.web.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"CreateUsersTest\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\n      <ExternalSystemSettings>\n        <option name=\"executionName\" />\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$/NutriCenter\" />\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\n        <option name=\"scriptParameters\" value=\"\" />\n        <option name=\"taskDescriptions\">\n          <list />\n        </option>\n        <option name=\"taskNames\">\n          <list>\n            <option value=\":test\" />\n            <option value=\"--tests\" />\n            <option value=\"&quot;org.example.CreateUsersTest&quot;\" />\n          </list>\n        </option>\n        <option name=\"vmOptions\" />\n      </ExternalSystemSettings>\n      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\n      <DebugAllEnabled>false</DebugAllEnabled>\n      <RunAsTest>true</RunAsTest>\n      <method v=\"2\" />\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.Application\" />\n        <item itemvalue=\"Application.Main (1)\" />\n        <item itemvalue=\"Application.Main\" />\n        <item itemvalue=\"Gradle.CreateUsersTest\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240\" />\n        <option value=\"bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"5bdafd8e-40e9-4e0e-98bd-e5e6e9f5402c\" name=\"Changes\" comment=\"\" />\n      <created>1710250102226</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1710250102226</updated>\n      <workItem from=\"1710250103275\" duration=\"3393000\" />\n      <workItem from=\"1711367272898\" duration=\"1119000\" />\n      <workItem from=\"1711371242067\" duration=\"642000\" />\n      <workItem from=\"1711391214904\" duration=\"7924000\" />\n      <workItem from=\"1711451467614\" duration=\"11026000\" />\n      <workItem from=\"1711463535632\" duration=\"5334000\" />\n      <workItem from=\"1711626404602\" duration=\"7197000\" />\n      <workItem from=\"1711635008849\" duration=\"339000\" />\n      <workItem from=\"1711635570590\" duration=\"50000\" />\n      <workItem from=\"1711635680855\" duration=\"6754000\" />\n      <workItem from=\"1712417854418\" duration=\"16512000\" />\n      <workItem from=\"1712596193638\" duration=\"19000\" />\n      <workItem from=\"1712623464979\" duration=\"142000\" />\n      <workItem from=\"1712623649173\" duration=\"169000\" />\n      <workItem from=\"1712661696788\" duration=\"7000\" />\n      <workItem from=\"1712664634401\" duration=\"5062000\" />\n    </task>\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <ignored-roots>\n      <path value=\"$PROJECT_DIR$/NutriCenter\" />\n    </ignored-roots>\n  </component>\n  <component name=\"XDebuggerManager\">\n    <breakpoint-manager>\n      <breakpoints>\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\n          <url>file://$PROJECT_DIR$/NutriCenter/src/test/java/org/example/CreateUsersTest.java</url>\n          <line>24</line>\n          <option name=\"timeStamp\" value=\"2\" />\n        </line-breakpoint>\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\n          <url>file://$PROJECT_DIR$/NutriCenter/src/main/java/org/example/persistence/HibernateUtil.java</url>\n          <line>18</line>\n          <option name=\"timeStamp\" value=\"6\" />\n        </line-breakpoint>\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\n          <url>file://$PROJECT_DIR$/NutriCenter/src/main/java/org/example/service/store/StoreRepositoryImpl.java</url>\n          <line>34</line>\n          <option name=\"timeStamp\" value=\"20\" />\n        </line-breakpoint>\n        <line-breakpoint enabled=\"true\" type=\"javascript\">\n          <url>file://$PROJECT_DIR$/src/main/js/front/src/App.js</url>\n          <line>19</line>\n          <option name=\"timeStamp\" value=\"26\" />\n        </line-breakpoint>\n        <line-breakpoint enabled=\"true\" type=\"java-method\">\n          <url>file://$PROJECT_DIR$/src/main/java/org/example/model/Customer.java</url>\n          <line>24</line>\n          <properties class=\"org.example.model.Customer\" method=\"&lt;init&gt;\">\n            <option name=\"EMULATED\" value=\"true\" />\n            <option name=\"WATCH_EXIT\" value=\"false\" />\n          </properties>\n          <option name=\"timeStamp\" value=\"44\" />\n        </line-breakpoint>\n      </breakpoints>\n    </breakpoint-manager>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 71ca0bca9b92c460ca00b75e10ad40e3dee6ae44)
++++ b/.idea/workspace.xml	(date 1713213496820)
+@@ -5,22 +5,15 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="5bdafd8e-40e9-4e0e-98bd-e5e6e9f5402c" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/SuperAdminController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/model/SuperAdmin.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/superadmin/SuperAdminRepository.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/superadmin/SuperAdminRepositoryImpl.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/js/front/src/view/SuperAdmin/signup/signup.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/LoginController.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_08_04_2024,_2_14 PM_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_08_04_2024__2_14PM__Changes_.xml" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/bin/startDB.sh" beforeDir="false" afterPath="$PROJECT_DIR$/bin/startDB.sh" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/build/resources/main/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/META-INF/persistence.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Application.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/CustomerController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/costumer/CostumerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/costumer/CostumerRepository.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/costumer/CostumerRepositoryImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/costumer/CostumerRepositoryImp.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/App.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/view/login/login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/view/Customer/login/login.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/view/signup/signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/view/Customer/signup/signup.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -64,9 +57,9 @@
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+       <list>
++        <option value="JSX File" />
+         <option value="Interface" />
+         <option value="Class" />
+-        <option value="JSX File" />
+       </list>
+     </option>
+   </component>
+@@ -117,7 +110,7 @@
+     "RunOnceActivity.OpenProjectViewOnStart": "true",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "git-widget-placeholder": "main",
++    "git-widget-placeholder": "login",
+     "kotlin-language-version-configured": "true",
+     "last_opened_file_path": "/Users/ezequielrickert/projects/NutriCenter",
+     "node.js.detected.package.eslint": "true",
+@@ -125,7 +118,10 @@
+     "node.js.selected.package.eslint": "(autodetect)",
+     "node.js.selected.package.tslint": "(autodetect)",
+     "nodejs_package_manager_path": "npm",
+-    "settings.editor.selected.configurable": "preferences.keymap",
++    "project.structure.last.edited": "Project",
++    "project.structure.proportion": "0.0",
++    "project.structure.side.proportion": "0.0",
++    "settings.editor.selected.configurable": "preferences.pluginManager",
+     "vue.rearranger.settings.migration": "true"
+   }
+ }]]></component>
+@@ -197,10 +193,11 @@
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="Application.Application" />
++        <item itemvalue="Gradle.CreateUsersTest" />
+         <item itemvalue="Application.Main (1)" />
+         <item itemvalue="Application.Main" />
+-        <item itemvalue="Gradle.CreateUsersTest" />
++        <item itemvalue="Application.Application" />
++        <item itemvalue="Application.Application" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -236,6 +233,7 @@
+       <workItem from="1712623649173" duration="169000" />
+       <workItem from="1712661696788" duration="7000" />
+       <workItem from="1712664634401" duration="5062000" />
++      <workItem from="1713213308806" duration="25000" />
+     </task>
+     <servers />
+   </component>
+@@ -265,15 +263,10 @@
+           <line>34</line>
+           <option name="timeStamp" value="20" />
+         </line-breakpoint>
+-        <line-breakpoint enabled="true" type="javascript">
+-          <url>file://$PROJECT_DIR$/src/main/js/front/src/App.js</url>
+-          <line>19</line>
+-          <option name="timeStamp" value="26" />
+-        </line-breakpoint>
+         <line-breakpoint enabled="true" type="java-method">
+           <url>file://$PROJECT_DIR$/src/main/java/org/example/model/Customer.java</url>
+           <line>24</line>
+-          <properties class="org.example.model.Customer" method="&lt;init&gt;">
++          <properties class="org.example.model.Customer">
+             <option name="EMULATED" value="true" />
+             <option name="WATCH_EXIT" value="false" />
+           </properties>
+Index: src/main/java/org/example/controller/CustomerController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.example.controller;\n\nimport org.example.model.Customer;\nimport org.example.service.costumer.CostumerRepositoryImp;\n\nimport javax.persistence.EntityManager;\n\npublic class CustomerController {\n  CostumerRepositoryImp costumerRepositoryImp;\n  public CustomerController(EntityManager entityManager) {\n    this.costumerRepositoryImp = new CostumerRepositoryImp(entityManager);\n  }\n  public void createClient(String username, String email, String password) {\n    costumerRepositoryImp.createUser(username, email, password);\n  }\n\n  public void readClient(Long inClientId) {\n    Customer customer = costumerRepositoryImp.readUser(inClientId);\n    if (customer != null) {\n      System.out.println(\"Client ID: \" + customer.getCustomerId());\n      System.out.println(\"Client Name: \" + customer.getCustomerName());\n      System.out.println(\"Client Email: \" + customer.getCustomerEmail());\n    } else {\n      System.out.println(\"Client not found\");\n    }\n  }\n\n  public void updateClient(Long clientId, String username, String email) {\n    costumerRepositoryImp.updateUser(clientId, username, email);\n  }\n\n  public void deleteClient(Long clientId) {\n    costumerRepositoryImp.deleteUser(clientId);\n  }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/controller/CustomerController.java b/src/main/java/org/example/controller/CustomerController.java
+--- a/src/main/java/org/example/controller/CustomerController.java	(revision 71ca0bca9b92c460ca00b75e10ad40e3dee6ae44)
++++ b/src/main/java/org/example/controller/CustomerController.java	(date 1713213496822)
+@@ -4,6 +4,8 @@
+ import org.example.service.costumer.CostumerRepositoryImp;
+ 
+ import javax.persistence.EntityManager;
++import java.util.NoSuchElementException;
++import java.util.Objects;
+ 
+ public class CustomerController {
+   CostumerRepositoryImp costumerRepositoryImp;
+@@ -14,15 +16,8 @@
+     costumerRepositoryImp.createUser(username, email, password);
+   }
+ 
+-  public void readClient(Long inClientId) {
+-    Customer customer = costumerRepositoryImp.readUser(inClientId);
+-    if (customer != null) {
+-      System.out.println("Client ID: " + customer.getCustomerId());
+-      System.out.println("Client Name: " + customer.getCustomerName());
+-      System.out.println("Client Email: " + customer.getCustomerEmail());
+-    } else {
+-      System.out.println("Client not found");
+-    }
++  public Customer readClient(String username) {
++      return costumerRepositoryImp.readUser(username);
+   }
+ 
+   public void updateClient(Long clientId, String username, String email) {
+@@ -32,4 +27,13 @@
+   public void deleteClient(Long clientId) {
+     costumerRepositoryImp.deleteUser(clientId);
+   }
++
++  public void generateLoginToken(String username, String password) {
++    Customer customer = readClient(username);
++    if (customer != null && Objects.equals(customer.getCustomerPassword(), password)) {
++      String token = LoginController.generateNewToken();
++      LoginController.usernameTokenMap.put(username, token);
++    }
++    else {throw new NoSuchElementException();}
++  }
+ }

@@ -22,16 +22,6 @@ public class Application {
 
     Spark.port(8080);
 
-    storedCustomer(entityManagerFactory.createEntityManager());
-
-    storedNutritionist(entityManagerFactory.createEntityManager());
-
-    storedStore(entityManagerFactory.createEntityManager());
-
-    createSuperAdmin(entityManagerFactory.createEntityManager());
-
-    createAllergies(entityManagerFactory.createEntityManager());
-
       Spark.options("/*", (request, response) -> {
 
           String accessControlRequestHeaders = request.headers("Access-Control-Request-Headers");
@@ -209,40 +199,5 @@ public class Application {
         }
     );
 
-  }
-
-  private static void storedCustomer(EntityManager entityManager) {
-    CustomerController customerController = new CustomerController(entityManager);
-    customerController.createClient("erickert", "erickert@mail.austral.edu.ar", "lal");
-    customerController.createClient("hlagos", "hlagos@mail.austral.edu.ar", "lal");
-    customerController.createClient("tbernardez", "tbernardez@mail.austral.edu.ar", "lal");
-  }
-
-  private static void storedNutritionist(EntityManager entityManager){
-    NutritionistController nutritionistController = new NutritionistController(entityManager);
-    nutritionistController.createNutritionist("yael", "yael@test.com", "sas","UA 4 year diploma");
-    nutritionistController.createNutritionist("paola", "paola@test.com", "sas", "UBA 4 year diploma");
-  }
-
-  private static void storedStore(EntityManager entityManager){
-    StoreController storeController = new StoreController(entityManager);
-    storeController.createStore("New Garden", "newgarden@gmail.com", "1122223333");
-    storeController.createStore("Green Food", "greenfood@gmail.com", "1133334444");
-    storeController.createStore("Green Life", "greenlife@gmail.com", "1144445555");
-  }
-
-  private static String capitalized(String name) {
-    return Strings.isNullOrEmpty(name) ? name : name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
-  }
-
-  private static void createSuperAdmin(EntityManager entityManager) {
-      SuperAdminController superAdminController = new SuperAdminController(entityManager);
-      superAdminController.createSuperAdmin("God", "God");
-  }
-
-  private static void createAllergies(EntityManager entityManager) {
-      AllergyController allergyController = new AllergyController(entityManager);
-      allergyController.createAllergy("lactose", "intolerante a la lactosa");
-      allergyController.createAllergy("tacc", "celiaco");
   }
 }

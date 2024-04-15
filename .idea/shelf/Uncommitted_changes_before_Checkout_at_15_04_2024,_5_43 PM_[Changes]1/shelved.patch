@@ -1,0 +1,213 @@
+Index: .idea/shelf/Uncommitted_changes_before_Merge_at_08_04_2024__2_14PM__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Merge_at_08_04_2024__2_14PM__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Merge_at_08_04_2024__2_14PM__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Merge_at_08_04_2024__2_14PM__Changes_.xml	
++++ /dev/null	
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Merge_at_08_04_2024,_2_14 PM_[Changes]" date="1712596553008" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_08_04_2024,_2_14 PM_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Merge at 08/04/2024, 2:14 PM [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Merge_at_08_04_2024,_2_14 PM_[Changes]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Merge_at_08_04_2024,_2_14 PM_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Merge_at_08_04_2024,_2_14 PM_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Merge_at_08_04_2024,_2_14 PM_[Changes]/shelved.patch	
++++ /dev/null	
+@@ -1,147 +0,0 @@
+-Index: .idea/dataSources/65c70a5a-d3d9-4775-883f-7e8bd5d18d02.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/dataSources/65c70a5a-d3d9-4775-883f-7e8bd5d18d02.xml b/.idea/dataSources/65c70a5a-d3d9-4775-883f-7e8bd5d18d02.xml
+-deleted file mode 100644
+---- a/.idea/dataSources/65c70a5a-d3d9-4775-883f-7e8bd5d18d02.xml	(revision 9822e5e742697ba84976e6d7a476860ab452f798)
+-+++ /dev/null	(revision 9822e5e742697ba84976e6d7a476860ab452f798)
+-@@ -1,136 +0,0 @@
+--<?xml version="1.0" encoding="UTF-8"?>
+--<dataSource name="testdb@localhost">
+--  <database-model serializer="dbm" dbms="HSQLDB" family-id="HSQLDB" format-version="4.51">
+--    <root id="1">
+--      <ServerVersion>2.7.2</ServerVersion>
+--    </root>
+--    <database id="2" parent="1" name="PUBLIC">
+--      <Current>1</Current>
+--    </database>
+--    <schema id="3" parent="2" name="INFORMATION_SCHEMA"/>
+--    <schema id="4" parent="2" name="PUBLIC">
+--      <Current>1</Current>
+--      <LastIntrospectionLocalTimestamp>2024-04-02.21:41:18</LastIntrospectionLocalTimestamp>
+--    </schema>
+--    <schema id="5" parent="2" name="SYSTEM_LOBS"/>
+--    <table id="6" parent="4" name="CUSTOMER"/>
+--    <table id="7" parent="4" name="NUTRITIONIST"/>
+--    <table id="8" parent="4" name="STORE"/>
+--    <column id="9" parent="6" name="CLIENTID">
+--      <DasType>BIGINT|-5s</DasType>
+--      <NotNull>1</NotNull>
+--      <Position>1</Position>
+--      <SequenceIdentity>null</SequenceIdentity>
+--    </column>
+--    <column id="10" parent="6" name="CLIENTEMAIL">
+--      <DasType>VARCHAR(255)|12s</DasType>
+--      <NotNull>1</NotNull>
+--      <Position>2</Position>
+--    </column>
+--    <column id="11" parent="6" name="CLIENTNAME">
+--      <DasType>VARCHAR(255)|12s</DasType>
+--      <NotNull>1</NotNull>
+--      <Position>3</Position>
+--    </column>
+--    <index id="12" parent="6" name="SYS_PK_10109">
+--      <ColNames>CLIENTID</ColNames>
+--      <NameSurrogate>1</NameSurrogate>
+--      <Unique>1</Unique>
+--    </index>
+--    <index id="13" parent="6" name="UK_26ED72DPV3FNNJ2XPCN7LWREW">
+--      <ColNames>CLIENTEMAIL</ColNames>
+--      <Unique>1</Unique>
+--    </index>
+--    <key id="14" parent="6" name="SYS_PK_10109">
+--      <ColNames>CLIENTID</ColNames>
+--      <NameSurrogate>1</NameSurrogate>
+--      <Primary>1</Primary>
+--    </key>
+--    <key id="15" parent="6" name="UK_26ED72DPV3FNNJ2XPCN7LWREW">
+--      <ColNames>CLIENTEMAIL</ColNames>
+--    </key>
+--    <column id="16" parent="7" name="NUTRITIONISTID">
+--      <DasType>BIGINT|-5s</DasType>
+--      <NotNull>1</NotNull>
+--      <Position>1</Position>
+--      <SequenceIdentity>null</SequenceIdentity>
+--    </column>
+--    <column id="17" parent="7" name="EDUCATIONDIPLOMA">
+--      <DasType>VARCHAR(255)|12s</DasType>
+--      <NotNull>1</NotNull>
+--      <Position>2</Position>
+--    </column>
+--    <column id="18" parent="7" name="NUTRITIONISTEMAIL">
+--      <DasType>VARCHAR(255)|12s</DasType>
+--      <NotNull>1</NotNull>
+--      <Position>3</Position>
+--    </column>
+--    <column id="19" parent="7" name="NUTRITIONISTNAME">
+--      <DasType>VARCHAR(255)|12s</DasType>
+--      <NotNull>1</NotNull>
+--      <Position>4</Position>
+--    </column>
+--    <index id="20" parent="7" name="SYS_PK_10115">
+--      <ColNames>NUTRITIONISTID</ColNames>
+--      <NameSurrogate>1</NameSurrogate>
+--      <Unique>1</Unique>
+--    </index>
+--    <index id="21" parent="7" name="UK_ILY1O9O878EJ1U91NR02KBNK3">
+--      <ColNames>NUTRITIONISTEMAIL</ColNames>
+--      <Unique>1</Unique>
+--    </index>
+--    <key id="22" parent="7" name="SYS_PK_10115">
+--      <ColNames>NUTRITIONISTID</ColNames>
+--      <NameSurrogate>1</NameSurrogate>
+--      <Primary>1</Primary>
+--    </key>
+--    <key id="23" parent="7" name="UK_ILY1O9O878EJ1U91NR02KBNK3">
+--      <ColNames>NUTRITIONISTEMAIL</ColNames>
+--    </key>
+--    <column id="24" parent="8" name="STOREID">
+--      <DasType>BIGINT|-5s</DasType>
+--      <NotNull>1</NotNull>
+--      <Position>1</Position>
+--      <SequenceIdentity>null</SequenceIdentity>
+--    </column>
+--    <column id="25" parent="8" name="STOREMAIL">
+--      <DasType>VARCHAR(255)|12s</DasType>
+--      <NotNull>1</NotNull>
+--      <Position>2</Position>
+--    </column>
+--    <column id="26" parent="8" name="STORENAME">
+--      <DasType>VARCHAR(255)|12s</DasType>
+--      <NotNull>1</NotNull>
+--      <Position>3</Position>
+--    </column>
+--    <column id="27" parent="8" name="STORENUMBER">
+--      <DasType>VARCHAR(255)|12s</DasType>
+--      <NotNull>1</NotNull>
+--      <Position>4</Position>
+--    </column>
+--    <index id="28" parent="8" name="SYS_PK_10122">
+--      <ColNames>STOREID</ColNames>
+--      <NameSurrogate>1</NameSurrogate>
+--      <Unique>1</Unique>
+--    </index>
+--    <index id="29" parent="8" name="UK_T9M0QM0K4V6FCEYHNOYQH32A2">
+--      <ColNames>STOREMAIL</ColNames>
+--      <Unique>1</Unique>
+--    </index>
+--    <index id="30" parent="8" name="UK_IH38VM7GKH4C58RTXDM14GYQF">
+--      <ColNames>STORENUMBER</ColNames>
+--      <Unique>1</Unique>
+--    </index>
+--    <key id="31" parent="8" name="SYS_PK_10122">
+--      <ColNames>STOREID</ColNames>
+--      <NameSurrogate>1</NameSurrogate>
+--      <Primary>1</Primary>
+--    </key>
+--    <key id="32" parent="8" name="UK_T9M0QM0K4V6FCEYHNOYQH32A2">
+--      <ColNames>STOREMAIL</ColNames>
+--    </key>
+--    <key id="33" parent="8" name="UK_IH38VM7GKH4C58RTXDM14GYQF">
+--      <ColNames>STORENUMBER</ColNames>
+--    </key>
+--  </database-model>
+--</dataSource>
+-\ No newline at end of file
+Index: src/main/java/Main.java
+===================================================================
+diff --git a/src/main/java/Main.java b/src/main/java/Main.java
+deleted file mode 100644
+--- a/src/main/java/Main.java	
++++ /dev/null	
+@@ -1,40 +0,0 @@
+-
+-import org.example.controller.CustomerController;
+-import org.example.controller.NutritionistController;
+-import org.example.controller.StoreController;
+-
+-import javax.persistence.EntityManager;
+-import javax.persistence.EntityManagerFactory;
+-import javax.persistence.Persistence;
+-
+-
+-public class Main {
+-    public static void main(String[] args) {
+-      EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
+-      EntityManager entityManager = entityManagerFactory.createEntityManager();;
+-      CustomerController customerController = new CustomerController(entityManager);
+-      customerController.createClient("erickert", "erickert@mail.austral.edu.ar", "lal");
+-      customerController.createClient("hlagos", "hlagos@mail.austral.edu.ar", "lal");
+-      customerController.createClient("tbernardez", "tbernardez@mail.austral.edu.ar", "lal");
+-      customerController.readClient(1L);
+-      customerController.readClient(2L);
+-      customerController.readClient(3L);
+-      customerController.updateClient(1L, "eballesteros", "eballesteros@mail.austral.edu.ar");
+-      customerController.deleteClient(2L);
+-      NutritionistController nutritionistController = new NutritionistController(entityManager);
+-      nutritionistController.createNutritionist("yael", "yael@test.com", "sas", "UA 4 year diploma");
+-      nutritionistController.createNutritionist("paola", "paola@test.com", "sas", "UBA 4 year diploma");
+-      nutritionistController.updateNutritionist(2L, "silvina", "silvina@test.com", "sas", "UBA 4 year diploma");
+-      nutritionistController.deleteNutritionist(1L);
+-      StoreController storeController = new StoreController(entityManager);
+-      storeController.createStore("New Garden", "newgarden@gmail.com", "1122223333");
+-      storeController.createStore("Green Food", "greenfood@gmail.com", "1133334444");
+-      storeController.createStore("Green Life", "greenlife@gmail.com", "1144445555");
+-      storeController.readStore(1L);
+-      storeController.readStore(2L);
+-      storeController.readStore(3L);
+-      storeController.deleteStore(3L);
+-      storeController.updateStore(2L, "Green Life", "greenlife@gmail.com", "1133334444");
+-    }
+-}
+-
