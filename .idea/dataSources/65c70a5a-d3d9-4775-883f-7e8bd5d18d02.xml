@@ -10,7 +10,7 @@
     <schema id="3" parent="2" name="INFORMATION_SCHEMA"/>
     <schema id="4" parent="2" name="PUBLIC">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-04-15.21:30:20</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-04-16.14:23:17</LastIntrospectionLocalTimestamp>
     </schema>
     <schema id="5" parent="2" name="SYSTEM_LOBS"/>
     <table id="6" parent="4" name="ALLERGY"/>
@@ -35,7 +35,7 @@
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <index id="15" parent="6" name="SYS_PK_10559">
+    <index id="15" parent="6" name="SYS_PK_10591">
       <ColNames>ALLERGYID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
@@ -44,7 +44,7 @@
       <ColNames>ALLERGYNAME</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="17" parent="6" name="SYS_PK_10559">
+    <key id="17" parent="6" name="SYS_PK_10591">
       <ColNames>ALLERGYID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
@@ -73,7 +73,7 @@
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <index id="23" parent="7" name="SYS_PK_10565">
+    <index id="23" parent="7" name="SYS_PK_10597">
       <ColNames>CUSTOMERID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
@@ -82,7 +82,7 @@
       <ColNames>CUSTOMEREMAIL</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="25" parent="7" name="SYS_PK_10565">
+    <key id="25" parent="7" name="SYS_PK_10597">
       <ColNames>CUSTOMERID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
@@ -111,174 +111,179 @@
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="31" parent="8" name="PROTEINS">
+    <column id="31" parent="8" name="SODIUM">
       <DasType>INTEGER|4s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="32" parent="8" name="SODIUM">
+    <column id="32" parent="8" name="TOTALCARBOHYDRATE">
       <DasType>INTEGER|4s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="33" parent="8" name="TOTALCARBOHYDRATE">
+    <column id="33" parent="8" name="TOTALFAT">
       <DasType>INTEGER|4s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="34" parent="8" name="TOTALFAT">
-      <DasType>INTEGER|4s</DasType>
-      <NotNull>1</NotNull>
+    <column id="34" parent="8" name="ALLERGY_ID">
+      <DasType>BIGINT|-5s</DasType>
       <Position>8</Position>
     </column>
-    <column id="35" parent="8" name="ALLERGY_ID">
-      <DasType>BIGINT|-5s</DasType>
+    <column id="35" parent="8" name="PROTEINS">
+      <DasType>INTEGER|4s</DasType>
+      <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <foreign-key id="36" parent="8" name="FK_ALLERGY_ID">
+    <column id="36" parent="8" name="ALLERGYID">
+      <DasType>BIGINT|-5s</DasType>
+      <Position>10</Position>
+    </column>
+    <foreign-key id="37" parent="8" name="FK_ALLERGY_ID">
       <ColNames>ALLERGY_ID</ColNames>
       <RefColNames>ALLERGYID</RefColNames>
       <RefTableName>ALLERGY</RefTableName>
     </foreign-key>
-    <index id="37" parent="8" name="SYS_PK_10576">
+    <foreign-key id="38" parent="8" name="FK_ALLERGYID">
+      <ColNames>ALLERGYID</ColNames>
+      <RefColNames>ALLERGYID</RefColNames>
+      <RefTableName>ALLERGY</RefTableName>
+    </foreign-key>
+    <index id="39" parent="8" name="SYS_PK_10608">
       <ColNames>INGREDIENTID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="38" parent="8" name="UK_HNX16I14SEUGYXSYDRE2TWOC5">
-      <ColNames>INGREDIENTNAME</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <index id="39" parent="8" name="FK_ALLERGY_ID">
+    <index id="40" parent="8" name="FK_ALLERGY_ID">
       <ColNames>ALLERGY_ID</ColNames>
     </index>
-    <key id="40" parent="8" name="SYS_PK_10576">
+    <index id="41" parent="8" name="FK_ALLERGYID">
+      <ColNames>ALLERGYID</ColNames>
+    </index>
+    <key id="42" parent="8" name="SYS_PK_10608">
       <ColNames>INGREDIENTID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <key id="41" parent="8" name="UK_HNX16I14SEUGYXSYDRE2TWOC5">
-      <ColNames>INGREDIENTNAME</ColNames>
-    </key>
-    <column id="42" parent="9" name="NUTRITIONISTID">
+    <column id="43" parent="9" name="NUTRITIONISTID">
       <DasType>BIGINT|-5s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="43" parent="9" name="EDUCATIONDIPLOMA">
+    <column id="44" parent="9" name="EDUCATIONDIPLOMA">
       <DasType>VARCHAR(255)|12s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="44" parent="9" name="NUTRITIONISTEMAIL">
+    <column id="45" parent="9" name="NUTRITIONISTEMAIL">
       <DasType>VARCHAR(255)|12s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="45" parent="9" name="NUTRITIONISTNAME">
+    <column id="46" parent="9" name="NUTRITIONISTNAME">
       <DasType>VARCHAR(255)|12s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="46" parent="9" name="NUTRITIONISTPASSWORD">
+    <column id="47" parent="9" name="NUTRITIONISTPASSWORD">
       <DasType>VARCHAR(255)|12s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <index id="47" parent="9" name="SYS_PK_10588">
+    <index id="48" parent="9" name="SYS_PK_10620">
       <ColNames>NUTRITIONISTID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="48" parent="9" name="UK_ILY1O9O878EJ1U91NR02KBNK3">
+    <index id="49" parent="9" name="UK_ILY1O9O878EJ1U91NR02KBNK3">
       <ColNames>NUTRITIONISTEMAIL</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="49" parent="9" name="SYS_PK_10588">
+    <key id="50" parent="9" name="SYS_PK_10620">
       <ColNames>NUTRITIONISTID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <key id="50" parent="9" name="UK_ILY1O9O878EJ1U91NR02KBNK3">
+    <key id="51" parent="9" name="UK_ILY1O9O878EJ1U91NR02KBNK3">
       <ColNames>NUTRITIONISTEMAIL</ColNames>
     </key>
-    <column id="51" parent="10" name="STOREID">
+    <column id="52" parent="10" name="STOREID">
       <DasType>BIGINT|-5s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="52" parent="10" name="STOREMAIL">
+    <column id="53" parent="10" name="STOREMAIL">
       <DasType>VARCHAR(255)|12s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="53" parent="10" name="STORENAME">
+    <column id="54" parent="10" name="STORENAME">
       <DasType>VARCHAR(255)|12s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="54" parent="10" name="STORENUMBER">
+    <column id="55" parent="10" name="STORENUMBER">
       <DasType>VARCHAR(255)|12s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <index id="55" parent="10" name="SYS_PK_10596">
+    <index id="56" parent="10" name="SYS_PK_10628">
       <ColNames>STOREID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="56" parent="10" name="UK_T9M0QM0K4V6FCEYHNOYQH32A2">
+    <index id="57" parent="10" name="UK_T9M0QM0K4V6FCEYHNOYQH32A2">
       <ColNames>STOREMAIL</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="57" parent="10" name="UK_IH38VM7GKH4C58RTXDM14GYQF">
+    <index id="58" parent="10" name="UK_IH38VM7GKH4C58RTXDM14GYQF">
       <ColNames>STORENUMBER</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="58" parent="10" name="SYS_PK_10596">
+    <key id="59" parent="10" name="SYS_PK_10628">
       <ColNames>STOREID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <key id="59" parent="10" name="UK_T9M0QM0K4V6FCEYHNOYQH32A2">
+    <key id="60" parent="10" name="UK_T9M0QM0K4V6FCEYHNOYQH32A2">
       <ColNames>STOREMAIL</ColNames>
     </key>
-    <key id="60" parent="10" name="UK_IH38VM7GKH4C58RTXDM14GYQF">
+    <key id="61" parent="10" name="UK_IH38VM7GKH4C58RTXDM14GYQF">
       <ColNames>STORENUMBER</ColNames>
     </key>
-    <column id="61" parent="11" name="ADMINID">
+    <column id="62" parent="11" name="ADMINID">
       <DasType>BIGINT|-5s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="62" parent="11" name="ADMINPASSWORD">
+    <column id="63" parent="11" name="ADMINPASSWORD">
       <DasType>VARCHAR(255)|12s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="63" parent="11" name="ADMINUSERNAME">
+    <column id="64" parent="11" name="ADMINUSERNAME">
       <DasType>VARCHAR(255)|12s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <index id="64" parent="11" name="SYS_PK_10602">
+    <index id="65" parent="11" name="SYS_PK_10634">
       <ColNames>ADMINID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="65" parent="11" name="UK_HL36IVN4PW6AWKST8AJUTK2V">
+    <index id="66" parent="11" name="UK_HL36IVN4PW6AWKST8AJUTK2V">
       <ColNames>ADMINUSERNAME</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="66" parent="11" name="SYS_PK_10602">
+    <key id="67" parent="11" name="SYS_PK_10634">
       <ColNames>ADMINID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <key id="67" parent="11" name="UK_HL36IVN4PW6AWKST8AJUTK2V">
+    <key id="68" parent="11" name="UK_HL36IVN4PW6AWKST8AJUTK2V">
       <ColNames>ADMINUSERNAME</ColNames>
     </key>
   </database-model>

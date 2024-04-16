@@ -1,0 +1,239 @@
+Index: src/main/java/Main.java
+===================================================================
+diff --git a/src/main/java/Main.java b/src/main/java/Main.java
+deleted file mode 100644
+--- a/src/main/java/Main.java	(revision 71ca0bca9b92c460ca00b75e10ad40e3dee6ae44)
++++ /dev/null	(revision 71ca0bca9b92c460ca00b75e10ad40e3dee6ae44)
+@@ -1,40 +0,0 @@
+-
+-import org.example.controller.CustomerController;
+-import org.example.controller.NutritionistController;
+-import org.example.controller.StoreController;
+-
+-import javax.persistence.EntityManager;
+-import javax.persistence.EntityManagerFactory;
+-import javax.persistence.Persistence;
+-
+-
+-public class Main {
+-    public static void main(String[] args) {
+-      EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
+-      EntityManager entityManager = entityManagerFactory.createEntityManager();;
+-      CustomerController customerController = new CustomerController(entityManager);
+-      customerController.createClient("erickert", "erickert@mail.austral.edu.ar", "lal");
+-      customerController.createClient("hlagos", "hlagos@mail.austral.edu.ar", "lal");
+-      customerController.createClient("tbernardez", "tbernardez@mail.austral.edu.ar", "lal");
+-      customerController.readClient(1L);
+-      customerController.readClient(2L);
+-      customerController.readClient(3L);
+-      customerController.updateClient(1L, "eballesteros", "eballesteros@mail.austral.edu.ar");
+-      customerController.deleteClient(2L);
+-      NutritionistController nutritionistController = new NutritionistController(entityManager);
+-      nutritionistController.createNutritionist("yael", "yael@test.com", "sas", "UA 4 year diploma");
+-      nutritionistController.createNutritionist("paola", "paola@test.com", "sas", "UBA 4 year diploma");
+-      nutritionistController.updateNutritionist(2L, "silvina", "silvina@test.com", "sas", "UBA 4 year diploma");
+-      nutritionistController.deleteNutritionist(1L);
+-      StoreController storeController = new StoreController(entityManager);
+-      storeController.createStore("New Garden", "newgarden@gmail.com", "1122223333");
+-      storeController.createStore("Green Food", "greenfood@gmail.com", "1133334444");
+-      storeController.createStore("Green Life", "greenlife@gmail.com", "1144445555");
+-      storeController.readStore(1L);
+-      storeController.readStore(2L);
+-      storeController.readStore(3L);
+-      storeController.deleteStore(3L);
+-      storeController.updateStore(2L, "Green Life", "greenlife@gmail.com", "1133334444");
+-    }
+-}
+-
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"5bdafd8e-40e9-4e0e-98bd-e5e6e9f5402c\" name=\"Changes\" comment=\"\">\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/org/example/controller/SuperAdminController.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/org/example/model/SuperAdmin.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/org/example/service/superadmin/SuperAdminRepository.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/org/example/service/superadmin/SuperAdminRepositoryImpl.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/main/js/front/src/view/SuperAdmin/signup/signup.jsx\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.gradle/file-system.probe\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/file-system.probe\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/bin/startDB.sh\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/bin/startDB.sh\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/build/resources/main/META-INF/persistence.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/build/resources/main/META-INF/persistence.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/example/Application.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/example/Application.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/example/service/costumer/CostumerRepositoryImp.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/example/service/costumer/CostumerRepositoryImp.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/js/front/src/App.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/js/front/src/App.js\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/js/front/src/view/login/login.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/js/front/src/view/Customer/login/login.jsx\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/js/front/src/view/signup/signup.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/js/front/src/view/Customer/signup/signup.jsx\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"ExternalProjectsData\">\n    <projectState path=\"$PROJECT_DIR$\">\n      <ProjectState />\n    </projectState>\n    <projectState path=\"$PROJECT_DIR$/Database/hsqldb-2.7.2/hsqldb/build\">\n      <ProjectState />\n    </projectState>\n    <projectState path=\"$PROJECT_DIR$/NutriCenter\">\n      <ProjectState />\n    </projectState>\n  </component>\n  <component name=\"ExternalProjectsManager\">\n    <system id=\"GRADLE\">\n      <state>\n        <task path=\"$PROJECT_DIR$/Database/hsqldb-2.7.2/hsqldb/build\">\n          <activation />\n        </task>\n        <task path=\"$PROJECT_DIR$/NutriCenter\">\n          <activation />\n        </task>\n        <projects_view>\n          <tree_state>\n            <expand>\n              <path>\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\n                <item name=\"NutriCenter\" type=\"f1a62948:ProjectNode\" />\n              </path>\n            </expand>\n            <select />\n          </tree_state>\n        </projects_view>\n      </state>\n    </system>\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Interface\" />\n        <option value=\"Class\" />\n        <option value=\"JSX File\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;ezequielrickert&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;https://github.com/ezequielrickert/NutriCenter.git&quot;,\n    &quot;accountId&quot;: &quot;838875d5-cc65-4c76-ab05-a67ae18d8090&quot;\n  }\n}</component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 7\n}</component>\n  <component name=\"ProjectId\" id=\"2dadPwVRkGvspsCPlFcNqLgVFYT\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"Application.Main (1).executor\": \"Run\",\n    \"Gradle.Build NutriCenter.executor\": \"Run\",\n    \"Gradle.Build build.executor\": \"Run\",\n    \"Gradle.Build lab1.executor\": \"Run\",\n    \"Gradle.CreateUsersTest.executor\": \"Debug\",\n    \"Gradle.NutriCenter [:Application.main()].executor\": \"Run\",\n    \"Gradle.NutriCenter [:Main.main()].executor\": \"Run\",\n    \"Gradle.lab1 [:Application.main()].executor\": \"Run\",\n    \"Gradle.lab1 [:Main.main()].executor\": \"Run\",\n    \"RunOnceActivity.OpenDatabaseViewOnStart\": \"true\",\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"git-widget-placeholder\": \"main\",\n    \"kotlin-language-version-configured\": \"true\",\n    \"last_opened_file_path\": \"/Users/ezequielrickert/projects/NutriCenter\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"nodejs_package_manager_path\": \"npm\",\n    \"settings.editor.selected.configurable\": \"preferences.keymap\",\n    \"vue.rearranger.settings.migration\": \"true\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/src/main/js/front/src/view/Customer\" />\n      <recent name=\"$PROJECT_DIR$\" />\n    </key>\n  </component>\n  <component name=\"RunManager\" selected=\"Application.Application\">\n    <configuration name=\"Application\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"org.example.Application\" />\n      <module name=\"NutriCenter.main\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"org.example.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"Main (1)\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"ALTERNATIVE_JRE_PATH\" value=\"corretto-21\" />\n      <option name=\"ALTERNATIVE_JRE_PATH_ENABLED\" value=\"true\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\n      <module name=\"NutriCenter.main\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"org.example.web.Main\" />\n      <module name=\"org.example.NutriCenter.main\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"org.example.web.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"CreateUsersTest\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\n      <ExternalSystemSettings>\n        <option name=\"executionName\" />\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$/NutriCenter\" />\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\n        <option name=\"scriptParameters\" value=\"\" />\n        <option name=\"taskDescriptions\">\n          <list />\n        </option>\n        <option name=\"taskNames\">\n          <list>\n            <option value=\":test\" />\n            <option value=\"--tests\" />\n            <option value=\"&quot;org.example.CreateUsersTest&quot;\" />\n          </list>\n        </option>\n        <option name=\"vmOptions\" />\n      </ExternalSystemSettings>\n      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\n      <DebugAllEnabled>false</DebugAllEnabled>\n      <RunAsTest>true</RunAsTest>\n      <method v=\"2\" />\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.Application\" />\n        <item itemvalue=\"Application.Main (1)\" />\n        <item itemvalue=\"Application.Main\" />\n        <item itemvalue=\"Gradle.CreateUsersTest\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240\" />\n        <option value=\"bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"5bdafd8e-40e9-4e0e-98bd-e5e6e9f5402c\" name=\"Changes\" comment=\"\" />\n      <created>1710250102226</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1710250102226</updated>\n      <workItem from=\"1710250103275\" duration=\"3393000\" />\n      <workItem from=\"1711367272898\" duration=\"1119000\" />\n      <workItem from=\"1711371242067\" duration=\"642000\" />\n      <workItem from=\"1711391214904\" duration=\"7924000\" />\n      <workItem from=\"1711451467614\" duration=\"11026000\" />\n      <workItem from=\"1711463535632\" duration=\"5334000\" />\n      <workItem from=\"1711626404602\" duration=\"7197000\" />\n      <workItem from=\"1711635008849\" duration=\"339000\" />\n      <workItem from=\"1711635570590\" duration=\"50000\" />\n      <workItem from=\"1711635680855\" duration=\"6754000\" />\n      <workItem from=\"1712417854418\" duration=\"16512000\" />\n      <workItem from=\"1712596193638\" duration=\"19000\" />\n      <workItem from=\"1712623464979\" duration=\"142000\" />\n      <workItem from=\"1712623649173\" duration=\"169000\" />\n      <workItem from=\"1712661696788\" duration=\"7000\" />\n      <workItem from=\"1712664634401\" duration=\"5062000\" />\n    </task>\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <ignored-roots>\n      <path value=\"$PROJECT_DIR$/NutriCenter\" />\n    </ignored-roots>\n  </component>\n  <component name=\"XDebuggerManager\">\n    <breakpoint-manager>\n      <breakpoints>\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\n          <url>file://$PROJECT_DIR$/NutriCenter/src/test/java/org/example/CreateUsersTest.java</url>\n          <line>24</line>\n          <option name=\"timeStamp\" value=\"2\" />\n        </line-breakpoint>\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\n          <url>file://$PROJECT_DIR$/NutriCenter/src/main/java/org/example/persistence/HibernateUtil.java</url>\n          <line>18</line>\n          <option name=\"timeStamp\" value=\"6\" />\n        </line-breakpoint>\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\n          <url>file://$PROJECT_DIR$/NutriCenter/src/main/java/org/example/service/store/StoreRepositoryImpl.java</url>\n          <line>34</line>\n          <option name=\"timeStamp\" value=\"20\" />\n        </line-breakpoint>\n        <line-breakpoint enabled=\"true\" type=\"javascript\">\n          <url>file://$PROJECT_DIR$/src/main/js/front/src/App.js</url>\n          <line>19</line>\n          <option name=\"timeStamp\" value=\"26\" />\n        </line-breakpoint>\n        <line-breakpoint enabled=\"true\" type=\"java-method\">\n          <url>file://$PROJECT_DIR$/src/main/java/org/example/model/Customer.java</url>\n          <line>24</line>\n          <properties class=\"org.example.model.Customer\" method=\"&lt;init&gt;\">\n            <option name=\"EMULATED\" value=\"true\" />\n            <option name=\"WATCH_EXIT\" value=\"false\" />\n          </properties>\n          <option name=\"timeStamp\" value=\"44\" />\n        </line-breakpoint>\n      </breakpoints>\n    </breakpoint-manager>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 71ca0bca9b92c460ca00b75e10ad40e3dee6ae44)
++++ b/.idea/workspace.xml	(date 1713275914067)
+@@ -5,22 +5,26 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="5bdafd8e-40e9-4e0e-98bd-e5e6e9f5402c" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/SuperAdminController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/model/SuperAdmin.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/superadmin/SuperAdminRepository.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/superadmin/SuperAdminRepositoryImpl.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/js/front/src/view/SuperAdmin/signup/signup.jsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/8.7/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/checksums/checksums.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/resourceHashesCache.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/bin/startDB.sh" beforeDir="false" afterPath="$PROJECT_DIR$/bin/startDB.sh" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/build/resources/main/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/META-INF/persistence.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Application.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/costumer/CostumerRepositoryImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/costumer/CostumerRepositoryImp.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/App.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/view/login/login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/view/Customer/login/login.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/view/signup/signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/view/Customer/signup/signup.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/Application.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/CustomerController.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/NutritionistController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/NutritionistController.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Customer.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Nutritionist.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Nutritionist.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/service/costumer/CostumerRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/service/costumer/CostumerRepository.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/service/costumer/CostumerRepositoryImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/service/costumer/CostumerRepositoryImp.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/service/nutritionist/NutritionistRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/service/nutritionist/NutritionistRepository.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/service/nutritionist/NutritionistRepositoryImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/service/nutritionist/NutritionistRepositoryImp.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -65,15 +69,15 @@
+     <option name="RECENT_TEMPLATES">
+       <list>
+         <option value="Interface" />
+-        <option value="Class" />
+         <option value="JSX File" />
++        <option value="Class" />
+       </list>
+     </option>
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="main" />
++        <entry key="$PROJECT_DIR$" value="views" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+@@ -126,6 +130,7 @@
+     "node.js.selected.package.tslint": "(autodetect)",
+     "nodejs_package_manager_path": "npm",
+     "settings.editor.selected.configurable": "preferences.keymap",
++    "ts.external.directory.path": "/Users/ezequielrickert/Applications/IntelliJ IDEA Ultimate.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+     "vue.rearranger.settings.migration": "true"
+   }
+ }]]></component>
+@@ -137,33 +142,12 @@
+   </component>
+   <component name="RunManager" selected="Application.Application">
+     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="ALTERNATIVE_JRE_PATH" value="corretto-20" />
+       <option name="MAIN_CLASS_NAME" value="org.example.Application" />
+       <module name="NutriCenter.main" />
+       <extension name="coverage">
+         <pattern>
+           <option name="PATTERN" value="org.example.*" />
+-          <option name="ENABLED" value="true" />
+-        </pattern>
+-      </extension>
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="ALTERNATIVE_JRE_PATH" value="corretto-21" />
+-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+-      <option name="MAIN_CLASS_NAME" value="Main" />
+-      <module name="NutriCenter.main" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="org.example.web.Main" />
+-      <module name="org.example.NutriCenter.main" />
+-      <extension name="coverage">
+-        <pattern>
+-          <option name="PATTERN" value="org.example.web.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -195,11 +179,13 @@
+       <RunAsTest>true</RunAsTest>
+       <method v="2" />
+     </configuration>
++    <list>
++      <item itemvalue="Application.Application" />
++      <item itemvalue="Gradle.CreateUsersTest" />
++    </list>
+     <recent_temporary>
+       <list>
+         <item itemvalue="Application.Application" />
+-        <item itemvalue="Application.Main (1)" />
+-        <item itemvalue="Application.Main" />
+         <item itemvalue="Gradle.CreateUsersTest" />
+       </list>
+     </recent_temporary>
+@@ -264,20 +250,44 @@
+           <url>file://$PROJECT_DIR$/NutriCenter/src/main/java/org/example/service/store/StoreRepositoryImpl.java</url>
+           <line>34</line>
+           <option name="timeStamp" value="20" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/main/java/org/example/repository/ingredient/IngredientRepositoryImp.java</url>
++          <line>69</line>
++          <option name="timeStamp" value="49" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/main/java/org/example/Application.java</url>
++          <line>174</line>
++          <option name="timeStamp" value="64" />
+         </line-breakpoint>
+         <line-breakpoint enabled="true" type="javascript">
+           <url>file://$PROJECT_DIR$/src/main/js/front/src/App.js</url>
+           <line>19</line>
+           <option name="timeStamp" value="26" />
+         </line-breakpoint>
++        <line-breakpoint enabled="true" type="javascript">
++          <url>file://$PROJECT_DIR$/src/main/js/front/src/view/superAdmin/edition/ingredientActions/createIngredient.jsx</url>
++          <line>68</line>
++          <option name="timeStamp" value="58" />
++        </line-breakpoint>
+         <line-breakpoint enabled="true" type="java-method">
+           <url>file://$PROJECT_DIR$/src/main/java/org/example/model/Customer.java</url>
+           <line>24</line>
+-          <properties class="org.example.model.Customer" method="&lt;init&gt;">
++          <properties class="org.example.model.Customer">
+             <option name="EMULATED" value="true" />
+             <option name="WATCH_EXIT" value="false" />
+           </properties>
+           <option name="timeStamp" value="44" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-method">
++          <url>file://$PROJECT_DIR$/src/main/java/org/example/repository/ingredient/IngredientRepositoryImp.java</url>
++          <line>51</line>
++          <properties class="org.example.repository.ingredient.IngredientRepositoryImp">
++            <option name="EMULATED" value="true" />
++            <option name="WATCH_EXIT" value="false" />
++          </properties>
++          <option name="timeStamp" value="65" />
+         </line-breakpoint>
+       </breakpoints>
+     </breakpoint-manager>
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\n  <component name=\"FrameworkDetectionExcludesConfiguration\">\n    <file type=\"web\" url=\"file://$PROJECT_DIR$\" />\n  </component>\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_21\" default=\"true\" project-jdk-name=\"openjdk-21\" project-jdk-type=\"JavaSDK\" />\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 71ca0bca9b92c460ca00b75e10ad40e3dee6ae44)
++++ b/.idea/misc.xml	(date 1713275892645)
+@@ -4,5 +4,5 @@
+   <component name="FrameworkDetectionExcludesConfiguration">
+     <file type="web" url="file://$PROJECT_DIR$" />
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="openjdk-21" project-jdk-type="JavaSDK" />
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_20" default="true" project-jdk-name="openjdk-21" project-jdk-type="JavaSDK" />
+ </project>
+\ No newline at end of file

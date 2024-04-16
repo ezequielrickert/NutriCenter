@@ -1,9 +1,7 @@
 package org.example;
 
 import com.google.common.base.Strings;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
+import com.google.gson.*;
 import org.example.controller.*;
 import org.example.model.*;
 import spark.Spark;
@@ -18,9 +16,12 @@ public class Application {
 
   private static final Gson gson = new Gson();
 
+
     public static void main(String[] args) {
 
     final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
+
+//    createAllergies(entityManagerFactory.createEntityManager());
 
     Spark.port(8080);
 
@@ -173,11 +174,12 @@ public class Application {
       //post to delete ingredient
       Spark.post("/deleteIngredient", (req, res) -> {
           String body = req.body();
-          Ingredient ingredient = gson.fromJson(body, Ingredient.class);
-          String name = ingredient.getIngredientName();
+          JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+          Ingredient ingredient = gson.fromJson(jsonObject.get("ingredient"), Ingredient.class);
+          Long id = ingredient.getIngredientId();
           EntityManager entityManager = entityManagerFactory.createEntityManager();
           IngredientController ingredientController = new IngredientController(entityManager);
-          ingredientController.deleteIngredient(name);
+          ingredientController.deleteIngredient(id);
           return ingredient;
       } , gson::toJson);
 
@@ -209,4 +211,9 @@ public class Application {
     );
 
   }
+    private static void createAllergies(EntityManager entityManager) {
+        AllergyController allergyController = new AllergyController(entityManager);
+        allergyController.createAllergy("lactose", "intolerante a la lactosa");
+        allergyController.createAllergy("tacc", "celiaco");
+    }
 }

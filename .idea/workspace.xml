@@ -6,30 +6,29 @@
   <component name="ChangeListManager">
     <list default="true" id="5bdafd8e-40e9-4e0e-98bd-e5e6e9f5402c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/65c70a5a-d3d9-4775-883f-7e8bd5d18d02.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/65c70a5a-d3d9-4775-883f-7e8bd5d18d02.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/CustomerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Allergy.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Allergy.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/Application.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Ingredient.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Ingredient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/org/example/CreateUsersTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Application.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Application.class.uniqueId3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Ingredient.class.uniqueId2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/IngredientController.class.uniqueId1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/IngredientRepository.class.uniqueId4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/IngredientRepositoryImp.class.uniqueId0" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Allergy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/Allergy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/Ingredient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/costumer/CostumerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/costumer/CostumerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/CustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/app/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/app/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/view/superAdmin/edition/ingredientActions/createIngredient.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/view/superAdmin/edition/ingredientActions/createIngredient.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/js/front/src/view/superAdmin/edition/ingredientActions/deleteIngredient.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/view/superAdmin/edition/ingredientActions/deleteIngredient.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/CreateUsersTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +81,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="views" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -118,7 +117,7 @@
     "Gradle.Build build.executor": "Run",
     "Gradle.Build lab1.executor": "Run",
     "Gradle.CreateUsersTest.executor": "Debug",
-    "Gradle.NutriCenter [:Application.main()].executor": "Run",
+    "Gradle.NutriCenter [:Application.main()].executor": "Debug",
     "Gradle.NutriCenter [:Main.main()].executor": "Run",
     "Gradle.lab1 [:Application.main()].executor": "Run",
     "Gradle.lab1 [:Main.main()].executor": "Run",
@@ -134,7 +133,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
     "ts.external.directory.path": "/Users/ezequielrickert/Applications/IntelliJ IDEA Ultimate.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
@@ -205,6 +204,12 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Main (1)" />
+      <item itemvalue="Application.Application" />
+      <item itemvalue="Gradle.CreateUsersTest" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Application" />
@@ -282,19 +287,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/Application.java</url>
-          <line>174</line>
+          <line>175</line>
           <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/repository/ingredient/IngredientRepositoryImp.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="67" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/main/js/front/src/App.js</url>
           <line>19</line>
           <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/main/js/front/src/view/superAdmin/edition/ingredientActions/createIngredient.jsx</url>
-          <line>68</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/model/Customer.java</url>

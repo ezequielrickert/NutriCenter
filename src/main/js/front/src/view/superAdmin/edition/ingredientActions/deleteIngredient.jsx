@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const DeleteIngredient = () => {
     const [ingredients, setIngredients] = useState([]);
-    const [selectedIngredient, setSelectedIngredient] = useState(null);
+    const [selectedIngredient, setSelectedIngredient] = useState();
     const ingredientData = {
         ingredient: selectedIngredient
     }

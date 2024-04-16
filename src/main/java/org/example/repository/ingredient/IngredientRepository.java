@@ -10,5 +10,5 @@ public interface IngredientRepository {
 
     void updateIngredient(String ingredientName, Allergy allergy, int proteins, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate);
 
-    void deleteIngredient(String ingredientName);
+    void deleteIngredient(Long ingredientId);
 }

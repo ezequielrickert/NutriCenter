@@ -36,8 +36,8 @@ public class IngredientController {
         ingredientRepository.updateIngredient(ingredientName, allergy, proteins, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
     }
 
-    public void deleteIngredient(String ingredientName){
-        ingredientRepository.deleteIngredient(ingredientName);
+    public void deleteIngredient(Long ingredientId){
+        ingredientRepository.deleteIngredient(ingredientId);
     }
 
     public List<Ingredient> getIngredientsOrderedByName(EntityManager entityManager) {

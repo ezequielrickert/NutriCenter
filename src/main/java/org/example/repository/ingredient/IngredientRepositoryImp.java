@@ -49,9 +49,9 @@ public class IngredientRepositoryImp implements IngredientRepository{
     }
 
     @Override
-    public void deleteIngredient(String ingredientName) {
+    public void deleteIngredient(Long ingredientId) {
         entityManager.getTransaction().begin();
-        Ingredient ingredient = entityManager.find(Ingredient.class, ingredientName);
+        Ingredient ingredient = entityManager.find(Ingredient.class, ingredientId);
         if (ingredient != null) {
             entityManager.remove(ingredient);
         }

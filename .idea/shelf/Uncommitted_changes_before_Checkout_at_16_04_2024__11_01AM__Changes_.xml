@@ -1,0 +1,104 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_16_04_2024,_11_01 AM_[Changes]" date="1713276101783" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_04_2024,_11_01 AM_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 16/04/2024, 11:01 AM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="build/classes/java/test/org/example/CreateUsersTest.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/buildOutputCleanup/buildOutputCleanup.lock" />
+    <option name="AFTER_PATH" value=".gradle/buildOutputCleanup/buildOutputCleanup.lock" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_04_2024,_11_01 AM_[Changes]/buildOutputCleanup.lock" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/classes/java/main/org/example/service/nutritionist/NutritionistRepository.class" />
+    <option name="AFTER_PATH" value="build/classes/java/main/org/example/service/nutritionist/NutritionistRepository.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_04_2024,_11_01 AM_[Changes]/NutritionistRepository.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/8.7/fileHashes/fileHashes.lock" />
+    <option name="AFTER_PATH" value=".gradle/8.7/fileHashes/fileHashes.lock" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_04_2024,_11_01 AM_[Changes]/fileHashes.lock" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/tmp/compileJava/previous-compilation-data.bin" />
+    <option name="AFTER_PATH" value="build/tmp/compileJava/previous-compilation-data.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_04_2024,_11_01 AM_[Changes]/previous-compilation-data.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/8.7/checksums/checksums.lock" />
+    <option name="AFTER_PATH" value=".gradle/8.7/checksums/checksums.lock" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_04_2024,_11_01 AM_[Changes]/checksums.lock" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/classes/java/main/org/example/controller/NutritionistController.class" />
+    <option name="AFTER_PATH" value="build/classes/java/main/org/example/controller/NutritionistController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_04_2024,_11_01 AM_[Changes]/NutritionistController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/classes/java/main/org/example/model/Customer.class" />
+    <option name="AFTER_PATH" value="build/classes/java/main/org/example/model/Customer.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_04_2024,_11_01 AM_[Changes]/Customer.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/8.7/executionHistory/executionHistory.lock" />
+    <option name="AFTER_PATH" value=".gradle/8.7/executionHistory/executionHistory.lock" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_04_2024,_11_01 AM_[Changes]/executionHistory.lock" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/classes/java/main/org/example/service/costumer/CostumerRepository.class" />
+    <option name="AFTER_PATH" value="build/classes/java/main/org/example/service/costumer/CostumerRepository.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_04_2024,_11_01 AM_[Changes]/CostumerRepository.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/tmp/compileTestJava/previous-compilation-data.bin" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/classes/java/main/org/example/Application.class" />
+    <option name="AFTER_PATH" value="build/classes/java/main/org/example/Application.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_04_2024,_11_01 AM_[Changes]/Application.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/classes/java/main/org/example/controller/CustomerController.class" />
+    <option name="AFTER_PATH" value="build/classes/java/main/org/example/controller/CustomerController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_04_2024,_11_01 AM_[Changes]/CustomerController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/classes/java/main/org/example/service/costumer/CostumerRepositoryImp.class" />
+    <option name="AFTER_PATH" value="build/classes/java/main/org/example/service/costumer/CostumerRepositoryImp.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_04_2024,_11_01 AM_[Changes]/CostumerRepositoryImp.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/8.7/executionHistory/executionHistory.bin" />
+    <option name="AFTER_PATH" value=".gradle/8.7/executionHistory/executionHistory.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_04_2024,_11_01 AM_[Changes]/executionHistory.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/8.7/fileHashes/fileHashes.bin" />
+    <option name="AFTER_PATH" value=".gradle/8.7/fileHashes/fileHashes.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_04_2024,_11_01 AM_[Changes]/fileHashes.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/classes/java/main/org/example/service/nutritionist/NutritionistRepositoryImp.class" />
+    <option name="AFTER_PATH" value="build/classes/java/main/org/example/service/nutritionist/NutritionistRepositoryImp.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_04_2024,_11_01 AM_[Changes]/NutritionistRepositoryImp.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/8.7/fileHashes/resourceHashesCache.bin" />
+    <option name="AFTER_PATH" value=".gradle/8.7/fileHashes/resourceHashesCache.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_04_2024,_11_01 AM_[Changes]/resourceHashesCache.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/buildOutputCleanup/outputFiles.bin" />
+    <option name="AFTER_PATH" value=".gradle/buildOutputCleanup/outputFiles.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_04_2024,_11_01 AM_[Changes]/outputFiles.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/classes/java/main/org/example/model/Nutritionist.class" />
+    <option name="AFTER_PATH" value="build/classes/java/main/org/example/model/Nutritionist.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_04_2024,_11_01 AM_[Changes]/Nutritionist.class" />
+  </binary>
+</changelist>
