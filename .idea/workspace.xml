@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5bdafd8e-40e9-4e0e-98bd-e5e6e9f5402c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/CustomerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" afterDir="false" />
@@ -13,23 +12,24 @@
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/65c70a5a-d3d9-4775-883f-7e8bd5d18d02.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/65c70a5a-d3d9-4775-883f-7e8bd5d18d02.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/AllergyController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/AllergyController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/IngredientController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/IngredientController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/CustomerController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Allergy.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Allergy.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/repository/allergy/AllergyRepositoryImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/repository/allergy/AllergyRepositoryImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/repository/ingredient/IngredientRepositoryImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/repository/ingredient/IngredientRepositoryImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Application.class.uniqueId0" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Application.class.uniqueId0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Ingredient.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/model/Ingredient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/test/org/example/CreateUsersTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Application.class.uniqueId0" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/AllergyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/AllergyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/IngredientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/IngredientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Allergy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/Allergy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/allergy/AllergyRepositoryImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/allergy/AllergyRepositoryImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/ingredient/IngredientRepositoryImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/ingredient/IngredientRepositoryImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/Ingredient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/costumer/CostumerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/costumer/CostumerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/app/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/app/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/view/superAdmin/edition/ingredientActions/createIngredient.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/view/superAdmin/edition/ingredientActions/createIngredient.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/front/src/view/superAdmin/edition/ingredientActions/deleteIngredient.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/js/front/src/view/superAdmin/edition/ingredientActions/deleteIngredient.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/CreateUsersTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,34 +111,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main (1).executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build NutriCenter.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build build.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build lab1.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.CreateUsersTest.executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.NutriCenter [:Application.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.NutriCenter [:Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.lab1 [:Application.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.lab1 [:Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenDatabaseViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;views&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/ezequielrickert/projects/NutriCenter&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/ezequielrickert/Applications/IntelliJ IDEA Ultimate.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main (1).executor": "Run",
+    "Gradle.Build NutriCenter.executor": "Run",
+    "Gradle.Build build.executor": "Run",
+    "Gradle.Build lab1.executor": "Run",
+    "Gradle.CreateUsersTest.executor": "Debug",
+    "Gradle.NutriCenter [:Application.main()].executor": "Run",
+    "Gradle.NutriCenter [:Main.main()].executor": "Run",
+    "Gradle.lab1 [:Application.main()].executor": "Run",
+    "Gradle.lab1 [:Main.main()].executor": "Run",
+    "RunOnceActivity.OpenDatabaseViewOnStart": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "views",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/ezequielrickert/projects/NutriCenter",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "ts.external.directory.path": "/Users/ezequielrickert/Applications/IntelliJ IDEA Ultimate.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/js/front/src/view/Customer" />
@@ -277,23 +277,24 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/repository/ingredient/IngredientRepositoryImp.java</url>
-          <line>61</line>
+          <line>69</line>
           <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/Application.java</url>
-          <line>184</line>
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/Application.java</url>
-          <line>147</line>
-          <option name="timeStamp" value="56" />
+          <line>174</line>
+          <option name="timeStamp" value="64" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/main/js/front/src/App.js</url>
           <line>19</line>
           <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/main/js/front/src/view/superAdmin/edition/ingredientActions/createIngredient.jsx</url>
+          <line>68</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/model/Customer.java</url>
@@ -303,6 +304,15 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/repository/ingredient/IngredientRepositoryImp.java</url>
+          <line>51</line>
+          <properties class="org.example.repository.ingredient.IngredientRepositoryImp" method="deleteIngredient">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="65" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

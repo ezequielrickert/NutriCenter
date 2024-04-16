@@ -14,11 +14,14 @@ const CreateIngredient = () => {
     const [totalCarbohydrate, setTotalCarbohydrate] = useState('')
 
     useEffect(() => {
-        // Fetch the list of allergies when the component mounts
         axios.get('http://localhost:8080/allergies')
             .then(response => {
-                console.log(response.data); // Add this line
-                setAllergies(response.data);
+                const data = JSON.parse(response.data);
+                if (Array.isArray(data)) {
+                    setAllergies(data);
+                } else {
+                    console.error('Data received from server is not an array');
+                }
             })
             .catch(error => {
                 console.error('There was an error!', error);

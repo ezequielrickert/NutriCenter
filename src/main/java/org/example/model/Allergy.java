@@ -1,21 +1,23 @@
 package org.example.model;
 import com.google.gson.Gson;
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "ALLERGY")
 public class Allergy {
 
+    @Expose(serialize = true)
     @Id
     @GeneratedValue(generator = "allergyGenerator", strategy = GenerationType.IDENTITY)
     private Long allergyId;
 
-    @OneToMany(mappedBy = "allergy")
-    private List<Ingredient> ingredients;
-
+    @Expose(serialize = true)
     @Column(nullable = false, unique = true)
     private String allergyName;
 
+    @Expose(serialize = true)
     @Column(nullable = false, unique = false)
     private String description;
 

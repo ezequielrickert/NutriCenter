@@ -1,37 +1,48 @@
 package org.example.model;
 import com.google.gson.Gson;
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 
 @Entity(name = "INGREDIENT")
 public class Ingredient {
 
+    @Expose(serialize = true)
     @Id
     @GeneratedValue(generator = "ingredientGen", strategy = GenerationType.IDENTITY)
     private Long ingredientId;
 
+    @Expose(serialize = true)
     @Column(nullable = false, unique = true)
     private String ingredientName;
 
     //this column has stored an Allergy instance not an id
+    @Expose(serialize = true)
     @ManyToOne
-    @JoinColumn(name = "allergy_id", foreignKey = @ForeignKey(name = "fk_allergy_id"))
+    @JoinColumn(name = "allergyId", foreignKey = @ForeignKey(name = "fk_allergyId"))
     private Allergy allergy;
 
+    @Expose(serialize = true)
     @Column(nullable = false, unique = false)
     private int proteins;
 
+    @Expose(serialize = true)
     @Column(nullable = false, unique = false)
     private int sodium;
 
+    @Expose(serialize = true)
     @Column(nullable = false, unique = false)
     private int calories;
 
+    @Expose(serialize = true)
     @Column(nullable = false, unique = false)
     private int totalFat;
 
+    @Expose(serialize = true)
     @Column(nullable = false, unique = false)
     private int cholesterol;
 
+    @Expose(serialize = true)
     @Column(nullable = false, unique = false)
     private int totalCarbohydrate;
 
@@ -49,6 +60,14 @@ public class Ingredient {
 
     public Ingredient() {
 
+    }
+
+    public void setIngredientId(Long ingredientId) {
+        this.ingredientId = ingredientId;
+    }
+
+    public void setIngredientName(String ingredientName) {
+        this.ingredientName = ingredientName;
     }
 
     public void setAllergy(Allergy allergy) { this.allergy = allergy; }

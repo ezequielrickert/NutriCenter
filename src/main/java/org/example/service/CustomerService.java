@@ -18,14 +18,8 @@ public class CustomerService {
         this.customerRepository = new CostumerRepositoryImp(entityManager);
     }
 
-    public String createUser(String username, String email, String password) {
-        try {
-            customerRepository.createUser(username, email, password);
-            return "Customer created succesfully";
-        }
-        catch (Error error) {
-            return "Invalid username or email";
-        }
+    public void createUser(String username, String email, String password) {
+        customerRepository.createUser(username, email, password);
     }
 
     public Customer readUser(Long inClientId) {
