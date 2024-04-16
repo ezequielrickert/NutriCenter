@@ -32,8 +32,8 @@ public class IngredientController {
         }
     }
 
-    public void updateIngredient(String ingredientName, Allergy allergy, int proteins, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate){
-        ingredientRepository.updateIngredient(ingredientName, allergy, proteins, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
+    public void updateIngredient(Long ingredientId, Allergy allergy, int proteins, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate){
+        ingredientRepository.updateIngredient(ingredientId, allergy, proteins, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
     }
 
     public void deleteIngredient(Long ingredientId){

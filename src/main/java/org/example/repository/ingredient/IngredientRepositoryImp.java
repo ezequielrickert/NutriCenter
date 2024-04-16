@@ -35,9 +35,9 @@ public class IngredientRepositoryImp implements IngredientRepository{
     }
 
     @Override
-    public void updateIngredient(String ingredientName, Allergy allergy, int proteins, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate) {
+    public void updateIngredient(Long ingredientID, Allergy allergy, int proteins, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate) {
         entityManager.getTransaction().begin();
-        Ingredient ingredient = entityManager.find(Ingredient.class, ingredientName);
+        Ingredient ingredient = entityManager.find(Ingredient.class, ingredientID);
         ingredient.setAllergy(allergy);
         ingredient.setProteins(proteins);
         ingredient.setSodium(sodium);

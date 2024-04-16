@@ -156,19 +156,20 @@ public class Application {
       //post to update ingredient
       Spark.post("/updateIngredient", (req, res) -> {
           String body = req.body();
-          Ingredient ingredient = gson.fromJson(body, Ingredient.class);
-          String name = ingredient.getIngredientName();
-          Allergy allergy = ingredient.getAllergy();
-          int protein = ingredient.getProteins();
-          int sodium = ingredient.getSodium();
-          int calories = ingredient.getCalories();
-          int totalFat = ingredient.getTotalFat();
-          int cholesterol = ingredient.getCholesterol();
-          int totalCarbohydrate = ingredient.getTotalCarbohydrate();
+          JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+          Ingredient ingredient = gson.fromJson(jsonObject.get("ingredient"), Ingredient.class);
+          Allergy allergy = gson.fromJson(jsonObject.get("allergy"), Allergy.class);
+          int proteins = gson.fromJson(jsonObject.get("proteins"), Integer.class);
+          int sodium = gson.fromJson(jsonObject.get("sodium"), Integer.class);
+          int calories = gson.fromJson(jsonObject.get("calories"), Integer.class);
+          int totalFat = gson.fromJson(jsonObject.get("totalFat"), Integer.class);
+          int cholesterol = gson.fromJson(jsonObject.get("cholesterol"), Integer.class);
+          int totalCarbohydrate = gson.fromJson(jsonObject.get("totalCarbohydrate"), Integer.class);
           EntityManager entityManager = entityManagerFactory.createEntityManager();
           IngredientController ingredientController = new IngredientController(entityManager);
-          ingredientController.updateIngredient(name, allergy, protein, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
-          return ingredient;
+          ingredientController.updateIngredient(ingredient.getIngredientId(),
+                  allergy, proteins, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
+          return ingredient.asJson();
       } , gson::toJson);
 
       //post to delete ingredient

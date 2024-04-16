@@ -17,23 +17,28 @@ const UpdateIngredient = () => {
     useEffect(() => {
         axios.get('http://localhost:8080/allergies')
             .then(response => {
-                setAllergies(response.data);
+                const data = JSON.parse(response.data);
+                if (Array.isArray(data)) {
+                    setAllergies(data);
+                } else {
+                    console.error('Data received from server is not an array');
+                }
             })
             .catch(error => {
-                console.error('There was an error!', error);
+                console.error('There was an error in allergies!', error);
             });
 
         axios.get('http://localhost:8080/ingredients')
             .then(response => {
-                setIngredients(response.data);
-
-                // Set the first ingredient as default
-                if (response.data.length > 0) {
-                    setIngredient(response.data[0]);
+                const data = JSON.parse(response.data);
+                if (Array.isArray(data)) {
+                    setIngredients(data);
+                } else {
+                    console.error('Data received from server is not an array');
                 }
             })
             .catch(error => {
-                console.error('There was an error!', error);
+                console.error('There was an error in ingredients!', error);
             });
     }, []);
 
@@ -56,7 +61,7 @@ const UpdateIngredient = () => {
         if (window.confirm('Are you sure you want to delete this ingredient?')) {
 
             const ingredientData = {
-                name: ingredient.ingredientName,
+                ingredient: ingredient,
                 allergy: allergy,
                 proteins: proteins,
                 sodium: sodium,
@@ -72,8 +77,8 @@ const UpdateIngredient = () => {
         }
     }
 
-    const isFormValid = name && allergy && proteins && sodium &&
-        calories && totalFat && cholesterol && totalCarbohydrate;
+    const isFormValid = allergy || proteins || sodium ||
+        calories || totalFat || cholesterol || totalCarbohydrate;
 
     return (
         <div className="App">
