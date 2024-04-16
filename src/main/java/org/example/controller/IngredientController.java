@@ -41,11 +41,7 @@ public class IngredientController {
     }
 
     public List<Ingredient> getIngredientsOrderedByName(EntityManager entityManager) {
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Ingredient> cq = cb.createQuery(Ingredient.class);
-        Root<Ingredient> root = cq.from(Ingredient.class);
-        cq.select(root);
-        cq.orderBy(cb.asc(root.get("ingredientName")));
-        return entityManager.createQuery(cq).getResultList();
+        List<Ingredient> result = ingredientRepository.getAll();
+        return result;
     }
 }

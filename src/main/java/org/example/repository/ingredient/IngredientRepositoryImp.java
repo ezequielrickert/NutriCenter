@@ -1,7 +1,14 @@
 package org.example.repository.ingredient;
 import org.example.model.Allergy;
 import org.example.model.Ingredient;
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
+
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.List;
 
 public class IngredientRepositoryImp implements IngredientRepository{
 
@@ -49,5 +56,16 @@ public class IngredientRepositoryImp implements IngredientRepository{
             entityManager.remove(ingredient);
         }
         entityManager.getTransaction().commit();
+    }
+
+    public List<Ingredient> getAll() {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Ingredient> cr = cb.createQuery(Ingredient.class);
+        Root<Ingredient> root = cr.from(Ingredient.class);
+        cr.select(root);
+
+        Query query = entityManager.createQuery(cr);
+        List<Ingredient> results = query.getResultList();
+        return results;
     }
 }

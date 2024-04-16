@@ -30,6 +30,8 @@ public class Allergy {
 
     public void setDescription(String description) {this.description = description; }
 
+    public void setAllergyName(String allergyName) {this.allergyName = allergyName;}
+
     public Long getAllergyId() {return this.allergyId; }
 
     public String getAllergyName() {return this.allergyName; }

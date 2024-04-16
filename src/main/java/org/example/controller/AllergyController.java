@@ -39,11 +39,7 @@ public class AllergyController {
     }
 
     public List<Allergy> getAllergiesOrderedByName(EntityManager entityManager) {
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Allergy> cq = cb.createQuery(Allergy.class);
-        Root<Allergy> root = cq.from(Allergy.class);
-        cq.select(root);
-        cq.orderBy(cb.asc(root.get("allergyName")));
-        return entityManager.createQuery(cq).getResultList();
+        List<Allergy> result = allergyRepositoryImp.getAll();
+        return result;
     }
 }

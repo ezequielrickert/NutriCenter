@@ -2,21 +2,23 @@ package org.example;
 
 import com.google.common.base.Strings;
 import com.google.gson.Gson;
-
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import org.example.controller.*;
 import org.example.model.*;
 import spark.Spark;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Application {
 
   private static final Gson gson = new Gson();
-  public static void main(String[] args) {
+
+    public static void main(String[] args) {
 
     final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
 
@@ -145,7 +147,9 @@ public class Application {
       Spark.get("/ingredients", (req, res) -> {
           EntityManager entityManager = entityManagerFactory.createEntityManager();
           IngredientController ingredientController = new IngredientController(entityManager);
-          return ingredientController.getIngredientsOrderedByName(entityManager);
+          List<Ingredient> ingredients = ingredientController.getIngredientsOrderedByName(entityManager);
+          System.out.println(ingredients);
+          return gson.toJson(ingredients);
       }, gson::toJson);
 
       //post to update ingredient
@@ -180,7 +184,12 @@ public class Application {
       Spark.get("/allergies", (req, res) -> {
           EntityManager entityManager = entityManagerFactory.createEntityManager();
           AllergyController allergyController = new AllergyController(entityManager);
-          return allergyController.getAllergiesOrderedByName(entityManager);
+          List<Allergy> allergies = allergyController.getAllergiesOrderedByName(entityManager);
+          System.out.println(allergies);
+          Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+          String result = gson.toJson(allergies);
+          System.out.println(result);
+          return result;
       }, gson::toJson);
 
       Spark.get("/persisted-store/:id", (req, resp) -> {
