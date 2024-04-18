@@ -3,8 +3,8 @@ package org.example.repository.store;
 import org.example.model.Store;
 
 public interface StoreRepository {
-  public void createStore(String storeName, String storeEmail, String number);
-  public Store readStore(Long storeId);
-  public void updateStore(Long storeId, String storeName, String storeEmail, String number);
-  public void deleteStore(Long storeId);
+  void createStore(String storeName, String storeEmail, String storePassword);
+  Store readStore(Long storeId);
+  void updateStore(Long storeId, String storeName, String storeEmail, String number);
+  void deleteStore(Long storeId);
 }
