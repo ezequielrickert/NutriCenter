@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import CreateIngredient from '../ingredientActions/createIngredient';
-import UpdateIngredient from '../ingredientActions/updateIngredient';
-import DeleteIngredient from '../ingredientActions/deleteIngredient';
+import CreateRecipe from '../recipeActions/createRecipe';
+import UpdateIngredient from '../recipeActions/updateRecipe';
+import DeleteIngredient from '../recipeActions/deleteRecipe';
 
 const RecipeEditor = () => {
     const [operation, setOperation] = useState('');
@@ -13,7 +13,7 @@ const RecipeEditor = () => {
     let OperationComponent;
     switch(operation) {
         case 'create':
-            OperationComponent = CreateIngredient;
+            OperationComponent = CreateRecipe;
             break;
         case 'update':
             OperationComponent = UpdateIngredient;

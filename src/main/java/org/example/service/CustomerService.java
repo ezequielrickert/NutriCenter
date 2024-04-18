@@ -1,9 +1,8 @@
 package org.example.service;
 
-import org.checkerframework.checker.units.qual.C;
 import org.example.model.Customer;
-import org.example.repository.costumer.CostumerRepository;
-import org.example.repository.costumer.CostumerRepositoryImp;
+import org.example.repository.customer.CostumerRepository;
+import org.example.repository.customer.CostumerRepositoryImp;
 
 import javax.persistence.EntityManager;
 
