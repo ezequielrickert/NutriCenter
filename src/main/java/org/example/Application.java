@@ -21,8 +21,6 @@ public class Application {
 
     final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
 
-    //createAllergies(entityManagerFactory.createEntityManager());
-
     Spark.port(8080);
 
       Spark.options("/*", (request, response) -> {

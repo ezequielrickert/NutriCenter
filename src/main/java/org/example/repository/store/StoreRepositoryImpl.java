@@ -33,7 +33,7 @@ public class StoreRepositoryImpl implements StoreRepository{
     Store store = entityManager.find(Store.class, storeId);
     store.setStoreName(storeName);
     store.setStoreMail(storeEmail);
-    store.setStorePhoneNumber(storePassword);
+    store.setStorePassword(storePassword);
     entityManager.persist(store);
     entityManager.getTransaction().commit();
   }
