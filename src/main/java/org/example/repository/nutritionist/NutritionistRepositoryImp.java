@@ -1,8 +1,10 @@
 package org.example.repository.nutritionist;
 
+import org.example.model.Customer;
 import org.example.model.Nutritionist;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 
 public class NutritionistRepositoryImp implements NutritionistRepository{
 
@@ -52,5 +54,20 @@ public class NutritionistRepositoryImp implements NutritionistRepository{
     }
 
     entityManager.getTransaction().commit();
+  }
+
+  @Override
+  public Nutritionist fetchNutritionistByUsername(String username) {
+    entityManager.getTransaction().begin();
+    try {
+      Nutritionist nutritionist = entityManager.createQuery("SELECT c FROM NUTRITIONIST c WHERE c.nutritionistName = :username", Nutritionist.class)
+              .setParameter("username", username)
+              .getSingleResult();
+      entityManager.getTransaction().commit();
+      return nutritionist;
+    } catch (NoResultException e) {
+      entityManager.getTransaction().rollback();
+      return null;
+    }
   }
 }

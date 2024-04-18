@@ -5,6 +5,8 @@ export { default as SignUpDefault } from './home/signUpDefault';
 
 export { default as LoginCustomer } from './customer/login/loginCustomer';
 export { default as SignUpCustomer } from './customer/signUp/signUpCustomer';
+export { default as DashboardCustomer } from './customer/dashboard/dashboardCustomer';
+
 
 export { default as LoginNutritionist } from './nutritionist/login/loginNutritionist';
 export { default as SignUpNutritionist } from './nutritionist/signUp/signUpNutritionist';

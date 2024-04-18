@@ -10,6 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class Application {
@@ -54,14 +55,30 @@ public class Application {
       }, gson::toJson);
 
 
-      // Post to fetch Customer (probably wrong...)
-      Spark.post("/fetchCustomer", (req, res) -> {
-          String body = req.body();
-          Customer newCustomer = gson.fromJson(body, Customer.class);
-          String username = newCustomer.getCustomerName();
-          String password = newCustomer.getCustomerPassword();
-          return req;
-      }, gson::toJson);
+        Spark.post("/authenticateUser", (req, res) -> {
+            String body = req.body();
+            LoginData loginData = gson.fromJson(body, LoginData.class);
+            String username = loginData.getUsername();
+            String password = loginData.getPassword();
+
+
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            LoginController loginController = new LoginController(entityManager);
+            //returns the actual password of the user with the given username or null if the user is not found
+            String userPassword = loginController.fetchUser(username);
+
+
+            if (userPassword != null && userPassword.equals(password)) {
+                // if the user is found and the password matches, return a token
+                String token = UUID.randomUUID().toString();;
+                return token;
+            } else {
+                // if the username is not found or the password does not match, return an error message
+                res.status(401);
+                return "Username or password is incorrect";
+            }
+        }, gson::toJson);
+
 
       // Post to create SuperAdmin
       Spark.post("/createSuperAdmin", (req, res) -> {

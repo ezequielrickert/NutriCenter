@@ -3,6 +3,7 @@ package org.example.repository.costumer;
 import org.example.model.Customer;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 
 
 public class CostumerRepositoryImp implements CostumerRepository {
@@ -51,5 +52,20 @@ public class CostumerRepositoryImp implements CostumerRepository {
       entityManager.remove(customer);
     }
     entityManager.getTransaction().commit();
+  }
+
+  @Override
+  public Customer fetchCustomerByUsername(String username) {
+    entityManager.getTransaction().begin();
+    try {
+      Customer customer = entityManager.createQuery("SELECT c FROM CUSTOMER c WHERE c.customerName = :username", Customer.class)
+              .setParameter("username", username)
+              .getSingleResult();
+      entityManager.getTransaction().commit();
+      return customer;
+    } catch (NoResultException e) {
+      entityManager.getTransaction().rollback();
+      return null;
+    }
   }
 }

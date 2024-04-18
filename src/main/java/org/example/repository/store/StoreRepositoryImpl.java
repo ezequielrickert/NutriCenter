@@ -1,8 +1,10 @@
 package org.example.repository.store;
 
+import org.example.model.Customer;
 import org.example.model.Store;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 
 public class StoreRepositoryImpl implements StoreRepository{
 
@@ -48,5 +50,20 @@ public class StoreRepositoryImpl implements StoreRepository{
     }
 
     entityManager.getTransaction().commit();
+  }
+
+  @Override
+  public Store fetchStoreByName(String username){
+    entityManager.getTransaction().begin();
+    try {
+      Store store = entityManager.createQuery("SELECT c FROM STORE c WHERE c.storeName = :username", Store.class)
+              .setParameter("username", username)
+              .getSingleResult();
+      entityManager.getTransaction().commit();
+      return store;
+    } catch (NoResultException e) {
+      entityManager.getTransaction().rollback();
+      return null;
+    }
   }
 }
