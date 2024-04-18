@@ -2,6 +2,7 @@ package org.example;
 
 import com.google.common.base.Strings;
 import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 import org.example.controller.*;
 import org.example.model.*;
 import spark.Spark;
@@ -9,7 +10,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.lang.reflect.Type;
 import java.util.List;
+import java.util.SortedMap;
 import java.util.stream.Collectors;
 
 public class Application {
@@ -22,6 +25,7 @@ public class Application {
     final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
 
 //    createAllergies(entityManagerFactory.createEntityManager());
+//    createCategories(entityManagerFactory.createEntityManager());
 
     Spark.port(8080);
 
@@ -148,7 +152,7 @@ public class Application {
       Spark.get("/ingredients", (req, res) -> {
           EntityManager entityManager = entityManagerFactory.createEntityManager();
           IngredientController ingredientController = new IngredientController(entityManager);
-          List<Ingredient> ingredients = ingredientController.getIngredientsOrderedByName(entityManager);
+          List<Ingredient> ingredients = ingredientController.getIngredientsOrderedByName();
           System.out.println(ingredients);
           return gson.toJson(ingredients);
       }, gson::toJson);
@@ -195,6 +199,76 @@ public class Application {
           return result;
       }, gson::toJson);
 
+        Spark.get("/categories", (req, res) -> {
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            CategoryController categoryController = new CategoryController(entityManager);
+            List<Category> categories = categoryController.getCategoriesOrderedByName();
+            System.out.println(categories);
+            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            String result = gson.toJson(categories);
+            System.out.println(result);
+            return result;
+        }, gson::toJson);
+
+        Spark.get("/recipes", (req, res) -> {
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            RecipeController recipeController = new RecipeController(entityManager);
+            List<Recipe> recipes = recipeController.getRecipesOrderedByName();
+            System.out.println(recipes);
+            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            String result = gson.toJson(recipes);
+            System.out.println(result);
+            return result;
+        }, gson::toJson);
+
+        Spark.post("/createRecipe", (req, res) -> {
+            String body = req.body();
+            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            String recipeName = gson.fromJson(jsonObject.get("recipeName"), String.class);
+            String recipeDescription = gson.fromJson(jsonObject.get("recipeDescription"), String.class);
+
+            Type categoryListType = new TypeToken<List<Category>>() {}.getType();
+            List<Category> categoryList = gson.fromJson(jsonObject.get("categoryList"), categoryListType);
+
+            Type ingredientListType = new TypeToken<List<Ingredient>>() {}.getType();
+            List<Ingredient> ingredientList = gson.fromJson(jsonObject.get("ingredientList"), ingredientListType);
+
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            RecipeController recipeController = new RecipeController(entityManager);
+            recipeController.createRecipe(recipeName, recipeDescription, categoryList, ingredientList);
+            return req;
+        }, gson::toJson);
+
+        Spark.post("/updateRecipe", (req, res) -> {
+            String body = req.body();
+            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            Recipe recipe = gson.fromJson(jsonObject.get("recipe"), Recipe.class);
+            String recipeName = gson.fromJson(jsonObject.get("recipeName"), String.class);
+            String recipeDescription = gson.fromJson(jsonObject.get("recipeDescription"), String.class);
+
+            Type categoryListType = new TypeToken<List<Category>>() {}.getType();
+            List<Category> categoryList = gson.fromJson(jsonObject.get("categoryList"), categoryListType);
+
+            Type ingredientListType = new TypeToken<List<Ingredient>>() {}.getType();
+            List<Ingredient> ingredientList = gson.fromJson(jsonObject.get("ingredientList"), ingredientListType);
+
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            RecipeController recipeController = new RecipeController(entityManager);
+            recipeController.updateRecipe(recipe.getRecipeId(), recipeName, recipeDescription, categoryList, ingredientList);
+            return recipe;
+        } , gson::toJson);
+
+        Spark.post("/deleteRecipe", (req, res) -> {
+            String body = req.body();
+            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            Recipe recipe = gson.fromJson(jsonObject.get("recipe"), Recipe.class);
+            Long id = recipe.getRecipeId();
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            RecipeController recipeController = new RecipeController(entityManager);
+            recipeController.deleteRecipe(id);
+            return recipe;
+        } , gson::toJson);
+
       Spark.get("/persisted-store/:id", (req, resp) -> {
           final String id = req.params("id");
 
@@ -214,7 +288,17 @@ public class Application {
   }
     private static void createAllergies(EntityManager entityManager) {
         AllergyController allergyController = new AllergyController(entityManager);
-        allergyController.createAllergy("lactose", "intolerante a la lactosa");
-        allergyController.createAllergy("tacc", "celiaco");
+//        allergyController.createAllergy("lactose", "intolerante a la lactosa");
+//        allergyController.createAllergy("tacc", "celiaco");
+        allergyController.createAllergy("none","Sin alergias");
+    }
+
+    private static void createCategories(EntityManager entityManager) {
+        CategoryController categoryController = new CategoryController(entityManager);
+        categoryController.createCategory("Vegano");
+        categoryController.createCategory("Vegetariano");
+        categoryController.createCategory("Keto");
+        categoryController.createCategory("Paleo");
+        categoryController.createCategory("Omnivoro");
     }
 }
