@@ -8,9 +8,9 @@ const SignUpStore =  () => {
     const [password, setPassword] = useState('')
 
     const signUpData = {
-        customerName: username,
-        customerEmail: email,
-        customerPassword: password
+        storeName: username,
+        storeEmail: email,
+        storePassword: password
     }
 
     const handleSubmit = async (event) => {
@@ -23,6 +23,7 @@ const SignUpStore =  () => {
     return (
         <div className="App">
             <header className="App-header">
+                <h1>Store SignUp</h1>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="username"> Username:</label><br/>
                     <input type="text" id="username" name="username" value={username}

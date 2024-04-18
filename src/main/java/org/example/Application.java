@@ -21,7 +21,7 @@ public class Application {
 
     final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
 
-//    createAllergies(entityManagerFactory.createEntityManager());
+    //createAllergies(entityManagerFactory.createEntityManager());
 
     Spark.port(8080);
 
@@ -195,6 +195,45 @@ public class Application {
           return result;
       }, gson::toJson);
 
+        // Post to create Store
+        Spark.post("/createStore", (req, res) -> {
+            String body = req.body();
+            Store store = gson.fromJson(body, Store.class);
+            String storeName = store.getStoreName();
+            String storeEmail = store.getStoreMail();
+            String storePassword = store.getStorePassword();
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            StoreController storeController = new StoreController(entityManager);
+            storeController.createStore(storeName, storeEmail, storePassword);
+            return store;
+        } , gson::toJson);
+
+        // Post to update Store
+        Spark.post("/updateStore", (req, res) -> {
+            String body = req.body();
+            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            Store store = gson.fromJson(jsonObject.get("store"), Store.class);
+            String storeName = gson.fromJson(jsonObject.get("storeName"), String.class);
+            String storeEmail = gson.fromJson(jsonObject.get("storeEmail"), String.class);
+            String storePassword = gson.fromJson(jsonObject.get("storePassword"), String.class);
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            StoreController storeController = new StoreController(entityManager);
+            storeController.updateStore(store.getStoreId(), storeName, storeEmail, storePassword);
+            return store.asJson();
+        } , gson::toJson);
+
+        // Post to delete Store
+        Spark.post("/deleteStore", (req, res) -> {
+            String body = req.body();
+            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            Store store = gson.fromJson(jsonObject.get("store"), Store.class);
+            Long id = store.getStoreId();
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            StoreController storeController = new StoreController(entityManager);
+            storeController.deleteStore(id);
+            return store;
+        } , gson::toJson);
+
       Spark.get("/persisted-store/:id", (req, resp) -> {
           final String id = req.params("id");
 
@@ -210,11 +249,5 @@ public class Application {
           return store.asJson();
         }
     );
-
   }
-    private static void createAllergies(EntityManager entityManager) {
-        AllergyController allergyController = new AllergyController(entityManager);
-        allergyController.createAllergy("lactose", "intolerante a la lactosa");
-        allergyController.createAllergy("tacc", "celiaco");
-    }
 }
