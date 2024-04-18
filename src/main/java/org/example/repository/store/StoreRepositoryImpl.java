@@ -12,9 +12,9 @@ public class StoreRepositoryImpl implements StoreRepository{
   }
 
   @Override
-  public void createStore(String storeName, String storeEmail, String storeNumber) {
+  public void createStore(String storeName, String storeEmail, String storePassword) {
     entityManager.getTransaction().begin();
-    Store store = new Store(storeName, storeEmail, storeNumber);
+    Store store = new Store(storeName, storeEmail, storePassword);
     entityManager.persist(store);
     entityManager.getTransaction().commit();
   }
@@ -28,12 +28,12 @@ public class StoreRepositoryImpl implements StoreRepository{
   }
 
   @Override
-  public void updateStore(Long storeId, String storeName, String storeEmail, String storeNumber) {
+  public void updateStore(Long storeId, String storeName, String storeEmail, String storePassword) {
     entityManager.getTransaction().begin();
     Store store = entityManager.find(Store.class, storeId);
     store.setStoreName(storeName);
     store.setStoreMail(storeEmail);
-    store.setStorePhoneNumber(storeNumber);
+    store.setStorePhoneNumber(storePassword);
     entityManager.persist(store);
     entityManager.getTransaction().commit();
   }
