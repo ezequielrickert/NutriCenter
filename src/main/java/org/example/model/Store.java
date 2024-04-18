@@ -34,9 +34,7 @@ public class Store {
 
     public String getStoreName() { return storeName; }
 
-    public String getStoreMail() {
-        return storeMail;
-    }
+    public String getStoreMail() { return storeMail; }
 
     public String getStorePassword() { return storePassword; }
 

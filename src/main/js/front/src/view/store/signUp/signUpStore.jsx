@@ -4,12 +4,12 @@ import axios from 'axios';
 const SignUpStore =  () => {
 
     const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('')
+    const [mail, setMail] = useState('')
     const [password, setPassword] = useState('')
 
     const signUpData = {
         storeName: username,
-        storeEmail: email,
+        storeMail: mail,
         storePassword: password
     }
 
@@ -29,8 +29,8 @@ const SignUpStore =  () => {
                     <input type="text" id="username" name="username" value={username}
                            onChange={e => setUsername(e.target.value)}/><br/>
                     <label htmlFor="email">Enter eMail:</label><br/>
-                    <input type="text" id="email" name="email" value={email}
-                           onChange={e => setEmail(e.target.value)}/><br/>
+                    <input type="text" id="email" name="email" value={mail}
+                           onChange={e => setMail(e.target.value)}/><br/>
                     <label htmlFor="email">Enter password:</label><br/>
                     <input type="text" id="password" name="password" value={password}
                            onChange={e => setPassword(e.target.value)}/><br/>

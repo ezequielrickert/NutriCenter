@@ -200,11 +200,11 @@ public class Application {
             String body = req.body();
             Store store = gson.fromJson(body, Store.class);
             String storeName = store.getStoreName();
-            String storeEmail = store.getStoreMail();
+            String storeMail = store.getStoreMail();
             String storePassword = store.getStorePassword();
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             StoreController storeController = new StoreController(entityManager);
-            storeController.createStore(storeName, storeEmail, storePassword);
+            storeController.createStore(storeName, storeMail, storePassword);
             return store;
         } , gson::toJson);
 
@@ -214,11 +214,11 @@ public class Application {
             JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
             Store store = gson.fromJson(jsonObject.get("store"), Store.class);
             String storeName = gson.fromJson(jsonObject.get("storeName"), String.class);
-            String storeEmail = gson.fromJson(jsonObject.get("storeEmail"), String.class);
+            String storeMail = gson.fromJson(jsonObject.get("storeEmail"), String.class);
             String storePassword = gson.fromJson(jsonObject.get("storePassword"), String.class);
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             StoreController storeController = new StoreController(entityManager);
-            storeController.updateStore(store.getStoreId(), storeName, storeEmail, storePassword);
+            storeController.updateStore(store.getStoreId(), storeName, storeMail, storePassword);
             return store.asJson();
         } , gson::toJson);
 
