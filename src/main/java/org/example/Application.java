@@ -353,7 +353,7 @@ public class Application {
             return gson.toJson(ingredient);
         });
 
-        //Get ingredient beggining with user input
+        //Get ingredient beginning with user input
         Spark.get("/ingredients/begins/:beginning", (req, res) -> {
             String beginning = req.params(":beginning");
             EntityManager entityManager = entityManagerFactory.createEntityManager();
