@@ -12,4 +12,6 @@ public interface CostumerRepository {
 
   public void deleteUser(Long clientId);
 
+  Customer fetchCustomerByUsername(String username);
+
 }

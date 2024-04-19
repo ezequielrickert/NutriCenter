@@ -1,7 +1,6 @@
 package org.example.model;
 
 import com.google.gson.Gson;
-
 import javax.persistence.*;
 
 @Entity(name = "STORE")
@@ -11,20 +10,37 @@ public class Store {
     @GeneratedValue(generator = "userGen", strategy = GenerationType.IDENTITY)
     private Long storeId;
 
-    @Column(nullable = false, unique = false)
+    @Column(nullable = false, unique = true)
     private String storeName;
 
     @Column(nullable = false, unique = true)
     private String storeMail;
 
-    @Column(nullable = false, unique = true)
-    private String storeNumber;
+    @Column(nullable = false, unique = false)
+    private String storePassword;
 
-    public Store(String name, String mail, String number) {
+    @Column(nullable = true, unique = true)
+    private String storePhoneNumber;
+
+    public Store(String name, String mail, String password) {
         this.storeName = name;
         this.storeMail = mail;
-        this.storeNumber = number;
+        this.storePassword = password;
     }
+
+    public Store() {}
+
+    public Long getStoreId() { return storeId; }
+
+    public String getStoreName() { return storeName; }
+
+    public String getStoreMail() { return storeMail; }
+
+    public String getStorePassword() { return storePassword; }
+
+    public String getStorePhoneNumber() { return storePhoneNumber; }
+
+    public void setStoreId(Long storeId) { this.storeId = storeId; }
 
     public void setStoreName(String storeName) {
         this.storeName = storeName;
@@ -34,12 +50,10 @@ public class Store {
         this.storeMail = storeEmail;
     }
 
-    public void setStoreNumber(String storeNumber) {
-        this.storeNumber = storeNumber;
-    }
+    public void setStorePassword(String storePassword) { this.storePassword = storePassword; }
 
-    public Store() {
-
+    public void setStorePhoneNumber(String storePhoneNumber) {
+        this.storePhoneNumber = storePhoneNumber;
     }
 
     public String asJson() {

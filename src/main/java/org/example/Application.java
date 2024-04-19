@@ -5,6 +5,7 @@ import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import org.example.controller.*;
 import org.example.model.*;
+import org.example.model.login.LoginData;
 import spark.Spark;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,6 +13,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.UUID;
 import java.util.SortedMap;
 import java.util.stream.Collectors;
 
@@ -25,7 +27,6 @@ public class Application {
     final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
 
 //    createAllergies(entityManagerFactory.createEntityManager());
-//    createCategories(entityManagerFactory.createEntityManager());
 
     Spark.port(8080);
 
@@ -60,14 +61,29 @@ public class Application {
       }, gson::toJson);
 
 
-      // Post to fetch Customer (probably wrong...)
-      Spark.post("/fetchCustomer", (req, res) -> {
-          String body = req.body();
-          Customer newCustomer = gson.fromJson(body, Customer.class);
-          String username = newCustomer.getCustomerName();
-          String password = newCustomer.getCustomerPassword();
-          return req;
-      }, gson::toJson);
+        Spark.post("/authenticateUser", (req, res) -> {
+            String body = req.body();
+            LoginData loginData = gson.fromJson(body, LoginData.class);
+            String username = loginData.getUsername();
+            String password = loginData.getPassword();
+
+
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            LoginController loginController = new LoginController(entityManager);
+            //returns the actual password of the user with the given username or null if the user is not found
+            String userPassword = loginController.fetchUser(username);
+
+
+            if (userPassword != null && userPassword.equals(password)) {
+                // if the user is found and the password matches, return a token
+                String token = UUID.randomUUID().toString();;
+                return token;
+            } else {
+                // if the username is not found or the password does not match, return an error message
+                res.status(401);
+                return "Username or password is incorrect";
+            }
+        }, gson::toJson);
 
       // Post to create SuperAdmin
       Spark.post("/createSuperAdmin", (req, res) -> {
@@ -152,7 +168,7 @@ public class Application {
       Spark.get("/ingredients", (req, res) -> {
           EntityManager entityManager = entityManagerFactory.createEntityManager();
           IngredientController ingredientController = new IngredientController(entityManager);
-          List<Ingredient> ingredients = ingredientController.getIngredientsOrderedByName();
+          List<Ingredient> ingredients = ingredientController.getIngredientsOrderedByName(entityManager);
           System.out.println(ingredients);
           return gson.toJson(ingredients);
       }, gson::toJson);
@@ -199,7 +215,7 @@ public class Application {
           return result;
       }, gson::toJson);
 
-        Spark.get("/categories", (req, res) -> {
+      Spark.get("/categories", (req, res) -> {
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             CategoryController categoryController = new CategoryController(entityManager);
             List<Category> categories = categoryController.getCategoriesOrderedByName();
@@ -269,6 +285,45 @@ public class Application {
             return recipe;
         } , gson::toJson);
 
+        // Post to create Store
+        Spark.post("/createStore", (req, res) -> {
+            String body = req.body();
+            Store store = gson.fromJson(body, Store.class);
+            String storeName = store.getStoreName();
+            String storeMail = store.getStoreMail();
+            String storePassword = store.getStorePassword();
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            StoreController storeController = new StoreController(entityManager);
+            storeController.createStore(storeName, storeMail, storePassword);
+            return store;
+        } , gson::toJson);
+
+        // Post to update Store
+        Spark.post("/updateStore", (req, res) -> {
+            String body = req.body();
+            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            Store store = gson.fromJson(jsonObject.get("store"), Store.class);
+            String storeName = gson.fromJson(jsonObject.get("storeName"), String.class);
+            String storeMail = gson.fromJson(jsonObject.get("storeEmail"), String.class);
+            String storePassword = gson.fromJson(jsonObject.get("storePassword"), String.class);
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            StoreController storeController = new StoreController(entityManager);
+            storeController.updateStore(store.getStoreId(), storeName, storeMail, storePassword);
+            return store.asJson();
+        } , gson::toJson);
+
+        // Post to delete Store
+        Spark.post("/deleteStore", (req, res) -> {
+            String body = req.body();
+            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            Store store = gson.fromJson(jsonObject.get("store"), Store.class);
+            Long id = store.getStoreId();
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            StoreController storeController = new StoreController(entityManager);
+            storeController.deleteStore(id);
+            return store;
+        } , gson::toJson);
+
       Spark.get("/persisted-store/:id", (req, resp) -> {
           final String id = req.params("id");
 
@@ -284,7 +339,6 @@ public class Application {
           return store.asJson();
         }
     );
-
   }
     private static void createAllergies(EntityManager entityManager) {
         AllergyController allergyController = new AllergyController(entityManager);

@@ -12,16 +12,16 @@ public class StoreController {
     storeRepository = new StoreRepositoryImpl(entityManager);
   }
 
-  public void createStore(String storeName, String storeEmail, String storeNumber) {
-    storeRepository.createStore(storeName, storeEmail, storeNumber);
+  public void createStore(String storeName, String storeEmail, String storePassword) {
+    storeRepository.createStore(storeName, storeEmail, storePassword);
   }
 
   public Store readStore(Long storeId) {
     return storeRepository.readStore(storeId);
   }
 
-  public void updateStore(Long storeId, String storeName, String storeEmail, String storeNumber) {
-    storeRepository.updateStore(storeId, storeName, storeEmail, storeNumber);
+  public void updateStore(Long storeId, String storeName, String storeEmail, String storePassword) {
+    storeRepository.updateStore(storeId, storeName, storeEmail, storePassword);
   }
 
   public void deleteStore(Long storeId) {

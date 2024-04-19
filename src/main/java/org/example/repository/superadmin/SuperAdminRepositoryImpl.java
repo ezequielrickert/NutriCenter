@@ -1,8 +1,10 @@
 package org.example.repository.superadmin;
 
+import org.example.model.Customer;
 import org.example.model.SuperAdmin;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 
 public class SuperAdminRepositoryImpl implements SuperAdminRepository{
 
@@ -48,5 +50,20 @@ public class SuperAdminRepositoryImpl implements SuperAdminRepository{
         }
 
         entityManager.getTransaction().commit();
+    }
+
+    @Override
+    public SuperAdmin fetchSuperAdminByName(String username){
+        entityManager.getTransaction().begin();
+        try {
+            SuperAdmin superAdmin = entityManager.createQuery("SELECT c FROM SUPER_ADMIN c WHERE c.adminUsername = :username", SuperAdmin.class)
+                    .setParameter("username", username)
+                    .getSingleResult();
+            entityManager.getTransaction().commit();
+            return superAdmin;
+        } catch (NoResultException e) {
+            entityManager.getTransaction().rollback();
+            return null;
+        }
     }
 }

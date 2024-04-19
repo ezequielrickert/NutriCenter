@@ -1,8 +1,10 @@
 package org.example.repository.store;
 
+import org.example.model.Customer;
 import org.example.model.Store;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 
 public class StoreRepositoryImpl implements StoreRepository{
 
@@ -12,9 +14,9 @@ public class StoreRepositoryImpl implements StoreRepository{
   }
 
   @Override
-  public void createStore(String storeName, String storeEmail, String storeNumber) {
+  public void createStore(String storeName, String storeEmail, String storePassword) {
     entityManager.getTransaction().begin();
-    Store store = new Store(storeName, storeEmail, storeNumber);
+    Store store = new Store(storeName, storeEmail, storePassword);
     entityManager.persist(store);
     entityManager.getTransaction().commit();
   }
@@ -28,12 +30,12 @@ public class StoreRepositoryImpl implements StoreRepository{
   }
 
   @Override
-  public void updateStore(Long storeId, String storeName, String storeEmail, String storeNumber) {
+  public void updateStore(Long storeId, String storeName, String storeEmail, String storePassword) {
     entityManager.getTransaction().begin();
     Store store = entityManager.find(Store.class, storeId);
     store.setStoreName(storeName);
     store.setStoreMail(storeEmail);
-    store.setStoreNumber(storeNumber);
+    store.setStorePassword(storePassword);
     entityManager.persist(store);
     entityManager.getTransaction().commit();
   }
@@ -48,5 +50,20 @@ public class StoreRepositoryImpl implements StoreRepository{
     }
 
     entityManager.getTransaction().commit();
+  }
+
+  @Override
+  public Store fetchStoreByName(String username){
+    entityManager.getTransaction().begin();
+    try {
+      Store store = entityManager.createQuery("SELECT c FROM STORE c WHERE c.storeName = :username", Store.class)
+              .setParameter("username", username)
+              .getSingleResult();
+      entityManager.getTransaction().commit();
+      return store;
+    } catch (NoResultException e) {
+      entityManager.getTransaction().rollback();
+      return null;
+    }
   }
 }
