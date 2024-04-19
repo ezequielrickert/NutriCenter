@@ -1,9 +1,9 @@
 package org.example;
 
-import com.google.common.base.Strings;
 import com.google.gson.*;
 import org.example.controller.*;
 import org.example.model.*;
+import org.example.model.login.LoginData;
 import spark.Spark;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,7 +11,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public class Application {
 

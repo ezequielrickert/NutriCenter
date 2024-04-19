@@ -19,6 +19,7 @@ const LoginCustomer =  () => {
                     // If the login is successful, store the token and redirect to the dashboard
                     // The token is stored as an Auth class in the local storage
                     localStorage.setItem('token', res.data);
+                    localStorage.setItem('username', username);
                     window.location.href = '/dashboardCustomer';
                 } else {
                     // If the login is not successful, handle the error
