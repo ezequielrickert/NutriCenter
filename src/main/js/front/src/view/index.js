@@ -16,3 +16,7 @@ export { default as LoginSuperAdmin } from './superAdmin/login/loginSuperAdmin';
 export { default as InitialEditor } from './superAdmin/edition/initialEditor';
 export { default as IngredientEditor } from './superAdmin/edition/editors/ingredientEditor';
 export { default as RecipeEditor } from './superAdmin/edition/editors/recipeEditor';
+
+export { default as SearchIngredientPage } from './searchIngredient/searchIngredientHome';
+export { default as IngredientResult } from './searchIngredient/ingredientResult';
+export { default as IngredientInfo } from './searchIngredient/ingredientInfo';

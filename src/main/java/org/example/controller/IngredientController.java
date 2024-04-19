@@ -41,7 +41,18 @@ public class IngredientController {
     }
 
     public List<Ingredient> getIngredientsOrderedByName(EntityManager entityManager) {
-        List<Ingredient> result = ingredientRepository.getAll();
-        return result;
+        return ingredientRepository.getAll();
+    }
+
+    public List<Ingredient> searchIngredientsByName(String searchTerm) {
+        return ingredientRepository.searchIngredientsByName(searchTerm);
+    }
+
+    public Ingredient getIngredientByName(String ingredientName) {
+        return ingredientRepository.getIngredientByName(ingredientName);
+    }
+
+    public List<Ingredient> getIngredientsBeginningWith(String beginning) {
+        return ingredientRepository.getIngredientsBeginningWith(beginning);
     }
 }

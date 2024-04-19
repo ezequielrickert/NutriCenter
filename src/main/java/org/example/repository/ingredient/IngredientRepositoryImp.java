@@ -65,7 +65,36 @@ public class IngredientRepositoryImp implements IngredientRepository{
         cr.select(root);
 
         Query query = entityManager.createQuery(cr);
-        List<Ingredient> results = query.getResultList();
-        return results;
+        return (List<Ingredient>) query.getResultList();
+    }
+
+    public List<Ingredient> searchIngredientsByName(String searchTerm) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Ingredient> cr = cb.createQuery(Ingredient.class);
+        Root<Ingredient> root = cr.from(Ingredient.class);
+        cr.select(root).where(cb.like(root.get("ingredientName"), "%" + searchTerm + "%"));
+
+        Query query = entityManager.createQuery(cr);
+        return (List<Ingredient>) query.getResultList();
+    }
+
+    public Ingredient getIngredientByName(String ingredientName) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Ingredient> cr = cb.createQuery(Ingredient.class);
+        Root<Ingredient> root = cr.from(Ingredient.class);
+        cr.select(root).where(cb.equal(root.get("ingredientName"), ingredientName));
+
+        Query query = entityManager.createQuery(cr);
+        return (Ingredient) query.getSingleResult();
+    }
+
+    public List<Ingredient> getIngredientsBeginningWith(String beginning) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Ingredient> cr = cb.createQuery(Ingredient.class);
+        Root<Ingredient> root = cr.from(Ingredient.class);
+        cr.select(root).where(cb.like(root.get("ingredientName"), beginning + "%"));
+
+        Query query = entityManager.createQuery(cr);
+        return (List<Ingredient>) query.getResultList();
     }
 }
