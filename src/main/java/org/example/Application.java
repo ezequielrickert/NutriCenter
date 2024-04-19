@@ -3,6 +3,7 @@ package org.example;
 import com.google.gson.*;
 import org.example.controller.*;
 import org.example.model.*;
+import org.example.model.login.Authenticator;
 import org.example.model.login.LoginData;
 import spark.Spark;
 import javax.persistence.EntityManager;
@@ -59,22 +60,33 @@ public class Application {
             LoginData loginData = gson.fromJson(body, LoginData.class);
             String username = loginData.getUsername();
             String password = loginData.getPassword();
-
-
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             LoginController loginController = new LoginController(entityManager);
             //returns the actual password of the user with the given username or null if the user is not found
             String userPassword = loginController.fetchUser(username);
-
-
             if (userPassword != null && userPassword.equals(password)) {
                 // if the user is found and the password matches, return a token
-                String token = UUID.randomUUID().toString();;
+                String token = UUID.randomUUID().toString();
+                Authenticator.storeToken(username, token);
                 return token;
             } else {
                 // if the username is not found or the password does not match, return an error message
                 res.status(401);
                 return "Username or password is incorrect";
+            }
+        }, gson::toJson);
+
+        // Post to validate user that checks for username and token
+        Spark.post("/validateUser", (req, res) -> {
+            String body = req.body();
+            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            String username = gson.fromJson(jsonObject.get("username"), String.class);
+            String token = gson.fromJson(jsonObject.get("token"), String.class);
+            if (Authenticator.validateUser(username, token)) {
+                return "User is valid";
+            } else {
+                res.status(401);
+                return "User is not valid";
             }
         }, gson::toJson);
 

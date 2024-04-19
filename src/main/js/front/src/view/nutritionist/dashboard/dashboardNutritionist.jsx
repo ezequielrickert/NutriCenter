@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const DashboardCustomer = () => {
+const DashboardNutritionist = () => {
     const [isValidUser, setIsValidUser] = useState(false);
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
@@ -39,4 +39,4 @@ const DashboardCustomer = () => {
     );
 }
 
-export default DashboardCustomer;
+export default DashboardNutritionist;

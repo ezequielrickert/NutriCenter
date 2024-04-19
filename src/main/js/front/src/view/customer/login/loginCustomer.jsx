@@ -16,17 +16,17 @@ const LoginCustomer =  () => {
         await axios.post("http://localhost:8080/authenticateUser",  loginData )
             .then(res => {
                 if (res.status === 200) {
-                    // If the login is successful, store the token and redirect to the dashboard
-                    // The token is stored as an Auth class in the local storage
+                    // If the login is successful, store the token and  username and redirect to the dashboard
+                    // The token is stored in the Authenticator class along with username
                     localStorage.setItem('token', res.data);
                     localStorage.setItem('username', username);
                     window.location.href = '/dashboardCustomer';
-                } else {
-                    // If the login is not successful, handle the error
-                    console.log('Login failed in customer login page');
                 }
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err);
+                alert('Login failed, please try again.')
+            })
     }
 
     return (

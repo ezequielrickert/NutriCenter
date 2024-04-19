@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { InitialPage, LoginDefault, SignUpDefault } from '../view';
 import { LoginCustomer, SignUpCustomer, DashboardCustomer } from '../view';
-import { LoginNutritionist, SignUpNutritionist } from '../view';
+import { LoginNutritionist, SignUpNutritionist, DashboardNutritionist } from '../view';
 import { LoginStore, SignUpStore } from '../view';
 import { LoginSuperAdmin, InitialEditor, IngredientEditor, RecipeEditor } from '../view';
 
@@ -23,6 +23,7 @@ function App() {
 
               <Route path="/loginNutritionist" element={<LoginNutritionist />} />
               <Route path="/signUpNutritionist" element={<SignUpNutritionist />} />
+                <Route path="/dashboardNutritionist" element={<DashboardNutritionist />} />
 
               <Route path="/loginStore" element={<LoginStore />} />
               <Route path="/signUpStore" element={<SignUpStore />} />
