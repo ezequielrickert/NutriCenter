@@ -11,6 +11,8 @@
         <class>org.example.model.SuperAdmin</class>
         <class>org.example.model.Ingredient</class>
         <class>org.example.model.Allergy</class>
+        <class>org.example.model.Category</class>
+        <class>org.example.model.Recipe</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbc.JDBCDriver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:hsql://localhost/testdb"/>

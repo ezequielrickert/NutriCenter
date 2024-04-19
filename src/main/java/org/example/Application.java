@@ -1,10 +1,11 @@
 package org.example;
-
-import com.google.common.base.Strings;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import org.example.controller.*;
 import org.example.model.*;
+import spark.Request;
+import spark.Response;
+import spark.Route;
 import spark.Spark;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,8 +14,7 @@ import javax.persistence.Persistence;
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.UUID;
-import java.util.SortedMap;
-import java.util.stream.Collectors;
+import org.example.model.login.LoginData;
 
 public class Application {
 
@@ -95,38 +95,36 @@ public class Application {
         }, gson::toJson);
 
         /* Dynamic Content from Db */
-        Spark.get("/persisted-customers/:id",
-                (req, resp) -> {
-                    final String id = req.params("id");
+        Spark.get("/persisted-customers/:id", (req, resp) -> {
+            final String id = req.params("id");
 
-                    /* Business Logic */
-                    final EntityManager entityManager = entityManagerFactory.createEntityManager();
-                    final EntityTransaction tx = entityManager.getTransaction();
-                    tx.begin();
-                    Customer customer = entityManager.find(Customer.class, Long.valueOf(id));
-                    tx.commit();
-                    entityManager.close();
+            /* Business Logic */
+            final EntityManager entityManager = entityManagerFactory.createEntityManager();
+            final EntityTransaction tx = entityManager.getTransaction();
+            tx.begin();
+            Customer customer = entityManager.find(Customer.class, Long.valueOf(id));
+            tx.commit();
+            entityManager.close();
 
-                    resp.type("application/json");
-                    return customer.asJson();
-                }
+            resp.type("application/json");
+            return customer.asJson();
+            }
         );
 
-        Spark.get("/persisted-nutritionist/:id",
-                (req, resp) -> {
-                    final String id = req.params("id");
+        Spark.get("/persisted-nutritionist/:id", (req, resp) -> {
+            final String id = req.params("id");
 
-                    /* Business Logic */
-                    final EntityManager entityManager = entityManagerFactory.createEntityManager();
-                    final EntityTransaction tx = entityManager.getTransaction();
-                    tx.begin();
-                    Nutritionist nutritionist = entityManager.find(Nutritionist.class, Long.valueOf(id));
-                    tx.commit();
-                    entityManager.close();
+            /* Business Logic */
+            final EntityManager entityManager = entityManagerFactory.createEntityManager();
+            final EntityTransaction tx = entityManager.getTransaction();
+            tx.begin();
+            Nutritionist nutritionist = entityManager.find(Nutritionist.class, Long.valueOf(id));
+            tx.commit();
+            entityManager.close();
 
-                    resp.type("application/json");
-                    return nutritionist.asJson();
-                }
+            resp.type("application/json");
+            return nutritionist.asJson();
+            }
         );
 
         // Post to create Nutritionist
@@ -161,14 +159,14 @@ public class Application {
             return ingredient;
         }, gson::toJson);
 
-      // Gets a list of all ingredients
-      Spark.get("/ingredients", (req, res) -> {
+        // Gets a list of all ingredients
+        Spark.get("/ingredients", (req, res) -> {
           EntityManager entityManager = entityManagerFactory.createEntityManager();
           IngredientController ingredientController = new IngredientController(entityManager);
           List<Ingredient> ingredients = ingredientController.getIngredientsOrderedByName();
           System.out.println(ingredients);
           return gson.toJson(ingredients);
-      }, gson::toJson);
+        }, gson::toJson);
 
         //post to update ingredient
         Spark.post("/updateIngredient", (req, res) -> {
@@ -212,7 +210,7 @@ public class Application {
             return result;
         }, gson::toJson);
 
-      Spark.get("/categories", (req, res) -> {
+        Spark.get("/categories", (req, res) -> {
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             CategoryController categoryController = new CategoryController(entityManager);
             List<Category> categories = categoryController.getCategoriesOrderedByName();
