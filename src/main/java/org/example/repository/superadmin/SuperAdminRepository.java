@@ -11,4 +11,6 @@ public interface SuperAdminRepository {
     public void updateSuperAdmin(Long id, String username, String password);
 
     public void deleteSuperAdmin(Long id);
+
+    public SuperAdmin fetchSuperAdminByName(String username);
 }

@@ -2,22 +2,24 @@ package org.example;
 
 import com.google.common.base.Strings;
 import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 import org.example.controller.*;
 import org.example.model.*;
-import spark.Request;
-import spark.Response;
-import spark.Route;
 import spark.Spark;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.lang.reflect.Type;
 import java.util.List;
+import java.util.UUID;
+import java.util.SortedMap;
 import java.util.stream.Collectors;
 
 public class Application {
 
     private static final Gson gson = new Gson();
+
 
     public static void main(String[] args) {
 
@@ -56,13 +58,28 @@ public class Application {
         }, gson::toJson);
 
 
-        // Post to fetch Customer (probably wrong...)
-        Spark.post("/fetchCustomer", (req, res) -> {
+        Spark.post("/authenticateUser", (req, res) -> {
             String body = req.body();
-            Customer newCustomer = gson.fromJson(body, Customer.class);
-            String username = newCustomer.getCustomerName();
-            String password = newCustomer.getCustomerPassword();
-            return req;
+            LoginData loginData = gson.fromJson(body, LoginData.class);
+            String username = loginData.getUsername();
+            String password = loginData.getPassword();
+
+
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            LoginController loginController = new LoginController(entityManager);
+            //returns the actual password of the user with the given username or null if the user is not found
+            String userPassword = loginController.fetchUser(username);
+
+
+            if (userPassword != null && userPassword.equals(password)) {
+                // if the user is found and the password matches, return a token
+                String token = UUID.randomUUID().toString();;
+                return token;
+            } else {
+                // if the username is not found or the password does not match, return an error message
+                res.status(401);
+                return "Username or password is incorrect";
+            }
         }, gson::toJson);
 
         // Post to create SuperAdmin
@@ -144,14 +161,14 @@ public class Application {
             return ingredient;
         }, gson::toJson);
 
-        // Gets a list of all ingredients
-        Spark.get("/ingredients", (req, res) -> {
-            EntityManager entityManager = entityManagerFactory.createEntityManager();
-            IngredientController ingredientController = new IngredientController(entityManager);
-            List<Ingredient> ingredients = ingredientController.getIngredientsOrderedByName(entityManager);
-            System.out.println(ingredients);
-            return gson.toJson(ingredients);
-        }, gson::toJson);
+      // Gets a list of all ingredients
+      Spark.get("/ingredients", (req, res) -> {
+          EntityManager entityManager = entityManagerFactory.createEntityManager();
+          IngredientController ingredientController = new IngredientController(entityManager);
+          List<Ingredient> ingredients = ingredientController.getIngredientsOrderedByName();
+          System.out.println(ingredients);
+          return gson.toJson(ingredients);
+      }, gson::toJson);
 
         //post to update ingredient
         Spark.post("/updateIngredient", (req, res) -> {
@@ -194,6 +211,76 @@ public class Application {
             System.out.println(result);
             return result;
         }, gson::toJson);
+
+      Spark.get("/categories", (req, res) -> {
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            CategoryController categoryController = new CategoryController(entityManager);
+            List<Category> categories = categoryController.getCategoriesOrderedByName();
+            System.out.println(categories);
+            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            String result = gson.toJson(categories);
+            System.out.println(result);
+            return result;
+        }, gson::toJson);
+
+        Spark.get("/recipes", (req, res) -> {
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            RecipeController recipeController = new RecipeController(entityManager);
+            List<Recipe> recipes = recipeController.getRecipesOrderedByName();
+            System.out.println(recipes);
+            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            String result = gson.toJson(recipes);
+            System.out.println(result);
+            return result;
+        }, gson::toJson);
+
+        Spark.post("/createRecipe", (req, res) -> {
+            String body = req.body();
+            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            String recipeName = gson.fromJson(jsonObject.get("recipeName"), String.class);
+            String recipeDescription = gson.fromJson(jsonObject.get("recipeDescription"), String.class);
+
+            Type categoryListType = new TypeToken<List<Category>>() {}.getType();
+            List<Category> categoryList = gson.fromJson(jsonObject.get("categoryList"), categoryListType);
+
+            Type ingredientListType = new TypeToken<List<Ingredient>>() {}.getType();
+            List<Ingredient> ingredientList = gson.fromJson(jsonObject.get("ingredientList"), ingredientListType);
+
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            RecipeController recipeController = new RecipeController(entityManager);
+            recipeController.createRecipe(recipeName, recipeDescription, categoryList, ingredientList);
+            return req;
+        }, gson::toJson);
+
+        Spark.post("/updateRecipe", (req, res) -> {
+            String body = req.body();
+            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            Recipe recipe = gson.fromJson(jsonObject.get("recipe"), Recipe.class);
+            String recipeName = gson.fromJson(jsonObject.get("recipeName"), String.class);
+            String recipeDescription = gson.fromJson(jsonObject.get("recipeDescription"), String.class);
+
+            Type categoryListType = new TypeToken<List<Category>>() {}.getType();
+            List<Category> categoryList = gson.fromJson(jsonObject.get("categoryList"), categoryListType);
+
+            Type ingredientListType = new TypeToken<List<Ingredient>>() {}.getType();
+            List<Ingredient> ingredientList = gson.fromJson(jsonObject.get("ingredientList"), ingredientListType);
+
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            RecipeController recipeController = new RecipeController(entityManager);
+            recipeController.updateRecipe(recipe.getRecipeId(), recipeName, recipeDescription, categoryList, ingredientList);
+            return recipe;
+        } , gson::toJson);
+
+        Spark.post("/deleteRecipe", (req, res) -> {
+            String body = req.body();
+            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            Recipe recipe = gson.fromJson(jsonObject.get("recipe"), Recipe.class);
+            Long id = recipe.getRecipeId();
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            RecipeController recipeController = new RecipeController(entityManager);
+            recipeController.deleteRecipe(id);
+            return recipe;
+        } , gson::toJson);
 
         // Post to create Store
         Spark.post("/createStore", (req, res) -> {
@@ -247,8 +334,7 @@ public class Application {
 
             resp.type("application/json");
             return store.asJson();
-            }
-        );
+            });
 
         Spark.get("/ingredients/search/:term", new Route() {
             public Object handle(Request request, Response response) throws Exception {

@@ -1,4 +1,4 @@
-package org.example.repository.costumer;
+package org.example.repository.customer;
 
 import org.example.model.Customer;
 
@@ -11,5 +11,7 @@ public interface CostumerRepository {
   public void updateUser(Long clientId, String username, String email);
 
   public void deleteUser(Long clientId);
+
+  Customer fetchCustomerByUsername(String username);
 
 }

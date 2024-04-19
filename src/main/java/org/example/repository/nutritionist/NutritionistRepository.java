@@ -10,4 +10,6 @@ public interface NutritionistRepository {
   public void updateNutritionist(Long nutritionistId, String username, String email, String password, String diploma);
 
   public void deleteNutritionist(Long nutritionistId);
+
+  Nutritionist fetchNutritionistByUsername(String username);
 }

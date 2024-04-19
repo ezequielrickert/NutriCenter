@@ -1,0 +1,20 @@
+package org.example.repository.recipe;
+
+import org.example.model.Category;
+import org.example.model.Ingredient;
+import org.example.model.Recipe;
+
+import java.util.List;
+
+public interface RecipeRepository {
+
+    public void addRecipe(String name, String description, List<Category> categoryList, List<Ingredient> ingredientList);
+
+    public Recipe getRecipe(Long recipeId);
+
+    public void updateRecipe(Long recipeId, String name, String description, List<Category> categoryList, List<Ingredient> ingredientList);
+
+    public void deleteRecipe(Long recipeId);
+
+    List<Recipe> getRecipesOrderedByName();
+}

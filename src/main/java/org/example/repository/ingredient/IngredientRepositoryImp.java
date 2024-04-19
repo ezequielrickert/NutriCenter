@@ -1,5 +1,6 @@
 package org.example.repository.ingredient;
 import org.example.model.Allergy;
+import org.example.model.Category;
 import org.example.model.Ingredient;
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 
