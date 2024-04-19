@@ -168,7 +168,7 @@ public class Application {
       Spark.get("/ingredients", (req, res) -> {
           EntityManager entityManager = entityManagerFactory.createEntityManager();
           IngredientController ingredientController = new IngredientController(entityManager);
-          List<Ingredient> ingredients = ingredientController.getIngredientsOrderedByName(entityManager);
+          List<Ingredient> ingredients = ingredientController.getIngredientsOrderedByName();
           System.out.println(ingredients);
           return gson.toJson(ingredients);
       }, gson::toJson);
