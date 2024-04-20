@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import Footer from '../footer';
 
 const IngredientInfo = () => {
     const { ingredientName } = useParams();
@@ -28,6 +29,7 @@ const IngredientInfo = () => {
             <p>Total Fat: {ingredient.totalFat}</p>
             <p>Cholesterol: {ingredient.cholesterol}</p>
             <p>Total Carbohydrate: {ingredient.totalCarbohydrate}</p>
+            <Footer />
         </div>
     );
 }

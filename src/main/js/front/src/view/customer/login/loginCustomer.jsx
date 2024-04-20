@@ -20,6 +20,7 @@ const LoginCustomer =  () => {
                     // The token is stored as an Auth class in the local storage
                     localStorage.setItem('token', res.data);
                     localStorage.setItem('username', username);
+                    localStorage.setItem('userType', 'Customer');
                     window.location.href = '/dashboardCustomer';
                 } else {
                     // If the login is not successful, handle the error

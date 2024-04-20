@@ -19,6 +19,8 @@ export { default as InitialEditor } from './superAdmin/edition/initialEditor';
 export { default as IngredientEditor } from './superAdmin/edition/editors/ingredientEditor';
 export { default as RecipeEditor } from './superAdmin/edition/editors/recipeEditor';
 
-export { default as SearchIngredientPage } from './searchIngredient/searchIngredientHome';
-export { default as IngredientResult } from './searchIngredient/ingredientResult';
-export { default as IngredientInfo } from './searchIngredient/ingredientInfo';
+export { default as SearchIngredientPage } from './components/searchIngredient/searchIngredientHome';
+export { default as IngredientResult } from './components/searchIngredient/ingredientResult';
+export { default as IngredientInfo } from './components/searchIngredient/ingredientInfo';
+
+export { default as Logout } from './components/logout/logout';

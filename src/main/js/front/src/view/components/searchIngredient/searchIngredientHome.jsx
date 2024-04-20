@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Autosuggest from 'react-autosuggest';
 import axios from 'axios';
-import './SearchIngredientPage.css'; // Import the CSS
+import './SearchIngredientPage.css';
+import Footer from '../footer';
 
 const SearchIngredientPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -64,6 +65,7 @@ const SearchIngredientPage = () => {
                 </div>
                 <button className={`search-button ${searchTerm ? '' : 'search-button--disabled'}`} onClick={handleSearchClick}>Search</button>
             </div>
+            <Footer />
         </div>
     );
 }

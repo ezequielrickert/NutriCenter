@@ -7,6 +7,7 @@ import { LoginNutritionist, SignUpNutritionist } from '../view';
 import { LoginStore, SignUpStore } from '../view';
 import { LoginSuperAdmin, InitialEditor, IngredientEditor, RecipeEditor } from '../view';
 import { SearchIngredientPage, IngredientResult, IngredientInfo } from '../view';
+import { Logout } from '../view';
 
 function App() {
     return (
@@ -38,6 +39,7 @@ function App() {
                     <Route path="/ingredientResult/:ingredientName" element={<IngredientResult />} />
                     <Route path="/ingredientInfo/:ingredientName" element={<IngredientInfo />} />
 
+                    <Route path="/logout" element={<Logout />} />
                 </Routes>
             </div>
         </Router>

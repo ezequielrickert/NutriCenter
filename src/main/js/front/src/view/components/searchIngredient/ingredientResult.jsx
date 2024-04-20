@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
+import Footer from '../footer';
 
 const IngredientResult = () => {
     const { ingredientName } = useParams();
@@ -34,6 +35,7 @@ const IngredientResult = () => {
                     </Link>
                 </div>
             )}
+            <Footer />
         </div>
     );
 }
