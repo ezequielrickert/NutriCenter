@@ -23,4 +23,6 @@ export { default as SearchIngredientPage } from './components/searchIngredient/s
 export { default as IngredientResult } from './components/searchIngredient/ingredientResult';
 export { default as IngredientInfo } from './components/searchIngredient/ingredientInfo';
 
-export { default as Logout } from './components/logout/logout';
+export { default as AccountSettingsPage } from './components/account/accountSelection';
+export { default as Logout } from './components/account/logout';
+export { default as Delete } from './components/account/delete';

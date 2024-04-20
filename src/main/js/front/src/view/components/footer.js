@@ -13,8 +13,8 @@ const Footer = () => {
             <Link to="/searchIngredientHome">
                 <button>Ingredient Searcher</button>
             </Link>
-            <Link to="/logout">
-                <button>Logout</button>
+            <Link to="/accountSelection">
+                <button>Settings</button>
             </Link>
         </div>
     );

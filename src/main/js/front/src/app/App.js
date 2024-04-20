@@ -7,7 +7,7 @@ import { LoginNutritionist, SignUpNutritionist } from '../view';
 import { LoginStore, SignUpStore } from '../view';
 import { LoginSuperAdmin, InitialEditor, IngredientEditor, RecipeEditor } from '../view';
 import { SearchIngredientPage, IngredientResult, IngredientInfo } from '../view';
-import { Logout } from '../view';
+import { AccountSettingsPage, Logout, Delete } from '../view';
 
 function App() {
     return (
@@ -39,7 +39,10 @@ function App() {
                     <Route path="/ingredientResult/:ingredientName" element={<IngredientResult />} />
                     <Route path="/ingredientInfo/:ingredientName" element={<IngredientInfo />} />
 
+                    <Route path={"/accountSelection"} element={<AccountSettingsPage />} />
                     <Route path="/logout" element={<Logout />} />
+                    <Route path={"/delete"} element={<Delete />} />
+
                 </Routes>
             </div>
         </Router>

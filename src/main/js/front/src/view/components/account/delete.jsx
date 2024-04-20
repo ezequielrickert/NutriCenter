@@ -13,7 +13,7 @@ const LogoutPage = () => {
 
     return (
         <div>
-            <h1>Logout Page</h1>
+            <h1>Delete Page</h1>
             <form onSubmit={handleSubmit}>
                 <label>
                     Email:
