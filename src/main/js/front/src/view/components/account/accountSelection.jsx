@@ -7,10 +7,10 @@ const AccountSettingsPage = () => {
         <div>
             <h1>Account Settings Page</h1>
             <Link to="/logout">
-                <button>Go to Logout</button>
+                <button>Logout</button>
             </Link>
             <Link to="/delete">
-                <button>Go to Delete</button>
+                <button>Delete Account</button>
             </Link>
             <Footer />
         </div>
