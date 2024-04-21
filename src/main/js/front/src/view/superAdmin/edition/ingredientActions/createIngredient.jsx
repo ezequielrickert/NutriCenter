@@ -74,27 +74,27 @@ const CreateIngredient = () => {
 
                     <label htmlFor="proteins">Proteins:</label><br/>
                     <input type="number" id="proteins" name="proteins" value={proteins}
-                           onChange={e => setProteins(e.target.value)}/><br/>
+                           onChange={e => setProteins(e.target.value)} min="0"/><br/>
 
                     <label htmlFor="sodium">Sodium:</label><br/>
                     <input type="number" id="sodium" name="sodium" value={sodium}
-                           onChange={e => setSodium(e.target.value)}/><br/>
+                           onChange={e => setSodium(e.target.value)} min="0"/><br/>
 
                     <label htmlFor="calories">Calories:</label><br/>
                     <input type="number" id="calories" name="calories" value={calories}
-                           onChange={e => setCalories(e.target.value)}/><br/>
+                           onChange={e => setCalories(e.target.value)} min="0"/><br/>
 
                     <label htmlFor="totalFat">Total Fat:</label><br/>
-                    <input type="text" id="totalFat" name="totalFat" value={totalFat}
-                           onChange={e => setTotalFat(e.target.value)}/><br/>
+                    <input type="number" id="totalFat" name="totalFat" value={totalFat}
+                           onChange={e => setTotalFat(e.target.value)} min="0"/><br/>
 
                     <label htmlFor="cholesterol">Cholesterol:</label><br/>
                     <input type="number" id="cholesterol" name="cholesterol" value={cholesterol}
-                           onChange={e => setCholesterol(e.target.value)}/><br/>
+                           onChange={e => setCholesterol(e.target.value)} min="0"/><br/>
 
                     <label htmlFor="totalCarbohydrate">Total Carbohydrate:</label><br/>
-                    <input type="numebr" id="totalCarbohydrate" name="totalCarbohydrate" value={totalCarbohydrate}
-                           onChange={e => setTotalCarbohydrate(e.target.value)}/><br/>
+                    <input type="number" id="totalCarbohydrate" name="totalCarbohydrate" value={totalCarbohydrate}
+                           onChange={e => setTotalCarbohydrate(e.target.value)} min="0"/><br/>
 
                     <input type="submit" disabled={!isFormValid}/>
                 </form>

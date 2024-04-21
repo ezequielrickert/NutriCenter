@@ -40,8 +40,20 @@ public class IngredientController {
         ingredientRepository.deleteIngredient(ingredientId);
     }
 
-    public List<Ingredient> getIngredientsOrderedByName(EntityManager entityManager) {
+    public List<Ingredient> getIngredientsOrderedByName() {
         List<Ingredient> result = ingredientRepository.getAll();
         return result;
+    }
+
+    public List<Ingredient> searchIngredientsByName(String searchTerm) {
+        return ingredientRepository.searchIngredientsByName(searchTerm);
+    }
+
+    public Ingredient getIngredientByName(String ingredientName) {
+        return ingredientRepository.getIngredientByName(ingredientName);
+    }
+
+    public List<Ingredient> getIngredientsBeginningWith(String beginning) {
+        return ingredientRepository.getIngredientsBeginningWith(beginning);
     }
 }

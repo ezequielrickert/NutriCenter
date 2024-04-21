@@ -20,6 +20,7 @@ const LoginCustomer =  () => {
                     // The token is stored in the Authenticator class along with username
                     localStorage.setItem('token', res.data);
                     localStorage.setItem('username', username);
+                    localStorage.setItem('userType', 'Customer');
                     window.location.href = '/dashboardCustomer';
                 }
             })
