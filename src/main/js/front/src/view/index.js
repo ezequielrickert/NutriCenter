@@ -14,6 +14,7 @@ export { default as DashboardNutritionist } from './nutritionist/dashboard/dashb
 
 export { default as LoginStore } from './store/login/loginStore';
 export { default as SignUpStore } from './store/signUp/signUpStore';
+export { default as DashboardStore } from './store/dashboard/dashboardStore';
 
 export { default as LoginSuperAdmin } from './superAdmin/login/loginSuperAdmin';
 export { default as InitialEditor } from './superAdmin/edition/initialEditor';

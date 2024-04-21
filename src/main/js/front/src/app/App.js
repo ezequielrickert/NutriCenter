@@ -4,7 +4,7 @@ import './App.css';
 import { InitialPage, LoginDefault, SignUpDefault } from '../view';
 import { LoginCustomer, SignUpCustomer, DashboardCustomer } from '../view';
 import { LoginNutritionist, SignUpNutritionist, DashboardNutritionist } from '../view';
-import { LoginStore, SignUpStore } from '../view';
+import { LoginStore, SignUpStore, DashboardStore } from '../view';
 import { LoginSuperAdmin, InitialEditor, IngredientEditor, RecipeEditor } from '../view';
 
 function App() {
@@ -27,6 +27,7 @@ function App() {
 
               <Route path="/loginStore" element={<LoginStore />} />
               <Route path="/signUpStore" element={<SignUpStore />} />
+              <Route path="/dashboardStore" element={<DashboardStore />} />
 
               <Route path="/loginSuperAdmin" element={<LoginSuperAdmin />} />
               <Route path="/initialEditor" element={<InitialEditor />} />

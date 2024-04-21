@@ -1,9 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const InitialEditor = () => {
-
+const DashboardStore = () => {
     const [isValidUser, setIsValidUser] = useState(false);
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
@@ -15,11 +13,11 @@ const InitialEditor = () => {
                 if (response.data === "User is valid") {
                     setIsValidUser(true);
                 } else {
-                    window.location.href = '/loginSuperAdmin';
+                    window.location.href = '/loginStore';
                 }
             } catch (error) {
                 console.error("Error validating user", error);
-                window.location.href = '/loginSuperAdmin';
+                window.location.href = '/loginStore';
             }
         };
 
@@ -32,17 +30,13 @@ const InitialEditor = () => {
     }
 
     return (
-        <div>
-            <h1>Welcome Super Admin!</h1>
-            <h2>Choose one to edit</h2>
-            <Link to="/ingredientEditor">
-                <button>INGREDIENT EDITOR</button>
-            </Link>
-            <Link to="/recipeEditor">
-                <button>RECIPE EDITOR</button>
-            </Link>
+        <div className="App">
+            <header className="App-header">
+                <h1>Welcome to the Store Dashboard</h1>
+                { /*add dashboard content here*/ }
+            </header>
         </div>
     );
 }
 
-export default InitialEditor;
+export default DashboardStore;
