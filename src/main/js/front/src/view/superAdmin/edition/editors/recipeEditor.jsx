@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
-import CreateIngredient from '../ingredientActions/createIngredient';
-import UpdateIngredient from '../ingredientActions/updateIngredient';
-import DeleteIngredient from '../ingredientActions/deleteIngredient';
 import CreateRecipe from '../recipeActions/createRecipe';
 import UpdateRecipe from '../recipeActions/updateRecipe';
 import DeleteRecipe from '../recipeActions/deleteRecipe';
@@ -20,10 +17,10 @@ const RecipeEditor = () => {
             OperationComponent = CreateRecipe;
             break;
         case 'update':
-            OperationComponent = UpdateIngredient;
+            OperationComponent = UpdateRecipe;
             break;
         case 'delete':
-            OperationComponent = DeleteIngredient;
+            OperationComponent = DeleteRecipe;
             break;
         default:
             OperationComponent = null;

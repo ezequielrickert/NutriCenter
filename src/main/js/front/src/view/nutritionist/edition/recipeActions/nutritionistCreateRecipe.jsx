@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from 'axios';
 import ReactSelect from 'react-select';
 
-const CreateRecipe = () => {
+const NutritionistCreateRecipe = () => {
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
@@ -10,8 +10,34 @@ const CreateRecipe = () => {
     const [ingredients, setIngredients] = useState([])
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [selectedIngredients, setSelectedIngredients] = useState([]);
+    const [isValidUser, setIsValidUser] = useState(false);
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
+    const [isPublic, setIsPublic] = useState(true);
 
     useEffect(() => {
+        const validateUser = async () => {
+            try {
+                const response = await axios.post("http://localhost:8080/validateUser", { username, token });
+                if (response.data === "User is valid") {
+                    setIsValidUser(true);
+                } else {
+                    window.location.href = '/loginNutritionist';
+                }
+            } catch (error) {
+                console.error("Error validating user", error);
+                window.location.href = '/loginNutritionist';
+            }
+        };
+
+        validateUser();
+    }, [token, username]);
+
+    useEffect(() => {
+        if (!isValidUser) {
+            return;
+        }
+
         axios.get('http://localhost:8080/ingredients')
             .then(response => {
                 const data = JSON.parse(response.data);
@@ -24,9 +50,13 @@ const CreateRecipe = () => {
             .catch(error => {
                 console.error('There was an error!', error);
             });
-    }, []);
+    }, [isValidUser]);
 
     useEffect(() => {
+        if (!isValidUser) {
+            return;
+        }
+
         axios.get('http://localhost:8080/categories')
             .then(response => {
                 const data = JSON.parse(response.data);
@@ -37,9 +67,8 @@ const CreateRecipe = () => {
                 }
 
             })
-    }, []);
+    }, [isValidUser]);
 
-    let username = localStorage.getItem('username');
 
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -50,7 +79,7 @@ const CreateRecipe = () => {
             categoryList: selectedCategories,
             ingredientList: selectedIngredients,
             username: username,
-            isPublic: true
+            isPublic: isPublic
         }
         await axios.post("http://localhost:8080/createRecipe",  ingredientData )
             .then(res => console.log(res))
@@ -143,6 +172,13 @@ const CreateRecipe = () => {
                             })
                         }}
                     />
+
+                    <label htmlFor="isPublic">Visibility:</label><br/>
+                    <select id="isPublic" name="isPublic" value={isPublic}
+                            onChange={e => setIsPublic(e.target.value === 'true')}>
+                        <option value={true}>Public</option>
+                        <option value={false}>Private</option>
+                    </select><br/>
                     <input type="submit" disabled={!isFormValid}/>
                 </form>
             </header>
@@ -150,4 +186,4 @@ const CreateRecipe = () => {
     );
 }
 
-export default CreateRecipe;
+export default NutritionistCreateRecipe;

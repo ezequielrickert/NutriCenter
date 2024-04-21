@@ -9,6 +9,7 @@ export { default as DashboardCustomer } from './customer/dashboard/dashboardCust
 
 export { default as SignUpNutritionist } from './nutritionist/signUp/signUpNutritionist';
 export { default as DashboardNutritionist } from './nutritionist/dashboard/dashboardNutritionist';
+export {default as NutritionistRecipeEditor} from './nutritionist/edition/initialEditor';
 
 export { default as SignUpStore } from './store/signUp/signUpStore';
 export { default as DashboardStore } from './store/dashboard/dashboardStore';

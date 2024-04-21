@@ -1,5 +1,4 @@
 package org.example;
-
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import org.example.controller.*;
@@ -19,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import org.example.model.login.LoginData;
 
 public class Application {
 
@@ -28,38 +28,43 @@ public class Application {
     public static void main(String[] args) {
 
         final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
+        final SignUpController signUpController = new SignUpController(entityManagerFactory.createEntityManager());
 
-        Spark.port(8080);
+    Spark.port(8080);
 
-        Spark.options("/*", (request, response) -> {
+      Spark.options("/*", (request, response) -> {
 
-            String accessControlRequestHeaders = request.headers("Access-Control-Request-Headers");
-            if (accessControlRequestHeaders != null) {
-                response.header("Access-Control-Allow-Headers", accessControlRequestHeaders);
-            }
+          String accessControlRequestHeaders = request.headers("Access-Control-Request-Headers");
+          if (accessControlRequestHeaders != null) {
+              response.header("Access-Control-Allow-Headers", accessControlRequestHeaders);
+          }
 
-            String accessControlRequestMethod = request.headers("Access-Control-Request-Method");
-            if (accessControlRequestMethod != null) {
-                response.header("Access-Control-Allow-Methods", accessControlRequestMethod);
-            }
+          String accessControlRequestMethod = request.headers("Access-Control-Request-Method");
+          if (accessControlRequestMethod != null) {
+              response.header("Access-Control-Allow-Methods", accessControlRequestMethod);
+          }
 
-            return "OK";
-        });
+          return "OK";
+      });
 
-        Spark.before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
+      Spark.before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
 
-        // Post to create Customer
-        Spark.post("/createCustomer", (req, res) -> {
-            String body = req.body();
-            Customer newCustomer = gson.fromJson(body, Customer.class);
-            String username = newCustomer.getCustomerName();
-            String email = newCustomer.getCustomerEmail();
-            String password = newCustomer.getCustomerPassword();
-            EntityManager entityManager = entityManagerFactory.createEntityManager();
-            CustomerController customerController = new CustomerController(entityManager);
-            customerController.createClient(username, email, password);
-            return newCustomer;
-        }, gson::toJson);
+      // Post to create Customer
+      Spark.post("/createCustomer", (req, res) -> {
+          String body = req.body();
+          Customer newCustomer = gson.fromJson(body, Customer.class);
+          String username = newCustomer.getCustomerName();
+          if(signUpController.validate(username) != true){
+              res.status(401);
+              return "Username already exists";
+          }
+          String email = newCustomer.getCustomerEmail();
+          String password = newCustomer.getCustomerPassword();
+          EntityManager entityManager = entityManagerFactory.createEntityManager();
+          CustomerController customerController = new CustomerController(entityManager);
+          customerController.createClient(username, email, password);
+          return newCustomer;
+      }, gson::toJson);
 
         // Post to update Customer
         Spark.post("/authenticateUser", (req, res) -> {
@@ -109,6 +114,10 @@ public class Application {
             String body = req.body();
             SuperAdmin superAdmin = gson.fromJson(body, SuperAdmin.class);
             String username = superAdmin.getAdminUsername();
+            if(signUpController.validate(username) != true){
+                res.status(401);
+                return "Username already exists";
+            }
             String password = superAdmin.getAdminPassword();
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             SuperAdminController superAdminController = new SuperAdminController(entityManager);
@@ -154,6 +163,10 @@ public class Application {
             String body = req.body();
             Nutritionist nutritionist = gson.fromJson(body, Nutritionist.class);
             String name = nutritionist.getNutritionistName();
+            if(signUpController.validate(name) != true){
+                res.status(401);
+                return "Username already exists";
+            }
             String mail = nutritionist.getNutritionistEmail();
             String diploma = nutritionist.getEducationDiploma();
             String password = nutritionist.getNutritionistPassword();
@@ -254,6 +267,18 @@ public class Application {
             return result;
         }, gson::toJson);
 
+        Spark.get("/recipes/:username", (req, res) -> {
+            String username = req.params("username");
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            RecipeController recipeController = new RecipeController(entityManager);
+            List<Recipe> recipes = recipeController.getRecipeByUsername(username);
+            System.out.println(recipes);
+            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            String result = gson.toJson(recipes);
+            System.out.println(result);
+            return result;
+        });
+
         Spark.post("/createRecipe", (req, res) -> {
             String body = req.body();
             JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
@@ -268,9 +293,10 @@ public class Application {
 
             String username = gson.fromJson(jsonObject.get("username"), String.class);
             Boolean isPublic = gson.fromJson(jsonObject.get("isPublic"), Boolean.class);
+
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             RecipeController recipeController = new RecipeController(entityManager);
-            recipeController.createRecipe(recipeName, recipeDescription, categoryList, ingredientList);
+            recipeController.createRecipe(recipeName, recipeDescription, categoryList, ingredientList, username, isPublic);
             return req;
         }, gson::toJson);
 
@@ -287,9 +313,12 @@ public class Application {
             Type ingredientListType = new TypeToken<List<Ingredient>>() {}.getType();
             List<Ingredient> ingredientList = gson.fromJson(jsonObject.get("ingredientList"), ingredientListType);
 
+            String username = gson.fromJson(jsonObject.get("username"), String.class);
+            Boolean isPublic = gson.fromJson(jsonObject.get("isPublic"), Boolean.class);
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             RecipeController recipeController = new RecipeController(entityManager);
-            recipeController.updateRecipe(recipe.getRecipeId(), recipeName, recipeDescription, categoryList, ingredientList);
+            recipeController.updateRecipe(recipe.getRecipeId(), recipeName, recipeDescription, categoryList,
+                    ingredientList, username, isPublic);
             return recipe;
         } , gson::toJson);
 
@@ -309,6 +338,10 @@ public class Application {
             String body = req.body();
             Store store = gson.fromJson(body, Store.class);
             String storeName = store.getStoreName();
+            if(signUpController.validate(storeName) != true){
+                res.status(401);
+                return "Username already exists";
+            }
             String storeMail = store.getStoreMail();
             String storePassword = store.getStorePassword();
             EntityManager entityManager = entityManagerFactory.createEntityManager();

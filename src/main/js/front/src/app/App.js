@@ -25,7 +25,8 @@ function App() {
                     <Route path="/dashboardCustomer" element={<DashboardCustomer />} />
 
               <Route path="/signUpNutritionist" element={<SignUpNutritionist />} />
-                <Route path="/dashboardNutritionist" element={<DashboardNutritionist />} />
+              <Route path="/dashboardNutritionist" element={<DashboardNutritionist />} />
+              <Route path="/nutritionistRecipeEditor" element={<NutritionistRecipeEditor />} />
 
               <Route path="/signUpStore" element={<SignUpStore />} />
               <Route path="/dashboardStore" element={<DashboardStore />} />
