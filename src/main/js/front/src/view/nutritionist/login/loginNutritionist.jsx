@@ -21,7 +21,7 @@ const LoginNutritionist = () => {
                     // The token is stored in the Authenticator class along with username
                     localStorage.setItem('token', res.data);
                     localStorage.setItem('username', username);
-                    window.location.href = '/dashboardCustomer';
+                    window.location.href = '/dashboardNutritionist';
                 }
             })
             .catch(err => {

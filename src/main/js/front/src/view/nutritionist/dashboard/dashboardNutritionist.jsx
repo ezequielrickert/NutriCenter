@@ -13,11 +13,11 @@ const DashboardNutritionist = () => {
                 if (response.data === "User is valid") {
                     setIsValidUser(true);
                 } else {
-                    window.location.href = '/loginCustomer';
+                    window.location.href = '/loginNutritionist';
                 }
             } catch (error) {
                 console.error("Error validating user", error);
-                window.location.href = '/loginCustomer';
+                window.location.href = '/loginNutritionist';
             }
         };
 
@@ -32,7 +32,7 @@ const DashboardNutritionist = () => {
     return (
         <div className="App">
             <header className="App-header">
-                <h1>Welcome to the Customer Dashboard</h1>
+                <h1>Welcome to the Nutritionist Dashboard</h1>
                 { /*add dashboard content here*/ }
             </header>
         </div>
