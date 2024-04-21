@@ -20,13 +20,16 @@ public class RecipeRepositoryImpl implements RecipeRepository{
     }
 
     @Override
-    public void addRecipe(String name, String description, List<Category> categoryList, List<Ingredient> ingredientList) {
+    public void addRecipe(String name, String description, List<Category> categoryList,
+                          List<Ingredient> ingredientList, String username, Boolean isPublic) {
         entityManager.getTransaction().begin();
         Recipe recipe = new Recipe();
         recipe.setRecipeName(name);
         recipe.setRecipeDescription(description);
         recipe.setCategoryList(categoryList);
         recipe.setIngredientList(ingredientList);
+        recipe.setUsername(username);
+        recipe.setIsPublic(isPublic);
         entityManager.persist(recipe);
         entityManager.getTransaction().commit();
     }
@@ -40,13 +43,16 @@ public class RecipeRepositoryImpl implements RecipeRepository{
     }
 
     @Override
-    public void updateRecipe(Long recipeId, String name, String description, List<Category> categoryList, List<Ingredient> ingredientList) {
+    public void updateRecipe(Long recipeId, String name, String description, List<Category> categoryList,
+                             List<Ingredient> ingredientList, String username, Boolean isPublic) {
         entityManager.getTransaction().begin();
         Recipe recipe = entityManager.find(Recipe.class, recipeId);
         recipe.setRecipeName(name);
         recipe.setRecipeDescription(description);
         recipe.setCategoryList(categoryList);
         recipe.setIngredientList(ingredientList);
+        recipe.setUsername(username);
+        recipe.setIsPublic(isPublic);
         entityManager.getTransaction().commit();
     }
 
@@ -64,6 +70,18 @@ public class RecipeRepositoryImpl implements RecipeRepository{
         CriteriaQuery<Recipe> cr = cb.createQuery(Recipe.class);
         Root<Recipe> root = cr.from(Recipe.class);
         cr.select(root);
+
+        Query query = entityManager.createQuery(cr);
+        List<Recipe> results = query.getResultList();
+        return results;
+    }
+
+    @Override
+    public List<Recipe> getRecipeByUsername(String username) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Recipe> cr = cb.createQuery(Recipe.class);
+        Root<Recipe> root = cr.from(Recipe.class);
+        cr.select(root).where(cb.equal(root.get("username"), username));
 
         Query query = entityManager.createQuery(cr);
         List<Recipe> results = query.getResultList();

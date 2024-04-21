@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
 import axios from "axios";
 
 const LoginSuperUser = () => {
-
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('')
 
@@ -28,7 +28,6 @@ const LoginSuperUser = () => {
                 alert('Login failed, please try again.')
             })
     }
-
     return (
         <div className="App">
             <header className="App-header">

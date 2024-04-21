@@ -19,12 +19,14 @@ public class RecipeController {
         this.recipeService = new RecipeService(entityManager);
     }
 
-    public void createRecipe(String name, String description, List<Category> categoryList, List<Ingredient> ingredientList) {
-        recipeService.createRecipe(name, description, categoryList, ingredientList);
+    public void createRecipe(String name, String description, List<Category> categoryList,
+                             List<Ingredient> ingredientList, String username, Boolean isPublic) {
+        recipeService.createRecipe(name, description, categoryList, ingredientList, username, isPublic);
     }
 
-    public void updateRecipe(Long recipeId, String name, String description, List<Category> categoryList, List<Ingredient> ingredientList) {
-        recipeService.updateRecipe(recipeId, name, description, categoryList, ingredientList);
+    public void updateRecipe(Long recipeId, String name, String description, List<Category> categoryList,
+                             List<Ingredient> ingredientList, String username, Boolean isPublic) {
+        recipeService.updateRecipe(recipeId, name, description, categoryList, ingredientList, username, isPublic);
     }
 
     public void deleteRecipe(Long recipeId) {
@@ -37,5 +39,9 @@ public class RecipeController {
 
     public List<Recipe> getRecipesOrderedByName() {
         return recipeService.getRecipesOrderedByName();
+    }
+
+    public List<Recipe> getRecipeByUsername(String username) {
+        return recipeService.getRecipeByUsername(username);
     }
 }

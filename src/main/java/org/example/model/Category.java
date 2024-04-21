@@ -11,7 +11,7 @@ public class Category {
 
     @Expose(serialize = true)
     @Id
-    @GeneratedValue(generator = "userGen", strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Expose(serialize = true)

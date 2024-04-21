@@ -4,16 +4,18 @@ import javax.persistence.*;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
+import org.checkerframework.checker.units.qual.C;
 import org.checkerframework.common.aliasing.qual.Unique;
 import org.example.model.Category;
 import org.example.model.Ingredient;
+import org.hibernate.annotations.Columns;
+
 import java.util.List;
 
 @Entity(name = "RECIPE")
 public class Recipe {
-    public Recipe() {
-    }
 
+    public Recipe() {}
 
     @Expose
     @Id
@@ -21,23 +23,46 @@ public class Recipe {
     private Long id;
 
     @Expose
-    @Unique
-    @Column(nullable = false, unique = false)
+    @Column(nullable = false)
     private String recipeName;
 
     @Expose
     @Column
     private String recipeDescription;
 
-    @OneToMany
+    @ManyToMany
     @Expose
     @Column
     private List<Category> categoryList;
 
-    @OneToMany
+    @ManyToMany
     @Expose
     @Column
     private List<Ingredient> ingredientList;
+
+    @Expose
+    @Column
+    private String username;
+
+    @Expose
+    @Column
+    private Boolean isPublic;
+
+    public void setIsPublic(Boolean isPublic) {
+        this.isPublic = isPublic;
+    }
+
+    public Boolean getIsPublic() {
+        return isPublic;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
 
     public void setId(Long id) {
         this.id = id;

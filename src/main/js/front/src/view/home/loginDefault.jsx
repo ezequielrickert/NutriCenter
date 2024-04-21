@@ -14,6 +14,9 @@ const LoginDefault = () => {
             <Link to="/loginStore">
                 <button>Store</button>
             </Link>
+            <Link to="/loginSuperAdmin">
+                <button>SuperAdmin</button>
+            </Link>
         </div>
     );
 }
