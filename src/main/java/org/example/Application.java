@@ -1,6 +1,7 @@
 package org.example;
 
 import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 import org.example.controller.*;
 import org.example.model.*;
 import org.example.model.login.Authenticator;
@@ -13,6 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.lang.reflect.Type;
 import java.util.List;
 import java.util.UUID;
 
@@ -255,6 +257,8 @@ public class Application {
             Type ingredientListType = new TypeToken<List<Ingredient>>() {}.getType();
             List<Ingredient> ingredientList = gson.fromJson(jsonObject.get("ingredientList"), ingredientListType);
 
+            String username = gson.fromJson(jsonObject.get("username"), String.class);
+            Boolean isPublic = gson.fromJson(jsonObject.get("isPublic"), Boolean.class);
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             RecipeController recipeController = new RecipeController(entityManager);
             recipeController.createRecipe(recipeName, recipeDescription, categoryList, ingredientList);
