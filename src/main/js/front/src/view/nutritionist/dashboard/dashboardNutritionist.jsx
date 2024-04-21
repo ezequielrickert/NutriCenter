@@ -14,11 +14,11 @@ const DashboardNutritionist = () => {
                 if (response.data === "User is valid" && userRole === "nutritionist") {
                     setIsValidUser(true);
                 } else {
-                    window.location.href = '/loginNutritionist';
+                    window.location.href = '/universalLogin';
                 }
             } catch (error) {
                 console.error("Error validating user", error);
-                window.location.href = '/loginNutritionist';
+                window.location.href = '/universalLogin';
             }
         };
 

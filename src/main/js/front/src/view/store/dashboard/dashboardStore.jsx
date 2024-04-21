@@ -14,11 +14,11 @@ const DashboardStore = () => {
                 if (response.data === "User is valid" && userRole === "store") {
                     setIsValidUser(true);
                 } else {
-                    window.location.href = '/loginStore';
+                    window.location.href = '/universalLogin';
                 }
             } catch (error) {
                 console.error("Error validating user", error);
-                window.location.href = '/loginStore';
+                window.location.href = '/universalLogin';
             }
         };
 
