@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import axios from 'axios';
 
 const UpdateIngredient = () => {
@@ -83,9 +83,8 @@ const UpdateIngredient = () => {
     return (
         <div className="App">
             <header className="App-header">
-                <h1>Create Ingredient</h1>
+                <h1>Update Ingredient</h1>
                 <form onSubmit={handleSubmit}>
-
                     <label htmlFor="ingredient">Ingredient:</label><br />
                     <select id="ingredient" value={ingredient ? ingredient.ingredientName : ''}
                             onChange={e => setIngredient(ingredients.find(a => a.ingredientName === e.target.value))}
@@ -96,41 +95,45 @@ const UpdateIngredient = () => {
                         ))}
                     </select><br />
 
-                    <label htmlFor="allergy">Allergy:</label><br/>
-                    <select id="allergy" value={allergy ? allergy.allergyName : ''}
-                            onChange={e => setAllergy(allergies.find(a => a.allergyName === e.target.value))}
-                            style={{width: '200px'}}>
-                        <option value="">Select an allergy</option>
-                        {allergies.map((allergy, index) => (
-                            <option key={index} value={allergy.allergyName}>{allergy.allergyName}</option>
-                        ))}
-                    </select><br/>
+                    {ingredient && (
+                        <>
+                            <label htmlFor="allergy">Allergy:</label><br/>
+                            <select id="allergy" value={allergy ? allergy.allergyName : ''}
+                                    onChange={e => setAllergy(allergies.find(a => a.allergyName === e.target.value))}
+                                    style={{width: '200px'}}>
+                                <option value="">Select an allergy</option>
+                                {allergies.map((allergy, index) => (
+                                    <option key={index} value={allergy.allergyName}>{allergy.allergyName}</option>
+                                ))}
+                            </select><br/>
 
-                    <label htmlFor="proteins">Proteins:</label><br/>
-                    <input type="number" id="proteins" name="proteins" value={proteins}
-                           onChange={e => setProteins(e.target.value)}/><br/>
+                            <label htmlFor="proteins">Proteins:</label><br/>
+                            <input type="number" id="proteins" name="proteins" value={proteins}
+                                   onChange={e => setProteins(e.target.value)} min="0"/><br/>
 
-                    <label htmlFor="sodium">Sodium:</label><br/>
-                    <input type="number" id="sodium" name="sodium" value={sodium}
-                           onChange={e => setSodium(e.target.value)}/><br/>
+                            <label htmlFor="sodium">Sodium:</label><br/>
+                            <input type="number" id="sodium" name="sodium" value={sodium}
+                                   onChange={e => setSodium(e.target.value)} min="0"/><br/>
 
-                    <label htmlFor="calories">Calories:</label><br/>
-                    <input type="number" id="calories" name="calories" value={calories}
-                           onChange={e => setCalories(e.target.value)}/><br/>
+                            <label htmlFor="calories">Calories:</label><br/>
+                            <input type="number" id="calories" name="calories" value={calories}
+                                   onChange={e => setCalories(e.target.value)} min="0"/><br/>
 
-                    <label htmlFor="totalFat">Total Fat:</label><br/>
-                    <input type="text" id="totalFat" name="totalFat" value={totalFat}
-                           onChange={e => setTotalFat(e.target.value)}/><br/>
+                            <label htmlFor="totalFat">Total Fat:</label><br/>
+                            <input type="number" id="totalFat" name="totalFat" value={totalFat}
+                                   onChange={e => setTotalFat(e.target.value)} min="0"/><br/>
 
-                    <label htmlFor="cholesterol">Cholesterol:</label><br/>
-                    <input type="number" id="cholesterol" name="cholesterol" value={cholesterol}
-                           onChange={e => setCholesterol(e.target.value)}/><br/>
+                            <label htmlFor="cholesterol">Cholesterol:</label><br/>
+                            <input type="number" id="cholesterol" name="cholesterol" value={cholesterol}
+                                   onChange={e => setCholesterol(e.target.value)} min="0"/><br/>
 
-                    <label htmlFor="totalCarbohydrate">Total Carbohydrate:</label><br/>
-                    <input type="numebr" id="totalCarbohydrate" name="totalCarbohydrate" value={totalCarbohydrate}
-                           onChange={e => setTotalCarbohydrate(e.target.value)}/><br/>
+                            <label htmlFor="totalCarbohydrate">Total Carbohydrate:</label><br/>
+                            <input type="number" id="totalCarbohydrate" name="totalCarbohydrate" value={totalCarbohydrate}
+                                   onChange={e => setTotalCarbohydrate(e.target.value)} min="0"/><br/>
 
-                    <input type="submit" disabled={!isFormValid}/>
+                            <input type="submit" disabled={!isFormValid}/>
+                        </>
+                    )}
                 </form>
             </header>
         </div>
