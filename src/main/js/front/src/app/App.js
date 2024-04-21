@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
+import { UniversalLogin} from "../view";
 import { InitialPage, LoginDefault, SignUpDefault } from '../view';
 import { LoginCustomer, SignUpCustomer, DashboardCustomer } from '../view';
 import { LoginNutritionist, SignUpNutritionist, DashboardNutritionist } from '../view';
@@ -19,6 +20,8 @@ function App() {
 
                     <Route path="/defaultLogin" element={<LoginDefault />} />
                     <Route path="/defaultSignUp" element={<SignUpDefault />} />
+
+                    <Route path="/universalLogin" element={<UniversalLogin />} />
 
                     <Route path="/loginCustomer" element={<LoginCustomer />} />
                     <Route path="/signUpCustomer" element={<SignUpCustomer />} />

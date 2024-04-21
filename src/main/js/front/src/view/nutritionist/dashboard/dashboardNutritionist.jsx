@@ -5,12 +5,13 @@ const DashboardNutritionist = () => {
     const [isValidUser, setIsValidUser] = useState(false);
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
+    const userRole = localStorage.getItem('role');
 
     useEffect(() => {
         const validateUser = async () => {
             try {
                 const response = await axios.post("http://localhost:8080/validateUser", { username, token });
-                if (response.data === "User is valid") {
+                if (response.data === "User is valid" && userRole === "nutritionist") {
                     setIsValidUser(true);
                 } else {
                     window.location.href = '/loginNutritionist';

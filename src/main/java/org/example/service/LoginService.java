@@ -56,4 +56,30 @@ public class LoginService {
         }
         return null;
     }
+
+    public String fetchUserRol(String username) {
+        try {
+            Customer customer = customerRepository.fetchCustomerByUsername(username);
+            if (customer != null) {
+                return "customer";
+            }
+            Nutritionist nutritionist = nutritionistRepository.fetchNutritionistByUsername(username);
+            if (nutritionist != null) {
+                return "nutritionist";
+            }
+
+            Store store = storeRepository.fetchStoreByName(username);
+            if (store != null) {
+                return "store";
+            }
+
+            SuperAdmin admin = superAdminRepository.fetchSuperAdminByName(username);
+            if (admin != null) {
+                return "superAdmin";
+            }
+        } catch (Exception e) {
+            return null;
+        }
+        return null;
+    }
 }
