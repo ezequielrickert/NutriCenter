@@ -1,12 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from "axios";
 import CreateIngredient from '../ingredientActions/createIngredient';
 import UpdateIngredient from '../ingredientActions/updateIngredient';
 import DeleteIngredient from '../ingredientActions/deleteIngredient';
-import axios from "axios";
-import React, { useState } from 'react';
 import CreateRecipe from '../recipeActions/createRecipe';
-import UpdateIngredient from '../recipeActions/updateRecipe';
-import DeleteIngredient from '../recipeActions/deleteRecipe';
+import UpdateRecipe from '../recipeActions/updateRecipe';
+import DeleteRecipe from '../recipeActions/deleteRecipe';
 
 const RecipeEditor = () => {
     const [operation, setOperation] = useState('');
