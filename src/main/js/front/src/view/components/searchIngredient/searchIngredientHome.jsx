@@ -22,12 +22,13 @@ const SearchIngredientPage = () => {
     }, [searchTerm]);
 
     const handleSearchChange = (event, { newValue }) => {
-        setSearchTerm(newValue);
+        setSearchTerm(newValue.trim());
     };
 
     const handleSearchClick = () => {
-        if (searchTerm) {
-            navigate(`/ingredientResult/${searchTerm}`);
+        const trimmedSearchTerm = searchTerm.trim();
+        if (trimmedSearchTerm) {
+            navigate(`/ingredientResult/${trimmedSearchTerm}`);
         }
     };
 
@@ -63,7 +64,9 @@ const SearchIngredientPage = () => {
                     />
                     {searchTerm && <button className="clear-button" onClick={handleClearClick}>X</button>}
                 </div>
-                <button className={`search-button ${searchTerm ? '' : 'search-button--disabled'}`} onClick={handleSearchClick}>Search</button>
+                <button className={`search-button ${searchTerm ? '' : 'search-button--disabled'}`}
+                        onClick={handleSearchClick}>Search
+                </button>
             </div>
             <Footer />
         </div>
