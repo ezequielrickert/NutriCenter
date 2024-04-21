@@ -5,7 +5,7 @@ const InitialPage = () => {
     return (
         <div>
             <h1>Welcome to our site!</h1>
-            <Link to="/defaultLogin">
+            <Link to="/universalLogin">
                 <button>Login</button>
             </Link>
             <Link to="/defaultSignUp">

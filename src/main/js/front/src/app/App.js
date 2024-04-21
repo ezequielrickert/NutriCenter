@@ -1,11 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { InitialPage, LoginDefault, SignUpDefault } from '../view';
-import { LoginCustomer, SignUpCustomer, DashboardCustomer } from '../view';
-import { LoginNutritionist, SignUpNutritionist, DashboardNutritionist, NutritionistRecipeEditor } from '../view';
-import { LoginStore, SignUpStore, DashboardStore } from '../view';
-import { LoginSuperAdmin, InitialEditor, IngredientEditor, RecipeEditor } from '../view';
+import { UniversalLogin} from "../view";
+import { InitialPage, SignUpDefault } from '../view';
+import { SignUpCustomer, DashboardCustomer } from '../view';
+import { SignUpNutritionist, DashboardNutritionist } from '../view';
+import { SignUpStore, DashboardStore } from '../view';
+import { InitialEditor, IngredientEditor, RecipeEditor } from '../view';
 import { SearchIngredientPage, IngredientResult, IngredientInfo } from '../view';
 import { AccountSettingsPage, Logout, Delete } from '../view';
 
@@ -17,23 +18,19 @@ function App() {
 
                     <Route path="/" element={<InitialPage />} />
 
-                    <Route path="/defaultLogin" element={<LoginDefault />} />
                     <Route path="/defaultSignUp" element={<SignUpDefault />} />
+                    <Route path="/universalLogin" element={<UniversalLogin />} />
 
-                    <Route path="/loginCustomer" element={<LoginCustomer />} />
                     <Route path="/signUpCustomer" element={<SignUpCustomer />} />
                     <Route path="/dashboardCustomer" element={<DashboardCustomer />} />
 
-              <Route path="/loginNutritionist" element={<LoginNutritionist />} />
               <Route path="/signUpNutritionist" element={<SignUpNutritionist />} />
               <Route path="/dashboardNutritionist" element={<DashboardNutritionist />} />
               <Route path="/nutritionistRecipeEditor" element={<NutritionistRecipeEditor />} />
 
-              <Route path="/loginStore" element={<LoginStore />} />
               <Route path="/signUpStore" element={<SignUpStore />} />
               <Route path="/dashboardStore" element={<DashboardStore />} />
 
-                    <Route path="/loginSuperAdmin" element={<LoginSuperAdmin />} />
                     <Route path="/initialEditor" element={<InitialEditor />} />
                     <Route path="/ingredientEditor" element={<IngredientEditor />} />
                     <Route path="/recipeEditor" element={<RecipeEditor />} />

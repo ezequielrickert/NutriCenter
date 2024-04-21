@@ -14,7 +14,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import org.example.model.login.LoginData;
 
@@ -64,7 +66,7 @@ public class Application {
           return newCustomer;
       }, gson::toJson);
 
-
+        // Post to update Customer
         Spark.post("/authenticateUser", (req, res) -> {
             String body = req.body();
             LoginData loginData = gson.fromJson(body, LoginData.class);
@@ -78,7 +80,14 @@ public class Application {
                 // if the user is found and the password matches, return a token
                 String token = UUID.randomUUID().toString();
                 Authenticator.storeToken(username, token);
-                return token;
+                Map<String, String> responseMap = new HashMap<>();
+                // Saves the token asigned to the user
+                responseMap.put("token", token);
+                // Saves the name of the user
+                responseMap.put("username", username);
+                // Saves the role of the user
+                responseMap.put("role", loginController.fetchRole(username));
+                return responseMap;
             } else {
                 // if the username is not found or the password does not match, return an error message
                 res.status(401);

@@ -21,4 +21,8 @@ public class LoginController {
     public String fetchUser(String username) {
         return loginService.fetchUser(username);
     }
+
+    public String fetchRole(String username) {
+        return loginService.fetchUserRol(username);
+    }
 }
