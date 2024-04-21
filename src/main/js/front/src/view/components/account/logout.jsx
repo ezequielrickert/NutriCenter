@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import Footer from '../footer';
 
 const LogoutPage = () => {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
         // Aquí iría la lógica para eliminar la cuenta
-        console.log(`Email: ${email}, Password: ${password}`);
+        console.log(`Username: ${username}, Password: ${password}`);
     }
 
     return (
@@ -17,7 +17,7 @@ const LogoutPage = () => {
             <form onSubmit={handleSubmit}>
                 <label>
                     Email:
-                    <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
+                    <input type="username" value={username} onChange={e => setUsername(e.target.value)} required />
                 </label>
                 <label>
                     Password:
