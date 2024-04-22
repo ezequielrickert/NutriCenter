@@ -62,6 +62,7 @@ const UpdateRecipe = () => {
         setSelectedIngredients(selectedOption.value.ingredientList);
     };
 
+
     const handleSubmit = async (event) => {
         event.preventDefault()
 
@@ -70,7 +71,7 @@ const UpdateRecipe = () => {
             recipeName: name,
             recipeDescription: description,
             categoryList: selectedCategories,
-            ingredientList: selectedIngredients
+            ingredientList: selectedIngredients,
         }
         await axios.post("http://localhost:8080/updateRecipe",  ingredientData )
             .then(res => console.log(res))

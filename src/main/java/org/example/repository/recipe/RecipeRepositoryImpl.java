@@ -44,15 +44,18 @@ public class RecipeRepositoryImpl implements RecipeRepository{
 
     @Override
     public void updateRecipe(Long recipeId, String name, String description, List<Category> categoryList,
-                             List<Ingredient> ingredientList, String username, Boolean isPublic) {
+                             List<Ingredient> ingredientList) {
         entityManager.getTransaction().begin();
         Recipe recipe = entityManager.find(Recipe.class, recipeId);
+        String username = recipe.getUsername();
+        Boolean isPublic = recipe.getIsPublic();
         recipe.setRecipeName(name);
         recipe.setRecipeDescription(description);
         recipe.setCategoryList(categoryList);
         recipe.setIngredientList(ingredientList);
-        recipe.setUsername(username);
         recipe.setIsPublic(isPublic);
+        recipe.setUsername(username);
+        entityManager.persist(recipe);
         entityManager.getTransaction().commit();
     }
 

@@ -313,12 +313,10 @@ public class Application {
             Type ingredientListType = new TypeToken<List<Ingredient>>() {}.getType();
             List<Ingredient> ingredientList = gson.fromJson(jsonObject.get("ingredientList"), ingredientListType);
 
-            String username = gson.fromJson(jsonObject.get("username"), String.class);
-            Boolean isPublic = gson.fromJson(jsonObject.get("isPublic"), Boolean.class);
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             RecipeController recipeController = new RecipeController(entityManager);
             recipeController.updateRecipe(recipe.getRecipeId(), recipeName, recipeDescription, categoryList,
-                    ingredientList, username, isPublic);
+                    ingredientList);
             return recipe;
         } , gson::toJson);
 

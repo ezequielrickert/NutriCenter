@@ -14,7 +14,7 @@ public interface RecipeRepository {
     public Recipe getRecipe(Long recipeId);
 
     public void updateRecipe(Long recipeId, String name, String description, List<Category> categoryList,
-                             List<Ingredient> ingredientList, String username, Boolean isPublic);
+                             List<Ingredient> ingredientList);
 
     public void deleteRecipe(Long recipeId);
 
