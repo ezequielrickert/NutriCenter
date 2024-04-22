@@ -72,6 +72,8 @@ const CreateIngredient = () => {
                         ))}
                     </select><br/>
 
+                    <h3>Content per 100 grams</h3>
+
                     <label htmlFor="proteins">Proteins:</label><br/>
                     <input type="number" id="proteins" name="proteins" value={proteins}
                            onChange={e => setProteins(e.target.value)} min="0"/><br/>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import {NutritionistRecipeEditor, UniversalLogin} from "../view";
+import { NutritionistRecipeEditor, UniversalLogin } from "../view";
 import { InitialPage, SignUpDefault } from '../view';
 import { SignUpCustomer, DashboardCustomer } from '../view';
 import { SignUpNutritionist, DashboardNutritionist } from '../view';
@@ -24,12 +24,12 @@ function App() {
                     <Route path="/signUpCustomer" element={<SignUpCustomer />} />
                     <Route path="/dashboardCustomer" element={<DashboardCustomer />} />
 
-              <Route path="/signUpNutritionist" element={<SignUpNutritionist />} />
-              <Route path="/dashboardNutritionist" element={<DashboardNutritionist />} />
-              <Route path="/nutritionistRecipeEditor" element={<NutritionistRecipeEditor />} />
+                    <Route path="/signUpNutritionist" element={<SignUpNutritionist />} />
+                    <Route path="/dashboardNutritionist" element={<DashboardNutritionist />} />
+                    <Route path="/nutritionistRecipeEditor" element={<NutritionistRecipeEditor />} />
 
-              <Route path="/signUpStore" element={<SignUpStore />} />
-              <Route path="/dashboardStore" element={<DashboardStore />} />
+                    <Route path="/signUpStore" element={<SignUpStore />} />
+                    <Route path="/dashboardStore" element={<DashboardStore />} />
 
                     <Route path="/initialEditor" element={<InitialEditor />} />
                     <Route path="/ingredientEditor" element={<IngredientEditor />} />
