@@ -107,6 +107,8 @@ const UpdateIngredient = () => {
                                 ))}
                             </select><br/>
 
+                            <h3>Content per 100 grams</h3>
+
                             <label htmlFor="proteins">Proteins:</label><br/>
                             <input type="number" id="proteins" name="proteins" value={proteins}
                                    onChange={e => setProteins(e.target.value)} min="0"/><br/>
@@ -128,7 +130,8 @@ const UpdateIngredient = () => {
                                    onChange={e => setCholesterol(e.target.value)} min="0"/><br/>
 
                             <label htmlFor="totalCarbohydrate">Total Carbohydrate:</label><br/>
-                            <input type="number" id="totalCarbohydrate" name="totalCarbohydrate" value={totalCarbohydrate}
+                            <input type="number" id="totalCarbohydrate" name="totalCarbohydrate"
+                                   value={totalCarbohydrate}
                                    onChange={e => setTotalCarbohydrate(e.target.value)} min="0"/><br/>
 
                             <input type="submit" disabled={!isFormValid}/>

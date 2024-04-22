@@ -23,13 +23,14 @@ const IngredientInfo = () => {
     return (
         <div>
             <h1>{ingredient.ingredientName}</h1>
+            <h3>Content per 100 grams</h3>
             <p>Proteins: {ingredient.proteins}</p>
             <p>Sodium: {ingredient.sodium}</p>
             <p>Calories: {ingredient.calories}</p>
             <p>Total Fat: {ingredient.totalFat}</p>
             <p>Cholesterol: {ingredient.cholesterol}</p>
             <p>Total Carbohydrate: {ingredient.totalCarbohydrate}</p>
-            <Footer />
+            <Footer/>
         </div>
     );
 }
