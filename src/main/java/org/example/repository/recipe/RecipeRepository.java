@@ -21,4 +21,6 @@ public interface RecipeRepository {
     List<Recipe> getRecipesOrderedByName();
 
     List<Recipe> getRecipeByUsername(String username);
+
+    List<Recipe> getRecipeByIngredient(Long ingredientId);
 }

@@ -3,6 +3,7 @@ package org.example.controller;
 import org.example.model.Allergy;
 import org.example.model.Ingredient;
 import org.example.repository.ingredient.IngredientRepositoryImp;
+import org.example.service.IngredientService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -12,18 +13,18 @@ import java.util.List;
 
 public class IngredientController {
 
-    IngredientRepositoryImp ingredientRepository;
+    IngredientService ingredientService;
 
     public IngredientController(EntityManager entityManager) {
-        ingredientRepository = new IngredientRepositoryImp(entityManager);
+        ingredientService = new IngredientService(entityManager);
     }
 
     public void createIngredient(String name, Allergy allergy, int proteins, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate){
-        ingredientRepository.createIngredient(name, allergy, proteins, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
+        ingredientService.createIngredient(name, allergy, proteins, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
     }
 
     public void readIngredient(long ingredientId) {
-        Ingredient ingredient = ingredientRepository.readIngredient(ingredientId);
+        Ingredient ingredient = ingredientService.readIngredient(ingredientId);
         if (ingredient != null) {
             System.out.println("Ingredient ID: " + ingredient.getIngredientId());
             System.out.println("Ingredient Name: " + ingredient.getIngredientName());
@@ -33,27 +34,27 @@ public class IngredientController {
     }
 
     public void updateIngredient(Long ingredientId, Allergy allergy, int proteins, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate){
-        ingredientRepository.updateIngredient(ingredientId, allergy, proteins, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
+        ingredientService.updateIngredient(ingredientId, allergy, proteins, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
     }
 
     public void deleteIngredient(Long ingredientId){
-        ingredientRepository.deleteIngredient(ingredientId);
+        ingredientService.deleteIngredient(ingredientId);
     }
 
     public List<Ingredient> getIngredientsOrderedByName() {
-        List<Ingredient> result = ingredientRepository.getAll();
+        List<Ingredient> result = ingredientService.getAll();
         return result;
     }
 
     public List<Ingredient> searchIngredientsByName(String searchTerm) {
-        return ingredientRepository.searchIngredientsByName(searchTerm);
+        return ingredientService.searchIngredientsByName(searchTerm);
     }
 
     public Ingredient getIngredientByName(String ingredientName) {
-        return ingredientRepository.getIngredientByName(ingredientName);
+        return ingredientService.getIngredientByName(ingredientName);
     }
 
     public List<Ingredient> getIngredientsBeginningWith(String beginning) {
-        return ingredientRepository.getIngredientsBeginningWith(beginning);
+        return ingredientService.getIngredientsBeginningWith(beginning);
     }
 }

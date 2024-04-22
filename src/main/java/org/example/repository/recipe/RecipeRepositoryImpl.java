@@ -6,6 +6,7 @@ import org.example.model.Recipe;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -90,4 +91,15 @@ public class RecipeRepositoryImpl implements RecipeRepository{
         List<Recipe> results = query.getResultList();
         return results;
     }
+
+    @Override
+    public List<Recipe> getRecipeByIngredient(Long ingredientId) {
+        String jpql = "SELECT r FROM RECIPE r JOIN r.ingredientList i WHERE i.id = :ingredientId";
+        TypedQuery<Recipe> query = entityManager.createQuery(jpql, Recipe.class);
+        query.setParameter("ingredientId", ingredientId);
+        List<Recipe> results = query.getResultList();
+        return results;
+    }
+
+
 }
