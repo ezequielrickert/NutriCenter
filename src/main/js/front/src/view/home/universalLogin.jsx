@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import {Link} from "react-router-dom";
 
 const UniversalLogin = () => {
     const [username, setUsername] = useState('');
@@ -29,7 +30,7 @@ const UniversalLogin = () => {
                         window.location.href = '/dashboardStore';
                     }
                     else if(res.data.role === 'superAdmin'){
-                        window.location.href = '/dashboardAdmin';
+                        window.location.href = '/initialEditor';
                     }
                     else {
                         alert('Invalid role: ' + res.data.role);
@@ -57,6 +58,9 @@ const UniversalLogin = () => {
                 </label>
                 <input type="submit" value="Login" />
             </form>
+            <div>
+                <Link to="/">Go Back</Link> {/* Botón de regreso */}
+            </div>
         </div>
     );
 }

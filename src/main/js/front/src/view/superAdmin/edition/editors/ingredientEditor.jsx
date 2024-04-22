@@ -3,6 +3,7 @@ import CreateIngredient from '../ingredientActions/createIngredient';
 import UpdateIngredient from '../ingredientActions/updateIngredient';
 import DeleteIngredient from '../ingredientActions/deleteIngredient';
 import axios from "axios";
+import Footer from "../../../components/footer";
 
 const IngredientEditor = () => {
     const [operation, setOperation] = useState('');
@@ -55,7 +56,7 @@ const IngredientEditor = () => {
     }
 
     return (
-        <div>
+        <div style={{marginBottom: '20px'}}>
             <h1>Choose your operation</h1>
             <select value={operation} onChange={handleSelectChange}>
                 <option value="">--Please choose an option--</option>
@@ -64,6 +65,7 @@ const IngredientEditor = () => {
                 <option value="delete">Delete</option>
             </select>
             {OperationComponent && <OperationComponent />}
+            <Footer />
         </div>
     );
 }

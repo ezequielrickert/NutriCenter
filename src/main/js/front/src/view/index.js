@@ -1,17 +1,13 @@
 export { default as InitialPage } from './home/initial';
 
-export { default as UniversalLogin } from './universalLogin/universalLogin';
-
+export { default as UniversalLogin } from './home/universalLogin';
 export { default as SignUpDefault } from './home/signUpDefault';
 
-export { default as SignUpCustomer } from './customer/signUp/signUpCustomer';
 export { default as DashboardCustomer } from './customer/dashboard/dashboardCustomer';
 
-export { default as SignUpNutritionist } from './nutritionist/signUp/signUpNutritionist';
 export { default as DashboardNutritionist } from './nutritionist/dashboard/dashboardNutritionist';
 export { default as NutritionistRecipeEditor } from './nutritionist/edition/initialEditor';
 
-export { default as SignUpStore } from './store/signUp/signUpStore';
 export { default as DashboardStore } from './store/dashboard/dashboardStore';
 
 export { default as InitialEditor } from './superAdmin/edition/initialEditor';
@@ -24,4 +20,3 @@ export { default as IngredientInfo } from './components/searchIngredient/ingredi
 
 export { default as AccountSettingsPage } from './components/account/accountSelection';
 export { default as Logout } from './components/account/logout';
-export { default as Delete } from './components/account/delete';

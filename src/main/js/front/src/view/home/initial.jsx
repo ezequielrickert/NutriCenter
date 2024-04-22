@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const InitialPage = () => {
     return (
         <div>
-            <h1>Welcome to our site!</h1>
+            <h1>Welcome to Nutricenter!</h1>
             <Link to="/universalLogin">
                 <button>Login</button>
             </Link>

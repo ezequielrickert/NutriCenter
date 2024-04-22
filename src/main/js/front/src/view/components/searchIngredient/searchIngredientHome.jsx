@@ -6,11 +6,38 @@ import './SearchIngredientPage.css';
 import Footer from '../footer';
 
 const SearchIngredientPage = () => {
+    const [isValidUser, setIsValidUser] = useState(false);
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
+    const userRole = localStorage.getItem('role');
     const [searchTerm, setSearchTerm] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
+        const validateUser = async () => {
+            try {
+                const response = await axios.post("http://localhost:8080/validateUser", { username, token });
+                if (response.data === "User is valid" && ((userRole === "nutritionist") || (userRole === "superAdmin") ||
+                    (userRole === "customer") || (userRole === "store"))) {
+                    setIsValidUser(true);
+                } else {
+                    window.location.href = '/universalLogin';
+                }
+            } catch (error) {
+                console.error("Error validating user", error);
+                window.location.href = '/universalLogin';
+            }
+        };
+
+        validateUser();
+    }, [token, username]);
+
+    useEffect(() => {
+        if (!isValidUser) {
+            return;
+        }
+
         const fetchIngredients = async () => {
             if (searchTerm) {
                 const results = await axios.get(`http://localhost:8080/ingredients/begins/${searchTerm}`);
@@ -19,7 +46,7 @@ const SearchIngredientPage = () => {
         };
 
         fetchIngredients();
-    }, [searchTerm]);
+    }, [searchTerm, isValidUser]);
 
     const handleSearchChange = (event, { newValue }) => {
         setSearchTerm(newValue.trim());
@@ -48,6 +75,10 @@ const SearchIngredientPage = () => {
         onChange: handleSearchChange,
         onKeyDown: handleKeyDown
     };
+
+    if (!isValidUser) {
+        return null;
+    }
 
     return (
         <div className="container">

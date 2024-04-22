@@ -3,13 +3,13 @@ import axios from 'axios';
 
 const SignUpNutritionist =  () => {
 
-    const [name, setUsername] = useState('');
+    const [username, setUsername] = useState('');
     const [mail, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [diploma, setDiploma] = useState('')
 
     const signUpData = {
-        nutritionistName: name,
+        nutritionistName: username,
         nutritionistEmail: mail,
         nutritionistPassword: password,
         educationDiploma: diploma
@@ -18,8 +18,26 @@ const SignUpNutritionist =  () => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         await axios.post("http://localhost:8080/createNutritionist", signUpData)
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
+            .then(async res => {
+                await axios.post("http://localhost:8080/authenticateUser", {username, password})
+                    .then(res => {
+                        if (res.status === 200) {
+                            // If the login is successful, store the token, username and rol
+                            localStorage.setItem('token', res.data.token);
+                            localStorage.setItem('username', res.data.username);
+                            localStorage.setItem('role', res.data.role);
+                            window.location.href = '/dashboardNutritionist';
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        alert('SignUp failed, please try again.')
+                    })
+            })
+            .catch(err => {
+                console.log(err);
+                alert('Username already used.')
+            })
     }
 
     return (
@@ -28,12 +46,12 @@ const SignUpNutritionist =  () => {
                 <h1>Nutritionist SignUp</h1>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="username"> Username:</label><br/>
-                    <input type="text" id="username" name="username" value={name}
+                    <input type="text" id="username" name="username" value={username}
                            onChange={e => setUsername(e.target.value)}/><br/>
                     <label htmlFor="email">Enter eMail:</label><br/>
-                    <input type="text" id="email" name="email" value={mail}
+                    <input type="email" id="email" name="email" value={mail}
                            onChange={e => setEmail(e.target.value)}/><br/>
-                    <label htmlFor="email">Enter password:</label><br/>
+                    <label htmlFor="text">Enter password:</label><br/>
                     <input type="text" id="password" name="password" value={password}
                            onChange={e => setPassword(e.target.value)}/><br/>
                     <label htmlFor="diploma">Enter diploma:</label><br/>
