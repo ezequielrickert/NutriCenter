@@ -14,6 +14,9 @@ const DefaultSignUp = () => {
             <Link to="/signUpStore">
                 <button>Store</button>
             </Link>
+            <div>
+                <Link to="/">Go Back</Link> {/* Botón de regreso */}
+            </div>
         </div>
     );
 }

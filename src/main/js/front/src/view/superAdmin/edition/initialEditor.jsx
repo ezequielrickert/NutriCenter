@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
+import Footer from "../../components/footer";
 
 const InitialEditor = () => {
 
@@ -33,7 +34,7 @@ const InitialEditor = () => {
     }
 
     return (
-        <div>
+        <div style={{marginBottom: '20px'}}>
             <h1>Welcome Super Admin!</h1>
             <h2>Choose one to edit</h2>
             <Link to="/ingredientEditor">
@@ -42,6 +43,7 @@ const InitialEditor = () => {
             <Link to="/recipeEditor">
                 <button>RECIPE EDITOR</button>
             </Link>
+            <Footer />
         </div>
     );
 }

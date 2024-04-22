@@ -3,6 +3,7 @@ import axios from "axios";
 import CreateRecipe from '../recipeActions/createRecipe';
 import UpdateRecipe from '../recipeActions/updateRecipe';
 import DeleteRecipe from '../recipeActions/deleteRecipe';
+import Footer from "../../../components/footer";
 
 const RecipeEditor = () => {
     const [operation, setOperation] = useState('');
@@ -55,7 +56,7 @@ const RecipeEditor = () => {
     }
 
     return (
-        <div>
+        <div style={{marginBottom: '20px'}}>
             <h1>Choose your operation</h1>
             <select value={operation} onChange={handleSelectChange}>
                 <option value="">--Please choose an option--</option>
@@ -64,6 +65,7 @@ const RecipeEditor = () => {
                 <option value="delete">Delete</option>
             </select>
             {OperationComponent && <OperationComponent />}
+            <Footer />
         </div>
     );
 }
