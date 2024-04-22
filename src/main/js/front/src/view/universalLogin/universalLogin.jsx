@@ -28,7 +28,7 @@ const UniversalLogin = () => {
                     else if(res.data.role === 'store'){
                         window.location.href = '/dashboardStore';
                     }
-                    else if(res.data.role === 'admin'){
+                    else if(res.data.role === 'superAdmin'){
                         window.location.href = '/dashboardAdmin';
                     }
                     else {
