@@ -8,7 +8,7 @@ import { SignUpNutritionist, DashboardNutritionist } from '../view';
 import { SignUpStore, DashboardStore } from '../view';
 import { InitialEditor, IngredientEditor, RecipeEditor } from '../view';
 import { SearchIngredientPage, IngredientResult, IngredientInfo } from '../view';
-import { AccountSettingsPage, Logout, Delete } from '../view';
+import { AccountSettingsPage, Logout } from '../view';
 
 function App() {
     return (
@@ -41,7 +41,6 @@ function App() {
 
                     <Route path={"/accountSelection"} element={<AccountSettingsPage />} />
                     <Route path="/logout" element={<Logout />} />
-                    <Route path={"/delete"} element={<Delete />} />
 
                 </Routes>
             </div>

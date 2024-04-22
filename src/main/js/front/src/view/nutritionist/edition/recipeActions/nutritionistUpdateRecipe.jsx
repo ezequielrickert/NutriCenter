@@ -154,85 +154,89 @@ const NutritionistUpdateRecipe = () => {
                         }
                     />
 
-                    <label htmlFor="ingredientName">Recipe Name:</label><br/>
-                    <input type="text" id="ingredientName" name="ingredientName" value={name}
-                           onChange={e => setName(e.target.value)}/><br/>
+                    {selectedRecipe && (
+                        <>
+                            <label htmlFor="ingredientName">Recipe Name:</label><br/>
+                            <input type="text" id="ingredientName" name="ingredientName" value={name}
+                                   onChange={e => setName(e.target.value)}/><br/>
 
-                    <label htmlFor="description">Description:</label><br/>
-                    <input type="text" id="description" name="description" value={description}
-                           onChange={e => setDescription(e.target.value)}/>
-                    <br/>
-                    <h2>Choose categories:</h2>
-                    <ReactSelect
-                        isMulti
-                        options={categoryOptions}
-                        value={selectedCategories.map(category => ({value: category, label: category.categoryName}))}
-                        onChange={selectedOptions => setSelectedCategories(selectedOptions.map(option => option.value))}
-                        styles={{
-                            control: (base) => ({
-                                ...base,
-                                width: '500px' // Adjust this value as needed
-                            }),
-                            multiValue: (base) => ({
-                                ...base,
-                                backgroundColor: 'white',
-                                color: 'black',
-                                fontSize: 'small'
-                            }),
-                            multiValueLabel: (base) => ({
-                                ...base,
-                                backgroundColor: 'white',
-                                color: 'black',
-                                fontSize: 'small'
-                            }),
-                            option: (base) => ({
-                                ...base,
-                                color: 'black',
-                                fontSize: 'small'
-                            })
-                        }}
-                    />
+                            <label htmlFor="description">Description:</label><br/>
+                            <input type="text" id="description" name="description" value={description}
+                                   onChange={e => setDescription(e.target.value)}/>
+                            <br/>
+                            <h2>Choose categories:</h2>
+                            <ReactSelect
+                                isMulti
+                                options={categoryOptions}
+                                value={selectedCategories.map(category => ({value: category, label: category.categoryName}))}
+                                onChange={selectedOptions => setSelectedCategories(selectedOptions.map(option => option.value))}
+                                styles={{
+                                    control: (base) => ({
+                                        ...base,
+                                        width: '500px' // Adjust this value as needed
+                                    }),
+                                    multiValue: (base) => ({
+                                        ...base,
+                                        backgroundColor: 'white',
+                                        color: 'black',
+                                        fontSize: 'small'
+                                    }),
+                                    multiValueLabel: (base) => ({
+                                        ...base,
+                                        backgroundColor: 'white',
+                                        color: 'black',
+                                        fontSize: 'small'
+                                    }),
+                                    option: (base) => ({
+                                        ...base,
+                                        color: 'black',
+                                        fontSize: 'small'
+                                    })
+                                }}
+                            />
 
-                    <h2>Choose ingredients:</h2>
-                    <ReactSelect
-                        isMulti
-                        options={ingredientOptions}
-                        value={selectedIngredients.map(ingredient => ({
-                            value: ingredient,
-                            label: ingredient.ingredientName
-                        }))}
-                        onChange={selectedOptions => setSelectedIngredients(selectedOptions.map(option => option.value))}
-                        styles={{
-                            control: (base) => ({
-                                ...base,
-                                width: '500px' // Adjust this value as needed
-                            }),
-                            multiValue: (base) => ({
-                                ...base,
-                                backgroundColor: 'white',
-                                color: 'black',
-                                fontSize: 'small'
-                            }),
-                            multiValueLabel: (base) => ({
-                                ...base,
-                                backgroundColor: 'white',
-                                color: 'black',
-                                fontSize: 'small'
-                            }),
-                            option: (base) => ({
-                                ...base,
-                                color: 'black',
-                                fontSize: 'small'
-                            })
-                        }}
-                    />
-                    <label htmlFor="isPublic">Visibility:</label><br/>
-                    <select id="isPublic" name="isPublic" value={isPublic}
-                            onChange={e => setIsPublic(e.target.value === 'true')}>
-                        <option value={true}>Public</option>
-                        <option value={false}>Private</option>
-                    </select><br/>
-                    <input type="submit" disabled={!isFormValid}/>
+                            <h2>Choose ingredients:</h2>
+                            <ReactSelect
+                                isMulti
+                                options={ingredientOptions}
+                                value={selectedIngredients.map(ingredient => ({
+                                    value: ingredient,
+                                    label: ingredient.ingredientName
+                                }))}
+                                onChange={selectedOptions => setSelectedIngredients(selectedOptions.map(option => option.value))}
+                                styles={{
+                                    control: (base) => ({
+                                        ...base,
+                                        width: '500px' // Adjust this value as needed
+                                    }),
+                                    multiValue: (base) => ({
+                                        ...base,
+                                        backgroundColor: 'white',
+                                        color: 'black',
+                                        fontSize: 'small'
+                                    }),
+                                    multiValueLabel: (base) => ({
+                                        ...base,
+                                        backgroundColor: 'white',
+                                        color: 'black',
+                                        fontSize: 'small'
+                                    }),
+                                    option: (base) => ({
+                                        ...base,
+                                        color: 'black',
+                                        fontSize: 'small'
+                                    })
+                                }}
+                            />
+                            <label htmlFor="isPublic">Visibility:</label><br/>
+                            <select id="isPublic" name="isPublic" value={isPublic}
+                                    onChange={e => setIsPublic(e.target.value === 'true')}>
+                                <option value={true}>Public</option>
+                                <option value={false}>Private</option>
+                            </select><br/>
+                            <input type="submit" disabled={!isFormValid}/>
+                        </>
+                    )}
                 </form>
             </header>
         </div>

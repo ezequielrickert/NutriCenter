@@ -16,8 +16,26 @@ const SignUpCustomer =  () => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         await axios.post("http://localhost:8080/createCustomer",  signUpData )
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
+            .then(async res => {
+                await axios.post("http://localhost:8080/authenticateUser", {username, password})
+                    .then(res => {
+                        if (res.status === 200) {
+                            // If the login is successful, store the token, username and rol
+                            localStorage.setItem('token', res.data.token);
+                            localStorage.setItem('username', res.data.username);
+                            localStorage.setItem('role', res.data.role);
+                            window.location.href = '/dashboardCustomer';
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        alert('SignUp failed, please try again.')
+                    })
+            })
+            .catch(err => {
+                console.log(err);
+                alert('Username already used.')
+            })
     }
 
     return (

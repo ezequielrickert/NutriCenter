@@ -29,7 +29,7 @@ const UniversalLogin = () => {
                         window.location.href = '/dashboardStore';
                     }
                     else if(res.data.role === 'superAdmin'){
-                        window.location.href = '/dashboardAdmin';
+                        window.location.href = '/initialEditor';
                     }
                     else {
                         alert('Invalid role: ' + res.data.role);

@@ -9,9 +9,6 @@ const AccountSettingsPage = () => {
             <Link to="/logout">
                 <button>Logout</button>
             </Link>
-            <Link to="/delete">
-                <button>Delete Account</button>
-            </Link>
             <Footer />
         </div>
     );
