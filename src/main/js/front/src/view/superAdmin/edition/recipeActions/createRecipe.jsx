@@ -57,7 +57,7 @@ const CreateRecipe = () => {
             .catch(err => console.log(err))
     }
 
-    const isFormValid = name && description && selectedCategories.length != 0 && selectedIngredients.length != 0;
+    const isFormValid = name && description && selectedCategories.length !== 0 && selectedIngredients.length !== 0;
 
 
 

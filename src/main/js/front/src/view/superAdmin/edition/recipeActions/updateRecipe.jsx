@@ -78,7 +78,7 @@ const UpdateRecipe = () => {
             .catch(err => console.log(err))
     }
 
-    const isFormValid = name && description && selectedCategories.length != 0 && selectedIngredients.length != 0;
+    const isFormValid = name && description && selectedCategories.length !== 0 && selectedIngredients.length !== 0;
 
     let ingredientOptions = ingredients.map(ingredient => ({ value: ingredient, label: ingredient.ingredientName }));
     let categoryOptions = categories.map(category => ({ value: category, label: category.categoryName }));
