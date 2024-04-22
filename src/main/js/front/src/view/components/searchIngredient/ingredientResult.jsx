@@ -11,12 +11,12 @@ const IngredientResult = () => {
     const { ingredientName } = useParams();
     const [ingredients, setIngredients] = useState([]);
 
-
     useEffect(() => {
         const validateUser = async () => {
             try {
                 const response = await axios.post("http://localhost:8080/validateUser", { username, token });
-                if (response.data === "User is valid" && (userRole === "nutritionist") || (userRole === "admin")) {
+                if (response.data === "User is valid" && ((userRole === "nutritionist") || (userRole === "superAdmin") ||
+                    (userRole === "customer") || (userRole === "store"))) {
                     setIsValidUser(true);
                 } else {
                     window.location.href = '/universalLogin';
@@ -30,20 +30,22 @@ const IngredientResult = () => {
         validateUser();
     }, [token, username]);
 
-    // if necesario!! para que React no devuelva la pagina al no estar validado
-    if (!isValidUser) {
-        return null;
-    }
-
-
     useEffect(() => {
+        if (!isValidUser) {
+            return;
+        }
+
         const fetchIngredients = async () => {
             const results = await axios.get(`http://localhost:8080/ingredients/search/${ingredientName}`);
             setIngredients(results.data);
         };
 
         fetchIngredients();
-    }, [ingredientName]);
+    }, [ingredientName, isValidUser]);
+
+    if (!isValidUser) {
+        return null;
+    }
 
     return (
         <div>

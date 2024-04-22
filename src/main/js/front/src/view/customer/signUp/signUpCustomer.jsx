@@ -47,10 +47,10 @@ const SignUpCustomer =  () => {
                     <input type="text" id="username" name="username" value={username}
                            onChange={e => setUsername(e.target.value)}/><br/>
                     <label htmlFor="email">Enter eMail:</label><br/>
-                    <input type="text" id="email" name="email" value={email}
+                    <input type="email" id="email" name="email" value={email}
                            onChange={e => setEmail(e.target.value)}/><br/>
-                    <label htmlFor="email">Enter password:</label><br/>
-                    <input type="text" id="password" name="password" value={password}
+                    <label htmlFor="text">Enter password:</label><br/>
+                    <input type="password" id="password" name="password" value={password}
                            onChange={e => setPassword(e.target.value)}/><br/>
                     <input type="submit"/>
                 </form>
