@@ -1,30 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Footer from '../footer';
 
 const LogoutPage = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Aquí iría la lógica para eliminar la cuenta
-        console.log(`Email: ${email}, Password: ${password}`);
+    const handleLogout = () => {
+        localStorage.setItem("token", "");
+        localStorage.setItem("username", "");
+        localStorage.setItem("role", "");
+        window.location.href = '/universalLogin';
+    }
+
+    const handleCancel = () => {
+        window.location.href = '/accountSelection';
     }
 
     return (
         <div>
-            <h1>Logout Page</h1>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Email:
-                    <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
-                </label>
-                <label>
-                    Password:
-                    <input type="password" value={password} onChange={e => setPassword(e.target.value)} required />
-                </label>
-                <input type="submit" value="Logout" />
-            </form>
+            <h1>Do you want to log out?</h1>
+            <button onClick={handleLogout}>Logout</button>
+            <button onClick={handleCancel}>Cancel</button>
             <Footer />
         </div>
     );
