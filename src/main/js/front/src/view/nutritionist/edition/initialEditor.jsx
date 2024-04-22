@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import NutritionistCreateRecipe from '../edition/recipeActions/nutritionistCreateRecipe';
 import NutritionistUpdateRecipe from '../edition/recipeActions/nutritionistUpdateRecipe';
 import NutritionistDeleteRecipe from '../edition/recipeActions/nutritionistDeleteRecipe';
+import Footer from "../../components/footer";
 
 const NutritionistRecipeEditor = () => {
     const [operation, setOperation] = useState('');
@@ -26,7 +27,7 @@ const NutritionistRecipeEditor = () => {
     }
 
     return (
-        <div>
+        <div style={{marginBottom: '20px'}}>
             <h1>Choose your operation</h1>
             <select value={operation} onChange={handleSelectChange}>
                 <option value="">--Please choose an option--</option>
@@ -34,7 +35,8 @@ const NutritionistRecipeEditor = () => {
                 <option value="update">Update</option>
                 <option value="delete">Delete</option>
             </select>
-            {OperationComponent && <OperationComponent />}
+            {OperationComponent && <OperationComponent/>}
+            <Footer/>
         </div>
     );
 }

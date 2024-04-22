@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Footer from "../../components/footer";
 
 const DashboardNutritionist = () => {
     const [isValidUser, setIsValidUser] = useState(false);
@@ -35,6 +36,7 @@ const DashboardNutritionist = () => {
             <header className="App-header">
                 <h1>Welcome to the Nutritionist Dashboard</h1>
                 { /*add dashboard content here*/ }
+                <Footer />
             </header>
         </div>
     );
