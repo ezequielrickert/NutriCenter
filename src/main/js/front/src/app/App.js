@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import {NutritionistRecipeEditor, UniversalLogin} from "../view";
+import { NutritionistRecipeEditor, UniversalLogin } from "../view";
 import { InitialPage, SignUpDefault } from '../view';
 import { SignUpCustomer, DashboardCustomer } from '../view';
-import { SignUpNutritionist, DashboardNutritionist, NutritionistRecipeEditor } from '../view';
+import { SignUpNutritionist, DashboardNutritionist } from '../view';
 import { SignUpStore, DashboardStore } from '../view';
 import { InitialEditor, IngredientEditor, RecipeEditor } from '../view';
 import { SearchIngredientPage, IngredientResult, IngredientInfo } from '../view';
