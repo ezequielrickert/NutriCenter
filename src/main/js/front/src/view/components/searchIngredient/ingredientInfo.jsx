@@ -48,16 +48,18 @@ const IngredientInfo = () => {
     }
 
     return (
-        <div>
-            <h1>{ingredient.ingredientName}</h1>
-            <h3>Content per 100 grams</h3>
-            <p>Proteins: {ingredient.proteins}</p>
-            <p>Sodium: {ingredient.sodium}</p>
-            <p>Calories: {ingredient.calories}</p>
-            <p>Total Fat: {ingredient.totalFat}</p>
-            <p>Cholesterol: {ingredient.cholesterol}</p>
-            <p>Total Carbohydrate: {ingredient.totalCarbohydrate}</p>
-            <Footer/>
+        <div className="container">
+            <h1 className="text-center my-5">{ingredient.ingredientName}</h1>
+            <h3 className="text-center">Content per 100 grams</h3>
+            <ul className="list-group">
+                <li className="list-group-item">Proteins: {ingredient.proteins}</li>
+                <li className="list-group-item">Sodium: {ingredient.sodium}</li>
+                <li className="list-group-item">Calories: {ingredient.calories}</li>
+                <li className="list-group-item">Total Fat: {ingredient.totalFat}</li>
+                <li className="list-group-item">Cholesterol: {ingredient.cholesterol}</li>
+                <li className="list-group-item">Total Carbohydrate: {ingredient.totalCarbohydrate}</li>
+            </ul>
+            <Footer />
         </div>
     );
 }

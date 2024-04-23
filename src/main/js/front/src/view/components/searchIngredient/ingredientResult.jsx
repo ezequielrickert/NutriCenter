@@ -48,22 +48,20 @@ const IngredientResult = () => {
     }
 
     return (
-        <div>
-            <h1>Ingredient Results</h1>
+        <div className="container">
+            <h1 className="text-center my-5">Ingredient Results</h1>
             {ingredients.length > 0 ? (
-                <ul>
+                <ul className="list-group">
                     {ingredients.map((ingredient) => (
-                        <li key={ingredient.ingredientId}>
+                        <li key={ingredient.ingredientId} className="list-group-item">
                             <Link to={`/ingredientInfo/${ingredient.ingredientName}`}>{ingredient.ingredientName}</Link>
                         </li>
                     ))}
                 </ul>
             ) : (
-                <div>
+                <div className="alert alert-warning" role="alert">
                     <p>No existen ingredientes que contengan: {ingredientName}</p>
-                    <Link to="/searchIngredientHome">
-                        <button>Volver al buscador</button>
-                    </Link>
+                    <Link to="/searchIngredientHome" className="btn btn-primary">Volver al buscador</Link>
                 </div>
             )}
             <Footer />

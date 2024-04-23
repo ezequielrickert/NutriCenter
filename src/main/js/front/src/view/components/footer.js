@@ -7,34 +7,34 @@ const Footer = () => {
     userType = userType.charAt(0).toUpperCase() + userType.slice(1);
 
     return (
-        <div style={{ position: 'fixed', left: 0, bottom: 0, width: '100%', backgroundColor: 'lightgray', color: 'white', textAlign: 'center' }}>
+        <div className="fixed-bottom w-100 bg-light text-white text-center p-3">
             {userType === 'SuperAdmin' ? (
                 <>
-                    <Link to="/initialEditor">
-                        <button>Initial Editor</button>
+                    <Link to="/initialEditor" className="btn btn-primary m-1">
+                        Initial Editor
                     </Link>
-                    <Link to="/searchIngredientHome">
-                        <button>Ingredient Searcher</button>
+                    <Link to="/searchIngredientHome" className="btn btn-primary m-1">
+                        Ingredient Searcher
                     </Link>
-                    <Link to="/accountSelection">
-                        <button>Settings</button>
+                    <Link to="/accountSelection" className="btn btn-primary m-1">
+                        Settings
                     </Link>
                 </>
             ) : (
                 <>
-                    <Link to={`/dashboard${userType}`}>
-                        <button>Profile</button>
+                    <Link to={`/dashboard${userType}`} className="btn btn-primary m-1">
+                        Profile
                     </Link>
-                    <Link to="/searchIngredientHome">
-                        <button>Ingredient Searcher</button>
+                    <Link to="/searchIngredientHome" className="btn btn-primary m-1">
+                        Ingredient Searcher
                     </Link>
                     {userType === 'Nutritionist' && (
-                        <Link to="/nutritionistRecipeEditor">
-                            <button>Recipe Editor</button>
+                        <Link to="/nutritionistRecipeEditor" className="btn btn-primary m-1">
+                            Recipe Editor
                         </Link>
                     )}
-                    <Link to="/accountSelection">
-                        <button>Settings</button>
+                    <Link to="/accountSelection" className="btn btn-primary m-1">
+                        Settings
                     </Link>
                 </>
             )}

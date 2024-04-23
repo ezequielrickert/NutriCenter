@@ -32,8 +32,8 @@ const DashboardStore = () => {
     }
 
     return (
-        <div className="App">
-            <header className="App-header">
+        <div className="container my-5">
+            <header className="text-center">
                 <h1>Welcome to the Store Dashboard</h1>
                 { /*add dashboard content here*/ }
                 <Footer />

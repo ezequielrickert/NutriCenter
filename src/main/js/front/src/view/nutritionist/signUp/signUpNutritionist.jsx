@@ -41,25 +41,31 @@ const SignUpNutritionist =  () => {
     }
 
     return (
-        <div className="App">
-            <header className="App-header">
-                <h1>Nutritionist SignUp</h1>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="username"> Username:</label><br/>
-                    <input type="text" id="username" name="username" value={username}
-                           onChange={e => setUsername(e.target.value)}/><br/>
-                    <label htmlFor="email">Enter eMail:</label><br/>
-                    <input type="email" id="email" name="email" value={mail}
-                           onChange={e => setEmail(e.target.value)}/><br/>
-                    <label htmlFor="text">Enter password:</label><br/>
-                    <input type="text" id="password" name="password" value={password}
-                           onChange={e => setPassword(e.target.value)}/><br/>
-                    <label htmlFor="diploma">Enter diploma:</label><br/>
-                    <input type="text" id="diploma" name="diploma" value={diploma}
-                           onChange={e => setDiploma(e.target.value)}/><br/>
-                    <input type="submit"/>
-                </form>
-            </header>
+        <div className="container">
+            <h1 className="text-center my-5">Nutritionist SignUp</h1>
+            <form onSubmit={handleSubmit} className="mx-auto" style={{maxWidth: "300px"}}>
+                <div className="mb-3">
+                    <label htmlFor="username" className="form-label">Username:</label>
+                    <input type="text" id="username" name="username" value={username} className="form-control"
+                           onChange={e => setUsername(e.target.value)}/>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="email" className="form-label">Enter eMail:</label>
+                    <input type="email" id="email" name="email" value={mail} className="form-control"
+                           onChange={e => setEmail(e.target.value)}/>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="password" className="form-label">Enter password:</label>
+                    <input type="password" id="password" name="password" value={password} className="form-control"
+                           onChange={e => setPassword(e.target.value)}/>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="diploma" className="form-label">Enter diploma:</label>
+                    <input type="text" id="diploma" name="diploma" value={diploma} className="form-control"
+                           onChange={e => setDiploma(e.target.value)}/>
+                </div>
+                <input type="submit" className="btn btn-primary" value="Sign Up" />
+            </form>
         </div>
     );
 }

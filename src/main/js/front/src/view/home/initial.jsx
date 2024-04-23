@@ -3,14 +3,12 @@ import { Link } from 'react-router-dom';
 
 const InitialPage = () => {
     return (
-        <div>
-            <h1>Welcome to Nutricenter!</h1>
-            <Link to="/universalLogin">
-                <button>Login</button>
-            </Link>
-            <Link to="/defaultSignUp">
-                <button>Sign Up</button>
-            </Link>
+        <div className="container">
+            <h1 className="text-center my-5">Welcome to Nutricenter!</h1>
+            <div className="d-flex justify-content-center">
+                <Link to="/universalLogin" className="btn btn-primary m-2">Login</Link>
+                <Link to="/defaultSignUp" className="btn btn-secondary m-2">Sign Up</Link>
+            </div>
         </div>
     );
 }

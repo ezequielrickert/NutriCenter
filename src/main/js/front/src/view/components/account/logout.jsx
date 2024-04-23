@@ -15,10 +15,12 @@ const LogoutPage = () => {
     }
 
     return (
-        <div>
-            <h1>Do you want to log out?</h1>
-            <button onClick={handleLogout}>Logout</button>
-            <button onClick={handleCancel}>Cancel</button>
+        <div className="container">
+            <h1 className="text-center my-5">Do you want to log out?</h1>
+            <div className="d-flex justify-content-center">
+                <button onClick={handleLogout} className="btn btn-primary me-2">Logout</button>
+                <button onClick={handleCancel} className="btn btn-secondary">Cancel</button>
+            </div>
             <Footer />
         </div>
     );

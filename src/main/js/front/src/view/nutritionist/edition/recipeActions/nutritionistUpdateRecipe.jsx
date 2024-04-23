@@ -120,49 +120,27 @@ const NutritionistUpdateRecipe = () => {
     let categoryOptions = categories.map(category => ({ value: category, label: category.categoryName }));
 
     return (
-        <div className="App">
-            <header className="App-header">
+        <div className="container my-5">
+            <header className="text-center">
                 <h1>Update Recipe</h1>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="mt-4">
 
                     <ReactSelect
                         options={recipes}
                         onChange={handleRecipeSelect}
-                        styles={{
-                            control: (base) => ({
-                                ...base,
-                                width: '500px' // Adjust this value as needed
-                            }),
-                            multiValue: (base) => ({
-                                ...base,
-                                backgroundColor: 'white',
-                                color: 'black',
-                                fontSize: 'small'
-                            }),
-                            multiValueLabel: (base) => ({
-                                ...base,
-                                backgroundColor: 'white',
-                                color: 'black',
-                                fontSize: 'small'
-                            }),
-                            option: (base) => ({
-                                ...base,
-                                color: 'black',
-                                fontSize: 'small'
-                            })
-                        }
-                        }
+                        className="basic-single"
+                        classNamePrefix="select"
                     />
 
                     {selectedRecipe && (
                         <>
                             <label htmlFor="ingredientName">Recipe Name:</label><br/>
                             <input type="text" id="ingredientName" name="ingredientName" value={name}
-                                   onChange={e => setName(e.target.value)}/><br/>
+                                   onChange={e => setName(e.target.value)} className="form-control"/><br/>
 
                             <label htmlFor="description">Description:</label><br/>
                             <input type="text" id="description" name="description" value={description}
-                                   onChange={e => setDescription(e.target.value)}/>
+                                   onChange={e => setDescription(e.target.value)} className="form-control"/>
                             <br/>
                             <h2>Choose categories:</h2>
                             <ReactSelect
@@ -170,29 +148,8 @@ const NutritionistUpdateRecipe = () => {
                                 options={categoryOptions}
                                 value={selectedCategories.map(category => ({value: category, label: category.categoryName}))}
                                 onChange={selectedOptions => setSelectedCategories(selectedOptions.map(option => option.value))}
-                                styles={{
-                                    control: (base) => ({
-                                        ...base,
-                                        width: '500px' // Adjust this value as needed
-                                    }),
-                                    multiValue: (base) => ({
-                                        ...base,
-                                        backgroundColor: 'white',
-                                        color: 'black',
-                                        fontSize: 'small'
-                                    }),
-                                    multiValueLabel: (base) => ({
-                                        ...base,
-                                        backgroundColor: 'white',
-                                        color: 'black',
-                                        fontSize: 'small'
-                                    }),
-                                    option: (base) => ({
-                                        ...base,
-                                        color: 'black',
-                                        fontSize: 'small'
-                                    })
-                                }}
+                                className="basic-multi-select"
+                                classNamePrefix="select"
                             />
 
                             <h2>Choose ingredients:</h2>
@@ -204,37 +161,16 @@ const NutritionistUpdateRecipe = () => {
                                     label: ingredient.ingredientName
                                 }))}
                                 onChange={selectedOptions => setSelectedIngredients(selectedOptions.map(option => option.value))}
-                                styles={{
-                                    control: (base) => ({
-                                        ...base,
-                                        width: '500px' // Adjust this value as needed
-                                    }),
-                                    multiValue: (base) => ({
-                                        ...base,
-                                        backgroundColor: 'white',
-                                        color: 'black',
-                                        fontSize: 'small'
-                                    }),
-                                    multiValueLabel: (base) => ({
-                                        ...base,
-                                        backgroundColor: 'white',
-                                        color: 'black',
-                                        fontSize: 'small'
-                                    }),
-                                    option: (base) => ({
-                                        ...base,
-                                        color: 'black',
-                                        fontSize: 'small'
-                                    })
-                                }}
+                                className="basic-multi-select"
+                                classNamePrefix="select"
                             />
                             <label htmlFor="isPublic">Visibility:</label><br/>
                             <select id="isPublic" name="isPublic" value={isPublic}
-                                    onChange={e => setIsPublic(e.target.value === 'true')}>
+                                    onChange={e => setIsPublic(e.target.value === 'true')} className="form-control">
                                 <option value={true}>Public</option>
                                 <option value={false}>Private</option>
                             </select><br/>
-                            <input type="submit" disabled={!isFormValid}/>
+                            <input type="submit" disabled={!isFormValid} className="btn btn-primary mt-3"/>
                         </>
                     )}
                 </form>

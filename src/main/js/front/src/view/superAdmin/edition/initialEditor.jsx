@@ -34,15 +34,17 @@ const InitialEditor = () => {
     }
 
     return (
-        <div style={{marginBottom: '20px'}}>
-            <h1>Welcome Super Admin!</h1>
-            <h2>Choose one to edit</h2>
-            <Link to="/ingredientEditor">
-                <button>INGREDIENT EDITOR</button>
-            </Link>
-            <Link to="/recipeEditor">
-                <button>RECIPE EDITOR</button>
-            </Link>
+        <div className="container my-5">
+            <h1 className="text-center">Welcome Super Admin!</h1>
+            <h2 className="text-center text-secondary mb-4">Choose one to edit</h2>
+            <div className="d-flex justify-content-around">
+                <Link to="/ingredientEditor" className="btn btn-primary m-2">
+                    INGREDIENT EDITOR
+                </Link>
+                <Link to="/recipeEditor" className="btn btn-primary m-2">
+                    RECIPE EDITOR
+                </Link>
+            </div>
             <Footer />
         </div>
     );

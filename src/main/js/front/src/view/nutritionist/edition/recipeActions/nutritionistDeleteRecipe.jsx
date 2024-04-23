@@ -60,19 +60,19 @@ const NutritionistDeleteRecipe = () => {
     }
 
     return (
-        <div>
-            <h1>Delete the recipe below</h1>
-            <form onSubmit={handleSubmit}>
+        <div className="container my-5">
+            <h1 className="text-center">Delete the recipe below</h1>
+            <form onSubmit={handleSubmit} className="mt-2">
                 <label htmlFor="ingredient">Recipe:</label><br/>
                 <select id="recipe" value={selectedRecipe ? selectedRecipe.recipeName : ''}
                         onChange={e => setSelectedRecipe(recipes.find(a => a.recipeName === e.target.value))}
-                        style={{width: '200px'}}>
+                        className="form-control w-100">
                     <option value="">Select a recipe</option>
                     {recipes.map((recipe, index) => (
                         <option key={index} value={recipe.recipeName}>{recipe.recipeName}</option>
                     ))}
                 </select><br/>
-                <input type="submit" value="Delete Recipe" disabled={!selectedRecipe}/>
+                <input type="submit" value="Delete Recipe" disabled={!selectedRecipe} className="btn btn-danger mt-3"/>
             </form>
         </div>
     );

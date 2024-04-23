@@ -55,14 +55,16 @@ const NutritionistRecipeEditor = () => {
     }
 
     return (
-        <div style={{marginBottom: '20px'}}>
-            <h1>Choose your operation</h1>
-            <select value={operation} onChange={handleSelectChange}>
-                <option value="">--Please choose an option--</option>
-                <option value="create">Create</option>
-                <option value="update">Update</option>
-                <option value="delete">Delete</option>
-            </select>
+        <div className="container my-3">
+            <h1 className="text-center">Choose your operation</h1>
+            <div className="d-flex justify-content-center">
+                <select value={operation} onChange={handleSelectChange} className="form-control w-100">
+                    <option value="">--Please choose an option--</option>
+                    <option value="create">Create</option>
+                    <option value="update">Update</option>
+                    <option value="delete">Delete</option>
+                </select>
+            </div>
             {OperationComponent && <OperationComponent/>}
             <Footer/>
         </div>

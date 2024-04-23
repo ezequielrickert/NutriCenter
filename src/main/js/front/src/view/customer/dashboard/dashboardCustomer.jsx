@@ -32,8 +32,8 @@ const DashboardCustomer = () => {
     }
 
     return (
-        <div className="App">
-            <header className="App-header">
+        <div className="container">
+            <header className="text-center my-5">
                 <h1>Welcome to the Customer Dashboard</h1>
                 { /*add dashboard content here*/ }
                 <Footer />

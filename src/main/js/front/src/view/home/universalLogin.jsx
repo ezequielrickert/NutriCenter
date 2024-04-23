@@ -45,21 +45,21 @@ const UniversalLogin = () => {
     }
 
     return (
-        <div>
-            <h1>Universal Login</h1>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Username:
-                    <input type="text" value={username} onChange={e => setUsername(e.target.value)} required />
-                </label>
-                <label>
-                    Password:
-                    <input type="password" value={password} onChange={e => setPassword(e.target.value)} required />
-                </label>
-                <input type="submit" value="Login" />
+        <div className="container">
+            <h1 className="text-center my-5">Universal Login</h1>
+            <form onSubmit={handleSubmit} className="mx-auto" style={{maxWidth: "300px"}}>
+                <div className="mb-3">
+                    <label className="form-label">Username:</label>
+                    <input type="text" className="form-control" value={username} onChange={e => setUsername(e.target.value)} required />
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Password:</label>
+                    <input type="password" className="form-control" value={password} onChange={e => setPassword(e.target.value)} required />
+                </div>
+                <input type="submit" className="btn btn-primary" value="Login" />
             </form>
-            <div>
-                <Link to="/">Go Back</Link> {/* Botón de regreso */}
+            <div className="text-center mt-3">
+                <Link to="/" className="btn btn-secondary">Go Back</Link> {/* Botón de regreso */}
             </div>
         </div>
     );

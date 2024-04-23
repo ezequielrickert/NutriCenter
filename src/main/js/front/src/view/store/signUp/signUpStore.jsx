@@ -39,22 +39,26 @@ const SignUpStore =  () => {
     }
 
     return (
-        <div className="App">
-            <header className="App-header">
-                <h1>Store SignUp</h1>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="username"> Username:</label><br/>
-                    <input type="text" id="username" name="username" value={username}
-                           onChange={e => setUsername(e.target.value)}/><br/>
-                    <label htmlFor="email">Enter eMail:</label><br/>
-                    <input type="email" id="email" name="email" value={mail}
-                           onChange={e => setMail(e.target.value)}/><br/>
-                    <label htmlFor="email">Enter password:</label><br/>
-                    <input type="text" id="password" name="password" value={password}
-                           onChange={e => setPassword(e.target.value)}/><br/>
-                    <input type="submit"/>
-                </form>
-            </header>
+        <div className="container">
+            <h1 className="text-center my-5">Store SignUp</h1>
+            <form onSubmit={handleSubmit} className="mx-auto" style={{maxWidth: "300px"}}>
+                <div className="mb-3">
+                    <label htmlFor="username" className="form-label">Username:</label>
+                    <input type="text" id="username" name="username" value={username} className="form-control"
+                           onChange={e => setUsername(e.target.value)}/>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="email" className="form-label">Enter eMail:</label>
+                    <input type="email" id="email" name="email" value={mail} className="form-control"
+                           onChange={e => setMail(e.target.value)}/>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="password" className="form-label">Enter password:</label>
+                    <input type="password" id="password" name="password" value={password} className="form-control"
+                           onChange={e => setPassword(e.target.value)}/>
+                </div>
+                <input type="submit" className="btn btn-primary" value="Sign Up" />
+            </form>
         </div>
     );
 }
