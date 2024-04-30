@@ -33,10 +33,6 @@ public class RecipeController {
         recipeService.deleteRecipe(recipeId);
     }
 
-    public Recipe getRecipe(Long recipeId) {
-        return recipeService.getRecipe(recipeId);
-    }
-
     public List<Recipe> getRecipesOrderedByName() {
         return recipeService.getRecipesOrderedByName();
     }
@@ -44,4 +40,10 @@ public class RecipeController {
     public List<Recipe> getRecipeByUsername(String username) {
         return recipeService.getRecipeByUsername(username);
     }
+
+    public List<Recipe> getPublicRecipesBeginningWith(String beginning) {return recipeService.getPublicRecipesBeginningWith(beginning); }
+
+    public List<Recipe> getPublicRecipes(String recipe) { return recipeService.getPublicRecipes(recipe); }
+
+    public Recipe getRecipeById(long recipeId) { return recipeService.getRecipeById(recipeId); }
 }

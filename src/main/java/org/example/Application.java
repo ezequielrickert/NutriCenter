@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import org.example.model.login.LoginData;
 
 public class Application {
 
@@ -267,8 +266,38 @@ public class Application {
             return result;
         }, gson::toJson);
 
+        Spark.get("/recipes/searchId/:recipeId", (req, res) -> {
+            String recipeId = req.params(":recipeId");
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            RecipeController recipeController = new RecipeController(entityManager);
+            Recipe recipe = recipeController.getRecipeById(Long.parseLong(recipeId));
+            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            String result = gson.toJson(recipe);
+            return result;
+        });
+
+        Spark.get("/publicRecipes/:recipe", (req, res) -> {
+            String recipe = req.params(":recipe");
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            RecipeController recipeController = new RecipeController(entityManager);
+            List<Recipe> recipes = recipeController.getPublicRecipes(recipe);
+            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            String result = gson.toJson(recipes);
+            return result;
+        });
+
+        Spark.get("/publicRecipes/begins/:beginning", (req, res) -> {
+            String beginning = req.params(":beginning");
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            RecipeController recipeController = new RecipeController(entityManager);
+            List<Recipe> recipes = recipeController.getPublicRecipesBeginningWith(beginning);
+            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            String result = gson.toJson(recipes);
+            return result;
+        });
+
         Spark.get("/recipes/:username", (req, res) -> {
-            String username = req.params("username");
+            String username = req.params(":username");
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             RecipeController recipeController = new RecipeController(entityManager);
             List<Recipe> recipes = recipeController.getRecipeByUsername(username);
@@ -336,7 +365,7 @@ public class Application {
             String body = req.body();
             Store store = gson.fromJson(body, Store.class);
             String storeName = store.getStoreName();
-            if(signUpController.validate(storeName) != true){
+            if(!signUpController.validate(storeName)){
                 res.status(401);
                 return "Username already exists";
             }
@@ -405,7 +434,9 @@ public class Application {
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             IngredientController ingredientController = new IngredientController(entityManager);
             Ingredient ingredient = ingredientController.getIngredientByName(ingredientName);
-            return gson.toJson(ingredient);
+            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            String result = gson.toJson(ingredient);
+            return result;
         });
 
         //Get ingredient beginning with user input

@@ -13,8 +13,8 @@ const Footer = () => {
                     <Link to="/initialEditor" className="btn btn-primary m-1">
                         Initial Editor
                     </Link>
-                    <Link to="/searchIngredientHome" className="btn btn-primary m-1">
-                        Ingredient Searcher
+                    <Link to="/searcherSelector" className="btn btn-primary m-1">
+                        Searcher Selector
                     </Link>
                     <Link to="/accountSelection" className="btn btn-primary m-1">
                         Settings
@@ -25,8 +25,8 @@ const Footer = () => {
                     <Link to={`/dashboard${userType}`} className="btn btn-primary m-1">
                         Profile
                     </Link>
-                    <Link to="/searchIngredientHome" className="btn btn-primary m-1">
-                        Ingredient Searcher
+                    <Link to="/searcherSelector" className="btn btn-primary m-1">
+                        Searcher Selector
                     </Link>
                     {userType === 'Nutritionist' && (
                         <Link to="/nutritionistRecipeEditor" className="btn btn-primary m-1">

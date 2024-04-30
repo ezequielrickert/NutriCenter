@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import Footer from '../footer';
+import Footer from '../../footer';
 
 const IngredientInfo = () => {
     const [isValidUser, setIsValidUser] = useState(false);
@@ -10,6 +11,7 @@ const IngredientInfo = () => {
     const userRole = localStorage.getItem('role');
     const { ingredientName } = useParams();
     const [ingredient, setIngredient] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const validateUser = async () => {
@@ -43,23 +45,27 @@ const IngredientInfo = () => {
         fetchIngredient();
     }, [ingredientName, isValidUser]);
 
-    if (!ingredient) {
-        return <div>Loading...</div>;
-    }
+    const handleSearchAgainClick = () => {
+        navigate('/searchIngredientHome');
+    };
 
     return (
         <div className="container">
-            <h1 className="text-center my-5">{ingredient.ingredientName}</h1>
-            <h3 className="text-center">Content per 100 grams</h3>
-            <ul className="list-group">
-                <li className="list-group-item">Proteins: {ingredient.proteins}</li>
-                <li className="list-group-item">Sodium: {ingredient.sodium}</li>
-                <li className="list-group-item">Calories: {ingredient.calories}</li>
-                <li className="list-group-item">Total Fat: {ingredient.totalFat}</li>
-                <li className="list-group-item">Cholesterol: {ingredient.cholesterol}</li>
-                <li className="list-group-item">Total Carbohydrate: {ingredient.totalCarbohydrate}</li>
-            </ul>
-            <Footer />
+            {ingredient && (
+                <>
+                    <h1 className="text-center my-5">{ingredient.ingredientName}</h1>
+                    <h3 className="text-center">Content per 100 grams</h3>
+                    <ul className="list-group">
+                        <li className="list-group-item">Proteins: {ingredient.proteins}</li>
+                        <li className="list-group-item">Sodium: {ingredient.sodium}</li>
+                        <li className="list-group-item">Calories: {ingredient.calories}</li>
+                        <li className="list-group-item">Total Fat: {ingredient.totalFat}</li>
+                        <li className="list-group-item">Cholesterol: {ingredient.cholesterol}</li>
+                        <li className="list-group-item">Total Carbohydrate: {ingredient.totalCarbohydrate}</li>
+                    </ul>                </>
+            )}
+            <button onClick={handleSearchAgainClick}>Search Another Ingredient</button>
+            <Footer/>
         </div>
     );
 }

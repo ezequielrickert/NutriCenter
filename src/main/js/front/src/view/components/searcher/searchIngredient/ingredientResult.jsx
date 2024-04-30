@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { Link, useParams } from 'react-router-dom';
-import Footer from '../footer';
+import Footer from '../../footer';
 
 const IngredientResult = () => {
     const [isValidUser, setIsValidUser] = useState(false);
@@ -10,6 +11,7 @@ const IngredientResult = () => {
     const userRole = localStorage.getItem('role');
     const { ingredientName } = useParams();
     const [ingredients, setIngredients] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const validateUser = async () => {
@@ -47,6 +49,10 @@ const IngredientResult = () => {
         return null;
     }
 
+    const handleSearchAgainClick = () => {
+        navigate('/searchIngredientHome');
+    };
+
     return (
         <div className="container">
             <h1 className="text-center my-5">Ingredient Results</h1>
@@ -57,11 +63,14 @@ const IngredientResult = () => {
                             <Link to={`/ingredientInfo/${ingredient.ingredientName}`}>{ingredient.ingredientName}</Link>
                         </li>
                     ))}
+                    <button onClick={handleSearchAgainClick}>Search Another Ingredient</button>
                 </ul>
             ) : (
                 <div className="alert alert-warning" role="alert">
-                    <p>No existen ingredientes que contengan: {ingredientName}</p>
-                    <Link to="/searchIngredientHome" className="btn btn-primary">Volver al buscador</Link>
+                    <p>It doesn't exist ingredients named: {ingredientName}</p>
+                    <Link to="/searchIngredientHome" className="btn btn-primary">
+                        Back to Searcher
+                    </Link>
                 </div>
             )}
             <Footer />
