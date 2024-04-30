@@ -1,6 +1,6 @@
 package org.example.controller;
 
-import org.example.model.Customer;
+import org.example.model.roles.Customer;
 import org.example.service.CustomerService;
 
 import javax.persistence.EntityManager;

@@ -1,9 +1,7 @@
 package org.example.repository.allergy;
-import org.example.model.Allergy;
-import org.example.model.Ingredient;
+import org.example.model.recipie.Allergy;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;

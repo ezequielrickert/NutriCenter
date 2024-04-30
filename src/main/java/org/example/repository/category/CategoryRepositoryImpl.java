@@ -1,7 +1,6 @@
 package org.example.repository.category;
 
-import org.example.model.Category;
-import org.example.model.Ingredient;
+import org.example.model.recipie.Category;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;

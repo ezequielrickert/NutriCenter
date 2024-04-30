@@ -1,7 +1,6 @@
 package org.example.repository.store;
 
-import org.example.model.Customer;
-import org.example.model.Store;
+import org.example.model.roles.Store;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;

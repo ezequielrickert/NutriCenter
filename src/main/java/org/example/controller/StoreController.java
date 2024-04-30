@@ -1,6 +1,6 @@
 package org.example.controller;
 
-import org.example.model.Store;
+import org.example.model.roles.Store;
 import org.example.repository.store.StoreRepositoryImpl;
 
 import javax.persistence.EntityManager;

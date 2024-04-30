@@ -1,6 +1,6 @@
 package org.example.repository.customer;
 
-import org.example.model.Customer;
+import org.example.model.roles.Customer;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;

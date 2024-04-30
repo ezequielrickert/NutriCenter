@@ -1,10 +1,7 @@
 package org.example.controller;
-import org.example.model.Allergy;
+import org.example.model.recipie.Allergy;
 import org.example.repository.allergy.AllergyRepositoryImp;
 import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class AllergyController {

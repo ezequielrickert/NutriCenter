@@ -1,14 +1,10 @@
 package org.example.controller;
 
-import org.example.model.Allergy;
-import org.example.model.Ingredient;
-import org.example.repository.ingredient.IngredientRepositoryImp;
+import org.example.model.recipie.Allergy;
+import org.example.model.recipie.Ingredient;
 import org.example.service.IngredientService;
 
 import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class IngredientController {

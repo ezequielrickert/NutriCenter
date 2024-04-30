@@ -1,6 +1,6 @@
 package org.example.repository.superadmin;
 
-import org.example.model.SuperAdmin;
+import org.example.model.roles.SuperAdmin;
 
 public interface SuperAdminRepository {
 

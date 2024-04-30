@@ -1,7 +1,7 @@
 package org.example.service;
 
 
-import org.example.model.Customer;
+import org.example.model.roles.Customer;
 import org.example.repository.customer.CostumerRepository;
 import org.example.repository.customer.CostumerRepositoryImp;
 

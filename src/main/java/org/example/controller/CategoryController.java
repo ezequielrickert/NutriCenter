@@ -1,7 +1,6 @@
 package org.example.controller;
 
-import org.example.model.Category;
-import org.example.repository.category.CateogryRepository;
+import org.example.model.recipie.Category;
 import org.example.service.CategoryService;
 
 import javax.persistence.EntityManager;

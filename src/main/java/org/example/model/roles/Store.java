@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example.model.roles;
 
 import com.google.gson.Gson;
 import javax.persistence.*;

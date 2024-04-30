@@ -1,9 +1,9 @@
 package org.example.service;
 
-import org.example.model.Customer;
-import org.example.model.Nutritionist;
-import org.example.model.Store;
-import org.example.model.SuperAdmin;
+import org.example.model.roles.Customer;
+import org.example.model.roles.Nutritionist;
+import org.example.model.roles.Store;
+import org.example.model.roles.SuperAdmin;
 import org.example.repository.customer.CostumerRepository;
 import org.example.repository.customer.CostumerRepositoryImp;
 import org.example.repository.nutritionist.NutritionistRepository;

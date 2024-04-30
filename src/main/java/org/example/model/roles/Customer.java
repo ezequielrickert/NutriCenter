@@ -1,7 +1,8 @@
-package org.example.model;
+package org.example.model.roles;
 
 import com.google.gson.Gson;
-import org.checkerframework.checker.units.qual.C;
+import com.google.gson.annotations.Expose;
+import org.example.model.history.WeeklyHistory;
 
 import javax.persistence.*;
 
@@ -11,6 +12,10 @@ public class Customer {
     @Id
     @GeneratedValue(generator = "userGen", strategy = GenerationType.IDENTITY)
     private Long customerId;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "weeklyHistoryId", referencedColumnName = "weeklyHistoryId")
+    private WeeklyHistory weeklyHistory;
 
     @Column(nullable = false, unique = false)
     private String customerName;
@@ -26,15 +31,23 @@ public class Customer {
         this.customerName = customerName;
         this.customerEmail = customerEmail;
         this.customerPassword = customerPassword;
+        this.weeklyHistory = new WeeklyHistory();
     }
 
     public Customer() {
 
     }
 
-
     public void setCustomerName(String name) {
         this.customerName = name;
+    }
+
+    public WeeklyHistory getWeeklyHistory() {
+        return weeklyHistory;
+    }
+
+    public void setWeeklyHistory(WeeklyHistory weeklyHistory) {
+        this.weeklyHistory = weeklyHistory;
     }
 
     public void setCustomerEmail(String mail) {

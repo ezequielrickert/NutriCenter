@@ -1,7 +1,6 @@
 package org.example.service;
 
-import org.checkerframework.checker.units.qual.C;
-import org.example.model.Category;
+import org.example.model.recipie.Category;
 import org.example.repository.category.CategoryRepositoryImpl;
 import org.example.repository.category.CateogryRepository;
 
