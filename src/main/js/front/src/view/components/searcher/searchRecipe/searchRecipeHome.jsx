@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Autosuggest from 'react-autosuggest';
 import './searchRecipe.css';
+import Footer from "../../../components/footer";
+
 
 const SearchRecipeHome = () => {
     const [isValidUser, setIsValidUser] = useState(false);
@@ -98,6 +100,7 @@ const SearchRecipeHome = () => {
                         onClick={handleSearchClick}>Search
                 </button>
             </div>
+            <Footer />
         </div>
     );
 };
