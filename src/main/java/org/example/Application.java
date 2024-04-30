@@ -301,10 +301,8 @@ public class Application {
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             RecipeController recipeController = new RecipeController(entityManager);
             List<Recipe> recipes = recipeController.getRecipeByUsername(username);
-            System.out.println(recipes);
             Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
             String result = gson.toJson(recipes);
-            System.out.println(result);
             return result;
         });
 

@@ -92,7 +92,7 @@ public class RecipeRepositoryImpl implements RecipeRepository{
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Recipe> cr = cb.createQuery(Recipe.class);
         Root<Recipe> root = cr.from(Recipe.class);
-        cr.select(root).where(cb.equal(root.get("username"), username));
+        cr.select(root).where(cb.equal(root.get("recipeUsername"), username));
 
         Query query = entityManager.createQuery(cr);
         List<Recipe> results = query.getResultList();

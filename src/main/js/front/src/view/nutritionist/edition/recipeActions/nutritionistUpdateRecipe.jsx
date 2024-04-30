@@ -37,43 +37,6 @@ const NutritionistUpdateRecipe = () => {
     }, [token, username]);
 
     useEffect(() => {
-        if (!isValidUser) {
-            return;
-        }
-        axios.get('http://localhost:8080/ingredients')
-            .then(response => {
-                const data = response.data;
-                if (Array.isArray(data)) {
-                    setIngredients(data);
-                } else {
-                    console.error('Data received from server is not an array');
-                }
-            })
-            .catch(error => {
-                console.error('There was an error!', error);
-            });
-    }, [isValidUser]);
-
-    useEffect(() => {
-        if (!isValidUser) {
-            return;
-        }
-        axios.get('http://localhost:8080/categories')
-            .then(response => {
-                const data = response.data;
-                if (Array.isArray(data)) {
-                    setCategories(data);
-                } else {
-                    console.error('Data received from server is not an array');
-                }
-
-            })
-    }, [isValidUser]);
-
-    useEffect(() => {
-        if (!isValidUser) {
-            return;
-        }
 
         axios.get(`http://localhost:8080/recipes/${username}`)
             .then(response => {
@@ -87,6 +50,33 @@ const NutritionistUpdateRecipe = () => {
             })
     }, [isValidUser]);
 
+    useEffect(() => {
+        axios.get('http://localhost:8080/ingredients')
+            .then(response => {
+                const data = JSON.parse(response.data);
+                if (Array.isArray(data)) {
+                    setIngredients(data);
+                } else {
+                    console.error('Data received from server is not an array');
+                }
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
+    }, []);
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/categories')
+            .then(response => {
+                const data = JSON.parse(response.data);
+                if (Array.isArray(data)) {
+                    setCategories(data);
+                } else {
+                    console.error('Data received from server is not an array');
+                }
+
+            })
+    }, []);
 
     const handleRecipeSelect = (selectedOption) => {
         setSelectedRecipe(selectedOption.value);
