@@ -20,7 +20,13 @@ public interface RecipeRepository {
 
     List<Recipe> getRecipesOrderedByName();
 
+    List<Recipe> getPublicRecipesBeginningWith(String beginning);
+
     List<Recipe> getRecipeByUsername(String username);
 
     List<Recipe> getRecipeByIngredient(Long ingredientId);
+
+    List<Recipe> getPublicRecipes(String recipe);
+
+    Recipe getRecipeById(long recipeId);
 }

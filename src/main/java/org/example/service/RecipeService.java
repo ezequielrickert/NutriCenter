@@ -44,4 +44,10 @@ public class RecipeService {
     public List<Recipe> getRecipeByUsername(String username) {
         return recipeRepository.getRecipeByUsername(username);
     }
+
+    public List<Recipe> getPublicRecipesBeginningWith(String beginning) { return recipeRepository.getPublicRecipesBeginningWith(beginning); }
+
+    public List<Recipe> getPublicRecipes(String recipe) { return recipeRepository.getPublicRecipes(recipe); }
+
+    public Recipe getRecipeById(long recipeId) { return recipeRepository.getRecipeById(recipeId); }
 }

@@ -13,8 +13,8 @@ const Footer = () => {
                     <Link to="/initialEditor">
                         <button>Initial Editor</button>
                     </Link>
-                    <Link to="/searchIngredientHome">
-                        <button>Ingredient Searcher</button>
+                    <Link to="/searcherSelector">
+                        <button>Searcher Selector</button>
                     </Link>
                     <Link to="/accountSelection">
                         <button>Settings</button>
@@ -25,8 +25,8 @@ const Footer = () => {
                     <Link to={`/dashboard${userType}`}>
                         <button>Profile</button>
                     </Link>
-                    <Link to="/searchIngredientHome">
-                        <button>Ingredient Searcher</button>
+                    <Link to="/searcherSelector">
+                        <button>Searcher Selector</button>
                     </Link>
                     {userType === 'Nutritionist' && (
                         <Link to="/nutritionistRecipeEditor">

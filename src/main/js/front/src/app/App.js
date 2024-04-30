@@ -5,7 +5,9 @@ import { NutritionistRecipeEditor, UniversalLogin } from "../view";
 import { InitialPage, SignUpDefault } from '../view';
 import { DashboardCustomer, DashboardNutritionist, DashboardStore } from '../view';
 import { InitialEditor, IngredientEditor, RecipeEditor } from '../view';
-import { SearchIngredientPage, IngredientResult, IngredientInfo } from '../view';
+import { SearcherSelector, SearchIngredientPage, SearchRecipePage } from "../view";
+import { IngredientResult, IngredientInfo } from '../view';
+import { RecipeResult, RecipeInfo } from '../view';
 import { AccountSettingsPage, Logout } from '../view';
 
 function App() {
@@ -30,9 +32,15 @@ function App() {
                     <Route path="/ingredientEditor" element={<IngredientEditor />} />
                     <Route path="/recipeEditor" element={<RecipeEditor />} />
 
+                    <Route path="/searcherSelector" element={<SearcherSelector />} />
                     <Route path="/searchIngredientHome" element={<SearchIngredientPage />} />
+                    <Route path="/searchRecipeHome" element={<SearchRecipePage />} />
+
                     <Route path="/ingredientResult/:ingredientName" element={<IngredientResult />} />
                     <Route path="/ingredientInfo/:ingredientName" element={<IngredientInfo />} />
+
+                    <Route path="/recipeResult/:recipeName" element={<RecipeResult />} />
+                    <Route path="/recipeInfo/:recipeId" element={<RecipeInfo />} />
 
                     <Route path={"/accountSelection"} element={<AccountSettingsPage />} />
                     <Route path="/logout" element={<Logout />} />

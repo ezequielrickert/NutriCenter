@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
-import Footer from '../footer';
+import { useParams } from 'react-router-dom';
+import Footer from '../../footer';
 
-const IngredientResult = () => {
+const IngredientInfo = () => {
     const [isValidUser, setIsValidUser] = useState(false);
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
     const userRole = localStorage.getItem('role');
     const { ingredientName } = useParams();
-    const [ingredients, setIngredients] = useState([]);
+    const [ingredient, setIngredient] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const validateUser = async () => {
@@ -35,40 +37,36 @@ const IngredientResult = () => {
             return;
         }
 
-        const fetchIngredients = async () => {
-            const results = await axios.get(`http://localhost:8080/ingredients/search/${ingredientName}`);
-            setIngredients(results.data);
+        const fetchIngredient = async () => {
+            const result = await axios.get(`http://localhost:8080/ingredients/${ingredientName}`);
+            setIngredient(result.data);
         };
 
-        fetchIngredients();
+        fetchIngredient();
     }, [ingredientName, isValidUser]);
 
-    if (!isValidUser) {
-        return null;
-    }
+    const handleSearchAgainClick = () => {
+        navigate('/searchIngredientHome');
+    };
 
     return (
         <div>
-            <h1>Ingredient Results</h1>
-            {ingredients.length > 0 ? (
-                <ul>
-                    {ingredients.map((ingredient) => (
-                        <li key={ingredient.ingredientId}>
-                            <Link to={`/ingredientInfo/${ingredient.ingredientName}`}>{ingredient.ingredientName}</Link>
-                        </li>
-                    ))}
-                </ul>
-            ) : (
-                <div>
-                    <p>No existen ingredientes que contengan: {ingredientName}</p>
-                    <Link to="/searchIngredientHome">
-                        <button>Volver al buscador</button>
-                    </Link>
-                </div>
+            {ingredient && (
+                <>
+                    <h1>{ingredient.ingredientName}</h1>
+                    <h3>Content per 100 grams</h3>
+                    <p>Proteins: {ingredient.proteins}</p>
+                    <p>Sodium: {ingredient.sodium}</p>
+                    <p>Calories: {ingredient.calories}</p>
+                    <p>Total Fat: {ingredient.totalFat}</p>
+                    <p>Cholesterol: {ingredient.cholesterol}</p>
+                    <p>Total Carbohydrate: {ingredient.totalCarbohydrate}</p>
+                </>
             )}
-            <Footer />
+            <button onClick={handleSearchAgainClick}>Search Another Ingredient</button>
+            <Footer/>
         </div>
     );
 }
 
-export default IngredientResult;
+export default IngredientInfo;

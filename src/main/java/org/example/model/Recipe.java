@@ -4,11 +4,6 @@ import javax.persistence.*;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
-import org.checkerframework.checker.units.qual.C;
-import org.checkerframework.common.aliasing.qual.Unique;
-import org.example.model.Category;
-import org.example.model.Ingredient;
-import org.hibernate.annotations.Columns;
 
 import java.util.List;
 
@@ -20,7 +15,7 @@ public class Recipe {
     @Expose
     @Id
     @GeneratedValue(generator = "userGen", strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long recipeId;
 
     @Expose
     @Column(nullable = false)
@@ -42,7 +37,7 @@ public class Recipe {
 
     @Expose
     @Column
-    private String username;
+    private String recipeUsername;
 
     @Expose
     @Column
@@ -56,20 +51,20 @@ public class Recipe {
         return isPublic;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setRecipeUsername(String recipeUsername) {
+        this.recipeUsername = recipeUsername;
     }
 
-    public String getUsername() {
-        return username;
+    public String getRecipeUsername() {
+        return recipeUsername;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long recipeId) {
+        this.recipeId = recipeId;
     }
 
     public Long getId() {
-        return id;
+        return recipeId;
     }
 
     public void setRecipeName(String recipeName) {
@@ -110,6 +105,6 @@ public class Recipe {
     }
 
     public Long getRecipeId() {
-        return id;
+        return recipeId;
     }
 }

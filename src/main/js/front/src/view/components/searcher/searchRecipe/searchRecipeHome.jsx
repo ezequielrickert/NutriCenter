@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 import Autosuggest from 'react-autosuggest';
-import axios from 'axios';
-import './SearchIngredientPage.css';
-import Footer from '../footer';
+import './searchRecipe.css';
 
-const SearchIngredientPage = () => {
+const SearchRecipeHome = () => {
     const [isValidUser, setIsValidUser] = useState(false);
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
@@ -38,15 +37,24 @@ const SearchIngredientPage = () => {
             return;
         }
 
-        const fetchIngredients = async () => {
+        const fetchRecipes = async () => {
             if (searchTerm) {
-                const results = await axios.get(`http://localhost:8080/ingredients/begins/${searchTerm}`);
-                setSuggestions(results.data.map(ingredient => ingredient.ingredientName));
+                const results = await axios.get(`http://localhost:8080/publicRecipes/${searchTerm}`);
+                setSuggestions(results.data.map(recipe => recipe.recipeName));
             }
         };
 
-        fetchIngredients();
+        fetchRecipes();
     }, [searchTerm, isValidUser]);
+
+    const handleSearch = (event) => {
+        event.preventDefault();
+        if (isValidUser) {
+            navigate(`/recipeResult/${searchTerm}`);
+        } else {
+            window.location.href = '/universalLogin';
+        }
+    };
 
     const handleSearchChange = (event, { newValue }) => {
         setSearchTerm(newValue.trim());
@@ -55,7 +63,7 @@ const SearchIngredientPage = () => {
     const handleSearchClick = () => {
         const trimmedSearchTerm = searchTerm.trim();
         if (trimmedSearchTerm) {
-            navigate(`/ingredientResult/${trimmedSearchTerm}`);
+            navigate(`/recipeResult/${trimmedSearchTerm}`);
         }
     };
 
@@ -82,7 +90,7 @@ const SearchIngredientPage = () => {
 
     return (
         <div className="container">
-            <h1 className="title">Buscador de Ingredientes:</h1>
+            <h1 className="title">Recipe Searcher:</h1>
             <div className="search-section">
                 <div className="search-container">
                     <Autosuggest
@@ -99,9 +107,8 @@ const SearchIngredientPage = () => {
                         onClick={handleSearchClick}>Search
                 </button>
             </div>
-            <Footer />
         </div>
     );
-}
+};
 
-export default SearchIngredientPage;
+export default SearchRecipeHome;
