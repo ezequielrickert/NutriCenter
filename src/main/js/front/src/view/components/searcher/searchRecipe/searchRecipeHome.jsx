@@ -47,15 +47,6 @@ const SearchRecipeHome = () => {
         fetchRecipes();
     }, [searchTerm, isValidUser]);
 
-    const handleSearch = (event) => {
-        event.preventDefault();
-        if (isValidUser) {
-            navigate(`/recipeResult/${searchTerm}`);
-        } else {
-            window.location.href = '/universalLogin';
-        }
-    };
-
     const handleSearchChange = (event, { newValue }) => {
         setSearchTerm(newValue.trim());
     };

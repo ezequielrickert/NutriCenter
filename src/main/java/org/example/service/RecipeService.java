@@ -33,10 +33,6 @@ public class RecipeService {
         recipeRepository.deleteRecipe(recipeId);
     }
 
-    public Recipe getRecipe(Long recipeId) {
-        return recipeRepository.getRecipe(recipeId);
-    }
-
     public List<Recipe> getRecipesOrderedByName() {
         return recipeRepository.getRecipesOrderedByName();
     }

@@ -37,14 +37,6 @@ public class RecipeRepositoryImpl implements RecipeRepository{
     }
 
     @Override
-    public Recipe getRecipe(Long recipeId) {
-        entityManager.getTransaction().begin();
-        Recipe recipe = entityManager.find(Recipe.class, recipeId);
-        entityManager.getTransaction().commit();
-        return recipe;
-    }
-
-    @Override
     public void updateRecipe(Long recipeId, String name, String description, List<Category> categoryList,
                              List<Ingredient> ingredientList) {
         entityManager.getTransaction().begin();

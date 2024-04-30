@@ -8,15 +8,13 @@ import java.util.List;
 
 public interface RecipeRepository {
 
-    public void addRecipe(String name, String description, List<Category> categoryList,
+    void addRecipe(String name, String description, List<Category> categoryList,
                           List<Ingredient> ingredientList, String username, Boolean isPublic);
 
-    public Recipe getRecipe(Long recipeId);
-
-    public void updateRecipe(Long recipeId, String name, String description, List<Category> categoryList,
+    void updateRecipe(Long recipeId, String name, String description, List<Category> categoryList,
                              List<Ingredient> ingredientList);
 
-    public void deleteRecipe(Long recipeId);
+    void deleteRecipe(Long recipeId);
 
     List<Recipe> getRecipesOrderedByName();
 
