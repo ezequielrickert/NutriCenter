@@ -1,8 +1,5 @@
 package org.example.repository.superadmin;
-
-import org.example.model.Customer;
 import org.example.model.SuperAdmin;
-
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 

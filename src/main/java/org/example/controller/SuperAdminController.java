@@ -1,38 +1,29 @@
 package org.example.controller;
-
-import org.example.model.SuperAdmin;
-import org.example.repository.superadmin.SuperAdminRepositoryImpl;
-
+import org.example.service.SuperAdminService;
 import javax.persistence.EntityManager;
 
 public class SuperAdminController {
 
-    SuperAdminRepositoryImpl superAdminRepository;
+    SuperAdminService superAdminService;
 
     public SuperAdminController(EntityManager entityManager) {
-        superAdminRepository = new SuperAdminRepositoryImpl(entityManager);
+        superAdminService = new SuperAdminService(entityManager);
     }
 
     public void createSuperAdmin(String username, String password) {
-        superAdminRepository.createSuperAdmin(username, password);
+        superAdminService.createSuperAdmin(username, password);
     }
 
     public void readSuperAdmin(Long id) {
-        SuperAdmin superAdmin = superAdminRepository.readSuperAdmin(id);
-        if (superAdmin != null) {
-            System.out.println("Client ID: " + superAdmin.getAdminId());
-            System.out.println("Client Name: " + superAdmin.getAdminUsername());
-        } else {
-            System.out.println("Client not found");
-        }
+        superAdminService.readSuperAdmin(id);
     }
 
     public void updateSuperAdmin(Long id, String username, String password) {
-        superAdminRepository.updateSuperAdmin(id, username, password);
+        superAdminService.updateSuperAdmin(id, username, password);
     }
 
     public void deleteSuperAdmin(Long id) {
-        superAdminRepository.deleteSuperAdmin(id);
+        superAdminService.deleteSuperAdmin(id);
     }
 
 }

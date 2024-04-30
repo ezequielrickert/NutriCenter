@@ -236,7 +236,7 @@ public class Application {
         Spark.get("/allergies", (req, res) -> {
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             AllergyController allergyController = new AllergyController(entityManager);
-            List<Allergy> allergies = allergyController.getAllergiesOrderedByName(entityManager);
+            List<Allergy> allergies = allergyController.getAllergiesOrderedByName();
             System.out.println(allergies);
             Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
             String result = gson.toJson(allergies);
