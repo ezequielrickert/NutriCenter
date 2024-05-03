@@ -1,21 +1,29 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import { Button, Table, Modal, Form } from 'react-bootstrap';
+import ReactSelect from 'react-select';
 import Footer from '../../components/footer';
 
 const NutritionistRecipeEditor = () => {
-    const [operation, setOperation] = useState('');
+    //validation
     const [isValidUser, setIsValidUser] = useState(false);
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
-    const [isPublic, setIsPublic] = useState(true);
     const userRole = localStorage.getItem('role');
+    //message
+    const [showMessage, setShowMessage] = useState(false);
+    const [messageContent, setMessageContent] = useState('');
+    //recipes/categories/ingredients
     const [recipes, setRecipes] = useState([]);
+    const [ingredients, setIngredientOptions] = useState([]);
+    const [categories, setCategoryOptions] = useState([]);
+    //create/update
+    const [isPublic, setIsPublic] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [newRecipeName, setNewRecipeName] = useState('');
     const [newRecipeDescription, setNewRecipeDescription] = useState('');
-    const [showMessage, setShowMessage] = useState(false);
-    const [messageContent, setMessageContent] = useState('');
+    const [selectedIngredients, setSelectedIngredients] = useState([]);
+    const [selectedCategories, setSelectedCategories] = useState([]);
 
     useEffect(() => {
         const validateUser = async () => {
@@ -54,17 +62,73 @@ const NutritionistRecipeEditor = () => {
         }
     }, [isValidUser, username]);
 
-    const handleSelectChange = (event) => {
-        setOperation(event.target.value);
-    };
+    useEffect(() => {
+        axios.get('http://localhost:8080/ingredients')
+            .then(response => {
+                const data = JSON.parse(response.data);
+                if (Array.isArray(data)) {
+                    setIngredientOptions(data);
+                } else {
+                    console.error('Data received from server is not an array');
+                }
+            })
+
+        axios.get('http://localhost:8080/categories')
+            .then(response => {
+                const data = JSON.parse(response.data);
+                if (Array.isArray(data)) {
+                    setCategoryOptions(data);
+                } else {
+                    console.error('Data received from server is not an array');
+                }
+            })
+    }, []);
 
     const displayMessage = (message) => {
         setMessageContent(message);
         setShowMessage(true);
+        const timer = setTimeout(() => {
+            setShowMessage(false);
+        }, 5000);
+        return () => clearTimeout(timer);
+    };
+
+    const resetModal = () => {
+        setNewRecipeName('');
+        setNewRecipeDescription('');
+        setSelectedIngredients([]);
+        setSelectedCategories([]);
+        setIsPublic('');
     };
 
     const handleCreate = async () => {
-        alert("Not implemented yet");
+        const recipeData = {
+            recipeName: newRecipeName,
+            recipeDescription: newRecipeDescription,
+            categoryList: selectedCategories,
+            ingredientList: selectedIngredients,
+            recipeUsername: username,
+            isPublic: isPublic
+        };
+
+        await axios.post("http://localhost:8080/createRecipe", recipeData)
+            .then(async res => {
+                console.log(res);
+                // Close the modal
+                setShowModal(false);
+                // Reset the modal
+                resetModal();
+                // Show success message
+                displayMessage('Recipe created successfully');
+                // Fetch the updated recipe list
+                const response = await axios.get(`http://localhost:8080/recipes/${username}`);
+                if (Array.isArray(response.data)) {
+                    setRecipes(response.data);
+                } else {
+                    console.error('Data received from server is not an array');
+                }
+            })
+            .catch(err => console.log(err));
     };
 
     const handleUpdate = async (recipe) => {
@@ -100,15 +164,8 @@ const NutritionistRecipeEditor = () => {
         }
     };
 
-    useEffect(() => {
-        if (showMessage) {
-            const timer = setTimeout(() => {
-                setShowMessage(false);
-            }, 5000);
-            return () => clearTimeout(timer);
-        }
-    }, [showMessage]);
-
+    let ingredientOptions = ingredients.map(ingredient => ({ value: ingredient, label: ingredient.ingredientName }));
+    let categoryOptions = categories.map(category => ({ value: category, label: category.categoryName }));
     return (
         <div className="container my-3">
             <h1 className="text-center">Recipes</h1>
@@ -139,27 +196,56 @@ const NutritionistRecipeEditor = () => {
                 </tbody>
             </Table>
             <Modal show={showModal} onHide={() => setShowModal(false)}>
-                <Modal.Header closeButton>
+                <Modal.Header>
                     <Modal.Title>Create Recipe</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
                         <Form.Group controlId="formRecipeName">
-                        <Form.Label>Recipe Name</Form.Label>
+                            <Form.Label>Recipe Name</Form.Label>
                             <Form.Control type="text" placeholder="Enter recipe name" value={newRecipeName} onChange={e => setNewRecipeName(e.target.value)} />
                         </Form.Group>
                         <Form.Group controlId="formRecipeDescription">
                             <Form.Label>Description</Form.Label>
                             <Form.Control type="text" placeholder="Enter description" value={newRecipeDescription} onChange={e => setNewRecipeDescription(e.target.value)} />
                         </Form.Group>
+                            <Form.Label>Choose Ingredients</Form.Label>
+                        <ReactSelect
+                            isMulti
+                            options={ingredientOptions}
+                            value={selectedIngredients.map(ingredient => ({
+                                value: ingredient,
+                                label: ingredient.ingredientName
+                            }))}
+                            onChange={selectedOptions => setSelectedIngredients(selectedOptions.map(option => option.value))}
+                            className="basic-multi-select"
+                            classNamePrefix="select"
+                        />
+                            <Form.Label>Choose Categories</Form.Label>
+                        <ReactSelect
+                            isMulti
+                            options={categoryOptions}
+                            value={selectedCategories.map(category => ({value: category, label: category.categoryName}))}
+                            onChange={selectedOptions => setSelectedCategories(selectedOptions.map(option => option.value))}
+                            className="basic-multi-select"
+                            classNamePrefix="select"
+                        />
+                        <Form.Group controlId="formIsPublic">
+                            <Form.Label>Visibility</Form.Label>
+                            <Form.Control as="select" value={isPublic} onChange={e => setIsPublic(e.target.value)}>
+                                <option value="">Choose visibility</option>
+                                <option value={true}>Public</option>
+                                <option value={false}>Private</option>
+                            </Form.Control>
+                        </Form.Group>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowModal(false)}>
+                    <Button variant="secondary" onClick={() => { setShowModal(false); resetModal(); }}>
                         Close
                     </Button>
                     <Button variant="primary" onClick={handleCreate}>
-                        Save Changes
+                        Create
                     </Button>
                 </Modal.Footer>
             </Modal>

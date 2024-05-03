@@ -308,23 +308,17 @@ public class Application {
 
         Spark.post("/createRecipe", (req, res) -> {
             String body = req.body();
-            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
-            String recipeName = gson.fromJson(jsonObject.get("recipeName"), String.class);
-            String recipeDescription = gson.fromJson(jsonObject.get("recipeDescription"), String.class);
-
-            Type categoryListType = new TypeToken<List<Category>>() {}.getType();
-            List<Category> categoryList = gson.fromJson(jsonObject.get("categoryList"), categoryListType);
-
-            Type ingredientListType = new TypeToken<List<Ingredient>>() {}.getType();
-            List<Ingredient> ingredientList = gson.fromJson(jsonObject.get("ingredientList"), ingredientListType);
-
-            String username = gson.fromJson(jsonObject.get("username"), String.class);
-            Boolean isPublic = gson.fromJson(jsonObject.get("isPublic"), Boolean.class);
-
+            Recipe recipe = gson.fromJson(body, Recipe.class);
+            String recipeName = recipe.getRecipeName();
+            String recipeDescription = recipe.getRecipeDescription();
+            List<Category> categoryList = recipe.getCategoryList();
+            List<Ingredient> ingredientList = recipe.getIngredientList();
+            String recipeUsername = recipe.getRecipeUsername();
+            boolean isPublic = recipe.getIsPublic();
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             RecipeController recipeController = new RecipeController(entityManager);
-            recipeController.createRecipe(recipeName, recipeDescription, categoryList, ingredientList, username, isPublic);
-            return req;
+            recipeController.createRecipe(recipeName, recipeDescription, categoryList, ingredientList, recipeUsername, isPublic);
+            return recipe;
         }, gson::toJson);
 
         Spark.post("/updateRecipe", (req, res) -> {
