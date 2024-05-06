@@ -32,4 +32,8 @@ public class StockController {
     public void deleteStock(String stockId, Long ingredientId) {
         stockService.deleteStock(stockId, ingredientId);
     }
+
+    public List<Store> getStoresByIngredient(String ingredientName) {
+        return stockService.getStoresByIngredient(ingredientName);
+    }
 }

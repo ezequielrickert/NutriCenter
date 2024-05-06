@@ -341,10 +341,12 @@ public class Application {
             Type ingredientListType = new TypeToken<List<Ingredient>>() {}.getType();
             List<Ingredient> ingredientList = gson.fromJson(jsonObject.get("ingredientList"), ingredientListType);
 
+            Boolean isPublic = gson.fromJson(jsonObject.get("isPublic"), Boolean.class);
+
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             RecipeController recipeController = new RecipeController(entityManager);
             recipeController.updateRecipe(recipe.getRecipeId(), recipeName, recipeDescription, categoryList,
-                    ingredientList);
+                    ingredientList, isPublic);
             return recipe;
         } , gson::toJson);
 
@@ -490,6 +492,15 @@ public class Application {
             StockController stockController = new StockController(entityManager);
             stockController.deleteStock(store, ingredient.getIngredientId());
             return gson.toJson("Stock deleted successfully");
+        });
+
+        //Get stores that sell ingredient
+        Spark.get("/sellingStores/:ingredientName", (req, res) -> {
+            String ingredientName = req.params(":ingredientName");
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            StockController stock = new StockController(entityManager);
+            List<Store> stores = stock.getStoresByIngredient(ingredientName);
+            return gson.toJson(stores);
         });
     }
 }

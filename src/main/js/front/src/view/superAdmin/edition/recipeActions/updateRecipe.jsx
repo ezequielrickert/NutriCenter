@@ -72,6 +72,7 @@ const UpdateRecipe = () => {
             recipeDescription: description,
             categoryList: selectedCategories,
             ingredientList: selectedIngredients,
+            isPublic: selectedRecipe.isPublic
         }
         await axios.post("http://localhost:8080/updateRecipe",  ingredientData )
             .then(res => console.log(res))

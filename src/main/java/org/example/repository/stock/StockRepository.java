@@ -17,6 +17,5 @@ public interface StockRepository {
 
     void deleteStock(Long storeId, Long ingredientId) ;
 
-
-
+    List<Store> getStoresByIngredient(Ingredient ingredient);
 }

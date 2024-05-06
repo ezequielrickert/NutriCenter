@@ -59,4 +59,15 @@ public class StockRepositoryImpl implements StockRepository{
         entityManager.getTransaction().commit();
     }
 
+    @Override
+    public List<Store> getStoresByIngredient(Ingredient ingredient) {
+        entityManager.getTransaction().begin();
+        List<Store> stores = entityManager.createQuery(
+                        "SELECT s.store FROM STOCK s WHERE s.ingredient = :ingredient", Store.class)
+                .setParameter("ingredient", ingredient)
+                .getResultList();
+        entityManager.getTransaction().commit();
+        return stores;
+    }
+
 }

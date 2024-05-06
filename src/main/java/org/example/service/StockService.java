@@ -17,7 +17,7 @@ public class StockService {
 
     StockRepository stockRepository;
     StoreRepository storeRepository;
-    IngredientRepository ingredientRepository;
+    IngredientRepositoryImp ingredientRepository;
 
     public StockService(EntityManager entityManager) {
         this.stockRepository = new StockRepositoryImpl(entityManager);
@@ -50,5 +50,10 @@ public class StockService {
     public List<Stock> readStock(String storeName) {
         Long storeId = storeRepository.fetchStoreByName(storeName).getStoreId();
         return stockRepository.readStock(storeId);
+    }
+
+    public List<Store> getStoresByIngredient(String ingredientName) {
+        Ingredient ingredient = ingredientRepository.getIngredientByName(ingredientName);
+        return stockRepository.getStoresByIngredient(ingredient);
     }
 }
