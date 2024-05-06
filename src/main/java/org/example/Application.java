@@ -336,8 +336,7 @@ public class Application {
 
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             RecipeController recipeController = new RecipeController(entityManager);
-            recipeController.updateRecipe(recipe.getRecipeId(), recipeName, recipeDescription, categoryList,
-                    ingredientList);
+            recipeController.updateRecipe(recipe.getRecipeId(), recipeName, recipeDescription, categoryList, ingredientList);
             return recipe;
         } , gson::toJson);
 

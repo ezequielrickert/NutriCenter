@@ -17,13 +17,18 @@ const NutritionistRecipeEditor = () => {
     const [recipes, setRecipes] = useState([]);
     const [ingredients, setIngredientOptions] = useState([]);
     const [categories, setCategoryOptions] = useState([]);
+    //Modal
+    const [showModal, setShowModal] = useState(false);
+    const [modalTitle, setModalTitle] = useState('Create Recipe');
+    const [buttonText, setButtonText] = useState('Create');
     //create/update
     const [isPublic, setIsPublic] = useState('');
-    const [showModal, setShowModal] = useState(false);
     const [newRecipeName, setNewRecipeName] = useState('');
     const [newRecipeDescription, setNewRecipeDescription] = useState('');
     const [selectedIngredients, setSelectedIngredients] = useState([]);
     const [selectedCategories, setSelectedCategories] = useState([]);
+    const [editingRecipe, setEditingRecipe] = useState(null);
+    const [formChanged, setFormChanged] = useState(false);
 
     useEffect(() => {
         const validateUser = async () => {
@@ -84,6 +89,24 @@ const NutritionistRecipeEditor = () => {
             })
     }, []);
 
+    useEffect(() => {
+        if (editingRecipe) {
+            setNewRecipeName(editingRecipe.recipeName);
+            setNewRecipeDescription(editingRecipe.recipeDescription);
+            setSelectedIngredients(editingRecipe.ingredientList);
+            setSelectedCategories(editingRecipe.categoryList);
+            setIsPublic(editingRecipe.isPublic);
+        }
+    }, [editingRecipe]);
+
+    const isFormComplete = () => {
+        return newRecipeName
+            && newRecipeDescription
+            && selectedIngredients.length > 0
+            && selectedCategories.length > 0
+            && isPublic !== '';
+    };
+
     const displayMessage = (message) => {
         setMessageContent(message);
         setShowMessage(true);
@@ -91,6 +114,20 @@ const NutritionistRecipeEditor = () => {
             setShowMessage(false);
         }, 5000);
         return () => clearTimeout(timer);
+    };
+
+    const prepareForEdit = (recipe) => {
+        setEditingRecipe(recipe);
+        setModalTitle('Edit Recipe');
+        setButtonText('Update');
+        setShowModal(true);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+        setModalTitle('Create Recipe');
+        setButtonText('Create');
+        resetModal();
     };
 
     const resetModal = () => {
@@ -131,20 +168,37 @@ const NutritionistRecipeEditor = () => {
             .catch(err => console.log(err));
     };
 
-    const handleUpdate = async (recipe) => {
-        // Logic for updating a recipe
-        const ingredientData = {
-            recipe: recipe,
-            recipeName: recipe.name,
-            recipeDescription: recipe.description,
-            categoryList: recipe.categories,
-            ingredientList: recipe.ingredients,
-            username: username,
-            isPublic: isPublic
+    const handleUpdate = async () => {
+        if (editingRecipe) {
+            const recipeData = {
+                recipe: editingRecipe,
+                recipeName: newRecipeName,
+                recipeDescription: newRecipeDescription,
+                categoryList: selectedCategories,
+                ingredientList: selectedIngredients,
+                recipeUsername: username,
+                isPublic: isPublic
+            };
+
+            await axios.post(`http://localhost:8080/updateRecipe`, recipeData)
+                .then(async res => {
+                    console.log(res);
+                    // Close the modal
+                    setShowModal(false);
+                    // Reset the modal
+                    resetModal();
+                    // Show success message
+                    displayMessage('Recipe updated successfully');
+                    // Fetch the updated recipe list
+                    const response = await axios.get(`http://localhost:8080/recipes/${username}`);
+                    if (Array.isArray(response.data)) {
+                        setRecipes(response.data);
+                    } else {
+                        console.error('Data received from server is not an array');
+                    }
+                })
+                .catch(err => console.log(err));
         }
-        await axios.post("http://localhost:8080/updateRecipe",  ingredientData )
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
     };
 
     const handleDelete = async (recipe) => {
@@ -164,8 +218,14 @@ const NutritionistRecipeEditor = () => {
         }
     };
 
-    let ingredientOptions = ingredients.map(ingredient => ({ value: ingredient, label: ingredient.ingredientName }));
-    let categoryOptions = categories.map(category => ({ value: category, label: category.categoryName }));
+    let ingredientOptions = ingredients
+        .filter(ingredient => !selectedIngredients.some(selectedIngredient => selectedIngredient.ingredientId === ingredient.ingredientId))
+        .map(ingredient => ({ value: ingredient, label: ingredient.ingredientName }));
+
+    let categoryOptions = categories
+        .filter(category => !selectedCategories.some(selectedCategory => selectedCategory.id === category.id))
+        .map(category => ({ value: category, label: category.categoryName }));
+
     return (
         <div className="container my-3">
             <h1 className="text-center">Recipes</h1>
@@ -187,28 +247,31 @@ const NutritionistRecipeEditor = () => {
                         <td>{recipe.recipeDescription}</td>
                         <td>{recipe.isPublic ? 'Yes' : 'No'}</td>
                         <td>
-                            <Button variant="warning" onClick={() => handleUpdate(recipe)}
-                                    style={{marginRight: '10px'}}>Edit</Button>
-                            <Button variant="danger" onClick={() => handleDelete(recipe)}>Delete</Button>
+                            <Button variant="warning" onClick={() => prepareForEdit(recipe)}
+                                    style={{marginRight: '10px'}}>
+                                Edit
+                            </Button>
+                            <Button variant="danger" onClick={() => handleDelete(recipe)}>
+                                Delete
+                            </Button>
                         </td>
                     </tr>
                 ))}
                 </tbody>
             </Table>
-            <Modal show={showModal} onHide={() => setShowModal(false)}>
+            <Modal show={showModal} onHide={closeModal}>
                 <Modal.Header>
-                    <Modal.Title>Create Recipe</Modal.Title>
+                    <Modal.Title>{modalTitle}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
                         <Form.Group controlId="formRecipeName">
                             <Form.Label>Recipe Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter recipe name" value={newRecipeName} onChange={e => setNewRecipeName(e.target.value)} />
+                            <Form.Control type="text" placeholder="Enter recipe name" value={newRecipeName} onChange={e => { setNewRecipeName(e.target.value); setFormChanged(true); }} />
                         </Form.Group>
                         <Form.Group controlId="formRecipeDescription">
                             <Form.Label>Description</Form.Label>
-                            <Form.Control type="text" placeholder="Enter description" value={newRecipeDescription} onChange={e => setNewRecipeDescription(e.target.value)} />
-                        </Form.Group>
+                            <Form.Control type="text" placeholder="Enter description" value={newRecipeDescription} onChange={e => { setNewRecipeDescription(e.target.value); setFormChanged(true); }} />                        </Form.Group>
                             <Form.Label>Choose Ingredients</Form.Label>
                         <ReactSelect
                             isMulti
@@ -217,7 +280,7 @@ const NutritionistRecipeEditor = () => {
                                 value: ingredient,
                                 label: ingredient.ingredientName
                             }))}
-                            onChange={selectedOptions => setSelectedIngredients(selectedOptions.map(option => option.value))}
+                            onChange={selectedOptions => { setSelectedIngredients(selectedOptions.map(option => option.value)); setFormChanged(true); }}
                             className="basic-multi-select"
                             classNamePrefix="select"
                         />
@@ -225,17 +288,20 @@ const NutritionistRecipeEditor = () => {
                         <ReactSelect
                             isMulti
                             options={categoryOptions}
-                            value={selectedCategories.map(category => ({value: category, label: category.categoryName}))}
-                            onChange={selectedOptions => setSelectedCategories(selectedOptions.map(option => option.value))}
+                            value={selectedCategories.map(category => ({
+                                value: category,
+                                label: category.categoryName
+                            }))}
+                            onChange={selectedOptions => setSelectedCategories(selectedOptions ? selectedOptions.map(option => option.value) : [])}
                             className="basic-multi-select"
                             classNamePrefix="select"
                         />
                         <Form.Group controlId="formIsPublic">
                             <Form.Label>Visibility</Form.Label>
-                            <Form.Control as="select" value={isPublic} onChange={e => setIsPublic(e.target.value)}>
+                            <Form.Control as="select" value={isPublic.toString()} onChange={e => setIsPublic(e.target.value === 'true')}>
                                 <option value="">Choose visibility</option>
-                                <option value={true}>Public</option>
-                                <option value={false}>Private</option>
+                                <option value="true">Public</option>
+                                <option value="false">Private</option>
                             </Form.Control>
                         </Form.Group>
                     </Form>
@@ -244,8 +310,8 @@ const NutritionistRecipeEditor = () => {
                     <Button variant="secondary" onClick={() => { setShowModal(false); resetModal(); }}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleCreate}>
-                        Create
+                    <Button variant="primary" onClick={editingRecipe ? handleUpdate : handleCreate} disabled={!isFormComplete()}>
+                        {buttonText}
                     </Button>
                 </Modal.Footer>
             </Modal>
