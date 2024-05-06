@@ -1,12 +1,15 @@
 package org.example.model;
 
 import com.google.gson.Gson;
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 
 @Entity(name = "STORE")
 public class Store {
 
     @Id
+    @Expose(serialize = true)
     @GeneratedValue(generator = "userGen", strategy = GenerationType.IDENTITY)
     private Long storeId;
 

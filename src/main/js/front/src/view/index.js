@@ -9,6 +9,7 @@ export { default as DashboardNutritionist } from './nutritionist/dashboard/dashb
 export { default as NutritionistRecipeEditor } from './nutritionist/edition/initialEditor';
 
 export { default as DashboardStore } from './store/dashboard/dashboardStore';
+export { default as Stock } from './store/stock/stockEditor';
 
 export { default as InitialEditor } from './superAdmin/edition/initialEditor';
 export { default as IngredientEditor } from './superAdmin/edition/editors/ingredientEditor';
