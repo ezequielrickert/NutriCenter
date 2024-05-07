@@ -1,30 +1,33 @@
 package org.example.controller;
+import org.example.model.Nutritionist;
 
 import org.example.model.roles.Nutritionist;
 import org.example.repository.nutritionist.NutritionistRepositoryImp;
 
 import javax.persistence.EntityManager;
+import org.example.service.NutritionistService;
 
 public class NutritionistController {
 
-  NutritionistRepositoryImp nutritionistRepositoryImp;
+  NutritionistService nutritionistService;
+
   public NutritionistController(EntityManager entityManager) {
-    this.nutritionistRepositoryImp = new NutritionistRepositoryImp(entityManager);
+    this.nutritionistService = new NutritionistService(entityManager);
   }
 
   public void createNutritionist(String username, String email, String password, String diploma){
-    nutritionistRepositoryImp.createNutritionist(username, email, password, diploma);
+    nutritionistService.createNutritionist(username, email, password, diploma);
   }
 
   public Nutritionist getNutritionist(Long nutritionistId) {
-    return nutritionistRepositoryImp.readNutritionist(nutritionistId);
+    return nutritionistService.getNutritionist(nutritionistId);
   }
 
   public void updateNutritionist(Long nutritionistId, String username, String email, String password, String diploma) {
-    nutritionistRepositoryImp.updateNutritionist(nutritionistId, username,email, password, diploma);
+    nutritionistService.updateNutritionist(nutritionistId, username,email, password, diploma);
   }
 
   public void deleteNutritionist(Long nutritionistId) {
-    nutritionistRepositoryImp.deleteNutritionist(nutritionistId);
+    nutritionistService.deleteNutritionist(nutritionistId);
   }
 }

@@ -25,8 +25,8 @@ public class RecipeService {
     }
 
     public void updateRecipe(Long recipeId, String name, String description, List<Category> categoryList,
-                             List<Ingredient> ingredientList) {
-        recipeRepository.updateRecipe(recipeId, name, description, categoryList, ingredientList);
+                             List<Ingredient> ingredientList, Boolean isPublic) {
+        recipeRepository.updateRecipe(recipeId, name, description, categoryList, ingredientList, isPublic);
     }
 
     public void deleteRecipe(Long recipeId) {

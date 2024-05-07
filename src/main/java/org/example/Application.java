@@ -2,8 +2,10 @@ package org.example;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import org.example.controller.*;
+import org.example.model.*;
 import org.example.model.login.Authenticator;
 import org.example.model.login.LoginData;
+import org.example.model.stock.Stock;
 import org.example.model.recipie.Allergy;
 import org.example.model.recipie.Category;
 import org.example.model.recipie.Ingredient;
@@ -349,10 +351,12 @@ public class Application {
             Type ingredientListType = new TypeToken<List<Ingredient>>() {}.getType();
             List<Ingredient> ingredientList = gson.fromJson(jsonObject.get("ingredientList"), ingredientListType);
 
+            Boolean isPublic = gson.fromJson(jsonObject.get("isPublic"), Boolean.class);
+
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             RecipeController recipeController = new RecipeController(entityManager);
             recipeController.updateRecipe(recipe.getRecipeId(), recipeName, recipeDescription, categoryList,
-                    ingredientList);
+                    ingredientList, isPublic);
             return recipe;
         } , gson::toJson);
 
@@ -453,6 +457,60 @@ public class Application {
             IngredientController ingredientController = new IngredientController(entityManager);
             List<Ingredient> ingredients = ingredientController.getIngredientsBeginningWith(beginning);
             return gson.toJson(ingredients);
+        });
+
+        Spark.post("/addStock", (req, res) -> {
+           String body = req.body();
+          JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+          String storeName = gson.fromJson(jsonObject.get("storeName"), String.class);
+          Ingredient ingredient = gson.fromJson(jsonObject.get("ingredientId"), Ingredient.class);
+          int quantity = gson.fromJson(jsonObject.get("quantity"), Integer.class);
+          String brand = gson.fromJson(jsonObject.get("brand"), String.class);
+          EntityManager entityManager = entityManagerFactory.createEntityManager();
+          StockController stockController = new StockController(entityManager);
+          stockController.createStock(storeName, ingredient, quantity, brand);
+          return gson.toJson("Stock created successfully");
+        });
+
+        Spark.get("/stock/:storeName", (req, res) -> {
+            String storeName = req.params(":storeName");
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            StockController stockController = new StockController(entityManager);
+            List<Stock> stock = stockController.readStock(storeName);
+            return gson.toJson(stock);
+        });
+
+        Spark.post("/updateStock", (req, res) -> {
+            String body = req.body();
+            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            String store = gson.fromJson(jsonObject.get("storeName"), String.class);
+            Ingredient ingredient = gson.fromJson(jsonObject.get("ingredientId"), Ingredient.class);
+            int quantity = gson.fromJson(jsonObject.get("quantity"), Integer.class);
+            String brand = gson.fromJson(jsonObject.get("brand"), String.class);
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            StockController stockController = new StockController(entityManager);
+            stockController.updateStock(store, ingredient, quantity, brand);
+            return gson.toJson("Stock updated successfully");
+        });
+
+        Spark.post("/deleteStock", (req, res) -> {
+            String body = req.body();
+            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            String store = gson.fromJson(jsonObject.get("storeName"), String.class);
+            Ingredient ingredient = gson.fromJson(jsonObject.get("ingredientId"), Ingredient.class);
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            StockController stockController = new StockController(entityManager);
+            stockController.deleteStock(store, ingredient.getIngredientId());
+            return gson.toJson("Stock deleted successfully");
+        });
+
+        //Get stores that sell ingredient
+        Spark.get("/sellingStores/:ingredientName", (req, res) -> {
+            String ingredientName = req.params(":ingredientName");
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            StockController stock = new StockController(entityManager);
+            List<Store> stores = stock.getStoresByIngredient(ingredientName);
+            return gson.toJson(stores);
         });
     }
 }

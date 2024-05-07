@@ -1,4 +1,6 @@
 package org.example.controller;
+import org.example.model.Allergy;
+import org.example.service.AllergyService;
 import org.example.model.recipie.Allergy;
 import org.example.repository.allergy.AllergyRepositoryImp;
 import javax.persistence.EntityManager;
@@ -6,37 +8,30 @@ import java.util.List;
 
 public class AllergyController {
 
-    AllergyRepositoryImp allergyRepositoryImp;
+    AllergyService allergyService;
 
     public AllergyController(EntityManager entityManager) {
-        allergyRepositoryImp = new AllergyRepositoryImp(entityManager);
+        allergyService = new AllergyService(entityManager);
     }
 
     public void createAllergy(String name, String description) {
-        allergyRepositoryImp.createAllergy(name, description);
+        allergyService.createAllergy(name, description);
     }
 
     public void readAllergy(long allergyId) {
-        Allergy allergy = allergyRepositoryImp.readAllergy(allergyId);
-        if (allergy != null) {
-            System.out.println("Allergy ID: " + allergy.getAllergyId());
-            System.out.println("Allergy Name: " + allergy.getAllergyName());
-            System.out.println("Allergy Description: " + allergy.getDescription());
-        } else {
-            System.out.println("Allergy not found");
-        }
+        allergyService.readAllergy(allergyId);
     }
 
     public void updateAllergy(long allergyId, String description) {
-        allergyRepositoryImp.updateAllergy(allergyId, description);
+        allergyService.updateAllergy(allergyId, description);
     }
 
     public void deleteAllergy(long allergyId) {
-        allergyRepositoryImp.deleteAllergy(allergyId);
+        allergyService.deleteAllergy(allergyId);
     }
 
-    public List<Allergy> getAllergiesOrderedByName(EntityManager entityManager) {
-        List<Allergy> result = allergyRepositoryImp.getAll();
+    public List<Allergy> getAllergiesOrderedByName() {
+        List<Allergy> result = allergyService.getAllergiesOrderedByName();
         return result;
     }
 }

@@ -1,4 +1,5 @@
 package org.example.repository.store;
+import org.example.model.Store;
 
 import org.example.model.roles.Store;
 

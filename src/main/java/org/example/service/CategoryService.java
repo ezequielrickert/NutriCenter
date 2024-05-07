@@ -3,7 +3,6 @@ package org.example.service;
 import org.example.model.recipie.Category;
 import org.example.repository.category.CategoryRepositoryImpl;
 import org.example.repository.category.CateogryRepository;
-
 import javax.persistence.EntityManager;
 import java.util.List;
 

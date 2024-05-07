@@ -12,7 +12,7 @@ public interface RecipeRepository {
                           List<Ingredient> ingredientList, String username, Boolean isPublic);
 
     void updateRecipe(Long recipeId, String name, String description, List<Category> categoryList,
-                             List<Ingredient> ingredientList);
+                             List<Ingredient> ingredientList, Boolean isPublic);
 
     void deleteRecipe(Long recipeId);
 

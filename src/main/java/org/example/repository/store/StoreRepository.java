@@ -8,4 +8,5 @@ public interface StoreRepository {
   void updateStore(Long storeId, String storeName, String storeEmail, String storePassword);
   void deleteStore(Long storeId);
   Store fetchStoreByName(String storeName);
+
 }

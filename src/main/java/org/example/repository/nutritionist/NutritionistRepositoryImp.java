@@ -1,4 +1,5 @@
 package org.example.repository.nutritionist;
+import org.example.model.Nutritionist;
 
 import org.example.model.roles.Nutritionist;
 

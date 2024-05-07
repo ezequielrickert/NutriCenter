@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Footer from "../../components/footer";
+import { Link } from 'react-router-dom'; // Import the Link component
+
 
 const DashboardStore = () => {
     const [isValidUser, setIsValidUser] = useState(false);
@@ -35,7 +37,9 @@ const DashboardStore = () => {
         <div className="container my-5">
             <header className="text-center">
                 <h1>Welcome to the Store Dashboard</h1>
-                { /*add dashboard content here*/ }
+                <Link to="/stock">
+                    <button>Edit Stock</button>
+                </Link>
                 <Footer />
             </header>
         </div>

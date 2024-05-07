@@ -12,6 +12,7 @@ const IngredientInfo = () => {
     const { ingredientName } = useParams();
     const [ingredient, setIngredient] = useState(null);
     const navigate = useNavigate();
+    const [store, setStore] = useState([]);
 
     useEffect(() => {
         const validateUser = async () => {
@@ -42,7 +43,17 @@ const IngredientInfo = () => {
             setIngredient(result.data);
         };
 
+        if (!isValidUser) {
+            return;
+        }
+
+        const fetchStores = async () => {
+            const result = await axios.get(`http://localhost:8080/sellingStores/${ingredientName}`);
+            setStore(result.data);
+        };
+
         fetchIngredient();
+        fetchStores();
     }, [ingredientName, isValidUser]);
 
     const handleSearchAgainClick = () => {
@@ -62,9 +73,16 @@ const IngredientInfo = () => {
                         <li className="list-group-item">Total Fat: {ingredient.totalFat}</li>
                         <li className="list-group-item">Cholesterol: {ingredient.cholesterol}</li>
                         <li className="list-group-item">Total Carbohydrate: {ingredient.totalCarbohydrate}</li>
-                    </ul>                </>
+                    </ul>
+                    <h3 className="text-center my-5">Stores Selling This Ingredient</h3>
+                    <div className="horizontal-container">
+                        {store.map((store) => (
+                            <div key={store.storeName} className="store-item">{store.storeName}</div>
+                        ))}
+                    </div>
+                </>
             )}
-            <button onClick={handleSearchAgainClick}>Search Another Ingredient</button>
+            <button className="button-margin" onClick={handleSearchAgainClick}>Search Another Ingredient</button>
             <Footer/>
         </div>
     );

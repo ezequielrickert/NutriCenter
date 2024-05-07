@@ -38,11 +38,10 @@ public class RecipeRepositoryImpl implements RecipeRepository{
 
     @Override
     public void updateRecipe(Long recipeId, String name, String description, List<Category> categoryList,
-                             List<Ingredient> ingredientList) {
+                             List<Ingredient> ingredientList, Boolean isPublic) {
         entityManager.getTransaction().begin();
         Recipe recipe = entityManager.find(Recipe.class, recipeId);
         String username = recipe.getRecipeUsername();
-        Boolean isPublic = recipe.getIsPublic();
         recipe.setRecipeName(name);
         recipe.setRecipeDescription(description);
         recipe.setCategoryList(categoryList);
@@ -92,7 +91,7 @@ public class RecipeRepositoryImpl implements RecipeRepository{
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Recipe> cr = cb.createQuery(Recipe.class);
         Root<Recipe> root = cr.from(Recipe.class);
-        cr.select(root).where(cb.equal(root.get("username"), username));
+        cr.select(root).where(cb.equal(root.get("recipeUsername"), username));
 
         Query query = entityManager.createQuery(cr);
         List<Recipe> results = query.getResultList();
