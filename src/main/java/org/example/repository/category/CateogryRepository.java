@@ -1,6 +1,6 @@
 package org.example.repository.category;
 
-import org.example.model.recipie.Category;
+import org.example.model.recipe.Category;
 
 import java.util.List;
 

@@ -1,6 +1,4 @@
 package org.example.controller;
-import org.example.model.Nutritionist;
-
 import org.example.model.roles.Nutritionist;
 import org.example.repository.nutritionist.NutritionistRepositoryImp;
 

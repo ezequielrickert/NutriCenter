@@ -1,5 +1,5 @@
 package org.example.repository.allergy;
-import org.example.model.recipie.Allergy;
+import org.example.model.recipe.Allergy;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;

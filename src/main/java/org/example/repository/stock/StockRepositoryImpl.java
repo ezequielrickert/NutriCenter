@@ -1,7 +1,7 @@
 package org.example.repository.stock;
 
-import org.example.model.Ingredient;
-import org.example.model.Store;
+import org.example.model.recipe.Ingredient;
+import org.example.model.roles.Store;
 import org.example.model.stock.Stock;
 import org.example.model.stock.StockId;
 

@@ -1,8 +1,7 @@
 package org.example.model.stock;
 
-import org.example.model.Ingredient;
-import org.example.model.Store;
-
+import org.example.model.recipe.Ingredient;
+import org.example.model.roles.Store;
 import javax.persistence.*;
 import java.util.List;
 

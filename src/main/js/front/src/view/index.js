@@ -4,6 +4,7 @@ export { default as UniversalLogin } from './home/universalLogin';
 export { default as SignUpDefault } from './home/signUpDefault';
 
 export { default as DashboardCustomer } from './customer/dashboard/dashboardCustomer';
+export { default as MealTable } from './customer/mealHistory/addMeal';
 
 export { default as DashboardNutritionist } from './nutritionist/dashboard/dashboardNutritionist';
 export { default as NutritionistRecipeEditor } from './nutritionist/edition/initialEditor';

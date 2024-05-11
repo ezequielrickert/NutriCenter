@@ -10,6 +10,7 @@ import { IngredientResult, IngredientInfo } from '../view';
 import { RecipeResult, RecipeInfo } from '../view';
 import { AccountSettingsPage, Logout } from '../view';
 import {Stock} from "../view";
+import {MealTable} from "../view";
 
 function App() {
     return (
@@ -47,6 +48,8 @@ function App() {
                     <Route path="/logout" element={<Logout />} />
 
                     <Route path="/stock" element={<Stock />} />
+
+                    <Route path={"/mealTable"} element={<MealTable />} />
 
                 </Routes>
             </div>

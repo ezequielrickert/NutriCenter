@@ -1,7 +1,7 @@
 package org.example.controller;
 
-import org.example.model.recipie.Allergy;
-import org.example.model.recipie.Ingredient;
+import org.example.model.recipe.Allergy;
+import org.example.model.recipe.Ingredient;
 import org.example.service.IngredientService;
 
 import javax.persistence.EntityManager;

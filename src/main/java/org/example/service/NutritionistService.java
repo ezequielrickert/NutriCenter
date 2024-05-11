@@ -1,8 +1,7 @@
 package org.example.service;
 
-import org.example.model.Nutritionist;
+import org.example.model.roles.Nutritionist;
 import org.example.repository.nutritionist.NutritionistRepositoryImp;
-
 import javax.persistence.EntityManager;
 
 public class NutritionistService {

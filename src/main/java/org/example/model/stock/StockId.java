@@ -1,8 +1,5 @@
 package org.example.model.stock;
 
-import org.example.model.Ingredient;
-import org.example.model.Store;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;

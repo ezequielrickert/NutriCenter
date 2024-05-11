@@ -3,6 +3,7 @@ package org.example.model.history;
 import org.example.model.roles.Customer;
 
 import javax.persistence.*;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -12,29 +13,23 @@ public class WeeklyHistory {
     @GeneratedValue(generator = "userGen", strategy = GenerationType.SEQUENCE)
     private Long weeklyHistoryId;
 
-    @OneToOne(mappedBy = "weeklyHistory")
-    private Customer customer;
 
     @OneToMany(mappedBy = "weeklyHistory", cascade = CascadeType.ALL)
     private List<WeekDay> days;
 
     @Column(nullable = false, unique = false)
-    private LocalDate startDate;
+    private DayOfWeek startDate;
 
     @Column(nullable = false, unique = false)
-    private LocalDate endDate;
+    private DayOfWeek endDate;
 
     @Column(nullable = false, unique = false)
     private String status;
 
 
     public WeeklyHistory() {
-
-    }
-
-    public WeeklyHistory(Long clientId, LocalDate startDate, LocalDate endDate) {
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.startDate = DayOfWeek.MONDAY;
+        this.endDate = DayOfWeek.SUNDAY;
         this.status = "pending";
     }
 
@@ -42,9 +37,6 @@ public class WeeklyHistory {
         return weeklyHistoryId;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
 
     public List<WeekDay> getDays() {
         return days;
@@ -55,24 +47,16 @@ public class WeeklyHistory {
     }
 
 
-    public LocalDate getStartDate() {
+    public DayOfWeek getStartDate() {
         return startDate;
     }
 
-    public LocalDate getEndDate() {
+    public DayOfWeek getEndDate() {
         return endDate;
     }
 
     public String getStatus() {
         return status;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
     }
 
     public void setStatus(String status) {

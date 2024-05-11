@@ -1,5 +1,6 @@
 package org.example.repository.customer;
 
+import org.example.model.history.WeeklyHistory;
 import org.example.model.roles.Customer;
 
 import javax.persistence.EntityManager;
@@ -15,12 +16,15 @@ public class CostumerRepositoryImp implements CostumerRepository {
   }
 
   @Override
-  public void createUser(String username, String email, String password) {
-    entityManager.getTransaction().begin();
+  public void createUser(String username, String email, String password, WeeklyHistory weeklyHistory) {
+    if (!entityManager.getTransaction().isActive()) {
+      entityManager.getTransaction().begin();
+    }
     Customer customer = new Customer();
     customer.setCustomerName(username);
     customer.setCustomerEmail(email);
     customer.setCustomerPassword(password);
+    customer.setWeeklyHistory(weeklyHistory);
     entityManager.persist(customer);
     entityManager.getTransaction().commit();
   }

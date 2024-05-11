@@ -1,8 +1,5 @@
 package org.example.repository.nutritionist;
-import org.example.model.Nutritionist;
-
 import org.example.model.roles.Nutritionist;
-
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 

@@ -10,6 +10,7 @@ public class CustomerController {
   public CustomerController(EntityManager entityManager) {
     this.customerService = new CustomerService(entityManager);
   }
+
   public void createClient(String username, String email, String password) {
     customerService.createUser(username, email, password);
   }

@@ -1,8 +1,8 @@
 package org.example.repository.recipe;
 
-import org.example.model.recipie.Category;
-import org.example.model.recipie.Ingredient;
-import org.example.model.recipie.Recipe;
+import org.example.model.recipe.Category;
+import org.example.model.recipe.Ingredient;
+import org.example.model.recipe.Recipe;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;

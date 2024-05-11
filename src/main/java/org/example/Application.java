@@ -1,19 +1,13 @@
 package org.example;
+
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import org.example.controller.*;
-import org.example.model.*;
 import org.example.model.login.Authenticator;
 import org.example.model.login.LoginData;
 import org.example.model.stock.Stock;
-import org.example.model.recipie.Allergy;
-import org.example.model.recipie.Category;
-import org.example.model.recipie.Ingredient;
-import org.example.model.recipie.Recipe;
-import org.example.model.roles.Customer;
-import org.example.model.roles.Nutritionist;
-import org.example.model.roles.Store;
-import org.example.model.roles.SuperAdmin;
+import org.example.model.recipe.*;
+import org.example.model.roles.*;
 import spark.Request;
 import spark.Response;
 import spark.Route;
@@ -23,6 +17,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.lang.reflect.Type;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,41 +33,41 @@ public class Application {
         final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
         final SignUpController signUpController = new SignUpController(entityManagerFactory.createEntityManager());
 
-    Spark.port(8080);
+        Spark.port(8080);
 
-      Spark.options("/*", (request, response) -> {
+        Spark.options("/*", (request, response) -> {
 
-          String accessControlRequestHeaders = request.headers("Access-Control-Request-Headers");
-          if (accessControlRequestHeaders != null) {
-              response.header("Access-Control-Allow-Headers", accessControlRequestHeaders);
-          }
+            String accessControlRequestHeaders = request.headers("Access-Control-Request-Headers");
+            if (accessControlRequestHeaders != null) {
+                response.header("Access-Control-Allow-Headers", accessControlRequestHeaders);
+            }
 
-          String accessControlRequestMethod = request.headers("Access-Control-Request-Method");
-          if (accessControlRequestMethod != null) {
-              response.header("Access-Control-Allow-Methods", accessControlRequestMethod);
-          }
+            String accessControlRequestMethod = request.headers("Access-Control-Request-Method");
+            if (accessControlRequestMethod != null) {
+                response.header("Access-Control-Allow-Methods", accessControlRequestMethod);
+            }
 
-          return "OK";
-      });
+            return "OK";
+        });
 
-      Spark.before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
+        Spark.before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
 
-      // Post to create Customer
-      Spark.post("/createCustomer", (req, res) -> {
-          String body = req.body();
-          Customer newCustomer = gson.fromJson(body, Customer.class);
-          String username = newCustomer.getCustomerName();
-          if(signUpController.validate(username) != true){
-              res.status(401);
-              return "Username already exists";
-          }
-          String email = newCustomer.getCustomerEmail();
-          String password = newCustomer.getCustomerPassword();
-          EntityManager entityManager = entityManagerFactory.createEntityManager();
-          CustomerController customerController = new CustomerController(entityManager);
-          customerController.createClient(username, email, password);
-          return newCustomer;
-      }, gson::toJson);
+        // Post to create Customer
+        Spark.post("/createCustomer", (req, res) -> {
+            String body = req.body();
+            Customer newCustomer = gson.fromJson(body, Customer.class);
+            String username = newCustomer.getCustomerName();
+            if (signUpController.validate(username) != true) {
+                res.status(401);
+                return "Username already exists";
+            }
+            String email = newCustomer.getCustomerEmail();
+            String password = newCustomer.getCustomerPassword();
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            CustomerController customerController = new CustomerController(entityManager);
+            customerController.createClient(username, email, password);
+            return newCustomer;
+        }, gson::toJson);
 
         // Post to update Customer
         Spark.post("/authenticateUser", (req, res) -> {
@@ -122,7 +117,7 @@ public class Application {
             String body = req.body();
             SuperAdmin superAdmin = gson.fromJson(body, SuperAdmin.class);
             String username = superAdmin.getAdminUsername();
-            if(signUpController.validate(username) != true){
+            if (signUpController.validate(username) != true) {
                 res.status(401);
                 return "Username already exists";
             }
@@ -135,35 +130,35 @@ public class Application {
 
         /* Dynamic Content from Db */
         Spark.get("/persisted-customers/:id", (req, resp) -> {
-            final String id = req.params("id");
+                    final String id = req.params("id");
 
-            /* Business Logic */
-            final EntityManager entityManager = entityManagerFactory.createEntityManager();
-            final EntityTransaction tx = entityManager.getTransaction();
-            tx.begin();
-            Customer customer = entityManager.find(Customer.class, Long.valueOf(id));
-            tx.commit();
-            entityManager.close();
+                    /* Business Logic */
+                    final EntityManager entityManager = entityManagerFactory.createEntityManager();
+                    final EntityTransaction tx = entityManager.getTransaction();
+                    tx.begin();
+                    Customer customer = entityManager.find(Customer.class, Long.valueOf(id));
+                    tx.commit();
+                    entityManager.close();
 
-            resp.type("application/json");
-            return customer.asJson();
-            }
+                    resp.type("application/json");
+                    return customer.asJson();
+                }
         );
 
         Spark.get("/persisted-nutritionist/:id", (req, resp) -> {
-            final String id = req.params("id");
+                    final String id = req.params("id");
 
-            /* Business Logic */
-            final EntityManager entityManager = entityManagerFactory.createEntityManager();
-            final EntityTransaction tx = entityManager.getTransaction();
-            tx.begin();
-            Nutritionist nutritionist = entityManager.find(Nutritionist.class, Long.valueOf(id));
-            tx.commit();
-            entityManager.close();
+                    /* Business Logic */
+                    final EntityManager entityManager = entityManagerFactory.createEntityManager();
+                    final EntityTransaction tx = entityManager.getTransaction();
+                    tx.begin();
+                    Nutritionist nutritionist = entityManager.find(Nutritionist.class, Long.valueOf(id));
+                    tx.commit();
+                    entityManager.close();
 
-            resp.type("application/json");
-            return nutritionist.asJson();
-            }
+                    resp.type("application/json");
+                    return nutritionist.asJson();
+                }
         );
 
         // Post to create Nutritionist
@@ -171,7 +166,7 @@ public class Application {
             String body = req.body();
             Nutritionist nutritionist = gson.fromJson(body, Nutritionist.class);
             String name = nutritionist.getNutritionistName();
-            if(signUpController.validate(name) != true){
+            if (signUpController.validate(name) != true) {
                 res.status(401);
                 return "Username already exists";
             }
@@ -245,7 +240,7 @@ public class Application {
         Spark.get("/allergies", (req, res) -> {
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             AllergyController allergyController = new AllergyController(entityManager);
-            List<Allergy> allergies = allergyController.getAllergiesOrderedByName(entityManager);
+            List<Allergy> allergies = allergyController.getAllergiesOrderedByName();
             System.out.println(allergies);
             Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
             String result = gson.toJson(allergies);
@@ -257,10 +252,8 @@ public class Application {
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             CategoryController categoryController = new CategoryController(entityManager);
             List<Category> categories = categoryController.getCategoriesOrderedByName();
-            System.out.println(categories);
             Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
             String result = gson.toJson(categories);
-            System.out.println(result);
             return result;
         }, gson::toJson);
 
@@ -268,10 +261,8 @@ public class Application {
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             RecipeController recipeController = new RecipeController(entityManager);
             List<Recipe> recipes = recipeController.getRecipesOrderedByName();
-            System.out.println(recipes);
             Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
             String result = gson.toJson(recipes);
-            System.out.println(result);
             return result;
         }, gson::toJson);
 
@@ -323,10 +314,12 @@ public class Application {
             String recipeName = gson.fromJson(jsonObject.get("recipeName"), String.class);
             String recipeDescription = gson.fromJson(jsonObject.get("recipeDescription"), String.class);
 
-            Type categoryListType = new TypeToken<List<Category>>() {}.getType();
+            Type categoryListType = new TypeToken<List<Category>>() {
+            }.getType();
             List<Category> categoryList = gson.fromJson(jsonObject.get("categoryList"), categoryListType);
 
-            Type ingredientListType = new TypeToken<List<Ingredient>>() {}.getType();
+            Type ingredientListType = new TypeToken<List<Ingredient>>() {
+            }.getType();
             List<Ingredient> ingredientList = gson.fromJson(jsonObject.get("ingredientList"), ingredientListType);
 
             String username = gson.fromJson(jsonObject.get("username"), String.class);
@@ -345,10 +338,12 @@ public class Application {
             String recipeName = gson.fromJson(jsonObject.get("recipeName"), String.class);
             String recipeDescription = gson.fromJson(jsonObject.get("recipeDescription"), String.class);
 
-            Type categoryListType = new TypeToken<List<Category>>() {}.getType();
+            Type categoryListType = new TypeToken<List<Category>>() {
+            }.getType();
             List<Category> categoryList = gson.fromJson(jsonObject.get("categoryList"), categoryListType);
 
-            Type ingredientListType = new TypeToken<List<Ingredient>>() {}.getType();
+            Type ingredientListType = new TypeToken<List<Ingredient>>() {
+            }.getType();
             List<Ingredient> ingredientList = gson.fromJson(jsonObject.get("ingredientList"), ingredientListType);
 
             Boolean isPublic = gson.fromJson(jsonObject.get("isPublic"), Boolean.class);
@@ -358,7 +353,7 @@ public class Application {
             recipeController.updateRecipe(recipe.getRecipeId(), recipeName, recipeDescription, categoryList,
                     ingredientList, isPublic);
             return recipe;
-        } , gson::toJson);
+        }, gson::toJson);
 
         Spark.post("/deleteRecipe", (req, res) -> {
             String body = req.body();
@@ -369,14 +364,14 @@ public class Application {
             RecipeController recipeController = new RecipeController(entityManager);
             recipeController.deleteRecipe(id);
             return recipe;
-        } , gson::toJson);
+        }, gson::toJson);
 
         // Post to create Store
         Spark.post("/createStore", (req, res) -> {
             String body = req.body();
             Store store = gson.fromJson(body, Store.class);
             String storeName = store.getStoreName();
-            if(!signUpController.validate(storeName)){
+            if (!signUpController.validate(storeName)) {
                 res.status(401);
                 return "Username already exists";
             }
@@ -427,7 +422,7 @@ public class Application {
 
             resp.type("application/json");
             return store.asJson();
-            });
+        });
 
         Spark.get("/ingredients/search/:term", new Route() {
             public Object handle(Request request, Response response) throws Exception {
@@ -460,16 +455,16 @@ public class Application {
         });
 
         Spark.post("/addStock", (req, res) -> {
-           String body = req.body();
-          JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
-          String storeName = gson.fromJson(jsonObject.get("storeName"), String.class);
-          Ingredient ingredient = gson.fromJson(jsonObject.get("ingredientId"), Ingredient.class);
-          int quantity = gson.fromJson(jsonObject.get("quantity"), Integer.class);
-          String brand = gson.fromJson(jsonObject.get("brand"), String.class);
-          EntityManager entityManager = entityManagerFactory.createEntityManager();
-          StockController stockController = new StockController(entityManager);
-          stockController.createStock(storeName, ingredient, quantity, brand);
-          return gson.toJson("Stock created successfully");
+            String body = req.body();
+            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            String storeName = gson.fromJson(jsonObject.get("storeName"), String.class);
+            Ingredient ingredient = gson.fromJson(jsonObject.get("ingredientId"), Ingredient.class);
+            int quantity = gson.fromJson(jsonObject.get("quantity"), Integer.class);
+            String brand = gson.fromJson(jsonObject.get("brand"), String.class);
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            StockController stockController = new StockController(entityManager);
+            stockController.createStock(storeName, ingredient, quantity, brand);
+            return gson.toJson("Stock created successfully");
         });
 
         Spark.get("/stock/:storeName", (req, res) -> {
@@ -511,6 +506,19 @@ public class Application {
             StockController stock = new StockController(entityManager);
             List<Store> stores = stock.getStoresByIngredient(ingredientName);
             return gson.toJson(stores);
+        });
+
+        Spark.put("/addMeal", (req, res) -> {
+            String body = req.body();
+            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            LocalDate.now().getDayOfWeek();
+            String mealType = gson.fromJson(jsonObject.get("mealType"), String.class);
+            Recipe recipe = gson.fromJson(jsonObject.get("recipe"), Recipe.class);
+            String username = gson.fromJson(jsonObject.get("username"), String.class);
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            WeekDayController weekDayController = new WeekDayController(entityManager);
+            weekDayController.createWeekDay(mealType, recipe, username);
+            return gson.toJson("Meal created successfully");
         });
     }
 }

@@ -1,8 +1,8 @@
 package org.example.service;
 
-import org.example.model.recipie.Allergy;
-import org.example.model.recipie.Ingredient;
-import org.example.model.recipie.Recipe;
+import org.example.model.recipe.Allergy;
+import org.example.model.recipe.Ingredient;
+import org.example.model.recipe.Recipe;
 import org.example.repository.ingredient.IngredientRepositoryImp;
 import org.example.repository.recipe.RecipeRepository;
 import org.example.repository.recipe.RecipeRepositoryImpl;

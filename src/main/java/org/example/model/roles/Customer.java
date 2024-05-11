@@ -31,7 +31,6 @@ public class Customer {
         this.customerName = customerName;
         this.customerEmail = customerEmail;
         this.customerPassword = customerPassword;
-        this.weeklyHistory = new WeeklyHistory();
     }
 
     public Customer() {
