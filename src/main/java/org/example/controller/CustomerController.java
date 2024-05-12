@@ -33,4 +33,8 @@ public class CustomerController {
   public void deleteClient(Long clientId) {
     customerService.deleteUser(clientId);
   }
+
+  public Customer getCustomerByName(String username){
+    return customerService.getCustomerByName(username);
+  }
 }

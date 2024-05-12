@@ -3,6 +3,8 @@ package org.example;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import org.example.controller.*;
+import org.example.model.history.WeekDay;
+import org.example.model.history.WeeklyHistory;
 import org.example.model.login.Authenticator;
 import org.example.model.login.LoginData;
 import org.example.model.stock.Stock;
@@ -17,6 +19,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.lang.reflect.Type;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
@@ -508,6 +511,8 @@ public class Application {
             return gson.toJson(stores);
         });
 
+        // esta seria mas correcta para agregar y no crear un week day
+        /*
         Spark.put("/addMeal", (req, res) -> {
             String body = req.body();
             JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
@@ -519,6 +524,31 @@ public class Application {
             WeekDayController weekDayController = new WeekDayController(entityManager);
             weekDayController.createWeekDay(mealType, recipe, username);
             return gson.toJson("Meal created successfully");
+        });
+
+         */
+
+        Spark.post("/addMeal",(req, res) -> {
+            String body = req.body();
+            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            DayOfWeek weekDayName = LocalDate.now().getDayOfWeek();
+            String  mealType = gson.fromJson(jsonObject.get("mealType"), String.class);
+            Recipe recipe = gson.fromJson(jsonObject.get("recipe"), Recipe.class);
+            // Consigo el customer con el que estoy tratando
+            String username = gson.fromJson(jsonObject.get("username"), String.class);
+            CustomerController customerController = new CustomerController(entityManager);
+            Customer customer = customerController.getCustomerByName(username);
+
+            WeeklyHistory weeklyHistory = customer.getWeeklyHistory();
+            List<WeekDay> weekDays = weeklyHistory.getDays();
+            WeekDayController weekDayController = new WeekDayController(entityManager);
+            for(WeekDay day : weekDays){
+                if(day.getDayName() == weekDayName){
+                    weekDayController.updateWeekDay(day.getWeekDayId(), recipe, mealType);
+                }
+            }
+            return gson.toJson("Meal added to day "+ weekDayName + " successfully");
         });
     }
 }

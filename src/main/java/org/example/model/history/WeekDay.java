@@ -19,7 +19,6 @@ public class WeekDay {
     @Column(nullable = false, unique = false)
     private DayOfWeek dayName;
 
-
     @ManyToOne
     @JoinColumn(referencedColumnName = "recipeId", foreignKey = @ForeignKey(name = "FK_breakfast_recipeId"))
     public Recipe breakfast;
@@ -84,5 +83,11 @@ public class WeekDay {
 
     public Recipe getDinner() {
         return dinner;
+    }
+
+    public void clearDays(){
+        this.breakfast = null;
+        this.lunch = null;
+        this.dinner = null;
     }
 }

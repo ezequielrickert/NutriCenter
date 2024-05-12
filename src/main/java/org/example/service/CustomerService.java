@@ -65,5 +65,9 @@ public class CustomerService {
         }
         return weekDays;
     }
+
+    public Customer getCustomerByName(String username){
+        return customerRepository.fetchCustomerByUsername(username);
+    }
 }
 
