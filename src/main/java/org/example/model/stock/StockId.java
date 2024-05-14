@@ -15,6 +15,7 @@ public class StockId implements Serializable {
     }
 
     private Long storeId;
+
     private Long ingredientId;
 
     public Long getStoreId() {

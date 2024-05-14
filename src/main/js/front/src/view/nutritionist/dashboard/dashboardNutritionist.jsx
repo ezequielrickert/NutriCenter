@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Footer from "../../components/footer";
+import {Link} from "react-router-dom";
 
 const DashboardNutritionist = () => {
     const [isValidUser, setIsValidUser] = useState(false);
@@ -35,6 +36,9 @@ const DashboardNutritionist = () => {
         <div className="container">
             <header className="text-center my-5">
                 <h1>Welcome to the Nutritionist Dashboard</h1>
+                <Link to={`/nutritionistProfile/${username}`}>
+                    <button>Go to Nutritionist Profile</button>
+                </Link>
                 { /*add dashboard content here*/ }
                 <Footer />
             </header>

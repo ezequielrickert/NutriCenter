@@ -8,20 +8,19 @@ const AddMeal = () => {
     const username = localStorage.getItem('username');
 
     useEffect(() => {
-    axios.get('http://localhost:8080/recipes')
-        .then(response => {
-            const data = JSON.parse(response.data);
-            if (Array.isArray(data)) {
-                setRecipes(data);
-            } else {
-                console.error('Data received from server is not an array');
-            }
-        })
-        .catch(error => {
-            console.error('There was an error!', error);
-        });
+        axios.get('http://localhost:8080/recipes')
+            .then(response => {
+                const data = JSON.parse(response.data);
+                if (Array.isArray(data)) {
+                    setRecipes(data);
+                } else {
+                    console.error('Data received from server is not an array');
+                }
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
     }, []);
-
 
 
     const handleMealChange = (event) => {
@@ -49,7 +48,8 @@ const AddMeal = () => {
             .catch(error => {
                 console.error('There was an error!', error);
             });
-        }
+
+    }
 
     return (
         <div className="container">
@@ -79,6 +79,6 @@ const AddMeal = () => {
             </form>
         </div>
     );
-}
+};
 
 export default AddMeal;

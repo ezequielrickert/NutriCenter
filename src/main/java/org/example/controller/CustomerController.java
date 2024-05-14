@@ -2,39 +2,47 @@ package org.example.controller;
 
 import org.example.model.roles.Customer;
 import org.example.service.CustomerService;
+import org.example.service.SignUpService;
+import spark.Spark;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+
+import static org.example.Application.gson;
 
 public class CustomerController {
-  CustomerService customerService;
-  public CustomerController(EntityManager entityManager) {
-    this.customerService = new CustomerService(entityManager);
-  }
 
-  public void createClient(String username, String email, String password) {
-    customerService.createUser(username, email, password);
-  }
+    public void run() {
 
-  public void readClient(Long inClientId) {
-    Customer customer = this.customerService.readUser(inClientId);
-    if (customer != null) {
-      System.out.println("Client ID: " + customer.getCustomerId());
-      System.out.println("Client Name: " + customer.getCustomerName());
-      System.out.println("Client Email: " + customer.getCustomerEmail());
-    } else {
-      System.out.println("Client not found");
-    }
-  }
+    final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
+    SignUpService signUpService = new SignUpService(entityManagerFactory.createEntityManager());
+    CustomerService customerService = new CustomerService(entityManagerFactory.createEntityManager());
 
-  public void updateClient(Long clientId, String username, String email) {
-    customerService.updateUser(clientId, username, email);
-  }
+    Spark.post("/createCustomer", (req, res) -> {
+      String body = req.body();
+      Customer newCustomer = gson.fromJson(body, Customer.class);
+      String username = newCustomer.getCustomerName();
+      if (!signUpService.validate(username)) {
+        res.status(401);
+        return "Username already exists";
+      }
+      String email = newCustomer.getCustomerEmail();
+      String password = newCustomer.getCustomerPassword();
+      customerService.createUser(username, email, password);
+      return newCustomer;
+    }, gson::toJson);
 
-  public void deleteClient(Long clientId) {
-    customerService.deleteUser(clientId);
-  }
-
-  public Customer getCustomerByName(String username){
-    return customerService.getCustomerByName(username);
+    Spark.get("/persisted-customers/:id", (req, resp) -> {
+        final String id = req.params("id");
+        /* Business Logic */
+        final EntityManager entityManager = entityManagerFactory.createEntityManager();
+        final EntityTransaction tx = entityManager.getTransaction();
+        Customer customer = customerService.readUser(Long.parseLong(id));
+        resp.type("application/json");
+        return customer.asJson();
+      }
+    );
   }
 }

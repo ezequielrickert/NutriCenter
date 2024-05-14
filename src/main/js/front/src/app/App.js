@@ -11,6 +11,7 @@ import { RecipeResult, RecipeInfo } from '../view';
 import { AccountSettingsPage, Logout } from '../view';
 import {Stock} from "../view";
 import {MealTable} from "../view";
+import {NutritionistProfile} from "../view";
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
 
                     <Route path="/dashboardNutritionist" element={<DashboardNutritionist />} />
                     <Route path="/nutritionistRecipeEditor" element={<NutritionistRecipeEditor />} />
+                    <Route path="/nutritionistProfile/:nutritionistId" element={<NutritionistProfile />} />
 
                     <Route path="/dashboardStore" element={<DashboardStore />} />
 

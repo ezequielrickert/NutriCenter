@@ -1,56 +1,97 @@
 package org.example.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.example.model.recipe.Allergy;
 import org.example.model.recipe.Ingredient;
 import org.example.service.IngredientService;
+import spark.Request;
+import spark.Response;
+import spark.Route;
+import spark.Spark;
 
-import javax.persistence.EntityManager;
+
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import java.util.List;
+
+import static org.example.Application.gson;
 
 public class IngredientController {
 
-    IngredientService ingredientService;
+    public void run() {
 
-    public IngredientController(EntityManager entityManager) {
-        ingredientService = new IngredientService(entityManager);
-    }
+        final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
+        IngredientService ingredientService = new IngredientService(entityManagerFactory.createEntityManager());
 
-    public void createIngredient(String name, Allergy allergy, int proteins, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate){
-        ingredientService.createIngredient(name, allergy, proteins, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
-    }
+        Spark.post("/createIngredient", (req, res) -> {
+            String body = req.body();
+            Ingredient ingredient = gson.fromJson(body, Ingredient.class);
+            String ingredientName = ingredient.getIngredientName();
+            Allergy allergy = ingredient.getAllergy();
+            int proteins = ingredient.getProteins();
+            int sodium = ingredient.getSodium();
+            int calories = ingredient.getCalories();
+            int totalFat = ingredient.getTotalFat();
+            int cholesterol = ingredient.getCholesterol();
+            int totalCarbohydrate = ingredient.getTotalCarbohydrate();
+            ingredientService.createIngredient(ingredientName, allergy, proteins, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
+            return ingredient;
+        }, gson::toJson);
 
-    public void readIngredient(long ingredientId) {
-        Ingredient ingredient = ingredientService.readIngredient(ingredientId);
-        if (ingredient != null) {
-            System.out.println("Ingredient ID: " + ingredient.getIngredientId());
-            System.out.println("Ingredient Name: " + ingredient.getIngredientName());
-        } else {
-            System.out.println("Ingredient not found");
-        }
-    }
+        Spark.post("/updateIngredient", (req, res) -> {
+            String body = req.body();
+            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            Ingredient ingredient = gson.fromJson(jsonObject.get("ingredient"), Ingredient.class);
+            Allergy allergy = gson.fromJson(jsonObject.get("allergy"), Allergy.class);
+            int proteins = gson.fromJson(jsonObject.get("proteins"), Integer.class);
+            int sodium = gson.fromJson(jsonObject.get("sodium"), Integer.class);
+            int calories = gson.fromJson(jsonObject.get("calories"), Integer.class);
+            int totalFat = gson.fromJson(jsonObject.get("totalFat"), Integer.class);
+            int cholesterol = gson.fromJson(jsonObject.get("cholesterol"), Integer.class);
+            int totalCarbohydrate = gson.fromJson(jsonObject.get("totalCarbohydrate"), Integer.class);
+            ingredientService.updateIngredient(ingredient.getIngredientId(),
+                    allergy, proteins, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
+            return ingredient.asJson();
+        }, gson::toJson);
 
-    public void updateIngredient(Long ingredientId, Allergy allergy, int proteins, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate){
-        ingredientService.updateIngredient(ingredientId, allergy, proteins, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
-    }
+        Spark.post("/deleteIngredient", (req, res) -> {
+            String body = req.body();
+            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            Ingredient ingredient = gson.fromJson(jsonObject.get("ingredient"), Ingredient.class);
+            Long id = ingredient.getIngredientId();
+            ingredientService.deleteIngredient(id);
+            return ingredient;
+        }, gson::toJson);
 
-    public void deleteIngredient(Long ingredientId){
-        ingredientService.deleteIngredient(ingredientId);
-    }
+        Spark.get("/ingredients", (req, res) -> {
+            List<Ingredient> ingredients = ingredientService.getAll();
+            System.out.println(ingredients);
+            return gson.toJson(ingredients);
+        }, gson::toJson);
 
-    public List<Ingredient> getIngredientsOrderedByName() {
-        List<Ingredient> result = ingredientService.getAll();
-        return result;
-    }
+        Spark.get("/ingredients/search/:term", new Route() {
+            public Object handle(Request request, Response response) throws Exception {
+                String searchTerm = request.params(":term");
+                List<Ingredient> ingredients = ingredientService.searchIngredientsByName(searchTerm);
+                return gson.toJson(ingredients);
+            }
+        });
 
-    public List<Ingredient> searchIngredientsByName(String searchTerm) {
-        return ingredientService.searchIngredientsByName(searchTerm);
-    }
+        Spark.get("/ingredients/:ingredientName", (req, res) -> {
+            String ingredientName = req.params(":ingredientName");
+            Ingredient ingredient = ingredientService.getIngredientByName(ingredientName);
+            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            return gson.toJson(ingredient);
+        });
 
-    public Ingredient getIngredientByName(String ingredientName) {
-        return ingredientService.getIngredientByName(ingredientName);
-    }
-
-    public List<Ingredient> getIngredientsBeginningWith(String beginning) {
-        return ingredientService.getIngredientsBeginningWith(beginning);
+        Spark.get("/ingredients/begins/:beginning", (req, res) -> {
+            String beginning = req.params(":beginning");
+            List<Ingredient> ingredients = ingredientService.getIngredientsBeginningWith(beginning);
+            return gson.toJson(ingredients);
+        });
     }
 }

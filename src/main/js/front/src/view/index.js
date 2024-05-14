@@ -8,6 +8,7 @@ export { default as MealTable } from './customer/mealHistory/addMeal';
 
 export { default as DashboardNutritionist } from './nutritionist/dashboard/dashboardNutritionist';
 export { default as NutritionistRecipeEditor } from './nutritionist/edition/initialEditor';
+export { default as NutritionistProfile } from './nutritionist/profile/nutritionistProfile';
 
 export { default as DashboardStore } from './store/dashboard/dashboardStore';
 export { default as Stock } from './store/stock/stockEditor';

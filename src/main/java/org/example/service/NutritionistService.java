@@ -29,4 +29,7 @@ public class NutritionistService {
     }
 
 
+    public Nutritionist getNutritionistByUsername(String username) {
+        return nutritionistRepositoryImp.fetchNutritionistByUsername(username);
+    }
 }
