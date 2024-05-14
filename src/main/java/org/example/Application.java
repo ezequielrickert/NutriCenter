@@ -511,24 +511,7 @@ public class Application {
             return gson.toJson(stores);
         });
 
-        // esta seria mas correcta para agregar y no crear un week day
-        /*
-        Spark.put("/addMeal", (req, res) -> {
-            String body = req.body();
-            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
-            LocalDate.now().getDayOfWeek();
-            String mealType = gson.fromJson(jsonObject.get("mealType"), String.class);
-            Recipe recipe = gson.fromJson(jsonObject.get("recipe"), Recipe.class);
-            String username = gson.fromJson(jsonObject.get("username"), String.class);
-            EntityManager entityManager = entityManagerFactory.createEntityManager();
-            WeekDayController weekDayController = new WeekDayController(entityManager);
-            weekDayController.createWeekDay(mealType, recipe, username);
-            return gson.toJson("Meal created successfully");
-        });
-
-         */
-
-        Spark.post("/addMeal",(req, res) -> {
+        Spark.post("/meal",(req, res) -> {
             String body = req.body();
             JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
             EntityManager entityManager = entityManagerFactory.createEntityManager();

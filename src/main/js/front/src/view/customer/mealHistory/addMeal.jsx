@@ -40,8 +40,16 @@ const AddMeal = () => {
             recipeId: selectedRecipe,
             username: username
         };
+
+        axios.post('http://localhost:8080/meal', meal)
+            .then(response => {
+                console.log('Meal added successfully');
+                window.location.href = '/mealHistory';
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
         }
-    };
 
     return (
         <div className="container">
@@ -71,6 +79,6 @@ const AddMeal = () => {
             </form>
         </div>
     );
-};
+}
 
 export default AddMeal;
