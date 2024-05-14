@@ -1,9 +1,10 @@
 package org.example.model;
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import org.example.model.stock.Stock;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "INGREDIENT")
 public class Ingredient {
@@ -46,7 +47,6 @@ public class Ingredient {
     @Expose(serialize = true)
     @Column(nullable = false, unique = false)
     private int totalCarbohydrate;
-
 
     public Ingredient(String ingredientName, Allergy allergy, int proteins, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate) {
         this.ingredientName = ingredientName;
@@ -118,4 +118,5 @@ public class Ingredient {
         Gson gson = new Gson();
         return gson.toJson(this);
     }
+
 }

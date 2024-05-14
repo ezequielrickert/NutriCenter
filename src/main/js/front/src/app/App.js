@@ -11,6 +11,7 @@ import { SearcherSelector, SearchIngredientPage, SearchRecipePage } from "../vie
 import { IngredientResult, IngredientInfo } from '../view';
 import { RecipeResult, RecipeInfo } from '../view';
 import { AccountSettingsPage, Logout } from '../view';
+import {Stock} from "../view";
 
 function App() {
     return (
@@ -46,6 +47,8 @@ function App() {
 
                     <Route path={"/accountSelection"} element={<AccountSettingsPage />} />
                     <Route path="/logout" element={<Logout />} />
+
+                    <Route path="/stock" element={<Stock />} />
 
                 </Routes>
             </div>
