@@ -1,8 +1,7 @@
 package org.example.model.roles;
 
 import com.google.gson.Gson;
-import com.google.gson.annotations.Expose;
-import org.example.model.history.WeeklyHistory;
+import org.example.model.history.CustomerHistory;
 
 import javax.persistence.*;
 
@@ -14,8 +13,8 @@ public class Customer {
     private Long customerId;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "weeklyHistoryId", referencedColumnName = "weeklyHistoryId")
-    private WeeklyHistory weeklyHistory;
+    @JoinColumn(name = "customerHistoryId", referencedColumnName = "customerHistoryId")
+    private CustomerHistory customerHistory;
 
     @Column(nullable = false, unique = false)
     private String customerName;
@@ -41,12 +40,12 @@ public class Customer {
         this.customerName = name;
     }
 
-    public WeeklyHistory getWeeklyHistory() {
-        return weeklyHistory;
+    public CustomerHistory getCustomerHistory() {
+        return customerHistory;
     }
 
-    public void setWeeklyHistory(WeeklyHistory weeklyHistory) {
-        this.weeklyHistory = weeklyHistory;
+    public void setCustomerHistory(CustomerHistory customerHistory) {
+        this.customerHistory = customerHistory;
     }
 
     public void setCustomerEmail(String mail) {

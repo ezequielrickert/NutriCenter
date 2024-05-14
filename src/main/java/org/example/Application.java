@@ -3,8 +3,8 @@ package org.example;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import org.example.controller.*;
-import org.example.model.history.WeekDay;
-import org.example.model.history.WeeklyHistory;
+import org.example.model.history.Day;
+import org.example.model.history.CustomerHistory;
 import org.example.model.login.Authenticator;
 import org.example.model.login.LoginData;
 import org.example.model.stock.Stock;
@@ -515,23 +515,28 @@ public class Application {
             String body = req.body();
             JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
             EntityManager entityManager = entityManagerFactory.createEntityManager();
+
             DayOfWeek weekDayName = LocalDate.now().getDayOfWeek();
             String  mealType = gson.fromJson(jsonObject.get("mealType"), String.class);
             Recipe recipe = gson.fromJson(jsonObject.get("recipe"), Recipe.class);
-            // Consigo el customer con el que estoy tratando
             String username = gson.fromJson(jsonObject.get("username"), String.class);
+
             CustomerController customerController = new CustomerController(entityManager);
             Customer customer = customerController.getCustomerByName(username);
+            CustomerHistory customerHistory = customer.getCustomerHistory();
 
-            WeeklyHistory weeklyHistory = customer.getWeeklyHistory();
-            List<WeekDay> weekDays = weeklyHistory.getDays();
-            WeekDayController weekDayController = new WeekDayController(entityManager);
-            for(WeekDay day : weekDays){
-                if(day.getDayName() == weekDayName){
-                    weekDayController.updateWeekDay(day.getWeekDayId(), recipe, mealType);
-                }
+            List<Day> days = customerHistory.getDays();
+            Day lastDay = days.getLast();
+            DayController dayController = new DayController(entityManager);
+
+            if(lastDay.getDayName() == weekDayName){
+                dayController.updateDay(lastDay.getDayId(), recipe, mealType);
             }
-            return gson.toJson("Meal added to day "+ weekDayName + " successfully");
+            else{
+                dayController.createDay(weekDayName, customerHistory);
+                dayController.updateDay(lastDay.getDayId(), recipe, mealType);
+            }
+            return gson.toJson("Meal added to Day "+ weekDayName + " successfully");
         });
     }
 }

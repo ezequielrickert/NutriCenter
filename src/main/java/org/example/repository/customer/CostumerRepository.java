@@ -1,11 +1,11 @@
 package org.example.repository.customer;
 
-import org.example.model.history.WeeklyHistory;
+import org.example.model.history.CustomerHistory;
 import org.example.model.roles.Customer;
 
 public interface CostumerRepository {
 
-  public void createUser(String username, String email, String password, WeeklyHistory weeklyHistory);
+  public void createUser(String username, String email, String password, CustomerHistory customerHistory);
 
   public Customer readUser(Long clientId);
 

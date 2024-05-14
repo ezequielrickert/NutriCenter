@@ -4,17 +4,18 @@ import org.example.model.recipe.Recipe;
 
 import javax.persistence.*;
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 
 @Entity
-public class WeekDay {
+public class Day {
 
     @Id
     @GeneratedValue(generator = "userGen", strategy = GenerationType.SEQUENCE)
-    private Long weekDayId;
+    private Long dayId;
 
     @ManyToOne
-    @JoinColumn(name = "WeeklyHistoryId")
-    private WeeklyHistory weeklyHistory;
+    @JoinColumn(name = "CustomerHistoryId")
+    private CustomerHistory customerHistory;
 
     @Column(nullable = false, unique = false)
     private DayOfWeek dayName;
@@ -31,26 +32,36 @@ public class WeekDay {
     @JoinColumn(referencedColumnName = "recipeId", foreignKey = @ForeignKey(name = "FK_dinner_recipeId"))
     public Recipe dinner;
 
+    @Column(nullable = false, unique = false)
+    private LocalDate date;
 
-    public WeekDay() {
-
+    public Day() {
     }
 
-
-    public WeeklyHistory getWeeklyHistory() {
-        return weeklyHistory;
-    }
-
-    public void setWeeklyHistory(WeeklyHistory weeklyHistory) {
-        this.weeklyHistory = weeklyHistory;
-    }
-
-    public WeekDay(DayOfWeek dayName) {
+    public Day(DayOfWeek dayName, LocalDate date, CustomerHistory customerHistory) {
         this.dayName = dayName;
+        this.date = date;
+        this.customerHistory = customerHistory;
     }
 
-    public Long getWeekDayId() {
-        return weekDayId;
+    public CustomerHistory getCustomerHistory() {
+        return customerHistory;
+    }
+
+    public void setCustomerHistory(CustomerHistory customerHistory) {
+        this.customerHistory = customerHistory;
+    }
+
+    public LocalDate getDate(){
+        return this.date;
+    }
+
+    public void setDate(LocalDate date){
+        this.date = date;
+    }
+
+    public Long getDayId() {
+        return dayId;
     }
 
     public DayOfWeek getDayName() {
@@ -83,11 +94,5 @@ public class WeekDay {
 
     public Recipe getDinner() {
         return dinner;
-    }
-
-    public void clearDays(){
-        this.breakfast = null;
-        this.lunch = null;
-        this.dinner = null;
     }
 }
