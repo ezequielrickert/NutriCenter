@@ -14,6 +14,9 @@ const SearcherSelector = () => {
                 <Link to="/searchRecipeHome" className="btn btn-primary m-2">
                     RECIPE SEARCHER
                 </Link>
+                <Link to= "/searchProfileHome" className="btn btn-primary m-1">
+                    PROFILE SEARCHER
+                </Link>
             </div>
             <Footer />
         </div>

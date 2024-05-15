@@ -10,6 +10,8 @@ import org.example.service.NutritionistService;
 import org.example.service.SignUpService;
 import spark.Spark;
 
+import java.util.List;
+
 import static org.example.Application.gson;
 
 public class NutritionistController {
@@ -41,6 +43,13 @@ public class NutritionistController {
       nutritionistService.createNutritionist(name, mail, password, diploma);
       return nutritionist;
     }, gson::toJson);
+
+    Spark.get("/nutritionistFill/:searchTerm", (req, resp) -> {
+      final String username = req.params("searchTerm");
+      List<Nutritionist> nutritionist = nutritionistService.nutririonistWildcard(username);
+      resp.type("application/json");
+      return gson.toJson(nutritionist);
+    });
   }
 
 }

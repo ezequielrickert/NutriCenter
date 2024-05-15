@@ -3,6 +3,7 @@ package org.example.service;
 import org.example.model.roles.Nutritionist;
 import org.example.repository.nutritionist.NutritionistRepositoryImp;
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class NutritionistService {
 
@@ -31,5 +32,9 @@ public class NutritionistService {
 
     public Nutritionist getNutritionistByUsername(String username) {
         return nutritionistRepositoryImp.fetchNutritionistByUsername(username);
+    }
+
+    public List<Nutritionist> nutririonistWildcard(String username) {
+        return nutritionistRepositoryImp.fetchNutritionistWildcard(username);
     }
 }

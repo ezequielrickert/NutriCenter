@@ -12,6 +12,7 @@ import { AccountSettingsPage, Logout } from '../view';
 import {Stock} from "../view";
 import {MealTable} from "../view";
 import {NutritionistProfile} from "../view";
+import {UserSearcher, UserResult} from "../view";
 
 function App() {
     return (
@@ -39,6 +40,8 @@ function App() {
                     <Route path="/searcherSelector" element={<SearcherSelector />} />
                     <Route path="/searchIngredientHome" element={<SearchIngredientPage />} />
                     <Route path="/searchRecipeHome" element={<SearchRecipePage />} />
+                    <Route path="/searchProfileHome" element={<UserSearcher />} />
+                    <Route path="/userResult/:nutritionistName" element={<UserResult />} />
 
                     <Route path="/ingredientResult/:ingredientName" element={<IngredientResult />} />
                     <Route path="/ingredientInfo/:ingredientName" element={<IngredientInfo />} />

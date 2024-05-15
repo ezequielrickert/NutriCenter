@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Autosuggest from 'react-autosuggest';
-import './searchRecipe.css';
+import '../searchRecipe/searchRecipe.css';
 import Footer from "../../../components/footer";
 
 
@@ -37,24 +37,24 @@ const SearchProfileHome = () => {
             return;
         }
 
-        const fetchRecipes = async () => {
+        const fetchNutritionist = async () => {
             if (searchTerm) {
-                const results = await axios.get(`http://localhost:8080/username/${searchTerm}`);
-                setSuggestions(results.data.map(recipe => recipe.recipeName));
+                const results = await axios.get(`http://localhost:8080/nutritionistFill/${searchTerm}`);
+                setSuggestions(results.data.map(nutritionist => nutritionist.nutritionistName));
             }
         };
 
-        fetchRecipes();
+        fetchNutritionist();
     }, [searchTerm, isValidUser]);
 
     const handleSearchChange = (event, { newValue }) => {
-        setSearchTerm(newValue.trim());
+        setSearchTerm(newValue.trim())
     };
 
     const handleSearchClick = () => {
         const trimmedSearchTerm = searchTerm.trim();
         if (trimmedSearchTerm) {
-            navigate(`/recipeResult/${trimmedSearchTerm}`);
+            navigate(`/userResult/${trimmedSearchTerm}`);
         }
     };
 
@@ -81,7 +81,7 @@ const SearchProfileHome = () => {
 
     return (
         <div className="container">
-            <h1 className="title">Recipe Searcher:</h1>
+            <h1 className="title">Profile Searcher:</h1>
             <div className="search-section">
                 <div className="search-container">
                     <Autosuggest

@@ -2,6 +2,7 @@ package org.example.repository.nutritionist;
 import org.example.model.roles.Nutritionist;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import java.util.List;
 
 public class NutritionistRepositoryImp implements NutritionistRepository{
 
@@ -66,5 +67,14 @@ public class NutritionistRepositoryImp implements NutritionistRepository{
       entityManager.getTransaction().rollback();
       return null;
     }
+  }
+
+  public List<Nutritionist> fetchNutritionistWildcard(String username) {
+    entityManager.getTransaction().begin();
+    List<Nutritionist> nutritionist = entityManager.createQuery("SELECT c FROM NUTRITIONIST c WHERE c.nutritionistName LIKE :username", Nutritionist.class)
+            .setParameter("username", "%" + username + "%")
+            .getResultList();
+    entityManager.getTransaction().commit();
+    return nutritionist;
   }
 }

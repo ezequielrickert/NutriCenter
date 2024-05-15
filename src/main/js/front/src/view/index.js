@@ -9,6 +9,8 @@ export { default as MealTable } from './customer/mealHistory/addMeal';
 export { default as DashboardNutritionist } from './nutritionist/dashboard/dashboardNutritionist';
 export { default as NutritionistRecipeEditor } from './nutritionist/edition/initialEditor';
 export { default as NutritionistProfile } from './nutritionist/profile/nutritionistProfile';
+export {default as UserSearcher} from './components/searcher/searchProfile/searchProfileHome';
+export {default as UserResult} from './components/searcher/searchProfile/userResult';
 
 export { default as DashboardStore } from './store/dashboard/dashboardStore';
 export { default as Stock } from './store/stock/stockEditor';
@@ -28,3 +30,4 @@ export { default as RecipeInfo } from './components/searcher/searchRecipe/recipe
 
 export { default as AccountSettingsPage } from './components/account/accountSelection';
 export { default as Logout } from './components/account/logout';
+
