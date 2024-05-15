@@ -1,5 +1,7 @@
 package org.example.controller;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.example.model.roles.Customer;
 import org.example.service.CustomerService;
 import org.example.service.SignUpService;
@@ -22,16 +24,17 @@ public class CustomerController {
 
     Spark.post("/createCustomer", (req, res) -> {
       String body = req.body();
-      Customer newCustomer = gson.fromJson(body, Customer.class);
-      String username = newCustomer.getCustomerName();
-      if (!signUpService.validate(username)) {
+      JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+      String name =  gson.fromJson(jsonObject.get("customerName"), String.class);
+      String email = gson.fromJson(jsonObject.get("customerEmail"), String.class);
+      String password = gson.fromJson(jsonObject.get("customerPassword"), String.class);
+      if (!signUpService.validate(name)) {
         res.status(401);
         return "Username already exists";
       }
-      String email = newCustomer.getCustomerEmail();
-      String password = newCustomer.getCustomerPassword();
-      customerService.createUser(username, email, password);
-      return newCustomer;
+      customerService.createUser(name, email, password);
+        res.status(201); // 201 Created status code
+        return "Customer created successfully";
     }, gson::toJson);
 
     Spark.get("/persisted-customers/:id", (req, resp) -> {
