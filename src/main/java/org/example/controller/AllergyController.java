@@ -1,35 +1,31 @@
 package org.example.controller;
-import org.example.model.Allergy;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.example.service.AllergyService;
-import javax.persistence.EntityManager;
+import org.example.model.recipe.Allergy;
+import spark.Spark;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.List;
 
-public class AllergyController {
+import static org.example.Application.gson;
 
-    AllergyService allergyService;
+public class AllergyController{
 
-    public AllergyController(EntityManager entityManager) {
-        allergyService = new AllergyService(entityManager);
+    public void run(){
+
+        final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
+
+        Spark.get("/allergies", (req, res) -> {
+            AllergyService allergyService = new AllergyService(entityManagerFactory.createEntityManager());
+            List<Allergy> allergies = allergyService.getAllergiesOrderedByName();
+            System.out.println(allergies);
+            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            String result = gson.toJson(allergies);
+            System.out.println(result);
+            return result;
+        }, gson::toJson);
     }
 
-    public void createAllergy(String name, String description) {
-        allergyService.createAllergy(name, description);
-    }
-
-    public void readAllergy(long allergyId) {
-        allergyService.readAllergy(allergyId);
-    }
-
-    public void updateAllergy(long allergyId, String description) {
-        allergyService.updateAllergy(allergyId, description);
-    }
-
-    public void deleteAllergy(long allergyId) {
-        allergyService.deleteAllergy(allergyId);
-    }
-
-    public List<Allergy> getAllergiesOrderedByName() {
-        List<Allergy> result = allergyService.getAllergiesOrderedByName();
-        return result;
-    }
 }

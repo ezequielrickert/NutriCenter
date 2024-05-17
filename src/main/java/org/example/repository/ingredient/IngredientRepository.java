@@ -1,6 +1,6 @@
 package org.example.repository.ingredient;
-import org.example.model.Ingredient;
-import org.example.model.Allergy;
+import org.example.model.recipe.Ingredient;
+import org.example.model.recipe.Allergy;
 
 public interface IngredientRepository {
 

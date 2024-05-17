@@ -5,15 +5,17 @@
              version="2.2">
     <persistence-unit name="UserPU">
 <!--        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
-        <class>org.example.model.Customer</class>
-        <class>org.example.model.Store</class>
-        <class>org.example.model.Nutritionist</class>
-        <class>org.example.model.SuperAdmin</class>
-        <class>org.example.model.Ingredient</class>
-        <class>org.example.model.Allergy</class>
-        <class>org.example.model.Category</class>
-        <class>org.example.model.Recipe</class>
+        <class>org.example.model.roles.Customer</class>
+        <class>org.example.model.roles.Store</class>
+        <class>org.example.model.roles.Nutritionist</class>
+        <class>org.example.model.roles.SuperAdmin</class>
+        <class>org.example.model.recipe.Ingredient</class>
+        <class>org.example.model.recipe.Allergy</class>
+        <class>org.example.model.recipe.Category</class>
+        <class>org.example.model.recipe.Recipe</class>
         <class>org.example.model.stock.Stock</class>
+        <class>org.example.model.history.Day</class>
+        <class>org.example.model.history.CustomerHistory</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbc.JDBCDriver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:hsql://localhost/testdb"/>

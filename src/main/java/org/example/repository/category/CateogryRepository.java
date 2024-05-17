@@ -1,8 +1,7 @@
 package org.example.repository.category;
 
-import org.example.model.Category;
+import org.example.model.recipe.Category;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 
 public interface CateogryRepository {

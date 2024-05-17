@@ -1,6 +1,6 @@
 package org.example.repository.nutritionist;
 
-import org.example.model.Nutritionist;
+import org.example.model.roles.Nutritionist;
 
 public interface NutritionistRepository {
   public void createNutritionist(String username, String email, String password, String diploma);

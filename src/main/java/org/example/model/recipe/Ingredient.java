@@ -1,10 +1,9 @@
-package org.example.model;
+package org.example.model.recipe;
+
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
-import org.example.model.stock.Stock;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity(name = "INGREDIENT")
 public class Ingredient {
@@ -118,5 +117,4 @@ public class Ingredient {
         Gson gson = new Gson();
         return gson.toJson(this);
     }
-
 }

@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example.model.recipe;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;

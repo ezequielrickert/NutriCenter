@@ -1,40 +1,29 @@
 package org.example.controller;
 
-import org.example.model.Category;
-import org.example.repository.category.CateogryRepository;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.example.model.recipe.Category;
 import org.example.service.CategoryService;
+import spark.Spark;
 
-import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.List;
+
+import static org.example.Application.gson;
 
 public class CategoryController {
 
-    EntityManager entityManager;
+    public void run() {
 
-    CategoryService categoryService;
+        final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
+        final CategoryService categoryService = new CategoryService(entityManagerFactory.createEntityManager());
 
-    public CategoryController(EntityManager entityManager) {
-        this.entityManager = entityManager;
-        this.categoryService = new CategoryService(entityManager);
+        Spark.get("/categories", (req, res) -> {
+            List<Category> categories = categoryService.getCategoriesOrderedByName();
+            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            return gson.toJson(categories);
+        }, gson::toJson);
     }
 
-    public void createCategory(String categoryName) {
-        categoryService.createCategory(categoryName);
-    }
-
-    public void readCategory(Long categoryId) {
-        categoryService.readCategory(categoryId);
-    }
-
-    public void updateCategory(Long categoryId, String categoryName) {
-        categoryService.updateCategory(categoryId, categoryName);
-    }
-
-    public void deleteCategory(Long categoryId) {
-        categoryService.deleteCategory(categoryId);
-    }
-
-    public List<Category> getCategoriesOrderedByName() {
-        return categoryService.getCategoriesOrderedByName();
-    }
 }

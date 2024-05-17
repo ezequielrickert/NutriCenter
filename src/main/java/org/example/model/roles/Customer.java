@@ -1,7 +1,7 @@
-package org.example.model;
+package org.example.model.roles;
 
 import com.google.gson.Gson;
-import org.checkerframework.checker.units.qual.C;
+import org.example.model.history.CustomerHistory;
 
 import javax.persistence.*;
 
@@ -12,6 +12,10 @@ public class Customer {
     @GeneratedValue(generator = "userGen", strategy = GenerationType.IDENTITY)
     private Long customerId;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customerHistoryId", referencedColumnName = "customerHistoryId")
+    private CustomerHistory customerHistory;
+
     @Column(nullable = false, unique = false)
     private String customerName;
 
@@ -20,7 +24,6 @@ public class Customer {
 
     @Column(nullable = false, unique = false)
     private String customerPassword;
-
 
     public Customer(String customerName, String customerEmail, String customerPassword) {
         this.customerName = customerName;
@@ -32,9 +35,16 @@ public class Customer {
 
     }
 
-
     public void setCustomerName(String name) {
         this.customerName = name;
+    }
+
+    public CustomerHistory getCustomerHistory() {
+        return customerHistory;
+    }
+
+    public void setCustomerHistory(CustomerHistory customerHistory) {
+        this.customerHistory = customerHistory;
     }
 
     public void setCustomerEmail(String mail) {

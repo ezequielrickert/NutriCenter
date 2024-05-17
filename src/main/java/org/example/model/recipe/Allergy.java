@@ -1,9 +1,8 @@
-package org.example.model;
+package org.example.model.recipe;
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity(name = "ALLERGY")
 public class Allergy {

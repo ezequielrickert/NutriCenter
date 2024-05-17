@@ -12,6 +12,9 @@ import { IngredientResult, IngredientInfo } from '../view';
 import { RecipeResult, RecipeInfo } from '../view';
 import { AccountSettingsPage, Logout } from '../view';
 import {Stock} from "../view";
+import {MealTable} from "../view";
+import {NutritionistProfile} from "../view";
+import {UserSearcher, UserResult} from "../view";
 
 function App() {
     return (
@@ -28,6 +31,7 @@ function App() {
 
                     <Route path="/dashboardNutritionist" element={<DashboardNutritionist />} />
                     <Route path="/nutritionistRecipeEditor" element={<NutritionistRecipeEditor />} />
+                    <Route path="/nutritionistProfile/:nutritionistId" element={<NutritionistProfile />} />
 
                     <Route path="/dashboardStore" element={<DashboardStore />} />
 
@@ -38,6 +42,8 @@ function App() {
                     <Route path="/searcherSelector" element={<SearcherSelector />} />
                     <Route path="/searchIngredientHome" element={<SearchIngredientPage />} />
                     <Route path="/searchRecipeHome" element={<SearchRecipePage />} />
+                    <Route path="/searchProfileHome" element={<UserSearcher />} />
+                    <Route path="/userResult/:nutritionistName" element={<UserResult />} />
 
                     <Route path="/ingredientResult/:ingredientName" element={<IngredientResult />} />
                     <Route path="/ingredientInfo/:ingredientName" element={<IngredientInfo />} />
@@ -49,6 +55,8 @@ function App() {
                     <Route path="/logout" element={<Logout />} />
 
                     <Route path="/stock" element={<Stock />} />
+
+                    <Route path={"/mealTable"} element={<MealTable />} />
 
                 </Routes>
             </div>

@@ -1,6 +1,6 @@
 package org.example.repository.store;
 
-import org.example.model.Store;
+import org.example.model.roles.Store;
 
 public interface StoreRepository {
   void createStore(String storeName, String storeEmail, String storePassword);

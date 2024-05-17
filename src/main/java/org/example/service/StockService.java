@@ -1,9 +1,8 @@
 package org.example.service;
 
-import org.example.model.Ingredient;
-import org.example.model.Store;
+import org.example.model.recipe.Ingredient;
+import org.example.model.roles.Store;
 import org.example.model.stock.Stock;
-import org.example.repository.ingredient.IngredientRepository;
 import org.example.repository.ingredient.IngredientRepositoryImp;
 import org.example.repository.stock.StockRepository;
 import org.example.repository.stock.StockRepositoryImpl;

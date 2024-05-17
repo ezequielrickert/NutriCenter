@@ -1,8 +1,7 @@
 package org.example.service;
 
-import org.example.model.SuperAdmin;
+import org.example.model.roles.SuperAdmin;
 import org.example.repository.superadmin.SuperAdminRepositoryImpl;
-
 import javax.persistence.EntityManager;
 
 public class SuperAdminService {

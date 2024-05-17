@@ -1,5 +1,5 @@
 package org.example.repository.allergy;
-import org.example.model.Allergy;
+import org.example.model.recipe.Allergy;
 
 public interface AllergyRepository {
     void createAllergy(String allergyName, String description);

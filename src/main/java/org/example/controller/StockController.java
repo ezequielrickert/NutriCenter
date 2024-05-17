@@ -1,39 +1,71 @@
 package org.example.controller;
 
-import org.example.model.Ingredient;
-import org.example.model.Store;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import org.example.model.recipe.Ingredient;
+import org.example.model.roles.Store;
 import org.example.model.stock.Stock;
 import org.example.service.StockService;
+import spark.Spark;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.List;
+
+import static org.example.Application.gson;
 
 public class StockController {
 
-    EntityManager entityManager;
-    StockService stockService;
+    public void run() {
 
-    public StockController(EntityManager entityManager) {
-        this.stockService = new StockService(entityManager);
+        final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
+        StockService stockService = new StockService(entityManagerFactory.createEntityManager());
+
+        Spark.post("/addStock", (req, res) -> {
+            String body = req.body();
+            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            String storeName = gson.fromJson(jsonObject.get("storeName"), String.class);
+            Ingredient ingredient = gson.fromJson(jsonObject.get("ingredientId"), Ingredient.class);
+            int quantity = gson.fromJson(jsonObject.get("quantity"), Integer.class);
+            String brand = gson.fromJson(jsonObject.get("brand"), String.class);
+            stockService.createStock(storeName, ingredient, quantity, brand);
+            return gson.toJson("Stock created successfully");
+        });
+
+        Spark.get("/stock/:storeName", (req, res) -> {
+            String storeName = req.params(":storeName");
+            List<Stock> stock = stockService.readStock(storeName);
+            return gson.toJson(stock);
+        });
+
+        Spark.post("/updateStock", (req, res) -> {
+            String body = req.body();
+            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            String store = gson.fromJson(jsonObject.get("storeName"), String.class);
+            Ingredient ingredient = gson.fromJson(jsonObject.get("ingredientId"), Ingredient.class);
+            int quantity = gson.fromJson(jsonObject.get("quantity"), Integer.class);
+            String brand = gson.fromJson(jsonObject.get("brand"), String.class);
+            stockService.updateStock(store, ingredient, quantity, brand);
+            return gson.toJson("Stock updated successfully");
+        });
+
+        Spark.post("/deleteStock", (req, res) -> {
+            String body = req.body();
+            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            String store = gson.fromJson(jsonObject.get("storeName"), String.class);
+            Ingredient ingredient = gson.fromJson(jsonObject.get("ingredientId"), Ingredient.class);
+            stockService.deleteStock(store, ingredient.getIngredientId());
+            return gson.toJson("Stock deleted successfully");
+        });
+
+        Spark.get("/sellingStores/:ingredientName", (req, res) -> {
+            String ingredientName = req.params(":ingredientName");
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            List<Store> stores = stockService.getStoresByIngredient(ingredientName);
+            return gson.toJson(stores);
+        });
+
     }
 
-    public void createStock(String storeName, Ingredient ingredientsId, int quantity, String brand) {
-        stockService.createStock(storeName, ingredientsId, quantity, brand);
-    }
-
-    public List<Stock> readStock(String storeName) {
-        return stockService.readStock(storeName);
-    }
-
-    public void updateStock(String storeName, Ingredient ingredientsId, int quantity, String brand) {
-        stockService.updateStock(storeName, ingredientsId, quantity, brand);
-    }
-
-    public void deleteStock(String stockId, Long ingredientId) {
-        stockService.deleteStock(stockId, ingredientId);
-    }
-
-    public List<Store> getStoresByIngredient(String ingredientName) {
-        return stockService.getStoresByIngredient(ingredientName);
-    }
 }

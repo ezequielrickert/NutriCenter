@@ -1,8 +1,6 @@
 package org.example.repository.ingredient;
-import org.example.model.Allergy;
-import org.example.model.Category;
-import org.example.model.Ingredient;
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
+import org.example.model.recipe.Allergy;
+import org.example.model.recipe.Ingredient;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
