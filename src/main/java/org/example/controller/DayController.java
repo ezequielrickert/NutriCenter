@@ -8,6 +8,7 @@ import org.example.model.recipe.Recipe;
 import org.example.model.roles.Customer;
 import org.example.service.CustomerService;
 import org.example.service.DayService;
+import org.example.service.RecipeService;
 import spark.Spark;
 
 import javax.persistence.EntityManager;
@@ -24,6 +25,7 @@ public class DayController {
     public void run() {
 
         final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
+        RecipeService recipeService = new RecipeService(entityManagerFactory.createEntityManager());
         CustomerService customerService = new CustomerService(entityManagerFactory.createEntityManager());
         DayService dayService = new DayService(entityManagerFactory.createEntityManager());
 
@@ -32,19 +34,27 @@ public class DayController {
             JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
             DayOfWeek weekDayName = LocalDate.now().getDayOfWeek();
             String  mealType = gson.fromJson(jsonObject.get("mealType"), String.class);
-            Recipe recipe = gson.fromJson(jsonObject.get("recipe"), Recipe.class);
+            String recipeId = gson.fromJson(jsonObject.get("recipeId"), String.class);
+            Recipe recipe = recipeService.getRecipeById(Long.parseLong(recipeId));
             String username = gson.fromJson(jsonObject.get("username"), String.class);
             Customer customer = customerService.getCustomerByName(username);
+
             CustomerHistory customerHistory = customer.getCustomerHistory();
             List<Day> days = customerHistory.getDays();
-            Day lastDay = days.get(days.size()-1);
 
-            if(lastDay.getDayName() == weekDayName){
-                dayService.updateDay(lastDay.getDayId(), recipe, mealType);
-            }
-            else{
-                dayService.createDay(weekDayName, customerHistory);
-                dayService.updateDay(lastDay.getDayId(), recipe, mealType);
+            if(!days.isEmpty()){
+                Day lastDay = days.get(days.size()-1);
+
+                if(lastDay.getDayName() == weekDayName){
+                    dayService.updateDay(lastDay.getDayId(), recipe, mealType);
+                }
+                else{
+                    Day createdDay = dayService.createDay(weekDayName, customerHistory);
+                    dayService.updateDay(createdDay.getDayId(), recipe, mealType);
+                }
+            }else{
+                Day createdDay = dayService.createDay(weekDayName, customerHistory);
+                dayService.updateDay(createdDay.getDayId(), recipe, mealType);
             }
             return gson.toJson("Meal added to Day "+ weekDayName + " successfully");
         });

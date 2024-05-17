@@ -18,7 +18,7 @@ const AddMeal = () => {
                 }
             })
             .catch(error => {
-                console.error('There was an error!', error);
+                console.error('There was an error getting recipe!', error);
             });
     }, []);
 
@@ -46,7 +46,7 @@ const AddMeal = () => {
                 window.location.href = '/mealHistory';
             })
             .catch(error => {
-                console.error('There was an error!', error);
+                console.error('There was an error adding meal!', error);
             });
 
     }

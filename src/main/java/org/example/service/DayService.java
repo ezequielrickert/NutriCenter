@@ -21,10 +21,11 @@ public class DayService {
         this.dayRepository = new DayRepositoryImpl(entityManager);
     }
 
-    public void createDay(DayOfWeek name, CustomerHistory customerHistory) {
+    public Day createDay(DayOfWeek name, CustomerHistory customerHistory) {
         Day day = dayRepository.createDay(name, customerHistory);
         CustomerHistoryRepositoryImplementation repositoryImplementation = new CustomerHistoryRepositoryImplementation(entityManager);
         repositoryImplementation.updateCustomerHistory(customerHistory.getCustomerHistoryId(), day);
+        return day;
     }
 
     public void readDay(Long id) {
