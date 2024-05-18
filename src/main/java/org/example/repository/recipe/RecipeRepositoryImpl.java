@@ -7,13 +7,10 @@ import org.example.model.recipe.Recipe;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.List;
 
-public class RecipeRepositoryImpl implements RecipeRepository{
+public class RecipeRepositoryImpl implements RecipeRepository {
 
     EntityManager entityManager;
 
@@ -73,20 +70,6 @@ public class RecipeRepositoryImpl implements RecipeRepository{
     }
 
     @Override
-    public List<Recipe> getPublicRecipesBeginningWith(String beginning) {
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Recipe> cr = cb.createQuery(Recipe.class);
-        Root<Recipe> root = cr.from(Recipe.class);
-        Predicate nameLike = cb.like(root.get("recipeName"), beginning + "%");
-        Predicate isPublic = cb.equal(root.get("isPublic"), true);
-        cr.select(root).where(cb.and(nameLike, isPublic)).orderBy(cb.asc(root.get("recipeName")));
-
-        Query query = entityManager.createQuery(cr);
-        List<Recipe> results = query.getResultList();
-        return results;
-    }
-
-    @Override
     public List<Recipe> getRecipeByUsername(String username) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Recipe> cr = cb.createQuery(Recipe.class);
@@ -119,6 +102,23 @@ public class RecipeRepositoryImpl implements RecipeRepository{
         Query query = entityManager.createQuery(cr);
         List<Recipe> results = query.getResultList();
         return results;
+    }
+
+    @Override
+    public List<Recipe> getPublicRecipesByDietType(String dietType, String searchTerm) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Recipe> cr = cb.createQuery(Recipe.class);
+        Root<Recipe> recipeRoot = cr.from(Recipe.class);
+        Join<Recipe, Category> categoryJoin = recipeRoot.join("categoryList");
+
+        Predicate nameLike = cb.like(cb.lower(recipeRoot.get("recipeName")), "%" + searchTerm.toLowerCase() + "%");
+        Predicate isPublic = cb.equal(recipeRoot.get("isPublic"), true);
+        Predicate dietTypeLike = cb.like(cb.lower(categoryJoin.get("categoryName")), "%" + dietType.toLowerCase() + "%");
+
+        cr.select(recipeRoot).where(cb.and(nameLike, isPublic, dietTypeLike)).distinct(true);
+
+        TypedQuery<Recipe> query = entityManager.createQuery(cr);
+        return query.getResultList();
     }
 
     @Override

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useLocation, Link } from 'react-router-dom';
 import Footer from "../../../components/footer";
 import './searchRecipe.css';
 
@@ -10,8 +10,9 @@ const RecipeResult = () => {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
     const userRole = localStorage.getItem('role');
-    const [recipes, setRecipes] = useState([]);
-    const { recipeName } = useParams();
+    const { searchTerm } = useParams();
+    const location = useLocation()
+    const { recipes } = location.state;
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -33,23 +34,6 @@ const RecipeResult = () => {
         validateUser();
     }, [token, username]);
 
-    useEffect(() => {
-        if (!isValidUser) {
-            return;
-        }
-
-        const fetchRecipes = async () => {
-            try {
-                const results = await axios.get(`http://localhost:8080/publicRecipes/${recipeName}`);
-                setRecipes(results.data);
-            } catch (error) {
-                console.error("Error fetching recipes", error);
-            }
-        };
-
-        fetchRecipes();
-    }, [recipeName, isValidUser]);
-
     const handleSearchAgainClick = () => {
         navigate('/searchRecipeHome');
     };
@@ -70,7 +54,7 @@ const RecipeResult = () => {
                 </ul>
             ) : (
                 <div>
-                    <p>It doesn't exist recipes named: {recipeName}</p>
+                    <p>It doesn't exist recipes named: {searchTerm}</p>
                     <Link to="/searchRecipeHome">
                         <button>Back to Searcher</button>
                     </Link>

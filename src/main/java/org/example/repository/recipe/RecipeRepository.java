@@ -18,13 +18,13 @@ public interface RecipeRepository {
 
     List<Recipe> getRecipesOrderedByName();
 
-    List<Recipe> getPublicRecipesBeginningWith(String beginning);
-
     List<Recipe> getRecipeByUsername(String username);
 
     List<Recipe> getRecipeByIngredient(Long ingredientId);
 
     List<Recipe> getPublicRecipes(String recipe);
+
+    List<Recipe> getPublicRecipesByDietType(String diet, String term);
 
     Recipe getRecipeById(long recipeId);
 }
