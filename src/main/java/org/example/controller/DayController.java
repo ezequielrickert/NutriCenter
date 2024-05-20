@@ -49,6 +49,27 @@ public class DayController {
             return gson.toJson("Meal added to Day "+ weekDayName + " successfully");
         });
 
+        Spark.get("/getDays/:username", (req, res) -> {
+            String username = req.params(":username");
+            Customer customer = customerService.getCustomerByName(username);
+            if (customer == null) {
+                res.status(404); // 404 Not Found status code
+                return "Customer not found";
+            }
+            CustomerHistory customerHistory = customer.getCustomerHistory();
+            List<Day> days = customerHistory.getDays();
+            List<Day> lastSeven = getLastSeven(days);
+            return gson.toJson(lastSeven);
+        });
+
+    }
+
+    private List<Day> getLastSeven(List<Day> days) {
+        if (days.size() <= 7) {
+            return days;
+        } else {
+            return days.subList(days.size() - 7, days.size());
+        }
     }
 
 }
