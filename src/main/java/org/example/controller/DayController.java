@@ -8,6 +8,7 @@ import org.example.model.recipe.Recipe;
 import org.example.model.roles.Customer;
 import org.example.service.CustomerService;
 import org.example.service.DayService;
+import org.example.service.RecipeService;
 import spark.Spark;
 
 import javax.persistence.EntityManager;
@@ -26,13 +27,18 @@ public class DayController {
         final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
         CustomerService customerService = new CustomerService(entityManagerFactory.createEntityManager());
         DayService dayService = new DayService(entityManagerFactory.createEntityManager());
+        RecipeService recipeService = new RecipeService(entityManagerFactory.createEntityManager());
 
         Spark.post("/meal",(req, res) -> {
             String body = req.body();
             JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
             DayOfWeek weekDayName = LocalDate.now().getDayOfWeek();
             String  mealType = gson.fromJson(jsonObject.get("mealType"), String.class);
-            Recipe recipe = gson.fromJson(jsonObject.get("recipe"), Recipe.class);
+
+            String recipeId = gson.fromJson(jsonObject.get("recipeId"), String.class); // Updated line
+
+            Recipe recipe = recipeService.getRecipeById(Long.parseLong(recipeId));
+
             String username = gson.fromJson(jsonObject.get("username"), String.class);
             Customer customer = customerService.getCustomerByName(username);
             CustomerHistory customerHistory = customer.getCustomerHistory();

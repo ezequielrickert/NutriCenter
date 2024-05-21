@@ -78,33 +78,33 @@ const MealHistory = () => {
                 <tbody>
                 <tr>
                     <th scope="row">Breakfast</th>
-                    <td>"No meal"</td>
-                    <td>"No meal"</td>
-                    <td>"No meal"</td>
-                    <td>"No meal"</td>
-                    <td>"No meal"</td>
-                    <td>"No meal"</td>
-                    <td>"No meal"</td>
+                    <td>{monday?.breakfast?.recipeName || "No meal"}</td>
+                    <td>{tuesday?.breakfast?.recipeName || "No meal"}</td>
+                    <td>{wednesday?.breakfast?.recipeName || "No meal"}</td>
+                    <td>{thursday?.breakfast?.recipeName || "No meal"}</td>
+                    <td>{friday?.breakfast?.recipeName || "No meal"}</td>
+                    <td>{saturday?.breakfast?.recipeName || "No meal"}</td>
+                    <td>{sunday?.breakfast?.recipeName || "No meal"}</td>
                 </tr>
                 <tr>
                     <th scope="row">Lunch</th>
-                    <td>"No meal"</td>
-                    <td>"No meal"</td>
-                    <td>"No meal"</td>
-                    <td>"No meal"</td>
-                    <td>"No meal"</td>
-                    <td>"No meal"</td>
-                    <td>"No meal"</td>
+                    <td>{monday?.lunch?.recipeName || "No meal"}</td>
+                    <td>{tuesday?.lunch?.recipeName || "No meal"}</td>
+                    <td>{wednesday?.lunch?.recipeName || "No meal"}</td>
+                    <td>{thursday?.lunch?.recipeName || "No meal"}</td>
+                    <td>{friday?.lunch?.recipeName || "No meal"}</td>
+                    <td>{saturday?.lunch?.recipeName || "No meal"}</td>
+                    <td>{sunday?.lunch?.recipeName || "No meal"}</td>
                 </tr>
                 <tr>
                     <th scope="row">Dinner</th>
-                    <td>"No meal"</td>
-                    <td>"No meal"</td>
-                    <td>"No meal"</td>
-                    <td>"No meal"</td>
-                    <td>"No meal"</td>
-                    <td>"No meal"</td>
-                    <td>"No meal"</td>
+                    <td>{monday?.dinner?.recipeName || "No meal"}</td>
+                    <td>{tuesday?.dinner?.recipeName || "No meal"}</td>
+                    <td>{wednesday?.dinner?.recipeName || "No meal"}</td>
+                    <td>{thursday?.dinner?.recipeName || "No meal"}</td>
+                    <td>{friday?.dinner?.recipeName || "No meal"}</td>
+                    <td>{saturday?.dinner?.recipeName || "No meal"}</td>
+                    <td>{sunday?.dinner?.recipeName || "No meal"}</td>
                 </tr>
                 </tbody>
             </table>
