@@ -3,7 +3,6 @@ import axios from 'axios';
 
 const MealHistory = () => {
     const [isValidUser, setIsValidUser] = useState(false);
-    const [days, setDays] = useState([]); // New state variable for the days
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
     const userRole = localStorage.getItem('role');

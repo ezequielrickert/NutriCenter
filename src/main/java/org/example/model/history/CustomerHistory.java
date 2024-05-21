@@ -1,14 +1,18 @@
 package org.example.model.history;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class CustomerHistory {
     @Id
+    @Expose
     @GeneratedValue(generator = "userGen", strategy = GenerationType.SEQUENCE)
     private Long customerHistoryId;
 
+    @Expose
     @OneToMany(mappedBy = "customerHistory", cascade = CascadeType.ALL)
     private List<Day> days;
 

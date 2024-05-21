@@ -1,5 +1,7 @@
 package org.example.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.example.model.history.CustomerHistory;
@@ -65,9 +67,13 @@ public class DayController {
             CustomerHistory customerHistory = customer.getCustomerHistory();
             List<Day> days = customerHistory.getDays();
             List<Day> lastSeven = getLastSeven(days);
-            return gson.toJson(lastSeven);
-        });
+            System.out.println(lastSeven);
 
+            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            String result = gson.toJson(lastSeven);
+            System.out.println(result);
+            return result;
+        }, gson::toJson);
     }
 
     private List<Day> getLastSeven(List<Day> days) {

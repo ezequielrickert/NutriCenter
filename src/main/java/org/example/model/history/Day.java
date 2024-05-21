@@ -1,5 +1,7 @@
 package org.example.model.history;
 
+import com.google.gson.Gson;
+import com.google.gson.annotations.Expose;
 import org.example.model.recipe.Recipe;
 
 import javax.persistence.*;
@@ -9,29 +11,36 @@ import java.time.LocalDate;
 @Entity
 public class Day {
 
+    @Expose(serialize = true)
     @Id
     @GeneratedValue(generator = "userGen", strategy = GenerationType.SEQUENCE)
     private Long dayId;
 
+    @Expose(serialize = true)
     @ManyToOne
     @JoinColumn(name = "CustomerHistoryId")
     private CustomerHistory customerHistory;
 
+    @Expose(serialize = true)
     @Column(nullable = false, unique = false)
     private DayOfWeek dayName;
 
+    @Expose(serialize = true)
     @ManyToOne
     @JoinColumn(referencedColumnName = "recipeId", foreignKey = @ForeignKey(name = "FK_breakfast_recipeId"))
     public Recipe breakfast;
 
+    @Expose(serialize = true)
     @ManyToOne
     @JoinColumn(referencedColumnName = "recipeId", foreignKey = @ForeignKey(name = "FK_lunch_recipeId"))
     public Recipe lunch;
 
+    @Expose(serialize = true)
     @ManyToOne
     @JoinColumn(referencedColumnName = "recipeId", foreignKey = @ForeignKey(name = "FK_dinner_recipeId"))
     public Recipe dinner;
 
+    @Expose(serialize = true)
     @Column(nullable = false, unique = false)
     private LocalDate date;
 
@@ -94,5 +103,10 @@ public class Day {
 
     public Recipe getDinner() {
         return dinner;
+    }
+
+    public String asJson() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 }
