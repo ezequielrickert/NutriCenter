@@ -25,7 +25,6 @@ public class Customer {
     @Column(nullable = false, unique = false)
     private String customerPassword;
 
-
     public Customer(String customerName, String customerEmail, String customerPassword) {
         this.customerName = customerName;
         this.customerEmail = customerEmail;
