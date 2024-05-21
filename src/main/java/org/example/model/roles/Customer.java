@@ -1,6 +1,7 @@
 package org.example.model.roles;
 
 import com.google.gson.Gson;
+import com.google.gson.annotations.Expose;
 import org.example.model.history.CustomerHistory;
 
 import javax.persistence.*;
@@ -9,16 +10,20 @@ import javax.persistence.*;
 public class Customer {
 
     @Id
+    @Expose
     @GeneratedValue(generator = "userGen", strategy = GenerationType.IDENTITY)
     private Long customerId;
 
+    @Expose
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customerHistoryId", referencedColumnName = "customerHistoryId")
     private CustomerHistory customerHistory;
 
+    @Expose
     @Column(nullable = false, unique = false)
     private String customerName;
 
+    @Expose
     @Column(nullable = false, unique = true)
     private String customerEmail;
 

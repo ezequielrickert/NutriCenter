@@ -40,7 +40,7 @@ public class Day {
     @JoinColumn(referencedColumnName = "recipeId", foreignKey = @ForeignKey(name = "FK_dinner_recipeId"))
     public Recipe dinner;
 
-    @Expose(serialize = true)
+
     @Column(nullable = false, unique = false)
     private LocalDate date;
 
@@ -103,10 +103,5 @@ public class Day {
 
     public Recipe getDinner() {
         return dinner;
-    }
-
-    public String asJson() {
-        Gson gson = new Gson();
-        return gson.toJson(this);
     }
 }
