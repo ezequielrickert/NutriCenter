@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+import org.example.model.recipe.Allergy;
 import org.example.model.recipe.Category;
 import org.example.model.recipe.Ingredient;
 import org.example.model.recipe.Recipe;
@@ -46,12 +47,6 @@ public class RecipeController {
             return gson.toJson(recipes);
         });
 
-        Spark.get("/publicRecipes/begins/:beginning", (req, res) -> {
-            String beginning = req.params(":beginning");
-            List<Recipe> recipes = recipeService.getPublicRecipesBeginningWith(beginning);
-            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-            return gson.toJson(recipes);
-        });
 
         Spark.get("/recipes/:username", (req, res) -> {
             String username = req.params(":username");
@@ -61,25 +56,25 @@ public class RecipeController {
             return gson.toJson(recipes);
         });
 
+        Spark.get("/publicRecipesByDietType", (req, res) -> {
+           String searchTerm = req.queryParams("term");
+           String dietType = req.queryParams("diet");
+           List<Recipe> recipes = recipeService.getPublicRecipesByDietType(dietType, searchTerm);
+            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            return gson.toJson(recipes);
+        });
+
         Spark.post("/createRecipe", (req, res) -> {
             String body = req.body();
-            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
-            String recipeName = gson.fromJson(jsonObject.get("recipeName"), String.class);
-            String recipeDescription = gson.fromJson(jsonObject.get("recipeDescription"), String.class);
-
-            Type categoryListType = new TypeToken<List<Category>>() {
-            }.getType();
-            List<Category> categoryList = gson.fromJson(jsonObject.get("categoryList"), categoryListType);
-
-            Type ingredientListType = new TypeToken<List<Ingredient>>() {
-            }.getType();
-            List<Ingredient> ingredientList = gson.fromJson(jsonObject.get("ingredientList"), ingredientListType);
-
-            String username = gson.fromJson(jsonObject.get("username"), String.class);
-            Boolean isPublic = gson.fromJson(jsonObject.get("isPublic"), Boolean.class);
-
-            recipeService.createRecipe(recipeName, recipeDescription, categoryList, ingredientList, username, isPublic);
-            return req;
+            Recipe recipe = gson.fromJson(body, Recipe.class);
+            String recipeName = recipe.getRecipeName();
+            String description = recipe.getRecipeDescription();
+            List<Category> categorylist = recipe.getCategoryList();
+            List<Ingredient> ingredientlist = recipe.getIngredientList();
+            String username = recipe.getRecipeUsername();
+            boolean isPublic = recipe.getIsPublic();
+            recipeService.createRecipe(recipeName, description, categorylist, ingredientlist, username, isPublic);
+            return recipe;
         }, gson::toJson);
 
         Spark.post("/updateRecipe", (req, res) -> {

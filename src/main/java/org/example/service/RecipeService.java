@@ -41,9 +41,11 @@ public class RecipeService {
         return recipeRepository.getRecipeByUsername(username);
     }
 
-    public List<Recipe> getPublicRecipesBeginningWith(String beginning) { return recipeRepository.getPublicRecipesBeginningWith(beginning); }
-
     public List<Recipe> getPublicRecipes(String recipe) { return recipeRepository.getPublicRecipes(recipe); }
 
     public Recipe getRecipeById(long recipeId) { return recipeRepository.getRecipeById(recipeId); }
+
+    public List<Recipe> getPublicRecipesByDietType(String dietType, String searchTerm) {
+        return recipeRepository.getPublicRecipesByDietType(dietType, searchTerm);
+    }
 }
