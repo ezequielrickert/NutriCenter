@@ -14,14 +14,43 @@ const MealHistory = () => {
     const [saturday, setSaturday] = useState(null);
     const [sunday, setSunday] = useState(null);
 
+    useEffect(() => {
+        console.log(monday);
+    }, [monday]);
+
+    useEffect(() => {
+        console.log(tuesday);
+    }, [tuesday]);
+
+    useEffect(() => {
+        console.log(wednesday);
+    }, [wednesday]);
+
+    useEffect(() => {
+        console.log(thursday);
+    }, [thursday]);
+
+    useEffect(() => {
+        console.log(friday);
+    }, [friday]);
+
+    useEffect(() => {
+        console.log(saturday);
+    }, [saturday]);
+
+    useEffect(() => {
+        console.log(sunday);
+    }, [sunday]);
+
+
     const processDays = (days) => {
-        setMonday(days.find(day => day.dayName === 'MONDAY'));
-        setTuesday(days.find(day => day.dayName === 'TUESDAY'));
-        setWednesday(days.find(day => day.dayName === 'WEDNESDAY'));
-        setThursday(days.find(day => day.dayName === 'THURSDAY'));
-        setFriday(days.find(day => day.dayName === 'FRIDAY'));
-        setSaturday(days.find(day => day.dayName === 'SATURDAY'));
-        setSunday(days.find(day => day.dayName === 'SUNDAY'));
+        setMonday(days.find(day => day.dayName === '0')); // Monday
+        setTuesday(days.find(day => day.dayName === '1')); // Tuesday
+        setWednesday(days.find(day => day.dayName === '2')); // Wednesday
+        setThursday(days.find(day => day.dayName === '3')); // Thursday
+        setFriday(days.find(day => day.dayName === '4')); // Friday
+        setSaturday(days.find(day => day.dayName === '5')); // Saturday
+        setSunday(days.find(day => day.dayName === '6')); // Sunday
     }
 
     useEffect(() => {
@@ -39,12 +68,27 @@ const MealHistory = () => {
             }
         };
 
+
+
         const fetchCustomerDays = async () => {
             try {
                 const response = await axios.get(`http://localhost:8080/getDays/${username}`);
-                const days = response.data;
-                processDays(days);
-
+                console.log('Type of response.data:', typeof response.data);
+                let days = JSON.parse(response.data); // Parse the JSON string into an object
+                console.log('Initial value of days:', days);
+                // Check if response is not empty and is a valid JSON string
+                if (days && typeof days === 'object' && !Array.isArray(days)) {
+                    days = [days];
+                }
+                console.log('Value of days after checking if it\'s an object and not an array:', days);
+                //checks if array
+                if (Array.isArray(days)) {
+                    console.log('Value of days before passing to processDays:', days);
+                    processDays(days);
+                } else {
+                    console.error("Error: Expected 'days' to be an array but received:", days);
+                }
+                console.log('Final value of days:', days);
             } catch (error) {
                 console.error("Error fetching customer", error);
             }

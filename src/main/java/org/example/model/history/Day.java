@@ -16,14 +16,15 @@ public class Day {
     @GeneratedValue(generator = "userGen", strategy = GenerationType.SEQUENCE)
     private Long dayId;
 
-    @Expose(serialize = true)
+
+    // @Expose(serialize = true)
     @ManyToOne
     @JoinColumn(name = "CustomerHistoryId")
     private CustomerHistory customerHistory;
 
     @Expose(serialize = true)
     @Column(nullable = false, unique = false)
-    private DayOfWeek dayName;
+    private String dayName;
 
     @Expose(serialize = true)
     @ManyToOne
@@ -48,7 +49,7 @@ public class Day {
     }
 
     public Day(DayOfWeek dayName, LocalDate date, CustomerHistory customerHistory) {
-        this.dayName = dayName;
+        this.dayName = dayName.name();
         this.date = date;
         this.customerHistory = customerHistory;
     }
@@ -73,11 +74,11 @@ public class Day {
         return dayId;
     }
 
-    public DayOfWeek getDayName() {
+    public String getDayName() {
         return dayName;
     }
 
-    public void setDayName(DayOfWeek dayName) {
+    public void setDayName(String dayName) {
         this.dayName = dayName;
     }
 

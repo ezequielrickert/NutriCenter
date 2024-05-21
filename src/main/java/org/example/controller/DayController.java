@@ -34,7 +34,11 @@ public class DayController {
         Spark.post("/meal",(req, res) -> {
             String body = req.body();
             JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
-            DayOfWeek weekDayName = LocalDate.now().getDayOfWeek();
+
+            //el end point tiene cambios raros para acomodar el weekDayName como String
+            String weekDayName = LocalDate.now().getDayOfWeek().name();
+
+
             String  mealType = gson.fromJson(jsonObject.get("mealType"), String.class);
             String recipeId = gson.fromJson(jsonObject.get("recipeId"), String.class);
             Recipe recipe = recipeService.getRecipeById(Long.parseLong(recipeId));
@@ -51,11 +55,11 @@ public class DayController {
                     dayService.updateDay(lastDay.getDayId(), recipe, mealType);
                 }
                 else{
-                    Day createdDay = dayService.createDay(weekDayName, customerHistory);
+                    Day createdDay = dayService.createDay(DayOfWeek.valueOf(weekDayName), customerHistory);
                     dayService.updateDay(createdDay.getDayId(), recipe, mealType);
                 }
             }else{
-                Day createdDay = dayService.createDay(weekDayName, customerHistory);
+                Day createdDay = dayService.createDay(DayOfWeek.valueOf(weekDayName), customerHistory);
                 dayService.updateDay(createdDay.getDayId(), recipe, mealType);
             }
             return gson.toJson("Meal added to Day "+ weekDayName + " successfully");

@@ -35,8 +35,7 @@ public class CustomerHistoryRepositoryImplementation implements CustomerHistoryR
     public void updateCustomerHistory(Long customerHistoryId, Day day) {
         entityManager.getTransaction().begin();
         CustomerHistory customerHistory = entityManager.find(CustomerHistory.class, customerHistoryId);
-        List<Day> dayList = customerHistory.getDays();
-        dayList.add(day);
+        customerHistory.getDays().add(day);
         entityManager.persist(customerHistory);
         entityManager.getTransaction().commit();
     }
