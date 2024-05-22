@@ -44,13 +44,13 @@ const MealHistory = () => {
 
 
     const processDays = (days) => {
-        setMonday(days.find(day => day.dayName === '0')); // Monday
-        setTuesday(days.find(day => day.dayName === '1')); // Tuesday
-        setWednesday(days.find(day => day.dayName === '2')); // Wednesday
-        setThursday(days.find(day => day.dayName === '3')); // Thursday
-        setFriday(days.find(day => day.dayName === '4')); // Friday
-        setSaturday(days.find(day => day.dayName === '5')); // Saturday
-        setSunday(days.find(day => day.dayName === '6')); // Sunday
+        setMonday(days.find(day => day.dayName === 'MONDAY')); // Monday
+        setTuesday(days.find(day => day.dayName === 'TUESDAY')); // Tuesday
+        setWednesday(days.find(day => day.dayName === 'WEDNESDAY')); // Wednesday
+        setThursday(days.find(day => day.dayName === 'THURSDAY')); // Thursday
+        setFriday(days.find(day => day.dayName === 'FRIDAY')); // Friday
+        setSaturday(days.find(day => day.dayName === 'SATURDAY')); // Saturday
+        setSunday(days.find(day => day.dayName === 'SUNDAY')); // Sunday
     }
 
     useEffect(() => {

@@ -13,14 +13,8 @@ public class Day {
 
     @Expose(serialize = true)
     @Id
-    @GeneratedValue(generator = "userGen", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "userGen", strategy = GenerationType.IDENTITY)
     private Long dayId;
-
-
-    // @Expose(serialize = true)
-    @ManyToOne
-    @JoinColumn(name = "CustomerHistoryId")
-    private CustomerHistory customerHistory;
 
     @Expose(serialize = true)
     @Column(nullable = false, unique = false)
@@ -48,18 +42,9 @@ public class Day {
     public Day() {
     }
 
-    public Day(DayOfWeek dayName, LocalDate date, CustomerHistory customerHistory) {
+    public Day(DayOfWeek dayName, LocalDate date) {
         this.dayName = dayName.name();
         this.date = date;
-        this.customerHistory = customerHistory;
-    }
-
-    public CustomerHistory getCustomerHistory() {
-        return customerHistory;
-    }
-
-    public void setCustomerHistory(CustomerHistory customerHistory) {
-        this.customerHistory = customerHistory;
     }
 
     public LocalDate getDate(){

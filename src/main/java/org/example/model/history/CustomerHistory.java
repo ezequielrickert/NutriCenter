@@ -13,7 +13,7 @@ public class CustomerHistory {
     private Long customerHistoryId;
 
     @Expose
-    @OneToMany(mappedBy = "customerHistory", cascade = CascadeType.ALL)
+    @OneToMany
     private List<Day> days;
 
     public CustomerHistory() {
