@@ -1,27 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button, Table, Modal, Form } from 'react-bootstrap';
-import Footer from "../../../components/footer";
+import Footer from '../../../components/footer';
+import ReactSelect from 'react-select';
 
-const StockEditor = () => {
+const StockEdition = () => {
+    // Validation
     const [isValidUser, setIsValidUser] = useState(false);
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
     const userRole = localStorage.getItem('role');
+
+    // Message
     const [showMessage, setShowMessage] = useState(false);
     const [messageContent, setMessageContent] = useState('');
-    const [ingredients, setIngredientOptions] = useState([]);
+
+    // Stocks and Ingredients
     const [stocks, setStocks] = useState([]);
+    const [ingredients, setIngredients] = useState([]);
+    const [selectedIngredient, setSelectedIngredient] = useState(null);
+
+    // Modal
     const [showModal, setShowModal] = useState(false);
     const [modalTitle, setModalTitle] = useState('Create Stock');
     const [buttonText, setButtonText] = useState('Create');
+
+    // Form Data
+    const [quantity, setQuantity] = useState('');
+    const [brand, setBrand] = useState('');
     const [editingStock, setEditingStock] = useState(null);
-    const [selectedIngredient, setSelectedIngredient] = useState('');
-    const [quantity, setSelectedQuantity] = useState('');
-    const [brand, setSelectedBrand] = useState('');
-    const [newQuantity, setNewQuantity] = useState(0);
-    const [newBrandName, setNewBrandName] = useState('');
-    const [isEditing, setIsEditing] = useState(false); // Agregado para manejar si se está editando
+    const [formChanged, setFormChanged] = useState(false);
 
     useEffect(() => {
         const validateUser = async () => {
@@ -30,7 +38,6 @@ const StockEditor = () => {
                 if (response.data === "User is valid" && userRole === "store") {
                     setIsValidUser(true);
                 } else {
-                    console.error("User validation failed");
                     window.location.href = '/universalLogin';
                 }
             } catch (error) {
@@ -40,47 +47,61 @@ const StockEditor = () => {
         };
 
         validateUser();
-    }, [token, username]);
+    }, [token, username, userRole]);
 
     useEffect(() => {
+        const fetchStocks = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/stock/${username}`);
+                if (Array.isArray(response.data)) {
+                    setStocks(response.data);
+                } else {
+                    console.error('Data received from server is not an array');
+                }
+            } catch (error) {
+                console.error('There was an error!', error);
+            }
+        };
+
+        const fetchIngredients = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/ingredients');
+                const data = JSON.parse(response.data);
+                if (Array.isArray(data)) {
+                    setIngredients(data);
+                } else {
+                    console.error('Data received from server is not an array');
+                }
+            } catch (error) {
+                console.error('There was an error!', error);
+            }
+        };
+
         if (isValidUser) {
             fetchStocks();
+            fetchIngredients();
         }
-    }, [isValidUser]);
-
-    const fetchStocks = async () => {
-        try {
-            const response = await axios.get(`http://localhost:8080/stock/${username}`);
-            setStocks(response.data);
-        } catch (error) {
-            console.error('There was an error fetching stocks', error);
-        }
-    };
-
-    useEffect(() => {
-        axios.get('http://localhost:8080/ingredients')
-            .then(response => {
-                setIngredientOptions(JSON.parse(response.data));
-            })
-            .catch(error => console.error('Error fetching ingredients', error));
-    }, []);
+    }, [isValidUser, username]);
 
     useEffect(() => {
         if (editingStock) {
-            setNewQuantity(editingStock.quantity);
-            setNewBrandName(editingStock.brand);
-            setIsEditing(true); // Ajuste para manejar la edición
+            setSelectedIngredient(editingStock.ingredient);
+            setQuantity(editingStock.quantity);
+            setBrand(editingStock.brand);
         }
     }, [editingStock]);
 
     const isFormComplete = () => {
-        return newQuantity && newBrandName;
+        return selectedIngredient && quantity && brand;
     };
 
     const displayMessage = (message) => {
         setMessageContent(message);
         setShowMessage(true);
-        setTimeout(() => setShowMessage(false), 5000);
+        const timer = setTimeout(() => {
+            setShowMessage(false);
+        }, 5000);
+        return () => clearTimeout(timer);
     };
 
     const prepareForEdit = (stock) => {
@@ -98,18 +119,13 @@ const StockEditor = () => {
     };
 
     const resetModal = () => {
-        setNewQuantity(0);
-        setNewBrandName('');
-        setIsEditing(false); // Resetear el estado de edición
-    };
-
-    const handleSubmit = async () => {
-        if (isEditing) {
-            await handleUpdate();
-        } else {
-            await handleCreate();
+        if (!editingStock) {
+            setSelectedIngredient(null);
+            setQuantity('');
+            setBrand('');
         }
     };
+
 
     const handleCreate = async () => {
         const stockData = {
@@ -120,13 +136,18 @@ const StockEditor = () => {
         };
 
         try {
-            await axios.post("http://localhost:8080/addStock", stockData);
-            displayMessage('Stock added successfully');
-            fetchStocks();
+            const response = await axios.post('http://localhost:8080/addStock', stockData);
+            if (response.data === "Stock created successfully") {
+                displayMessage('Stock created successfully');
+                closeModal();
+                const updatedStocks = await axios.get(`http://localhost:8080/stock/${username}`);
+                setStocks(updatedStocks.data);
+            } else {
+                displayMessage('Error creating stock');
+            }
         } catch (error) {
-            console.error('Error adding stock', error);
-        } finally {
-            closeModal();
+            console.error("Error creating stock", error);
+            displayMessage('Error creating stock');
         }
     };
 
@@ -134,44 +155,61 @@ const StockEditor = () => {
         if (editingStock) {
             const stockData = {
                 storeName: username,
-                ingredientId: editingStock.ingredientId, // Asumir que editingStock tiene ingredientId
-                quantity: newQuantity,
-                brand: newBrandName
+                ingredientId: selectedIngredient,
+                quantity: quantity,
+                brand: brand
             };
 
             try {
-                await axios.post(`http://localhost:8080/updateStock`, stockData);
-                displayMessage('Stock updated successfully');
-                fetchStocks();
+                const response = await axios.post('http://localhost:8080/updateStock', stockData);
+                if (response.data === "Stock updated successfully") {
+                    displayMessage('Stock updated successfully');
+                    closeModal();
+                    const updatedStocks = await axios.get(`http://localhost:8080/stock/${username}`);
+                    setStocks(updatedStocks.data);
+                } else {
+                    displayMessage('Error updating stock');
+                }
             } catch (error) {
-                console.error('Error updating stock', error);
-            } finally {
-                closeModal();
+                console.error("Error updating stock", error);
+                displayMessage('Error updating stock');
             }
         }
     };
 
     const handleDelete = async (stock) => {
+        const stockData = {
+            storeName: username,
+            ingredientId: stock.ingredient
+        };
+
         if (window.confirm('Are you sure you want to delete this stock?')) {
             try {
-                await axios.post('http://localhost:8080/deleteStock', { storeName: username, ingredientId: stock.ingredientId });
-                displayMessage('Stock deleted successfully');
-                setStocks(stocks.filter(s => s.id !== stock.id));
+                const response = await axios.post('http://localhost:8080/deleteStock', stockData);
+                if (response.data === "Stock deleted successfully") {
+                    displayMessage('Stock deleted successfully');
+                    setStocks(stocks.filter(s => s.ingredient.ingredientId !== stock.ingredient.ingredientId));
+                } else {
+                    displayMessage('Error deleting stock');
+                }
             } catch (error) {
-                console.error('Error deleting stock', error);
+                console.error("Error deleting stock", error);
+                displayMessage('Error deleting stock');
             }
         }
     };
 
+    let ingredientOptions = ingredients.map(ingredient => ({ value: ingredient, label: ingredient.ingredientName }));
+
     return (
         <div className="container my-3">
-            <h1>Stock Management</h1>
+            <h1 className="text-center">Stocks</h1>
             <Button variant="success" onClick={() => setShowModal(true)} style={{ marginBottom: '20px' }}>Create Stock</Button>
             {showMessage && <div className="alert alert-success">{messageContent}</div>}
             <Table striped bordered hover>
                 <thead>
                 <tr>
-                    <th>Ingredient</th>
+                    <th>Ingredient Name</th>
                     <th>Quantity</th>
                     <th>Brand</th>
                     <th>Actions</th>
@@ -180,15 +218,14 @@ const StockEditor = () => {
                 <tbody>
                 {stocks.map((stock, index) => (
                     <tr key={index}>
-                        <td>{stock.ingredient}</td>
+                        <td>{stock.ingredient.ingredientName}</td>
                         <td>{stock.quantity}</td>
                         <td>{stock.brand}</td>
                         <td>
-                            <Button variant="warning" onClick={() => prepareForEdit(stock)}
-                                    style={{ marginRight: '10px' }}>
+                            <Button variant="warning" onClick={() => prepareForEdit(stock)} style={{ marginRight: '10px' }}>
                                 Edit
                             </Button>
-                            <Button variant="danger" onClick={() => handleDelete(stock.id)}>
+                            <Button variant="danger" onClick={() => handleDelete(stock)}>
                                 Delete
                             </Button>
                         </td>
@@ -196,34 +233,45 @@ const StockEditor = () => {
                 ))}
                 </tbody>
             </Table>
-            <Modal show={showModal} onHide={() => setShowModal(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>{isEditing ? 'Edit Stock' : 'Create Stock'}</Modal.Title>
+            <Modal show={showModal} onHide={closeModal}>
+                <Modal.Header>
+                    <Modal.Title>{modalTitle}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {!isEditing && (
-                        <Form.Group controlId="formIngredientSelect">
+                    <Form>
+                        <Form.Group controlId="formIngredient">
                             <Form.Label>Ingredient</Form.Label>
-                            {/* Componente de selección de ingredientes */}
+                            <ReactSelect
+                                options={ingredientOptions}
+                                value={selectedIngredient ? { value: selectedIngredient, label: selectedIngredient.ingredientName } : null}
+                                onChange={selectedOption => { setSelectedIngredient(selectedOption.value); setFormChanged(true); }}
+                                className="basic-single"
+                                classNamePrefix="select"
+                                isDisabled={!!editingStock}
+                            />
                         </Form.Group>
-                    )}
-                    <Form.Group controlId="formQuantity">
-                        <Form.Label>Quantity</Form.Label>
-                        <Form.Control type="number" value={selectedQuantity} onChange={(e) => setSelectedQuantity(e.target.value)} />
-                    </Form.Group>
-                    <Form.Group controlId="formBrand">
-                        <Form.Label>Brand</Form.Label>
-                        <Form.Control type="text" value={selectedBrand} onChange={(e) => setSelectedBrand(e.target.value)} />
-                    </Form.Group>
+                        <Form.Group controlId="formQuantity">
+                            <Form.Label>Quantity</Form.Label>
+                            <Form.Control type="number" value={quantity} onChange={(e) => { setQuantity(e.target.value); setFormChanged(true); }} min="0" />
+                        </Form.Group>
+                        <Form.Group controlId="formBrand">
+                            <Form.Label>Brand</Form.Label>
+                            <Form.Control type="text" value={brand} onChange={(e) => { setBrand(e.target.value); setFormChanged(true); }} />
+                        </Form.Group>
+                    </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowModal(false)}>Close</Button>
-                    <Button variant="primary" onClick={handleSubmit}>{isEditing ? 'Update' : 'Create'}</Button>
+                    <Button variant="secondary" onClick={closeModal}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={editingStock ? handleUpdate : handleCreate} disabled={!isFormComplete()}>
+                        {buttonText}
+                    </Button>
                 </Modal.Footer>
-            </Modal>;
+            </Modal>
             <Footer />
         </div>
     );
 };
 
-export default StockEditor;
+export default StockEdition;
