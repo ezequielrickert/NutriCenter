@@ -1,5 +1,6 @@
 package org.example.model.history;
 
+import com.google.gson.annotations.Expose;
 import org.example.model.recipe.Recipe;
 
 import javax.persistence.*;
@@ -10,25 +11,31 @@ import java.time.LocalDate;
 public class Day {
 
     @Id
+    @Expose
     @GeneratedValue(generator = "userGen", strategy = GenerationType.SEQUENCE)
     private Long dayId;
 
     @ManyToOne
+    @Expose
     @JoinColumn(name = "CustomerHistoryId")
     private CustomerHistory customerHistory;
 
+    @Expose
     @Column(nullable = false, unique = false)
     private DayOfWeek dayName;
 
     @ManyToOne
+    @Expose
     @JoinColumn(referencedColumnName = "recipeId", foreignKey = @ForeignKey(name = "FK_breakfast_recipeId"))
     public Recipe breakfast;
 
     @ManyToOne
+    @Expose
     @JoinColumn(referencedColumnName = "recipeId", foreignKey = @ForeignKey(name = "FK_lunch_recipeId"))
     public Recipe lunch;
 
     @ManyToOne
+    @Expose
     @JoinColumn(referencedColumnName = "recipeId", foreignKey = @ForeignKey(name = "FK_dinner_recipeId"))
     public Recipe dinner;
 

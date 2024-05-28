@@ -39,6 +39,9 @@ const DashboardNutritionist = () => {
                 <Link to={`/nutritionistProfile/${username}`}>
                     <button>Go to Nutritionist Profile</button>
                 </Link>
+                <Link to="/nutritionist-subscriptions">
+                    <button>View Subscriptions</button>
+                </Link>
                 { /*add dashboard content here*/ }
                 <Footer />
             </header>

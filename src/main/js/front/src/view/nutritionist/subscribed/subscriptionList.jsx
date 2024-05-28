@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Footer from '../../components/footer';
-import {Link} from "react-router-dom";
 
-const DashboardCustomer = () => {
+const CustomerSubscriptionList = () => {
+    const [customers, setCustomers] = useState([]);
     const [isValidUser, setIsValidUser] = useState(false);
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
@@ -13,7 +12,7 @@ const DashboardCustomer = () => {
         const validateUser = async () => {
             try {
                 const response = await axios.post("http://localhost:8080/validateUser", { username, token });
-                if (response.data === "User is valid" && userRole === "customer") {
+                if (response.data === "User is valid" && (userRole === "nutritionist")) {
                     setIsValidUser(true);
                 } else {
                     window.location.href = '/universalLogin';
@@ -27,25 +26,29 @@ const DashboardCustomer = () => {
         validateUser();
     }, [token, username]);
 
-    // if necesario!! para que React no devuelva la pagina al no estar validado
-    if (!isValidUser) {
-        return null;
-    }
+    useEffect(() => {
+        const fetchSubscriptions = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/subscription/nutritionist/${username}`);
+                setCustomers(response.data);
+            } catch (error) {
+                console.error('There was an error!', error);
+            }
+        };
+
+        fetchSubscriptions();
+    }, []);
 
     return (
-        <div className="container">
-            <header className="text-center my-5">
-                <h1>Welcome to the Customer Dashboard</h1>
-                <Link to="/mealTable">
-                    <button className="btn btn-primary mt-3">Add Meal</button>
-                </Link>
-                <Link to="/customer-subscriptions">
-                    <button className="btn btn-primary mt-3">View Subscriptions</button>
-                </Link>
-                <Footer />
-            </header>
+        <div>
+            <h1>Subscribed Customers</h1>
+            <ul>
+                {customers.map((customer) => (
+                    <li key={customer.customerName}>{customer}</li>
+                ))}
+            </ul>
         </div>
     );
-}
+};
 
-export default DashboardCustomer;
+export default CustomerSubscriptionList;

@@ -1,7 +1,12 @@
 package org.example.controller;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import org.example.model.roles.Nutritionist;
+import org.example.model.stock.Stock;
 import org.example.service.SignUpService;
+import org.example.service.StockService;
 import org.example.service.StoreService;
 import org.example.model.roles.Store;
 import org.example.repository.store.StoreRepositoryImpl;
@@ -23,6 +28,14 @@ public class StoreController {
     final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
     StoreService storeService = new StoreService(entityManagerFactory.createEntityManager());
     SignUpService signUpService = new SignUpService(entityManagerFactory.createEntityManager());
+    StockService stockService = new StockService(entityManagerFactory.createEntityManager());
+
+    Spark.get("/store/:id", (req, resp) -> {
+      final String id = req.params(":id");
+      Store store = storeService.getStoreByUsername(id);
+      resp.type("application/json");
+      return store.asJson();
+    });
 
     Spark.post("/createStore", (req, res) -> {
       String body = req.body();
@@ -65,6 +78,12 @@ public class StoreController {
       return store.asJson();
     });
 
+    Spark.get("/storeFill/:searchTerm", (req, resp) -> {
+        final String searchTerm = req.params(":searchTerm");
+        List<Store> stores = storeService.getStoresBySearchTerm(searchTerm);
+        resp.type("application/json");
+        return gson.toJson(stores);
+    });
 
   }
 

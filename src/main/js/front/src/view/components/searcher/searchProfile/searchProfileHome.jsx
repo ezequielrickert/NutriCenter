@@ -32,20 +32,26 @@ const SearchProfileHome = () => {
         validateUser();
     }, [token, username]);
 
-    useEffect(() => {
-        if (!isValidUser) {
-            return;
+useEffect(() => {
+    if (!isValidUser) {
+        return;
+    }
+
+    const fetchNutritionistAndStores = async () => {
+        if (searchTerm) {
+            const [nutritionistResults, storeResults] = await Promise.all([
+                axios.get(`http://localhost:8080/nutritionistFill/${searchTerm}`),
+                axios.get(`http://localhost:8080/storeFill/${searchTerm}`) // Assuming this is the endpoint to search stores
+            ]);
+
+            const nutritionists = nutritionistResults.data.map(nutritionist => nutritionist.nutritionistName);
+            const stores = storeResults.data.map(store => store.storeName);
+            setSuggestions([...nutritionists, ...stores]);
         }
+    };
 
-        const fetchNutritionist = async () => {
-            if (searchTerm) {
-                const results = await axios.get(`http://localhost:8080/nutritionistFill/${searchTerm}`);
-                setSuggestions(results.data.map(nutritionist => nutritionist.nutritionistName));
-            }
-        };
-
-        fetchNutritionist();
-    }, [searchTerm, isValidUser]);
+    fetchNutritionistAndStores();
+}, [searchTerm, isValidUser]);
 
     const handleSearchChange = (event, { newValue }) => {
         setSearchTerm(newValue.trim())

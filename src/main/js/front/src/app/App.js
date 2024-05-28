@@ -3,7 +3,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import '../global.css';
-import { NutritionistRecipeEditor, UniversalLogin } from "../view";
+import {
+    CustomerSubscriptionList,
+    NutritionistRecipeEditor,
+    NutritionistSubscriptionList,
+    UniversalLogin
+} from "../view";
 import { InitialPage, SignUpDefault } from '../view';
 import { DashboardCustomer, DashboardNutritionist, DashboardStore } from '../view';
 import { InitialEditor, IngredientEditor, RecipeEditor } from '../view';
@@ -15,6 +20,7 @@ import {Stock} from "../view";
 import {MealTable} from "../view";
 import {NutritionistProfile} from "../view";
 import {UserSearcher, UserResult} from "../view";
+import { StoreProfile } from "../view";
 
 function App() {
     return (
@@ -28,10 +34,12 @@ function App() {
                     <Route path="/universalLogin" element={<UniversalLogin />} />
 
                     <Route path="/dashboardCustomer" element={<DashboardCustomer />} />
+                    <Route path="/customer-subscriptions" element={<CustomerSubscriptionList />} />
 
                     <Route path="/dashboardNutritionist" element={<DashboardNutritionist />} />
                     <Route path="/nutritionistRecipeEditor" element={<NutritionistRecipeEditor />} />
                     <Route path="/nutritionistProfile/:nutritionistId" element={<NutritionistProfile />} />
+                    <Route path="/nutritionist-subscriptions" element={<NutritionistSubscriptionList />} />
 
                     <Route path="/dashboardStore" element={<DashboardStore />} />
 
@@ -57,7 +65,7 @@ function App() {
                     <Route path="/stock" element={<Stock />} />
 
                     <Route path={"/mealTable"} element={<MealTable />} />
-
+                    <Route path={"/storeProfile/:storeId"} element={<StoreProfile />} />
                 </Routes>
             </div>
         </Router>

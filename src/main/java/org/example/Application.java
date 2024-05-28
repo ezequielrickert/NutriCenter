@@ -41,5 +41,7 @@ public class Application {
         new StoreController().run();
         new SuperAdminController().run();
         new DayController().run();
+        new SubscriptionController().run();
+        new FollowController().run();
     }
 }

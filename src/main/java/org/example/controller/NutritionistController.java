@@ -1,8 +1,8 @@
 package org.example.controller;
-import org.example.model.roles.Nutritionist;
-import org.example.repository.nutritionist.NutritionistRepositoryImp;
 
-import javax.persistence.EntityManager;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.example.model.roles.Nutritionist;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -22,11 +22,12 @@ public class NutritionistController {
     NutritionistService nutritionistService = new NutritionistService(entityManagerFactory.createEntityManager());
     SignUpService signUpService = new SignUpService(entityManagerFactory.createEntityManager());
 
-    Spark.get("/nutritionist/:username", (req, resp) -> {
-      final String username = req.params("username");
-      Nutritionist nutritionist = nutritionistService.getNutritionistByUsername(username);
+    Spark.get("/nutritionist/:id", (req, resp) -> {
+      final String id = req.params(":id");
+      Nutritionist nutritionist = nutritionistService.getNutritionist(Long.valueOf(id));
+      Gson specialGson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
       resp.type("application/json");
-      return nutritionist.asJson();
+      return specialGson.toJson(nutritionist);
     });
 
     Spark.post("/createNutritionist", (req, res) -> {
@@ -46,9 +47,10 @@ public class NutritionistController {
 
     Spark.get("/nutritionistFill/:searchTerm", (req, resp) -> {
       final String username = req.params("searchTerm");
-      List<Nutritionist> nutritionist = nutritionistService.nutririonistWildcard(username);
+      List<Nutritionist> nutritionist = nutritionistService.nutritionistWildcard(username);
+      Gson specialGson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
       resp.type("application/json");
-      return gson.toJson(nutritionist);
+      return specialGson.toJson(nutritionist);
     });
   }
 

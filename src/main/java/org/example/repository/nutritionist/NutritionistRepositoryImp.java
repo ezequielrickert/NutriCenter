@@ -1,4 +1,5 @@
 package org.example.repository.nutritionist;
+import org.example.model.roles.Customer;
 import org.example.model.roles.Nutritionist;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -31,7 +32,7 @@ public class NutritionistRepositoryImp implements NutritionistRepository{
   }
 
   @Override
-  public void updateNutritionist(Long nutritionistId, String username, String email, String password, String diploma) {
+  public void updateNutritionist(Long nutritionistId, String username, String email, String password, String diploma, List<Customer> customers) {
     entityManager.getTransaction().begin();
     Nutritionist nutritionist = entityManager.find(Nutritionist.class, nutritionistId);
     nutritionist.setNutritionistName(username);

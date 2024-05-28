@@ -1,10 +1,14 @@
 package org.example.repository.customer;
 
 import org.example.model.history.CustomerHistory;
+import org.example.model.recipe.Ingredient;
 import org.example.model.roles.Customer;
+import org.example.model.roles.Nutritionist;
+import org.example.model.roles.Store;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import java.util.List;
 
 
 public class CostumerRepositoryImp implements CostumerRepository {
@@ -38,11 +42,12 @@ public class CostumerRepositoryImp implements CostumerRepository {
   }
 
   @Override
-  public void updateUser(Long clientId, String username, String email) {
+  public void updateUser(Long clientId, String username, String email, List<Nutritionist> nutritionists, List<Store> stores, List<Ingredient> ingredients) {
     entityManager.getTransaction().begin();
     Customer customer = entityManager.find(Customer.class, clientId);
     customer.setCustomerName(username);
     customer.setCustomerEmail(email);
+    customer.setNutritionists(nutritionists);
     entityManager.persist(customer);
     entityManager.getTransaction().commit();
   }
@@ -71,5 +76,20 @@ public class CostumerRepositoryImp implements CostumerRepository {
       entityManager.getTransaction().rollback();
       return null;
     }
+  }
+
+  @Override
+  public void unsubscribe(String nutritionist, Customer customer) {
+    entityManager.getTransaction().begin();
+    List<Nutritionist> subscriptions = customer.getNutritionists();
+    for (Nutritionist n : subscriptions) {
+      if (n.getNutritionistName().equals(nutritionist)) {
+        subscriptions.remove(n);
+        break;
+      }
+    }
+    customer.setNutritionists(subscriptions);
+    entityManager.persist(customer);
+    entityManager.getTransaction().commit();
   }
 }

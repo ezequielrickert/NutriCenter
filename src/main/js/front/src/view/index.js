@@ -13,6 +13,7 @@ export {default as UserSearcher} from './components/searcher/searchProfile/searc
 export {default as UserResult} from './components/searcher/searchProfile/userResult';
 
 export { default as DashboardStore } from './store/dashboard/dashboardStore';
+export { default as StoreProfile } from './store/profile/storeProfile';
 export { default as Stock } from './store/stock/stockEditor';
 
 export { default as InitialEditor } from './superAdmin/edition/initialEditor';
@@ -30,3 +31,6 @@ export { default as RecipeInfo } from './components/searcher/searchRecipe/recipe
 
 export { default as AccountSettingsPage } from './components/account/accountSelection';
 export { default as Logout } from './components/account/logout';
+
+export { default as CustomerSubscriptionList } from './customer/subscribed/subscriptionList';
+export { default as NutritionistSubscriptionList } from './nutritionist/subscribed/subscriptionList';
