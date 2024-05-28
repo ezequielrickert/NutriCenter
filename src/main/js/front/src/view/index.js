@@ -14,6 +14,7 @@ export { default as UserResult} from './components/searcher/searchProfile/userRe
 
 export { default as DashboardStore } from './store/dashboard/dashboardStore';
 export { default as StockEdition } from './store/stock/edition/stockEdition';
+export { default as StockIngredientEditor } from './store/stock/edition/createIngredient';
 
 export { default as InitialEditor } from './superAdmin/edition/initialEditor';
 export { default as IngredientEditor } from './superAdmin/edition/editors/ingredientEditor';

@@ -11,7 +11,7 @@ import { SearcherSelector, SearchIngredientPage, SearchRecipePage } from "../vie
 import { IngredientResult, IngredientInfo } from '../view';
 import { RecipeResult, RecipeInfo } from '../view';
 import { AccountSettingsPage, Logout } from '../view';
-import { StockEdition } from "../view";
+import { StockEdition, StockIngredientEditor } from "../view";
 import { MealTable } from "../view";
 import { NutritionistProfile } from "../view";
 import { UserSearcher, UserResult } from "../view";
@@ -54,6 +54,7 @@ function App() {
                     <Route path={"/accountSelection"} element={<AccountSettingsPage />} />
                     <Route path="/logout" element={<Logout />} />
 
+                    <Route path="/storeIngredientEditor" element={<StockIngredientEditor />} />
                     <Route path="/stock" element={<StockEdition />} />
 
                     <Route path={"/mealTable"} element={<MealTable />} />
