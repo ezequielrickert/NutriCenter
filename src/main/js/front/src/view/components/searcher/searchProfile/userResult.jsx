@@ -70,7 +70,7 @@ useEffect(() => {
                     <h3>Nutritionist results:</h3>
                     {nutritionists.map(nutritionist => (
                         <li key={nutritionist.nutritionistId}>
-                            <Link to={`/nutritionistProfile/${nutritionist.nutritionistId}`}>
+                            <Link to={`/nutritionistProfile/${nutritionist.nutritionistName}`}>
                                 {nutritionist.nutritionistName}
                             </Link>
                         </li>

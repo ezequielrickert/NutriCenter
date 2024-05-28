@@ -12,7 +12,7 @@ public class CustomerHistory {
     @GeneratedValue(generator = "userGen", strategy = GenerationType.SEQUENCE)
     private Long customerHistoryId;
 
-    @OneToMany(mappedBy = "customerHistory", cascade = CascadeType.ALL)
+    @OneToMany
     @Expose
     private List<Day> days;
 

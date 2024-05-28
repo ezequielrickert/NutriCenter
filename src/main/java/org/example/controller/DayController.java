@@ -62,14 +62,14 @@ public class DayController {
                     //Dudoso el uso de DayOfWeek.valueOf(weekDayName)
                     //Day createdDay = dayService.createDay(DayOfWeek.valueOf(weekDayName), customerHistory);
                     customerHistory = customerHistoryService.updateCustomerHistory(customerHistory.getCustomerHistoryId(), DayOfWeek.valueOf(weekDayName));
-                    Day createdDay = customerHistory.getDays().getLast();
+                    Day createdDay = customerHistory.getDays().get(customerHistory.getDays().size()-1);
                     dayService.updateDay(createdDay.getDayId(), recipe, mealType);
                 }
             }else{
                 //Dudoso el uso de DayOfWeek.valueOf(weekDayName)
                 //Day createdDay = dayService.createDay(DayOfWeek.valueOf(weekDayName), customerHistory);
                 customerHistory = customerHistoryService.updateCustomerHistory(customerHistory.getCustomerHistoryId(), DayOfWeek.valueOf(weekDayName));
-                Day createdDay = customerHistory.getDays().getLast();
+                Day createdDay = customerHistory.getDays().get(customerHistory.getDays().size()-1);
                 dayService.updateDay(createdDay.getDayId(), recipe, mealType);
             }
 

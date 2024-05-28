@@ -19,7 +19,6 @@ public class Customer {
 
     @Expose
     @OneToOne(cascade = CascadeType.ALL)
-    @Expose
     @JoinColumn(name = "customerHistoryId", referencedColumnName = "customerHistoryId")
     private CustomerHistory customerHistory;
 

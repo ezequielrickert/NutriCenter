@@ -35,7 +35,7 @@ const NutritionistProfile = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const nutritionistResponse = await axios.get(`http://localhost:8080/nutritionist/${nutritionistId}`);
+                const nutritionistResponse = await axios.get(`http://localhost:8080/nutritionist/name/${nutritionistId}`);
                 const nutritionistData = nutritionistResponse.data;
                 if (typeof nutritionistData === 'object') {
                     setNutritionist(nutritionistData);

@@ -20,6 +20,7 @@ import {Stock} from "../view";
 import {MealTable, MealHistory} from "../view";
 import {NutritionistProfile} from "../view";
 import {UserSearcher, UserResult} from "../view";
+import {StoreProfile} from "../view";
 
 function App() {
     return (
@@ -64,7 +65,8 @@ function App() {
                     <Route path={"/mealTable"} element={<MealTable />} />
                     <Route path={"/storeProfile/:storeId"} element={<StoreProfile />} />
                     <Route path={"/mealHistory"} element={<MealHistory />} />
-
+                    <Route path={"/customer-subscriptions"} element={<CustomerSubscriptionList />} />
+                    <Route path={"/nutritionist-subscriptions"} element={<NutritionistSubscriptionList />} />
                 </Routes>
             </div>
         </Router>

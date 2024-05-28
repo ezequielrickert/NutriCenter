@@ -52,6 +52,14 @@ public class NutritionistController {
       resp.type("application/json");
       return specialGson.toJson(nutritionist);
     });
+
+    Spark.get("/nutritionist/name/:username", (req, resp) -> {
+      final String username = req.params(":username");
+      Nutritionist nutritionist = nutritionistService.getNutritionistByUsername(username);
+      Gson specialGson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+      resp.type("application/json");
+      return specialGson.toJson(nutritionist);
+    });
   }
 
 }
