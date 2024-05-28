@@ -12,7 +12,7 @@ import { IngredientResult, IngredientInfo } from '../view';
 import { RecipeResult, RecipeInfo } from '../view';
 import { AccountSettingsPage, Logout } from '../view';
 import {Stock} from "../view";
-import {MealTable, MealHistory} from "../view";
+import {MealTable, MealHistory, MonthlyHistory} from "../view";
 import {NutritionistProfile} from "../view";
 import {UserSearcher, UserResult} from "../view";
 
@@ -58,6 +58,7 @@ function App() {
 
                     <Route path={"/mealTable"} element={<MealTable />} />
                     <Route path={"/mealHistory"} element={<MealHistory />} />
+                    <Route path={"/monthlyHistory"} element={<MonthlyHistory />} />
 
                 </Routes>
             </div>

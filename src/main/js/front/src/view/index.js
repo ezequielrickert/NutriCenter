@@ -6,6 +6,7 @@ export { default as SignUpDefault } from './home/signUpDefault';
 export { default as DashboardCustomer } from './customer/dashboard/dashboardCustomer';
 export { default as MealTable } from './customer/mealHistory/addMeal';
 export { default as MealHistory } from './customer/mealHistory/mealHistory';
+export { default as MonthlyHistory } from './customer/mealHistory/monthlyHistory';
 
 export { default as DashboardNutritionist } from './nutritionist/dashboard/dashboardNutritionist';
 export { default as NutritionistRecipeEditor } from './nutritionist/edition/recipeEditor';

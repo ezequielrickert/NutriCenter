@@ -75,6 +75,8 @@ const MealHistory = () => {
                 const response = await axios.get(`http://localhost:8080/getDays/${username}`);
                 console.log('Type of response.data:', typeof response.data);
                 let days = JSON.parse(response.data); // Parse the JSON string into an object
+
+
                 console.log('Initial value of days:', days);
                 // Check if response is not empty and is a valid JSON string
                 if (days && typeof days === 'object' && !Array.isArray(days)) {

@@ -21,6 +21,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static org.example.Application.gson;
 
@@ -86,13 +87,39 @@ public class DayController {
             CustomerHistory customerHistory = customer.getCustomerHistory();
             List<Day> days = customerHistory.getDays();
             List<Day> lastSeven = getLastSeven(days);
-            System.out.println(lastSeven);
+
 
             Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-            String result = gson.toJson(lastSeven);
-            System.out.println(result);
-            return result;
+
+            return gson.toJson(lastSeven);
         }, gson::toJson);
+
+
+        Spark.get("/getDaysByDate/:username/:date", (req, res) -> {
+            String username = req.params(":username");
+            Customer customer = customerService.getCustomerByName(username);
+            String date = req.params(":date");
+            // convert the date string to a LocalDate object
+            LocalDate fromDate = LocalDate.parse(date);
+
+            if (customer == null) {
+                res.status(404); // 404 Not Found status code
+                return "Customer not found";
+            }
+            CustomerHistory customerHistory = customer.getCustomerHistory();
+            List<Day> days = customerHistory.getDays();
+            List<Day> requestedDays = getByDate(days, fromDate);
+
+            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+
+            return gson.toJson(requestedDays);
+        }, gson::toJson);
+    }
+
+    private List<Day> getByDate(List<Day> days, LocalDate fromDate) {
+        return days.stream()
+                .filter(day -> day.getDate().isEqual(fromDate) || day.getDate().isAfter(fromDate))
+                .collect(Collectors.toList());
     }
 
     private List<Day> getLastSeven(List<Day> days) {
@@ -102,5 +129,4 @@ public class DayController {
             return days.subList(days.size() - 7, days.size());
         }
     }
-
 }
