@@ -9,7 +9,7 @@ import java.time.DayOfWeek;
 
 public interface DayRepository {
 
-    Day createDay(DayOfWeek dayName, CustomerHistory customerHistory);
+    Day createDay(DayOfWeek dayName);
 
     void readDay(Long weekDayId);
 

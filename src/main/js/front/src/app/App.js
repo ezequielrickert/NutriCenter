@@ -17,10 +17,9 @@ import { IngredientResult, IngredientInfo } from '../view';
 import { RecipeResult, RecipeInfo } from '../view';
 import { AccountSettingsPage, Logout } from '../view';
 import {Stock} from "../view";
-import {MealTable} from "../view";
+import {MealTable, MealHistory} from "../view";
 import {NutritionistProfile} from "../view";
 import {UserSearcher, UserResult} from "../view";
-import { StoreProfile } from "../view";
 
 function App() {
     return (
@@ -34,12 +33,10 @@ function App() {
                     <Route path="/universalLogin" element={<UniversalLogin />} />
 
                     <Route path="/dashboardCustomer" element={<DashboardCustomer />} />
-                    <Route path="/customer-subscriptions" element={<CustomerSubscriptionList />} />
 
                     <Route path="/dashboardNutritionist" element={<DashboardNutritionist />} />
                     <Route path="/nutritionistRecipeEditor" element={<NutritionistRecipeEditor />} />
                     <Route path="/nutritionistProfile/:nutritionistId" element={<NutritionistProfile />} />
-                    <Route path="/nutritionist-subscriptions" element={<NutritionistSubscriptionList />} />
 
                     <Route path="/dashboardStore" element={<DashboardStore />} />
 
@@ -66,6 +63,8 @@ function App() {
 
                     <Route path={"/mealTable"} element={<MealTable />} />
                     <Route path={"/storeProfile/:storeId"} element={<StoreProfile />} />
+                    <Route path={"/mealHistory"} element={<MealHistory />} />
+
                 </Routes>
             </div>
         </Router>

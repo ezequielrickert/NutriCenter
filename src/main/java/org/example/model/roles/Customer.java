@@ -17,6 +17,7 @@ public class Customer {
     @GeneratedValue(generator = "userGen", strategy = GenerationType.IDENTITY)
     private Long customerId;
 
+    @Expose
     @OneToOne(cascade = CascadeType.ALL)
     @Expose
     @JoinColumn(name = "customerHistoryId", referencedColumnName = "customerHistoryId")

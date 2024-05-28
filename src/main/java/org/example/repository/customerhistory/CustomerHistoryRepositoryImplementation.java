@@ -2,8 +2,10 @@ package org.example.repository.customerhistory;
 
 import org.example.model.history.CustomerHistory;
 import org.example.model.history.Day;
+import org.example.service.DayService;
 
 import javax.persistence.EntityManager;
+import java.time.DayOfWeek;
 import java.util.List;
 
 public class CustomerHistoryRepositoryImplementation implements CustomerHistoryRepository {
@@ -32,13 +34,15 @@ public class CustomerHistoryRepositoryImplementation implements CustomerHistoryR
 
     // Le paso id del history y un dia para agregar al historial
     @Override
-    public void updateCustomerHistory(Long customerHistoryId, Day day) {
+    public CustomerHistory updateCustomerHistory(Long customerHistoryId, DayOfWeek dayName){
         entityManager.getTransaction().begin();
         CustomerHistory customerHistory = entityManager.find(CustomerHistory.class, customerHistoryId);
-        List<Day> dayList = customerHistory.getDays();
-        dayList.add(day);
-        entityManager.persist(customerHistory);
+        DayService dayService = new DayService(entityManager);
+        Day day = dayService.createDay(dayName);
+        customerHistory.getDays().add(day);
+        entityManager.merge(customerHistory);
         entityManager.getTransaction().commit();
+        return customerHistory;
     }
 
     @Override

@@ -18,10 +18,9 @@ public class DayRepositoryImpl implements DayRepository {
     }
 
     @Override
-    public Day createDay(DayOfWeek dayName, CustomerHistory customerHistory) {
-        entityManager.getTransaction().begin();
-        Day day = new Day(dayName, LocalDate.now(), customerHistory);
-        entityManager.getTransaction().commit();
+    public Day createDay(DayOfWeek dayName) {
+        Day day = new Day(dayName, LocalDate.now());
+        entityManager.persist(day);
         return day;
     }
 
@@ -37,6 +36,7 @@ public class DayRepositoryImpl implements DayRepository {
         entityManager.getTransaction().begin();
         Day day = entityManager.find(Day.class, weekDayId);
         updateMeal(recipe, mealType, day);
+        entityManager.merge(day);
         entityManager.getTransaction().commit();
     }
 

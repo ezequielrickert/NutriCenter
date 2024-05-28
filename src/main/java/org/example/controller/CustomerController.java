@@ -49,5 +49,15 @@ public class CustomerController {
       }
     );
 
+        Spark.get("/getCustomer/:username", (req, res) -> {
+            String username = req.params(":username");
+            Customer customer = customerService.getCustomerByName(username);
+            if (customer == null) {
+                res.status(404); // 404 Not Found status code
+                return "Customer not found";
+            }
+            return gson.toJson(customer);
+        });
+
   }
 }

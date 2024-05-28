@@ -1,5 +1,6 @@
 package org.example.model.history;
 
+import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 import org.example.model.recipe.Recipe;
 
@@ -10,34 +11,30 @@ import java.time.LocalDate;
 @Entity
 public class Day {
 
+    @Expose(serialize = true)
     @Id
-    @Expose
-    @GeneratedValue(generator = "userGen", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "userGen", strategy = GenerationType.IDENTITY)
     private Long dayId;
 
-    @ManyToOne
-    @Expose
-    @JoinColumn(name = "CustomerHistoryId")
-    private CustomerHistory customerHistory;
-
-    @Expose
+    @Expose(serialize = true)
     @Column(nullable = false, unique = false)
-    private DayOfWeek dayName;
+    private String dayName;
 
+    @Expose(serialize = true)
     @ManyToOne
-    @Expose
     @JoinColumn(referencedColumnName = "recipeId", foreignKey = @ForeignKey(name = "FK_breakfast_recipeId"))
     public Recipe breakfast;
 
+    @Expose(serialize = true)
     @ManyToOne
-    @Expose
     @JoinColumn(referencedColumnName = "recipeId", foreignKey = @ForeignKey(name = "FK_lunch_recipeId"))
     public Recipe lunch;
 
+    @Expose(serialize = true)
     @ManyToOne
-    @Expose
     @JoinColumn(referencedColumnName = "recipeId", foreignKey = @ForeignKey(name = "FK_dinner_recipeId"))
     public Recipe dinner;
+
 
     @Column(nullable = false, unique = false)
     private LocalDate date;
@@ -45,18 +42,9 @@ public class Day {
     public Day() {
     }
 
-    public Day(DayOfWeek dayName, LocalDate date, CustomerHistory customerHistory) {
-        this.dayName = dayName;
+    public Day(DayOfWeek dayName, LocalDate date) {
+        this.dayName = dayName.name();
         this.date = date;
-        this.customerHistory = customerHistory;
-    }
-
-    public CustomerHistory getCustomerHistory() {
-        return customerHistory;
-    }
-
-    public void setCustomerHistory(CustomerHistory customerHistory) {
-        this.customerHistory = customerHistory;
     }
 
     public LocalDate getDate(){
@@ -71,11 +59,11 @@ public class Day {
         return dayId;
     }
 
-    public DayOfWeek getDayName() {
+    public String getDayName() {
         return dayName;
     }
 
-    public void setDayName(DayOfWeek dayName) {
+    public void setDayName(String dayName) {
         this.dayName = dayName;
     }
 
