@@ -2,6 +2,7 @@ package org.example.service;
 
 
 import org.example.model.history.CustomerHistory;
+import org.example.model.history.WeightHistory;
 import org.example.model.recipe.Ingredient;
 import org.example.model.roles.Customer;
 import org.example.model.roles.Nutritionist;
@@ -29,6 +30,7 @@ public class CustomerService {
 
     public void createUser(String username, String email, String password) {
         // List<Day> dayList = createDays();
+        WeightHistory weightHistory = new WeightHistory();
         CustomerHistory customerHistory = customerHistoryRepository.createCustomerHistory();
         customerRepository.createUser(username, email, password, customerHistory);
     }
@@ -48,7 +50,8 @@ public class CustomerService {
     public void subscribe(Nutritionist nutritionist, Customer customer) {
         customer.getNutritionists().add(nutritionist);
         customerRepository.updateUser(customer.getCustomerId(), customer.getCustomerName(),
-                customer.getCustomerEmail(), customer.getNutritionists(), customer.getStores(), customer.getIngredients());
+                customer.getCustomerEmail(), customer.getNutritionists(), customer.getStores(),
+                customer.getIngredients(), customer.getWeightHistory());
     }
 
     public void unsubscribe(String nutritionist, Customer customer) {
@@ -61,7 +64,8 @@ public class CustomerService {
             }
         }
         customerRepository.updateUser(customer.getCustomerId(), customer.getCustomerName(),
-                customer.getCustomerEmail(), nutritionistList, customer.getStores(), customer.getIngredients());
+                customer.getCustomerEmail(), nutritionistList, customer.getStores(),
+                customer.getIngredients(), customer.getWeightHistory());
     }
 
     public Boolean isSubscribed(String nutritionistName, Customer customer) {
@@ -77,7 +81,8 @@ public class CustomerService {
     public void followStore(Store store, Customer customer) {
         customer.getStores().add(store);
         customerRepository.updateUser(customer.getCustomerId(), customer.getCustomerName(),
-                customer.getCustomerEmail(), customer.getNutritionists(), customer.getStores(), customer.getIngredients());
+                customer.getCustomerEmail(), customer.getNutritionists(), customer.getStores(),
+                customer.getIngredients(), customer.getWeightHistory());
 
     }
 
@@ -85,7 +90,8 @@ public class CustomerService {
         List<Store> stores = customer.getStores();
         stores.remove(store);
         customerRepository.updateUser(customer.getCustomerId(), customer.getCustomerName(),
-                customer.getCustomerEmail(), customer.getNutritionists(), customer.getStores(), customer.getIngredients());
+                customer.getCustomerEmail(), customer.getNutritionists(), customer.getStores(),
+                customer.getIngredients(), customer.getWeightHistory());
     }
 
     public Boolean followsStore(Store store, Customer customer) {
@@ -102,7 +108,7 @@ public class CustomerService {
         customer.getIngredients().add(ingredient);
         customerRepository.updateUser(customer.getCustomerId(), customer.getCustomerName(),
                 customer.getCustomerEmail(), customer.getNutritionists(), customer.getStores(),
-                customer.getIngredients());
+                customer.getIngredients(), customer.getWeightHistory());
     }
 
     public void unfollowIngredient(Ingredient ingredient, Customer customer) {
@@ -110,7 +116,7 @@ public class CustomerService {
         ingredients.remove(ingredient);
         customerRepository.updateUser(customer.getCustomerId(), customer.getCustomerName(),
                 customer.getCustomerEmail(), customer.getNutritionists(), customer.getStores(),
-                customer.getIngredients());
+                customer.getIngredients(), customer.getWeightHistory());
     }
 
     public Boolean followsIngredient(Ingredient ingredient, Customer customer) {

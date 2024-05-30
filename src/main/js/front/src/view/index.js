@@ -35,3 +35,5 @@ export { default as Logout } from './components/account/logout';
 
 export { default as CustomerSubscriptionList } from './customer/subscribed/subscriptionList';
 export { default as NutritionistSubscriptionList } from './nutritionist/subscribed/subscriptionList';
+
+export { default as AddWeight } from './customer/weighthistory/addWeight';

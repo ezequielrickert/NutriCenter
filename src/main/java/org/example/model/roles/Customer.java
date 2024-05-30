@@ -3,10 +3,10 @@ package org.example.model.roles;
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 import org.example.model.history.CustomerHistory;
+import org.example.model.history.WeightHistory;
 import org.example.model.recipe.Ingredient;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "CUSTOMER")
@@ -50,6 +50,9 @@ public class Customer {
 
     @ManyToMany
     private List<Ingredient> ingredients;
+
+    @OneToMany
+    private List<WeightHistory> weightHistory;
 
     public Customer() {
 
@@ -114,5 +117,13 @@ public class Customer {
 
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public List<WeightHistory> getWeightHistory() {
+        return weightHistory;
+    }
+
+    public void setWeightHistory(List<WeightHistory> weightHistory) {
+        this.weightHistory = weightHistory;
     }
 }

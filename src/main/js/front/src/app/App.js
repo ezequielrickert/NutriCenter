@@ -21,6 +21,7 @@ import {MealTable, MealHistory} from "../view";
 import {NutritionistProfile} from "../view";
 import {UserSearcher, UserResult} from "../view";
 import {StoreProfile} from "../view";
+import {AddWeight} from "../view";
 
 function App() {
     return (
@@ -67,6 +68,7 @@ function App() {
                     <Route path={"/mealHistory"} element={<MealHistory />} />
                     <Route path={"/customer-subscriptions"} element={<CustomerSubscriptionList />} />
                     <Route path={"/nutritionist-subscriptions"} element={<NutritionistSubscriptionList />} />
+                    <Route path={"/addWeight"} element={<AddWeight />} />
                 </Routes>
             </div>
         </Router>

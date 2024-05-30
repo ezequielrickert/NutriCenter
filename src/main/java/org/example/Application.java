@@ -43,5 +43,6 @@ public class Application {
         new DayController().run();
         new SubscriptionController().run();
         new FollowController().run();
+        new WeightHistoryController().run();
     }
 }

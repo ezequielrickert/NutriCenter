@@ -1,6 +1,7 @@
 package org.example.repository.customer;
 
 import org.example.model.history.CustomerHistory;
+import org.example.model.history.WeightHistory;
 import org.example.model.recipe.Ingredient;
 import org.example.model.roles.Customer;
 import org.example.model.roles.Nutritionist;
@@ -42,12 +43,13 @@ public class CostumerRepositoryImp implements CostumerRepository {
   }
 
   @Override
-  public void updateUser(Long clientId, String username, String email, List<Nutritionist> nutritionists, List<Store> stores, List<Ingredient> ingredients) {
+  public void updateUser(Long clientId, String username, String email, List<Nutritionist> nutritionists, List<Store> stores, List<Ingredient> ingredients, List<WeightHistory> weightHistory) {
     entityManager.getTransaction().begin();
     Customer customer = entityManager.find(Customer.class, clientId);
     customer.setCustomerName(username);
     customer.setCustomerEmail(email);
     customer.setNutritionists(nutritionists);
+    customer.setStores(stores);
     entityManager.persist(customer);
     entityManager.getTransaction().commit();
   }
