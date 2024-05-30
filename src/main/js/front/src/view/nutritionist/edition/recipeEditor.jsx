@@ -28,7 +28,8 @@ const NutritionistRecipeEditor = () => {
     const [selectedIngredients, setSelectedIngredients] = useState([]);
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [editingRecipe, setEditingRecipe] = useState(null);
-    const [formChanged, setFormChanged] = useState(false);
+    // Búsqueda
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         const validateUser = async () => {
@@ -95,7 +96,7 @@ const NutritionistRecipeEditor = () => {
             setNewRecipeDescription(editingRecipe.recipeDescription);
             setSelectedIngredients(editingRecipe.ingredientList);
             setSelectedCategories(editingRecipe.categoryList);
-            setIsPublic(editingRecipe.isPublic);
+            setIsPublic(editingRecipe.isPublic ? 'public' : 'private');
         }
     }, [editingRecipe]);
 
@@ -104,7 +105,7 @@ const NutritionistRecipeEditor = () => {
             && newRecipeDescription
             && selectedIngredients.length > 0
             && selectedCategories.length > 0
-            && isPublic !== '';
+            && isPublic === "public" || isPublic === "private";
     };
 
     const displayMessage = (message) => {
@@ -112,7 +113,7 @@ const NutritionistRecipeEditor = () => {
         setShowMessage(true);
         const timer = setTimeout(() => {
             setShowMessage(false);
-        }, 5000);
+        }, 7000);
         return () => clearTimeout(timer);
     };
 
@@ -120,6 +121,7 @@ const NutritionistRecipeEditor = () => {
         setEditingRecipe(recipe);
         setModalTitle('Edit Recipe');
         setButtonText('Update');
+        setIsPublic(recipe.isPublic ? 'public' : 'private');
         setShowModal(true);
     };
 
@@ -127,15 +129,6 @@ const NutritionistRecipeEditor = () => {
         setShowModal(false);
         setModalTitle('Create Recipe');
         setButtonText('Create');
-        resetModal();
-    };
-
-    const resetModal = () => {
-        setNewRecipeName('');
-        setNewRecipeDescription('');
-        setSelectedIngredients([]);
-        setSelectedCategories([]);
-        setIsPublic('');
     };
 
     const handleCreate = async () => {
@@ -145,7 +138,7 @@ const NutritionistRecipeEditor = () => {
             categoryList: selectedCategories,
             ingredientList: selectedIngredients,
             recipeUsername: username,
-            isPublic: isPublic
+            isPublic: isPublic === 'public'
         };
 
         await axios.post("http://localhost:8080/createRecipe", recipeData)
@@ -153,10 +146,10 @@ const NutritionistRecipeEditor = () => {
                 console.log(res);
                 // Close the modal
                 setShowModal(false);
-                // Reset the modal
-                resetModal();
                 // Show success message
                 displayMessage('Recipe created successfully');
+                //borrow search term to refresh the recipe list
+                setSearchTerm('');
                 // Fetch the updated recipe list
                 const response = await axios.get(`http://localhost:8080/recipes/${username}`);
                 if (Array.isArray(response.data)) {
@@ -177,7 +170,7 @@ const NutritionistRecipeEditor = () => {
                 categoryList: selectedCategories,
                 ingredientList: selectedIngredients,
                 recipeUsername: username,
-                isPublic: isPublic
+                isPublic: isPublic === 'public'
             };
 
             await axios.post(`http://localhost:8080/updateRecipe`, recipeData)
@@ -185,8 +178,6 @@ const NutritionistRecipeEditor = () => {
                     console.log(res);
                     // Close the modal
                     setShowModal(false);
-                    // Reset the modal
-                    resetModal();
                     // Show success message
                     displayMessage('Recipe updated successfully');
                     // Fetch the updated recipe list
@@ -226,11 +217,29 @@ const NutritionistRecipeEditor = () => {
         .filter(category => !selectedCategories.some(selectedCategory => selectedCategory.id === category.id))
         .map(category => ({ value: category, label: category.categoryName }));
 
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value.trimStart());
+    };
+
+    // Filtrar recetas según el término de búsqueda
+    const filteredRecipes = recipes.filter(recipe =>
+        recipe.recipeName.toLowerCase().includes(searchTerm.toLowerCase().trim())
+    );
+
     return (
         <div className="container my-3">
             <h1 className="text-center">Recipes</h1>
-            <Button variant="success" onClick={() => setShowModal(true)} style={{ marginBottom: '20px' }}>Create Recipe</Button>
+            <Button variant="success" onClick={() => setShowModal(true)} style={{marginBottom: '20px'}}>Create
+                Recipe</Button>
             {showMessage && <div className="alert alert-success">{messageContent}</div>}
+            <input
+                className="form-control"
+                type="text"
+                placeholder="Search by recipe name..."
+                value={searchTerm}
+                onChange={handleSearchChange}
+                style={{marginBottom: '20px'}}
+            />
             <Table striped bordered hover>
                 <thead>
                 <tr>
@@ -241,7 +250,7 @@ const NutritionistRecipeEditor = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {recipes.map((recipe, index) => (
+                {filteredRecipes.map((recipe, index) => (
                     <tr key={index}>
                         <td>{recipe.recipeName}</td>
                         <td>{recipe.recipeDescription}</td>
@@ -267,12 +276,18 @@ const NutritionistRecipeEditor = () => {
                     <Form>
                         <Form.Group controlId="formRecipeName">
                             <Form.Label>Recipe Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter recipe name" value={newRecipeName} onChange={e => { setNewRecipeName(e.target.value); setFormChanged(true); }} />
+                            <Form.Control type="text" placeholder="Enter recipe name" value={newRecipeName}
+                                          onChange={e => {
+                                              setNewRecipeName(e.target.value);
+                                          }}/>
                         </Form.Group>
                         <Form.Group controlId="formRecipeDescription">
                             <Form.Label>Description</Form.Label>
-                            <Form.Control type="text" placeholder="Enter description" value={newRecipeDescription} onChange={e => { setNewRecipeDescription(e.target.value); setFormChanged(true); }} />                        </Form.Group>
-                            <Form.Label>Choose Ingredients</Form.Label>
+                            <Form.Control type="text" placeholder="Enter description" value={newRecipeDescription}
+                                          onChange={e => {
+                                              setNewRecipeDescription(e.target.value);
+                                          }}/> </Form.Group>
+                        <Form.Label>Choose Ingredients</Form.Label>
                         <ReactSelect
                             isMulti
                             options={ingredientOptions}
@@ -280,11 +295,13 @@ const NutritionistRecipeEditor = () => {
                                 value: ingredient,
                                 label: ingredient.ingredientName
                             }))}
-                            onChange={selectedOptions => { setSelectedIngredients(selectedOptions.map(option => option.value)); setFormChanged(true); }}
+                            onChange={selectedOptions => {
+                                setSelectedIngredients(selectedOptions.map(option => option.value));
+                            }}
                             className="basic-multi-select"
                             classNamePrefix="select"
                         />
-                            <Form.Label>Choose Categories</Form.Label>
+                        <Form.Label>Choose Categories</Form.Label>
                         <ReactSelect
                             isMulti
                             options={categoryOptions}
@@ -298,19 +315,22 @@ const NutritionistRecipeEditor = () => {
                         />
                         <Form.Group controlId="formIsPublic">
                             <Form.Label>Visibility</Form.Label>
-                            <Form.Control as="select" value={isPublic.toString()} onChange={e => setIsPublic(e.target.value === 'true')}>
+                            <Form.Control as="select" value={isPublic.toString()} onChange={e => setIsPublic(e.target.value)}>
                                 <option value="">Choose visibility</option>
-                                <option value="true">Public</option>
-                                <option value="false">Private</option>
+                                <option value="public">Public</option>
+                                <option value="private">Private</option>
                             </Form.Control>
                         </Form.Group>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => { setShowModal(false); resetModal(); }}>
+                    <Button variant="secondary" onClick={() => {
+                        setShowModal(false);
+                    }}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={editingRecipe ? handleUpdate : handleCreate} disabled={!isFormComplete()}>
+                    <Button variant="primary" onClick={editingRecipe ? handleUpdate : handleCreate}
+                            disabled={!isFormComplete()}>
                         {buttonText}
                     </Button>
                 </Modal.Footer>
