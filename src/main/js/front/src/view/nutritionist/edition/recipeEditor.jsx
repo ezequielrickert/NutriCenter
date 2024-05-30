@@ -105,7 +105,7 @@ const NutritionistRecipeEditor = () => {
             && newRecipeDescription
             && selectedIngredients.length > 0
             && selectedCategories.length > 0
-            && isPublic === "public" || isPublic === "private";
+            && (isPublic === "public" || isPublic === "private");
     };
 
     const displayMessage = (message) => {
