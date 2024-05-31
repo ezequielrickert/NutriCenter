@@ -33,6 +33,11 @@ const Footer = () => {
                             Recipe Editor
                         </Link>
                     )}
+                    {userType === 'Store' && (
+                        <Link to="/storeIngredientEditor" className="btn btn-primary m-1">
+                            Ingredient Editor
+                        </Link>
+                    )}
                     <Link to="/accountSelection" className="btn btn-primary m-1">
                         Settings
                     </Link>

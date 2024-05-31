@@ -22,6 +22,10 @@ import {NutritionistProfile} from "../view";
 import {UserSearcher, UserResult} from "../view";
 import {StoreProfile} from "../view";
 import {AddWeight} from "../view";
+import { StockEdition, StockIngredientEditor } from "../view";
+import { MealTable } from "../view";
+import { NutritionistProfile } from "../view";
+import { UserSearcher, UserResult } from "../view";
 
 function App() {
     return (
@@ -61,7 +65,8 @@ function App() {
                     <Route path={"/accountSelection"} element={<AccountSettingsPage />} />
                     <Route path="/logout" element={<Logout />} />
 
-                    <Route path="/stock" element={<Stock />} />
+                    <Route path="/storeIngredientEditor" element={<StockIngredientEditor />} />
+                    <Route path="/stock" element={<StockEdition />} />
 
                     <Route path={"/mealTable"} element={<MealTable />} />
                     <Route path={"/storeProfile/:storeId"} element={<StoreProfile />} />

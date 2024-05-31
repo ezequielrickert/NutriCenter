@@ -10,12 +10,14 @@ export { default as MealHistory } from './customer/mealHistory/mealHistory';
 export { default as DashboardNutritionist } from './nutritionist/dashboard/dashboardNutritionist';
 export { default as NutritionistRecipeEditor } from './nutritionist/edition/recipeEditor';
 export { default as NutritionistProfile } from './nutritionist/profile/nutritionistProfile';
-export {default as UserSearcher} from './components/searcher/searchProfile/searchProfileHome';
-export {default as UserResult} from './components/searcher/searchProfile/userResult';
+export { default as UserSearcher} from './components/searcher/searchProfile/searchProfileHome';
+export { default as UserResult} from './components/searcher/searchProfile/userResult';
 
 export { default as DashboardStore } from './store/dashboard/dashboardStore';
 export { default as StoreProfile } from './store/profile/storeProfile';
 export { default as Stock } from './store/stock/stockEditor';
+export { default as StockEdition } from './store/stock/edition/stockEdition';
+export { default as StockIngredientEditor } from './store/stock/edition/createIngredient';
 
 export { default as InitialEditor } from './superAdmin/edition/initialEditor';
 export { default as IngredientEditor } from './superAdmin/edition/editors/ingredientEditor';

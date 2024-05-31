@@ -8,7 +8,6 @@ public class Application {
 
     public static final Gson gson = new Gson();
 
-
     public static void main(String[] args) {
 
         Spark.port(8080);
