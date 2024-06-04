@@ -19,8 +19,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.example.Application.gson;
@@ -123,10 +122,24 @@ public class DayController {
     }
 
     private List<Day> getLastSeven(List<Day> days) {
-        if (days.size() <= 7) {
-            return days;
-        } else {
-            return days.subList(days.size() - 7, days.size());
+        LocalDate oneWeekAgo = LocalDate.now().minusDays(6);
+
+        // Use a LinkedHashMap to preserve insertion order
+        Map<String, Day> dayOfWeekToDayMap = new LinkedHashMap<>();
+
+        // Iterate in reverse order to keep the most recent day for each day of the week
+        for (int i = days.size() - 1; i >= 0; i--) {
+            Day day = days.get(i);
+            if (!day.getDate().isBefore(oneWeekAgo) && day.getDate().isBefore(LocalDate.now().plusDays(1)) && !dayOfWeekToDayMap.containsKey(day.getDayName())) {
+                dayOfWeekToDayMap.put(day.getDayName(), day);
+            }
+            // Stop the loop when we have 7 days
+            if (dayOfWeekToDayMap.size() == 7) {
+                break;
+            }
         }
+
+        // Return the last seven days as a list
+        return new ArrayList<>(dayOfWeekToDayMap.values());
     }
 }

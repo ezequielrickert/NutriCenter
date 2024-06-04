@@ -9,9 +9,53 @@ const MonthlyHistory = () => {
     const userRole = localStorage.getItem('role');
     const [selectedDate, setSelectedDate] = useState('2022-12-31'); // Initialize with a default date
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [calories, setCalories] = useState(0);
+    const [cholesterol, setCholesterol] = useState(0);
+    const [proteins, setProteins] = useState(0);
+    const [sodium, setSodium] = useState(0);
+    const [totalCarbohydrates, setTotalCarbohydrates] = useState(0);
+    const [totalFats, setTotalFats] = useState(0);
+
 
     const processDays = (days) => {
-
+        days.forEach(day => {
+            if (day.breakfast && day.breakfast.ingredientList) {
+                day.breakfast.ingredientList.forEach(ingredient => {
+                    setCalories(prevCalories => prevCalories + ingredient.calories);
+                    setCholesterol(prevCholesterol => prevCholesterol + ingredient.cholesterol);
+                    setProteins(prevProteins => prevProteins + ingredient.proteins);
+                    setSodium(prevSodium => prevSodium + ingredient.sodium);
+                    setTotalCarbohydrates(prevCarbs => prevCarbs + ingredient.totalCarbohydrate);
+                    setTotalFats(prevFats => prevFats + ingredient.totalFat);
+                });
+            }
+            if (day.lunch && day.lunch.ingredientList) {
+                day.lunch.ingredientList.forEach(ingredient => {
+                    setCalories(prevCalories => prevCalories + ingredient.calories);
+                    setCholesterol(prevCholesterol => prevCholesterol + ingredient.cholesterol);
+                    setProteins(prevProteins => prevProteins + ingredient.proteins);
+                    setSodium(prevSodium => prevSodium + ingredient.sodium);
+                    setTotalCarbohydrates(prevCarbs => prevCarbs + ingredient.totalCarbohydrate);
+                    setTotalFats(prevFats => prevFats + ingredient.totalFat);
+                });
+            }
+            if (day.dinner && day.dinner.ingredientList) {
+                day.dinner.ingredientList.forEach(ingredient => {
+                    setCalories(prevCalories => prevCalories + ingredient.calories);
+                    setCholesterol(prevCholesterol => prevCholesterol + ingredient.cholesterol);
+                    setProteins(prevProteins => prevProteins + ingredient.proteins);
+                    setSodium(prevSodium => prevSodium + ingredient.sodium);
+                    setTotalCarbohydrates(prevCarbs => prevCarbs + ingredient.totalCarbohydrate);
+                    setTotalFats(prevFats => prevFats + ingredient.totalFat);
+                });
+            }
+        });
+        console.log('Calories:', calories)
+        console.log('Cholesterol:', cholesterol)
+        console.log('Proteins:', proteins)
+        console.log('Sodium:', sodium)
+        console.log('Total Carbohydrates:', totalCarbohydrates)
+        console.log('Total Fats:', totalFats)
     }
 
     const handleDateChange = (date) => {
@@ -20,6 +64,7 @@ const MonthlyHistory = () => {
 
     const fetchCustomerDays = async () => {
         try {
+            resetValues();
             const response = await axios.get(`http://localhost:8080/getDaysByDate/${username}/${selectedDate}`);
             console.log('Type of response.data:', typeof response.data);
             let days = JSON.parse(response.data); // Parse the JSON string into an object
@@ -46,17 +91,40 @@ const MonthlyHistory = () => {
                 chartInstance.current = new Chart(myChartRef, {
                     type: "pie",
                     data: {
+                        labels: ['Calories', 'Cholesterol', 'Proteins', 'Sodium', 'Total Carbohydrates', 'Total Fats'],
                         datasets: [
                             {
-                                label: 'Sample Data',
-                                data: [300, 50, 100],
+                                label: 'Value',
+                                data: [calories, cholesterol, proteins, sodium, totalCarbohydrates, totalFats],
                                 backgroundColor: [
                                     "rgb(255, 99, 132)",
                                     "rgb(54, 162, 235)",
                                     "rgb(255, 205, 86)",
+                                    "rgb(75, 192, 192)",
+                                    "rgb(153, 102, 255)",
+                                    "rgb(255, 159, 64)"
                                 ],
                             }
                         ]
+                    },
+                    options: {
+                        aspectRatio: 5, // Increase this value to make the pie chart smaller
+                        legend: {
+                            display: true,
+                            position: 'right',
+                            align: 'center',
+                            fullWidth: true,
+                            reverse: false,
+                            labels: {
+                                fontSize: 90, // Increase this value to make the legend text bigger
+                                boxWidth: 50,
+                                fontStyle: 'bold',
+                                fontColor: 'black',
+                                fontFamily: 'Arial',
+                                usePointStyle: true,
+                                padding: 20,
+                            }
+                        }
                     }
                 })
             }
@@ -65,6 +133,17 @@ const MonthlyHistory = () => {
             console.error("Error fetching customer", error);
         }
     };
+
+    const resetValues = () => {
+        // Reset the values
+        setCalories(0);
+        setCholesterol(0);
+        setProteins(0);
+        setSodium(0);
+        setTotalCarbohydrates(0);
+        setTotalFats(0);
+
+    }
 
     const handleSubmit = () => {
         setIsSubmitted(true);
@@ -118,10 +197,10 @@ const MonthlyHistory = () => {
 
 
     return (
-        <div>
+        <div style={{width: "100vw", height: "100vh"}}>
             <input type="date" min={minDate} max={maxDate} onChange={(event) => handleDateChange(event.target.value)}/>
             <button onClick={handleSubmit}>Submit</button>
-            <canvas  ref={chartRef} style={{width: "300px", height: "200px" }}/>
+            <canvas ref={chartRef}/>
         </div>
     );
 }
