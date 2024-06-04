@@ -30,7 +30,6 @@ public class Nutritionist {
     @Column(nullable = false, unique = false)
     private String educationDiploma;
 
-
     @ManyToMany(mappedBy = "nutritionists")
     private List<Customer> customers;
 

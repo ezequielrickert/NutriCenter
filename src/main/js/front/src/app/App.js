@@ -16,16 +16,12 @@ import { SearcherSelector, SearchIngredientPage, SearchRecipePage } from "../vie
 import { IngredientResult, IngredientInfo } from '../view';
 import { RecipeResult, RecipeInfo } from '../view';
 import { AccountSettingsPage, Logout } from '../view';
-import {Stock} from "../view";
 import {MealTable, MealHistory} from "../view";
 import {NutritionistProfile} from "../view";
 import {UserSearcher, UserResult} from "../view";
 import {StoreProfile} from "../view";
 import {AddWeight} from "../view";
 import { StockEdition, StockIngredientEditor } from "../view";
-import { MealTable } from "../view";
-import { NutritionistProfile } from "../view";
-import { UserSearcher, UserResult } from "../view";
 
 function App() {
     return (

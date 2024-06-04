@@ -2,6 +2,8 @@ package org.example.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.example.model.roles.Nutritionist;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -32,17 +34,18 @@ public class NutritionistController {
 
     Spark.post("/createNutritionist", (req, res) -> {
       String body = req.body();
-      Nutritionist nutritionist = gson.fromJson(body, Nutritionist.class);
-      String name = nutritionist.getNutritionistName();
+      JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+      String name =  gson.fromJson(jsonObject.get("nutritionistName"), String.class);
       if (!signUpService.validate(name)) {
         res.status(401);
         return "Username already exists";
       }
-      String mail = nutritionist.getNutritionistEmail();
-      String diploma = nutritionist.getEducationDiploma();
-      String password = nutritionist.getNutritionistPassword();
-      nutritionistService.createNutritionist(name, mail, password, diploma);
-      return nutritionist;
+      String email = gson.fromJson(jsonObject.get("nutritionistEmail"), String.class);
+      String password = gson.fromJson(jsonObject.get("nutritionistPassword"), String.class);
+      String diploma = gson.fromJson(jsonObject.get("educationDiploma"), String.class);
+      nutritionistService.createNutritionist(name, email, password, diploma);
+        res.status(201);
+        return "Nutritionist created successfully";
     }, gson::toJson);
 
     Spark.get("/nutritionistFill/:searchTerm", (req, resp) -> {

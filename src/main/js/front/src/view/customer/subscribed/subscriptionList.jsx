@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Footer from "../../components/footer";
 
 const CustomerSubscriptionList = () => {
     const [nutritionists, setNutritionists] = useState([]);
@@ -47,6 +48,7 @@ const CustomerSubscriptionList = () => {
                     <li key={nutritionist.nutritionistName}>{nutritionist}</li>
                 ))}
             </ul>
+            <Footer />
         </div>
     );
 };

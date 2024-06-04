@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import Footer from "../../components/footer";
 
 const AddWeight = () => {
     const [weight, setWeight] = useState('');
@@ -47,19 +48,22 @@ const AddWeight = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Weight:
-                <input
-                    type="number"
-                    step="0.01"
-                    value={weight}
-                    onChange={(event) => setWeight(event.target.value)}
-                    required
-                />
-            </label>
-            <button type="submit">Add Weight</button>
-        </form>
+        <div>
+            <form onSubmit={handleSubmit}>
+                <label>
+                    Weight:
+                    <input
+                        type="number"
+                        step="0.01"
+                        value={weight}
+                        onChange={(event) => setWeight(event.target.value)}
+                        required
+                    />
+                </label>
+                <button type="submit">Add Weight</button>
+            </form>
+            <Footer />
+        </div>
     );
 };
 

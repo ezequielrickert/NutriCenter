@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { Button, Table, Modal, Form } from 'react-bootstrap';
 import ReactSelect from 'react-select';
-import Footer from '../../components/footer';
+import Footer from "../../../components/footer";
+import './Board.css'
 
-const NutritionistRecipeEditor = () => {
+const SuperAminRecipeEdition = () => {
     //validation
     const [isValidUser, setIsValidUser] = useState(false);
     const token = localStorage.getItem('token');
@@ -13,6 +14,9 @@ const NutritionistRecipeEditor = () => {
     //message
     const [showMessage, setShowMessage] = useState(false);
     const [messageContent, setMessageContent] = useState('');
+    // Modal de confirmación
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [recipeToDelete, setRecipeToDelete] = useState(null);
     //recipes/categories/ingredients
     const [recipes, setRecipes] = useState([]);
     const [ingredients, setIngredientOptions] = useState([]);
@@ -35,7 +39,7 @@ const NutritionistRecipeEditor = () => {
         const validateUser = async () => {
             try {
                 const response = await axios.post("http://localhost:8080/validateUser", { username, token });
-                if (response.data === "User is valid" && userRole === "nutritionist") {
+                if (response.data === "User is valid" && userRole === "superAdmin") {
                     setIsValidUser(true);
                 } else {
                     window.location.href = '/universalLogin';
@@ -52,7 +56,7 @@ const NutritionistRecipeEditor = () => {
     useEffect(() => {
         const fetchRecipes = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/recipes/${username}`);
+                const response = await axios.get(`http://localhost:8080/recipes`);
                 if (Array.isArray(response.data)) {
                     setRecipes(response.data);
                 } else {
@@ -138,6 +142,18 @@ const NutritionistRecipeEditor = () => {
         setSelectedCategories([]);
         setIsPublic('');
         setEditingRecipe(null);
+        setSearchTerm('')
+    };
+
+    const openDeleteModal = (ingredient) => {
+        setRecipeToDelete(ingredient);
+        setShowDeleteModal(true);
+    };
+
+    const closeDeleteModal = () => {
+        setRecipeToDelete(null);
+        setShowDeleteModal(false);
+        setSearchTerm('')
     };
 
     const handleCreate = async () => {
@@ -147,7 +163,7 @@ const NutritionistRecipeEditor = () => {
             categoryList: selectedCategories,
             ingredientList: selectedIngredients,
             recipeUsername: username,
-            isPublic: isPublic === 'public'
+            isPublic: true
         };
 
         await axios.post("http://localhost:8080/createRecipe", recipeData)
@@ -158,7 +174,7 @@ const NutritionistRecipeEditor = () => {
                 // Show success message
                 displayMessage('Recipe created successfully');
                 // Fetch the updated recipe list
-                const response = await axios.get(`http://localhost:8080/recipes/${username}`);
+                const response = await axios.get(`http://localhost:8080/recipes`);
                 if (Array.isArray(response.data)) {
                     setRecipes(response.data);
                 } else {
@@ -188,7 +204,7 @@ const NutritionistRecipeEditor = () => {
                     // Show success message
                     displayMessage('Recipe updated successfully');
                     // Fetch the updated recipe list
-                    const response = await axios.get(`http://localhost:8080/recipes/${username}`);
+                    const response = await axios.get(`http://localhost:8080/recipes`);
                     if (Array.isArray(response.data)) {
                         setRecipes(response.data);
                     } else {
@@ -199,18 +215,18 @@ const NutritionistRecipeEditor = () => {
         }
     };
 
-    const handleDelete = async (recipe) => {
-        // Logic for deleting a recipe
-        const recipeData = {
-            recipe: recipe
-        };
-        // Display a confirmation popup
-        if (window.confirm('Are you sure you want to delete this recipe?')) {
+    const confirmDelete = async () => {
+        if (recipeToDelete) {
+            const recipeData = {
+                recipe: recipeToDelete
+            };
+
             axios.post('http://localhost:8080/deleteRecipe', recipeData)
                 .then(res => {
                     console.log(res);
-                    setRecipes(recipes.filter(r => r.recipeId !== recipe.recipeId));
+                    setRecipes(recipes.filter(r => r.recipeName !== recipeToDelete.recipeName));
                     displayMessage('Recipe deleted successfully');
+                    closeDeleteModal();
                 })
                 .catch(err => console.log(err));
         }
@@ -238,6 +254,7 @@ const NutritionistRecipeEditor = () => {
             <h1 className="text-center">Recipes</h1>
             <Button variant="success" onClick={() => {
                 resetModal();
+                setIsPublic("public");
                 setModalTitle('Create Recipe');
                 setButtonText('Create');
                 setShowModal(true);
@@ -253,34 +270,36 @@ const NutritionistRecipeEditor = () => {
                 onChange={handleSearchChange}
                 style={{ marginBottom: '20px' }}
             />
-            <Table striped bordered hover>
-                <thead>
-                <tr>
-                    <th>Recipe Name</th>
-                    <th>Description</th>
-                    <th>Is Public</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                {filteredRecipes.map((recipe, index) => (
-                    <tr key={index}>
-                        <td>{recipe.recipeName}</td>
-                        <td>{recipe.recipeDescription}</td>
-                        <td>{recipe.isPublic ? 'Yes' : 'No'}</td>
-                        <td>
-                            <Button variant="warning" onClick={() => prepareForEdit(recipe)}
-                                    style={{ marginRight: '10px' }}>
-                                Edit
-                            </Button>
-                            <Button variant="danger" onClick={() => handleDelete(recipe)}>
-                                Delete
-                            </Button>
-                        </td>
+            <div className="table-container">
+                <Table striped bordered hover>
+                    <thead>
+                    <tr>
+                        <th>Recipe Name</th>
+                        <th>Description</th>
+                        <th>Is Public</th>
+                        <th>Actions</th>
                     </tr>
-                ))}
-                </tbody>
-            </Table>
+                    </thead>
+                    <tbody>
+                    {filteredRecipes.map((recipe, index) => (
+                        <tr key={index}>
+                            <td>{recipe.recipeName}</td>
+                            <td>{recipe.recipeDescription}</td>
+                            <td>{recipe.isPublic ? 'Yes' : 'No'}</td>
+                            <td>
+                                <Button variant="warning" onClick={() => prepareForEdit(recipe)}
+                                        style={{ marginRight: '10px' }}>
+                                    Edit
+                                </Button>
+                                <Button variant="danger" onClick={() => openDeleteModal(recipe)}>
+                                    Delete
+                                </Button>
+                            </td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </Table>
+            </div>
             <Modal show={showModal} onHide={closeModal}>
                 <Modal.Header>
                     <Modal.Title>{modalTitle}</Modal.Title>
@@ -329,11 +348,23 @@ const NutritionistRecipeEditor = () => {
                         />
                         <Form.Group controlId="formIsPublic">
                             <Form.Label>Visibility</Form.Label>
-                            <Form.Control as="select" value={isPublic} onChange={e => setIsPublic(e.target.value)}>
-                                <option value="">Choose visibility</option>
-                                <option value="public">Public</option>
-                                <option value="private">Private</option>
-                            </Form.Control>
+                            <input
+                                type="text"
+                                value={editingRecipe ? (editingRecipe.isPublic ? 'public' : 'private') : 'public'}
+                                readOnly
+                                style={{
+                                    display: 'block',
+                                    width: '100%',
+                                    padding: '.375rem .75rem',
+                                    fontSize: '1rem',
+                                    lineHeight: '1.5',
+                                    color: '#495057',
+                                    backgroundColor: '#e9ecef',
+                                    border: '1px solid #ced4da',
+                                    borderRadius: '.25rem',
+                                    transition: 'border-color .15s ease-in-out,box-shadow .15s ease-in-out'
+                                }}
+                            />
                         </Form.Group>
                     </Form>
                 </Modal.Body>
@@ -347,9 +378,25 @@ const NutritionistRecipeEditor = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
+            <Modal show={showDeleteModal} onHide={closeDeleteModal}>
+                <Modal.Header>
+                    <Modal.Title>Confirm Deletion</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Do you want to delete the recipe?
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={closeDeleteModal}>
+                        No
+                    </Button>
+                    <Button variant="danger" onClick={confirmDelete}>
+                        Yes
+                    </Button>
+                </Modal.Footer>
+            </Modal>
             <Footer />
         </div>
     );
 }
 
-export default NutritionistRecipeEditor;
+export default SuperAminRecipeEdition;

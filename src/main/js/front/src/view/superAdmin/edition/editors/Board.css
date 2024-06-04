@@ -1,0 +1,33 @@
+.table-container {
+    max-height: 400px; /* Ajusta esto según sea necesario */
+    overflow-y: auto;
+    position: relative;
+    width: 100%; /* Ajusta el ancho del contenedor */
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-container th,
+.table-container td {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1; /* Para asegurarse de que el encabezado se superponga sobre otras filas */
+    width: auto; /* Permite que las celdas se expandan automáticamente */
+}
+
+.table-container thead th {
+    position: sticky;
+    top: 0; /* Mantén los encabezados en la parte superior */
+    z-index: 2; /* Asegura que el encabezado esté sobre las celdas */
+    background-color: white;
+}
+
+.container {
+    width: 100%; /* Ajusta el ancho del contenedor */
+    padding-left: 0; /* Ajusta según sea necesario */
+    padding-right: 0; /* Ajusta según sea necesario */
+}

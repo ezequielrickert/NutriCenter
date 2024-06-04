@@ -1,15 +1,14 @@
 package org.example.repository.ingredient;
+
 import org.example.model.recipe.Allergy;
 import org.example.model.recipe.Ingredient;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.List;
 
-public class IngredientRepositoryImp implements IngredientRepository{
+public class IngredientRepositoryImp implements IngredientRepository {
 
     EntityManager entityManager;
 
@@ -34,9 +33,10 @@ public class IngredientRepositoryImp implements IngredientRepository{
     }
 
     @Override
-    public void updateIngredient(Long ingredientID, Allergy allergy, int proteins, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate) {
+    public void updateIngredient(Long ingredientID, String name, Allergy allergy, int proteins, int sodium, int calories, int totalFat, int cholesterol, int totalCarbohydrate) {
         entityManager.getTransaction().begin();
         Ingredient ingredient = entityManager.find(Ingredient.class, ingredientID);
+        ingredient.setIngredientName(name);
         ingredient.setAllergy(allergy);
         ingredient.setProteins(proteins);
         ingredient.setSodium(sodium);

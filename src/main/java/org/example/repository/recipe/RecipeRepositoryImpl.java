@@ -131,4 +131,17 @@ public class RecipeRepositoryImpl implements RecipeRepository {
         Query query = entityManager.createQuery(cr);
         return (Recipe) query.getSingleResult();
     }
+
+    @Override
+    public List<Recipe> getPublicRecipes() {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Recipe> cr = cb.createQuery(Recipe.class);
+        Root<Recipe> root = cr.from(Recipe.class);
+        Predicate isPublic = cb.equal(root.get("isPublic"), true);
+        cr.select(root).where(isPublic);
+
+        Query query = entityManager.createQuery(cr);
+        List<Recipe> results = query.getResultList();
+        return results;
+    }
 }
