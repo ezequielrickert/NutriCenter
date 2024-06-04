@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Footer from "../../components/footer";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddWeight = () => {
     const [weight, setWeight] = useState('');
     const [isValidUser, setIsValidUser] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
     const userRole = localStorage.getItem('role');
@@ -29,6 +32,7 @@ const AddWeight = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setIsLoading(true);
 
         try {
             const response = await axios.post('/addWeight', {
@@ -37,19 +41,21 @@ const AddWeight = () => {
             });
 
             if (response.status === 200) {
-                alert('Weight added successfully!');
+                toast.success('Weight added successfully!');
             } else {
-                alert('Failed adding weight!');
+                toast.error('Failed adding weight!');
             }
         } catch (error) {
             console.error('Error adding weight:', error);
-            alert('Failed adding weight!');
+            toast.error('Failed adding weight!');
+        } finally {
+            setIsLoading(false);
         }
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className="container">
+            <form onSubmit={handleSubmit} className="form-group">
                 <label>
                     Weight:
                     <input
@@ -58,11 +64,15 @@ const AddWeight = () => {
                         value={weight}
                         onChange={(event) => setWeight(event.target.value)}
                         required
+                        className="form-control"
                     />
                 </label>
-                <button type="submit">Add Weight</button>
+                <button type="submit" className="btn btn-primary" disabled={isLoading}>
+                    {isLoading ? 'Loading...' : 'Add Weight'}
+                </button>
             </form>
             <Footer />
+            <ToastContainer />
         </div>
     );
 };
