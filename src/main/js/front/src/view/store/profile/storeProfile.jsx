@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-const NutritionistProfile = () => {
+const StoreProfile = () => {
     const [isValidUser, setIsValidUser] = useState(false);
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
     const userRole = localStorage.getItem('role');
-    const { nutritionistId } = useParams();
-    const [nutritionist, setNutritionist] = useState(null);
-    const [recipes, setRecipes] = useState([]);
+    const { storeId } = useParams();
+    const [store, setStore] = useState();
+    const [stocks, setStock] = useState([]);
     const [isSubscribed, setIsSubscribed] = useState(false);
 
 
@@ -35,25 +35,27 @@ const NutritionistProfile = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const nutritionistResponse = await axios.get(`http://localhost:8080/nutritionist/name/${nutritionistId}`);
-                const nutritionistData = nutritionistResponse.data;
-                if (typeof nutritionistData === 'object') {
-                    setNutritionist(nutritionistData);
+                const storeResponse = await axios.get(`http://localhost:8080/store/${storeId}`);
+                const storeData = storeResponse.data;
+                if (typeof storeData === 'object') {
+                    setStore(storeData);
                 } else {
                     console.error('Data received from server is not an object');
                 }
 
-                const recipesResponse = await axios.get(`http://localhost:8080/recipes/${nutritionistData.nutritionistName}`);
-                const recipesData = recipesResponse.data;
-                if (Array.isArray(recipesData)) {
-                    setRecipes(recipesData);
+                console.log('About to access /stock endpoint');
+                const stockResponse = await axios.get(`http://localhost:8080/stock/${storeId}`);
+                const stockData = stockResponse.data;
+                if (Array.isArray(stockData)) {
+                    setStock(stockData);
                 } else {
                     console.error('Data received from server is not an array');
                 }
 
-                const subscribedResponse = await axios.get("http://localhost:8080/subscribe", {
+                console.log('About to access /follow endpoint');
+                const subscribedResponse = await axios.get("http://localhost:8080/follow/store", {
                     params: {
-                        nutritionist: nutritionistData.nutritionistName,
+                        store: storeData.storeName,
                         customer: username
                     }
                 });
@@ -70,13 +72,13 @@ const NutritionistProfile = () => {
         if (isValidUser) {
             fetchData();
         }
-    }, [isValidUser, nutritionistId, username]);
+    }, [isValidUser, storeId, username]);
 
 
     const handleSubscribe = async () => {
         try {
-            const response = await axios.post("http://localhost:8080/subscribe", {
-                nutritionist: nutritionist.nutritionistName,
+            const response = await axios.put("http://localhost:8080/follow/store", {
+                store: store.storeName,
                 customer: username
             });
 
@@ -92,9 +94,9 @@ const NutritionistProfile = () => {
 
     const handleUnsubscribe = async () => {
         try {
-            const response = await axios.delete("http://localhost:8080/subscribe", {
+            const response = await axios.delete("http://localhost:8080/follow/store", {
                 data: {
-                    nutritionist: nutritionist.nutritionistName,
+                    store: store.storeName,
                     customer: username
                 }
             });
@@ -111,22 +113,28 @@ const NutritionistProfile = () => {
 
     return (
         <div className="container">
-            {nutritionist && recipes && (
+            {store && (
                 <>
-                    <h1 className="text-center my-5">{nutritionist.nutritionistName}</h1>
+                    <h1 className="text-center my-5">{store.storeName}</h1>
                     <ul className="list-group">
-                        <li className="list-group-item">Email: {nutritionist.nutritionistEmail}</li>
-                        <li className="list-group-item">Diploma: {nutritionist.educationDiploma}</li>
+                        <li className="list-group-item">Email: {store.storeMail}</li>
+                        <li className="list-group-item">Number: {store.storePhoneNumber}</li>
                     </ul>
-                    <h3 className="text-center my-5">Recipes:</h3>
+                    <h3 className="text-center my-5">Stock:</h3>
                     <div className="horizontal-container">
-                        {recipes.map((recipe) => (
-                            <div key={recipe.recipeName} className="store-item">{recipe.recipeName}</div>
+                        {stocks.map((stock) => (
+                            <div key={stock.store.storeName} className="store-item">
+                                <ul>
+                                    <li>Ingredient: {stock.ingredient.ingredientName}</li>
+                                    <li>Quantity: {stock.quantity}</li>
+                                    <li>Brand: {stock.brand}</li>
+                                </ul>
+                            </div>
                         ))}
                     </div>
                     {userRole === "customer" && (
                         <button onClick={isSubscribed ? handleUnsubscribe : handleSubscribe}>
-                            {isSubscribed ? 'Unsubscribe' : 'Subscribe'}
+                            {isSubscribed ? 'Unfollow' : 'Follow'}
                         </button>
                     )}
                 </>
@@ -135,4 +143,4 @@ const NutritionistProfile = () => {
     );
 }
 
-export default NutritionistProfile;
+export default StoreProfile;

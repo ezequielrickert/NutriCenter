@@ -31,7 +31,7 @@ public class RecipeController {
             List<Recipe> recipes = recipeService.getRecipesOrderedByName();
             Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
             return gson.toJson(recipes);
-        }, gson::toJson);
+        });
 
         Spark.get("/recipes/searchId/:recipeId", (req, res) -> {
             String recipeId = req.params(":recipeId");
@@ -52,6 +52,12 @@ public class RecipeController {
             String username = req.params(":username");
             List<Recipe> recipes = recipeService.getRecipeByUsername(username);
             System.out.println(recipes);
+            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            return gson.toJson(recipes);
+        });
+
+        Spark.get("/publicRecipes", (req, res) -> {
+            List<Recipe> recipes = recipeService.getPublicRecipes();
             Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
             return gson.toJson(recipes);
         });

@@ -9,6 +9,7 @@ const SearchRecipeHome = () => {
     const [selectedCategory, setSelectedCategory] = useState('All Categories');
     const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
+    const [isSearchDisabled, setIsSearchDisabled] = useState(true);
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -24,8 +25,27 @@ const SearchRecipeHome = () => {
         fetchCategories();
     }, []);
 
+    useEffect(() => {
+        // Habilita o deshabilita el botón de búsqueda según si hay término de búsqueda
+        setIsSearchDisabled(searchTerm.trim() === '');
+    }, [searchTerm]);
+
     const handleSearch = async () => {
-        console.log(`Searching for ${searchTerm} in ${selectedCategory}`);
+        if (searchTerm.trim() === '') {
+            return; // Evita la búsqueda si el término está vacío
+        }
+
+        await performSearch();
+    };
+
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            handleSearch();
+        }
+    };
+
+    const performSearch = async () => {
         if (selectedCategory === "All Categories") {
             const response = await axios.get(`http://localhost:8080/publicRecipes/${searchTerm}`);
             const recipes = response.data;
@@ -60,11 +80,18 @@ const SearchRecipeHome = () => {
                     placeholder="Search In All Categories"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
+                    onKeyPress={handleKeyPress}
                 />
-                <button className="search-button" onClick={handleSearch}>Search</button>
+                <button
+                    className={`search-button ${isSearchDisabled ? 'disabled' : ''}`}
+                    onClick={handleSearch}
+                    disabled={isSearchDisabled}
+                >
+                    Search
+                </button>
             </div>
             <button onClick={() => navigate('/searcherSelector')}>Search Another Recipe</button>
-            <Footer/>
+            <Footer />
         </div>
     );
 };

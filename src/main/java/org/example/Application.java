@@ -8,7 +8,6 @@ public class Application {
 
     public static final Gson gson = new Gson();
 
-
     public static void main(String[] args) {
 
         Spark.port(8080);
@@ -41,5 +40,8 @@ public class Application {
         new StoreController().run();
         new SuperAdminController().run();
         new DayController().run();
+        new SubscriptionController().run();
+        new FollowController().run();
+        new WeightHistoryController().run();
     }
 }

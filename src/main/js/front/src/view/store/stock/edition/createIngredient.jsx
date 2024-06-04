@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import axios from 'axios';
+import Footer from '../../../components/footer';
 
-const CreateIngredient = () => {
+const StoreCreateIngredient = () => {
 
     const [name, setName] = useState('');
     const [allergy, setAllergy] = useState(null);
@@ -48,7 +49,7 @@ const CreateIngredient = () => {
     }
 
     const isFormValid = name && allergy && proteins && sodium &&
-                                    calories && totalFat && cholesterol && totalCarbohydrate;
+        calories && totalFat && cholesterol && totalCarbohydrate;
 
     // dejar como allergy.allergyName aunque esté subrayado, así funciona
 
@@ -101,8 +102,9 @@ const CreateIngredient = () => {
                     <input type="submit" disabled={!isFormValid}/>
                 </form>
             </header>
+            <Footer />
         </div>
     );
 }
 
-export default CreateIngredient;
+export default StoreCreateIngredient;

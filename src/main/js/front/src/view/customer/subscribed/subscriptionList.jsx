@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Footer from "../../components/footer";
-import {Link} from "react-router-dom";
 
-const DashboardNutritionist = () => {
+const CustomerSubscriptionList = () => {
+    const [nutritionists, setNutritionists] = useState([]);
     const [isValidUser, setIsValidUser] = useState(false);
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
@@ -13,7 +13,7 @@ const DashboardNutritionist = () => {
         const validateUser = async () => {
             try {
                 const response = await axios.post("http://localhost:8080/validateUser", { username, token });
-                if (response.data === "User is valid" && userRole === "nutritionist") {
+                if (response.data === "User is valid" && (userRole === "customer")) {
                     setIsValidUser(true);
                 } else {
                     window.location.href = '/universalLogin';
@@ -27,26 +27,30 @@ const DashboardNutritionist = () => {
         validateUser();
     }, [token, username]);
 
-    // if necesario!! para que React no devuelva la pagina al no estar validado
-    if (!isValidUser) {
-        return null;
-    }
+    useEffect(() => {
+        const fetchSubscriptions = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/subscription/customer/${username}`);
+                setNutritionists(response.data);
+            } catch (error) {
+                console.error('There was an error!', error);
+            }
+        };
+
+        fetchSubscriptions();
+    }, []);
 
     return (
-        <div className="container">
-            <header className="text-center my-5">
-                <h1>Welcome to the Nutritionist Dashboard</h1>
-                <Link to={`/nutritionistProfile/${username}`}>
-                    <button>Go to Nutritionist Profile</button>
-                </Link>
-                <Link to="/nutritionist-subscriptions">
-                    <button>View Subscriptions</button>
-                </Link>
-                { /*add dashboard content here*/ }
-                <Footer />
-            </header>
+        <div>
+            <h1>Subscribed Nutritionists</h1>
+            <ul>
+                {nutritionists.map((nutritionist) => (
+                    <li key={nutritionist.nutritionistName}>{nutritionist}</li>
+                ))}
+            </ul>
+            <Footer />
         </div>
     );
-}
+};
 
-export default DashboardNutritionist;
+export default CustomerSubscriptionList;

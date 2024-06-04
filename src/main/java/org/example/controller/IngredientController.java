@@ -46,6 +46,7 @@ public class IngredientController {
             String body = req.body();
             JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
             Ingredient ingredient = gson.fromJson(jsonObject.get("ingredient"), Ingredient.class);
+            String name = gson.fromJson(jsonObject.get("ingredientName"), String.class);
             Allergy allergy = gson.fromJson(jsonObject.get("allergy"), Allergy.class);
             int proteins = gson.fromJson(jsonObject.get("proteins"), Integer.class);
             int sodium = gson.fromJson(jsonObject.get("sodium"), Integer.class);
@@ -53,7 +54,7 @@ public class IngredientController {
             int totalFat = gson.fromJson(jsonObject.get("totalFat"), Integer.class);
             int cholesterol = gson.fromJson(jsonObject.get("cholesterol"), Integer.class);
             int totalCarbohydrate = gson.fromJson(jsonObject.get("totalCarbohydrate"), Integer.class);
-            ingredientService.updateIngredient(ingredient.getIngredientId(),
+            ingredientService.updateIngredient(ingredient.getIngredientId(), name,
                     allergy, proteins, sodium, calories, totalFat, cholesterol, totalCarbohydrate);
             return ingredient.asJson();
         }, gson::toJson);

@@ -12,8 +12,8 @@ public class CustomerHistory {
     @GeneratedValue(generator = "userGen", strategy = GenerationType.SEQUENCE)
     private Long customerHistoryId;
 
-    @Expose
     @OneToMany
+    @Expose
     private List<Day> days;
 
     public CustomerHistory() {

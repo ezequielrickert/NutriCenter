@@ -3,6 +3,7 @@ package org.example.repository.store;
 import org.example.model.roles.Store;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import java.util.List;
 
 public class StoreRepositoryImpl implements StoreRepository{
 
@@ -63,5 +64,15 @@ public class StoreRepositoryImpl implements StoreRepository{
       entityManager.getTransaction().rollback();
       return null;
     }
+  }
+
+  @Override
+  public List<Store> fetchStoreWildcard(String searchTerm) {
+    entityManager.getTransaction().begin();
+    List<Store> stores = entityManager.createQuery("SELECT c FROM STORE c WHERE c.storeName LIKE :searchTerm", Store.class)
+            .setParameter("searchTerm", "%" + searchTerm + "%")
+            .getResultList();
+    entityManager.getTransaction().commit();
+    return stores;
   }
 }

@@ -1,8 +1,10 @@
 package org.example.controller;
-import org.example.model.roles.Nutritionist;
-import org.example.repository.nutritionist.NutritionistRepositoryImp;
 
-import javax.persistence.EntityManager;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import org.example.model.roles.Nutritionist;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -22,33 +24,44 @@ public class NutritionistController {
     NutritionistService nutritionistService = new NutritionistService(entityManagerFactory.createEntityManager());
     SignUpService signUpService = new SignUpService(entityManagerFactory.createEntityManager());
 
-    Spark.get("/nutritionist/:username", (req, resp) -> {
-      final String username = req.params("username");
-      Nutritionist nutritionist = nutritionistService.getNutritionistByUsername(username);
+    Spark.get("/nutritionist/:id", (req, resp) -> {
+      final String id = req.params(":id");
+      Nutritionist nutritionist = nutritionistService.getNutritionist(Long.valueOf(id));
+      Gson specialGson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
       resp.type("application/json");
-      return nutritionist.asJson();
+      return specialGson.toJson(nutritionist);
     });
 
     Spark.post("/createNutritionist", (req, res) -> {
       String body = req.body();
-      Nutritionist nutritionist = gson.fromJson(body, Nutritionist.class);
-      String name = nutritionist.getNutritionistName();
+      JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+      String name =  gson.fromJson(jsonObject.get("nutritionistName"), String.class);
       if (!signUpService.validate(name)) {
         res.status(401);
         return "Username already exists";
       }
-      String mail = nutritionist.getNutritionistEmail();
-      String diploma = nutritionist.getEducationDiploma();
-      String password = nutritionist.getNutritionistPassword();
-      nutritionistService.createNutritionist(name, mail, password, diploma);
-      return nutritionist;
+      String email = gson.fromJson(jsonObject.get("nutritionistEmail"), String.class);
+      String password = gson.fromJson(jsonObject.get("nutritionistPassword"), String.class);
+      String diploma = gson.fromJson(jsonObject.get("educationDiploma"), String.class);
+      nutritionistService.createNutritionist(name, email, password, diploma);
+        res.status(201);
+        return "Nutritionist created successfully";
     }, gson::toJson);
 
     Spark.get("/nutritionistFill/:searchTerm", (req, resp) -> {
       final String username = req.params("searchTerm");
-      List<Nutritionist> nutritionist = nutritionistService.nutririonistWildcard(username);
+      List<Nutritionist> nutritionist = nutritionistService.nutritionistWildcard(username);
+      Gson specialGson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
       resp.type("application/json");
-      return gson.toJson(nutritionist);
+      return specialGson.toJson(nutritionist);
+    });
+
+    Spark.get("/nutritionist/name/:username", (req, resp) -> {
+      final String username = req.params(":username");
+      Nutritionist nutritionist = nutritionistService.getNutritionistByUsername(username);
+      Gson specialGson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+      resp.type("application/json");
+      return specialGson.toJson(nutritionist);
     });
   }
 

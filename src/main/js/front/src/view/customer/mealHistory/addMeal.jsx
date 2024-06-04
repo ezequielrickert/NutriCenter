@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Footer from "../../components/footer";
 
 const AddMeal = () => {
     const [recipes, setRecipes] = useState([]);
@@ -8,18 +9,20 @@ const AddMeal = () => {
     const username = localStorage.getItem('username');
 
     useEffect(() => {
-        axios.get('http://localhost:8080/recipes')
-            .then(response => {
-                const data = JSON.parse(response.data);
-                if (Array.isArray(data)) {
-                    setRecipes(data);
+        const fetchRecipes = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/publicRecipes`);
+                if (Array.isArray(response.data)) {
+                    setRecipes(response.data);
                 } else {
                     console.error('Data received from server is not an array');
                 }
-            })
-            .catch(error => {
-                console.error('There was an error getting recipe!', error);
-            });
+            } catch (error) {
+                console.error('There was an error!', error);
+            }
+        };
+
+        fetchRecipes();
     }, []);
 
 
@@ -77,6 +80,7 @@ const AddMeal = () => {
                 </div>
                 <button type="submit" className="btn btn-primary mt-3">Add Meal</button>
             </form>
+        <Footer />
         </div>
     );
 };

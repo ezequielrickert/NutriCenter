@@ -3,7 +3,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import '../global.css';
-import { NutritionistRecipeEditor, UniversalLogin } from "../view";
+import {
+    CustomerSubscriptionList,
+    NutritionistRecipeEditor,
+    NutritionistSubscriptionList,
+    UniversalLogin
+} from "../view";
 import { InitialPage, SignUpDefault } from '../view';
 import { DashboardCustomer, DashboardNutritionist, DashboardStore } from '../view';
 import { InitialEditor, IngredientEditor, RecipeEditor } from '../view';
@@ -15,6 +20,9 @@ import {Stock} from "../view";
 import {MealTable, MealHistory, MonthlyHistory} from "../view";
 import {NutritionistProfile} from "../view";
 import {UserSearcher, UserResult} from "../view";
+import {StoreProfile} from "../view";
+import {AddWeight} from "../view";
+import { StockEdition, StockIngredientEditor } from "../view";
 
 function App() {
     return (
@@ -54,12 +62,17 @@ function App() {
                     <Route path={"/accountSelection"} element={<AccountSettingsPage />} />
                     <Route path="/logout" element={<Logout />} />
 
-                    <Route path="/stock" element={<Stock />} />
+                    <Route path="/storeIngredientEditor" element={<StockIngredientEditor />} />
+                    <Route path="/stock" element={<StockEdition />} />
 
                     <Route path={"/mealTable"} element={<MealTable />} />
+                    <Route path={"/storeProfile/:storeId"} element={<StoreProfile />} />
                     <Route path={"/mealHistory"} element={<MealHistory />} />
                     <Route path={"/monthlyHistory"} element={<MonthlyHistory />} />
 
+                    <Route path={"/customer-subscriptions"} element={<CustomerSubscriptionList />} />
+                    <Route path={"/nutritionist-subscriptions"} element={<NutritionistSubscriptionList />} />
+                    <Route path={"/addWeight"} element={<AddWeight />} />
                 </Routes>
             </div>
         </Router>

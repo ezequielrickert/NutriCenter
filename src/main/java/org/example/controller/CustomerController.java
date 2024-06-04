@@ -3,6 +3,7 @@ package org.example.controller;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.example.model.roles.Customer;
+import org.example.model.roles.Nutritionist;
 import org.example.service.CustomerService;
 import org.example.service.SignUpService;
 import spark.Spark;
@@ -57,5 +58,6 @@ public class CustomerController {
             }
             return gson.toJson(customer);
         });
+
   }
 }

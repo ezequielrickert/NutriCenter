@@ -1,8 +1,11 @@
 package org.example.service;
 
 import org.example.model.roles.Store;
+import org.example.repository.stock.StockRepository;
+import org.example.repository.stock.StockRepositoryImpl;
 import org.example.repository.store.StoreRepositoryImpl;
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class StoreService {
 
@@ -11,6 +14,7 @@ public class StoreService {
     public StoreService(EntityManager entityManager) {
         storeRepository = new StoreRepositoryImpl(entityManager);
     }
+
 
     public void createStore(String storeName, String storeEmail, String storePassword) {
         storeRepository.createStore(storeName, storeEmail, storePassword);
@@ -26,5 +30,13 @@ public class StoreService {
 
     public void deleteStore(Long storeId) {
         storeRepository.deleteStore(storeId);
+    }
+
+    public Store getStoreByUsername(String username) {
+        return storeRepository.fetchStoreByName(username);
+    }
+
+    public List<Store> getStoresBySearchTerm(String searchTerm) {
+        return storeRepository.fetchStoreWildcard(searchTerm);
     }
 }

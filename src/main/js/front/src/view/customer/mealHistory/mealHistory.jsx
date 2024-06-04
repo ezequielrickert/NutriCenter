@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Footer from "../../components/footer";
 
 const MealHistory = () => {
     const [isValidUser, setIsValidUser] = useState(false);
@@ -153,6 +154,7 @@ const MealHistory = () => {
                 </tr>
                 </tbody>
             </table>
+            <Footer />
         </div>
     );
 }

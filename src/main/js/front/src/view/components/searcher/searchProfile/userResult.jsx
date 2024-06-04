@@ -11,6 +11,7 @@ const UserResult = () => {
     const username = localStorage.getItem('username');
     const userRole = localStorage.getItem('role');
     const [nutritionists, setNutritionists] = useState([]);
+    const [stores, setStores] = useState([]);
     const { nutritionistName } = useParams();
     const navigate = useNavigate();
 
@@ -33,22 +34,29 @@ const UserResult = () => {
         validateUser();
     }, [token, username]);
 
-    useEffect(() => {
-        if (!isValidUser) {
-            return;
+useEffect(() => {
+    if (!isValidUser) {
+        return;
+    }
+
+    const fetchNutritionistAndStores = async () => {
+        try {
+            const [nutritionistResults, storeResults] = await Promise.all([
+                axios.get(`http://localhost:8080/nutritionistFill/${nutritionistName}`),
+                axios.get(`http://localhost:8080/storeFill/${nutritionistName}`) // Assuming this is the endpoint to search stores
+            ]);
+
+            const nutritionists = nutritionistResults.data;
+            const stores = storeResults.data;
+            setNutritionists([...nutritionists]);
+            setStores([...stores])
+        } catch (error) {
+            console.error("Error fetching nutritionists and stores", error);
         }
+    };
 
-        const fetchNutritionist = async () => {
-            try {
-                const results = await axios.get(`http://localhost:8080/nutritionistFill/${nutritionistName}`);
-                setNutritionists(results.data);
-            } catch (error) {
-                console.error("Error fetching recipes", error);
-            }
-        };
-
-        fetchNutritionist();
-    }, [nutritionists, isValidUser]);
+    fetchNutritionistAndStores();
+}, [isValidUser, nutritionistName]);
 
     const handleSearchAgainClick = () => {
         navigate('/searchProfileHome');
@@ -56,13 +64,22 @@ const UserResult = () => {
 
     return (
         <div>
-            <h1>Nutritionist Results:</h1>
-            {nutritionists.length > 0 ? (
+            <h1>User Results:</h1>
+            {nutritionists.length > 0 || stores.length > 0 ? (
                 <ul>
+                    <h3>Nutritionist results:</h3>
                     {nutritionists.map(nutritionist => (
                         <li key={nutritionist.nutritionistId}>
                             <Link to={`/nutritionistProfile/${nutritionist.nutritionistName}`}>
-                                {nutritionist.nutritionistName} - {nutritionist.nutritionistName}
+                                {nutritionist.nutritionistName}
+                            </Link>
+                        </li>
+                    ))}
+                    <h3>Store results:</h3>
+                    {stores.map(store => (
+                        <li key={store.storeId}>
+                            <Link to={`/storeProfile/${store.storeName}`}>
+                                {store.storeName}
                             </Link>
                         </li>
                     ))}

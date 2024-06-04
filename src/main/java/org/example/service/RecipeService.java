@@ -48,4 +48,8 @@ public class RecipeService {
     public List<Recipe> getPublicRecipesByDietType(String dietType, String searchTerm) {
         return recipeRepository.getPublicRecipesByDietType(dietType, searchTerm);
     }
+
+    public List<Recipe> getPublicRecipes() {
+        return recipeRepository.getPublicRecipes();
+    }
 }

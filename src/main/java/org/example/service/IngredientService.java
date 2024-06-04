@@ -32,9 +32,9 @@ public class IngredientService {
         return ingredientRepository.readIngredient(ingredientId);
     }
 
-    public void updateIngredient(Long ingredientID, Allergy allergy, int proteins, int sodium, int calories,
+    public void updateIngredient(Long ingredientID, String name, Allergy allergy, int proteins, int sodium, int calories,
                                  int totalFat, int cholesterol, int totalCarbohydrate) {
-        ingredientRepository.updateIngredient(ingredientID, allergy, proteins, sodium,
+        ingredientRepository.updateIngredient(ingredientID, name, allergy, proteins, sodium,
                 calories, totalFat, cholesterol, totalCarbohydrate);
     }
 

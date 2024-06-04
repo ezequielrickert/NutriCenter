@@ -3,8 +3,11 @@ package org.example.model.roles;
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 import org.example.model.history.CustomerHistory;
+import org.example.model.history.WeightHistory;
+import org.example.model.recipe.Ingredient;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "CUSTOMER")
 public class Customer {
@@ -30,11 +33,26 @@ public class Customer {
     @Column(nullable = false, unique = false)
     private String customerPassword;
 
+    @ManyToMany(cascade = {CascadeType.MERGE})
+    @JoinTable(name = "customer_nutritionist",
+            joinColumns = @JoinColumn(referencedColumnName = "customerId"),
+            inverseJoinColumns = @JoinColumn(referencedColumnName = "nutritionistId"))
+    private List<Nutritionist> nutritionists;
+
     public Customer(String customerName, String customerEmail, String customerPassword) {
         this.customerName = customerName;
         this.customerEmail = customerEmail;
         this.customerPassword = customerPassword;
     }
+
+    @ManyToMany
+    private List<Store> stores;
+
+    @ManyToMany
+    private List<Ingredient> ingredients;
+
+    @OneToMany
+    private List<WeightHistory> weightHistory;
 
     public Customer() {
 
@@ -76,4 +94,36 @@ public class Customer {
     Gson gson = new Gson();
     return gson.toJson(this);
   }
+
+    public List<Nutritionist> getNutritionists() {
+        return nutritionists;
+    }
+
+    public void setNutritionists(List<Nutritionist> nutritionists) {
+        this.nutritionists = nutritionists;
+    }
+
+    public List<Store> getStores() {
+        return stores;
+    }
+
+    public void setStores(List<Store> stores) {
+        this.stores = stores;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public List<WeightHistory> getWeightHistory() {
+        return weightHistory;
+    }
+
+    public void setWeightHistory(List<WeightHistory> weightHistory) {
+        this.weightHistory = weightHistory;
+    }
 }

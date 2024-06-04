@@ -39,6 +39,12 @@ const DashboardCustomer = () => {
                 <Link to="/mealTable">
                     <button className="btn btn-primary mt-3">Add Meal</button>
                 </Link>
+                <Link to="/customer-subscriptions">
+                    <button className="btn btn-primary mt-3">View Subscriptions</button>
+                </Link>
+                <Link to={"/addWeight"}>
+                    <button className="btn btn-primary mt-3">Add Weight History</button>
+                </Link>
                 <Footer />
             </header>
         </div>

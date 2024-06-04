@@ -16,6 +16,7 @@
         <class>org.example.model.stock.Stock</class>
         <class>org.example.model.history.Day</class>
         <class>org.example.model.history.CustomerHistory</class>
+        <class>org.example.model.history.WeightHistory</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbc.JDBCDriver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:hsql://localhost/testdb"/>

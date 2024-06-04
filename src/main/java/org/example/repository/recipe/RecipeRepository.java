@@ -27,4 +27,6 @@ public interface RecipeRepository {
     List<Recipe> getPublicRecipesByDietType(String diet, String term);
 
     Recipe getRecipeById(long recipeId);
+
+    List<Recipe> getPublicRecipes();
 }
