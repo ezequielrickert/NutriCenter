@@ -108,7 +108,7 @@ const MonthlyHistory = () => {
                         ]
                     },
                     options: {
-                        aspectRatio: 5, // Increase this value to make the pie chart smaller
+                        aspectRatio: 1.23, // Increase this value to make the pie chart smaller
                         legend: {
                             display: true,
                             position: 'right',

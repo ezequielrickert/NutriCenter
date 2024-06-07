@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Footer from "../../components/footer";
+import MonthlyHistory from './monthlyHistory'; // Import the MonthlyHistory component
+
 
 const MealHistory = () => {
     const [isValidUser, setIsValidUser] = useState(false);
@@ -108,6 +110,7 @@ const MealHistory = () => {
 
     return (
         <div className="d-flex justify-content-center">
+            <MonthlyHistory /> {/* Include the MonthlyHistory component */}
             <table className="table table-striped table-hover">
                 <thead className="table-dark">
                 <tr>
