@@ -16,13 +16,13 @@ import { SearcherSelector, SearchIngredientPage, SearchRecipePage } from "../vie
 import { IngredientResult, IngredientInfo } from '../view';
 import { RecipeResult, RecipeInfo } from '../view';
 import { AccountSettingsPage, Logout } from '../view';
-import {Stock} from "../view";
-import {MealTable, MealHistory, MonthlyHistory} from "../view";
-import {NutritionistProfile} from "../view";
-import {UserSearcher, UserResult} from "../view";
-import {StoreProfile} from "../view";
-import {AddWeight} from "../view";
-import { StockEdition, StockIngredientEditor } from "../view";
+import { MealTable, MealHistory, MonthlyHistory } from "../view";
+import { NutritionistProfile } from "../view";
+import { UserSearcher, UserResult } from "../view";
+import { StoreProfile } from "../view";
+import { AddWeight } from "../view";
+import { StockEdition, StockViewer, StockIngredientEditor } from "../view";
+import { Inbox } from "../view";
 
 function App() {
     return (
@@ -73,6 +73,8 @@ function App() {
                     <Route path={"/customer-subscriptions"} element={<CustomerSubscriptionList />} />
                     <Route path={"/nutritionist-subscriptions"} element={<NutritionistSubscriptionList />} />
                     <Route path={"/addWeight"} element={<AddWeight />} />
+                    <Route path={"/inbox"} element={<Inbox />} />
+
                 </Routes>
             </div>
         </Router>
