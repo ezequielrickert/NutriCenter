@@ -156,29 +156,18 @@ const MonthlyHistory = () => {
                         ]
                     },
                     options: {
-                        aspectRatio: 1.23,
-                        legend: {
-                            display: true,
-                            position: 'right',
-                            align: 'center',
-                            fullWidth: true,
-                            reverse: false,
-                            labels: {
-                                fontSize: 90,
-                                boxWidth: 50,
-                                fontStyle: 'bold',
-                                fontColor: 'black',
-                                fontFamily: 'Arial',
-                                usePointStyle: true,
-                                padding: 20,
-                            }
-                        }
-                    }
+                        responsive: true,
+                        maintainAspectRatio: false, // To fit within parent container
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                            },
+                        },
+                    },
                 });
             }
-
         } catch (error) {
-            console.error("Error fetching customer", error);
+            console.error("Error creating chart:", error);
         }
     };
 
@@ -191,33 +180,19 @@ const MonthlyHistory = () => {
         setTotalFats(0);
     };
 
-    const handleSubmit = () => {
-        createPieChart();
-    };
-
     if (!isValidUser) {
         return null;
     }
 
-    const oneYearAgo = new Date();
-    oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-    const minDate = oneYearAgo.toISOString().split('T')[0];
-    const currentDate = new Date();
-    const maxDate = currentDate.toISOString().split('T')[0];
-
     return (
-        <div style={{ width: "100vw", height: "100vh" }}>
-            <input
-                type="date"
-                min={minDate}
-                max={maxDate}
-                value={selectedDate}
-                onChange={handleDateChange}
-            />
-            <button onClick={handleSubmit} disabled={!selectedDate}>
-                Submit
-            </button>
-            <canvas ref={chartRef} />
+        <div style={{ width: '100%', height: '100%', padding: '10px', boxSizing: 'border-box' }}>
+            <div style={{ width: '100%', textAlign: 'center', marginBottom: '10px' }}>
+                <label htmlFor="date">Select date: </label>
+                <input type="date" id="date" name="date" value={selectedDate} onChange={handleDateChange} />
+            </div>
+            <div style={{ flexGrow: 1, width: '100%', height: '100%', position: 'relative' }}>
+                <canvas ref={chartRef} style={{ width: '100%', height: '100%' }} />
+            </div>
         </div>
     );
 };

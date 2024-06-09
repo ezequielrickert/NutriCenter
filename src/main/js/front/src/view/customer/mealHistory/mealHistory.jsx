@@ -110,7 +110,6 @@ const MealHistory = () => {
 
     return (
         <div className="d-flex justify-content-center">
-            <MonthlyHistory /> {/* Include the MonthlyHistory component */}
             <table className="table table-striped table-hover">
                 <thead className="table-dark">
                 <tr>
