@@ -32,6 +32,13 @@ const AddWeight = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        // Check if weight is greater than 0
+        if (parseFloat(weight) <= 0) {
+            toast.error('Weight must be greater than 0!');
+            return;
+        }
+
         setIsLoading(true);
 
         try {

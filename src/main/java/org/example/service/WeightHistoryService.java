@@ -42,6 +42,10 @@ public class WeightHistoryService {
                 weightHistoryRepository.updateWeightHistory(id, weight, LocalDate.now());
             }
         }
+        if(weightHistoryList.isEmpty()) {
+            WeightHistory newWeight = weightHistoryRepository.createWeightHistory(weight, LocalDate.now());
+            weightHistoryList.add(newWeight);
+        }
         return weightHistoryList;
     }
 

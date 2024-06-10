@@ -21,8 +21,17 @@ public class WeightHistory {
     @Column
     private LocalDate date;
 
+    public WeightHistory() {
+
+    }
+
     public double getWeight() {
         return weight;
+    }
+
+    public WeightHistory(double weight) {
+        this.weight = weight;
+        this.date = LocalDate.now();
     }
 
     public void setWeight(double weight) {
