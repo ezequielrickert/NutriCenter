@@ -1,0 +1,29 @@
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* CreationStyle.css */
+
+.form-control {
+    width: 100%;
+    max-width: 300px; /* Ajusta esto según el ancho deseado */
+    transition: all 0.5s ease;  /* Añadimos una transición para todos los cambios */
+}
+
+.success {
+    background-color: rgba(144, 238, 144, 0.42); /* Fondo verde tenue para éxito */
+    color: #155724; /* Color de texto para éxito */
+}
+
+.error {
+    background-color: rgba(239, 207, 207, 0.42); /* Fondo rojizo para error */
+    color: #721c24; /* Color de texto para error */
+}
+
+.fade-out {
+    opacity: 0;
+    transform: translateY(-5px);  /* Ejemplo de animación de desplazamiento hacia arriba */
+    pointer-events: none;  /* Evita que los campos sean clickeables durante la animación */
+}

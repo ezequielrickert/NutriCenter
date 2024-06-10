@@ -69,8 +69,6 @@ function App() {
                     <Route path={"/storeProfile/:storeId"} element={<StoreProfile />} />
                     <Route path={"/mealHistory"} element={<MealHistory />} />
                     <Route path={"/monthlyHistory"} element={<MonthlyHistory />} />
-                    <Route path={"/clientHistory"} element={<ClientHistory />} />
-                    <Route path={"/weightHistory"} element={<WeightHistory />} />
 
                     <Route path={"/customer-subscriptions"} element={<CustomerSubscriptionList />} />
                     <Route path={"/nutritionist-subscriptions"} element={<NutritionistSubscriptionList />} />

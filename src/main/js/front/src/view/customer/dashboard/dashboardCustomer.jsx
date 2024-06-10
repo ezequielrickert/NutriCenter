@@ -48,6 +48,9 @@ const DashboardCustomer = () => {
                 <Link to="/addWeight">
                     <button style={{ marginRight: '10px' }} className="btn btn-primary mt-3">Add Weight History</button>
                 </Link>
+                <Link to={"/inbox"}>
+                    <button className="btn btn-primary mt-3">Inbox</button>
+                </Link>
                 <Footer />
             </header>
         </div>
