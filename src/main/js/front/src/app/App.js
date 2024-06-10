@@ -16,7 +16,7 @@ import { SearcherSelector, SearchIngredientPage, SearchRecipePage } from "../vie
 import { IngredientResult, IngredientInfo } from '../view';
 import { RecipeResult, RecipeInfo } from '../view';
 import { AccountSettingsPage, Logout } from '../view';
-import { MealTable, MealHistory, MonthlyHistory } from "../view";
+import { MealTable, MealHistory, MonthlyHistory, ClientHistory, WeightHistory } from "../view";
 import { NutritionistProfile } from "../view";
 import { UserSearcher, UserResult } from "../view";
 import { StoreProfile } from "../view";
@@ -65,15 +65,13 @@ function App() {
                     <Route path="/storeIngredientEditor" element={<StockIngredientEditor />} />
                     <Route path="/stockEdition" element={<StockEdition />} />
                     <Route path="/storeSubscribers" element={<StoreSubscribers />} />
-                    <Route path="/mealTable" element={<MealTable />} />
                     <Route path="/storeProfile/:storeId" element={<StoreProfile />} />
-                    <Route path="/mealHistory" element={<MealHistory />} />
-                    <Route path="/monthlyHistory" element={<MonthlyHistory />} />
 
                     <Route path={"/mealTable"} element={<MealTable />} />
-                    <Route path={"/storeProfile/:storeId"} element={<StoreProfile />} />
                     <Route path={"/mealHistory"} element={<MealHistory />} />
                     <Route path={"/monthlyHistory"} element={<MonthlyHistory />} />
+                    <Route path={"/clientHistory"} element={<ClientHistory />} />
+                    <Route path={"/weightHistory"} element={<WeightHistory />} />
 
                     <Route path={"/customer-subscriptions"} element={<CustomerSubscriptionList />} />
                     <Route path={"/nutritionist-subscriptions"} element={<NutritionistSubscriptionList />} />
