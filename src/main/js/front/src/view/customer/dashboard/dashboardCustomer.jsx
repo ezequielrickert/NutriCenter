@@ -37,16 +37,16 @@ const DashboardCustomer = () => {
             <header className="text-center my-5">
                 <h1>Welcome to the Customer Dashboard</h1>
                 <Link to="/mealTable">
-                    <button className="btn btn-primary mt-3">Add Meal</button>
+                    <button style={{ marginRight: '10px' }} className="btn btn-primary mt-3">Add Meal</button>
                 </Link>
                 <Link to="/customer-subscriptions">
-                    <button className="btn btn-primary mt-3">View Subscriptions</button>
+                    <button style={{ marginRight: '10px' }} className="btn btn-primary mt-3">View Subscriptions</button>
                 </Link>
-                <Link to="/mealHistory">
-                    <button className="btn btn-primary mt-3">Meal History</button>
+                <Link to="/clientHistory">
+                    <button style={{ marginRight: '10px' }} className="btn btn-primary mt-3">My History</button>
                 </Link>
                 <Link to="/addWeight">
-                    <button className="btn btn-primary mt-3">Add Weight History</button>
+                    <button style={{ marginRight: '10px' }} className="btn btn-primary mt-3">Add Weight History</button>
                 </Link>
                 <Footer />
             </header>

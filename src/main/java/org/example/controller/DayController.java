@@ -19,6 +19,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -123,7 +124,10 @@ public class DayController {
     }
 
     private List<Day> getLastSeven(List<Day> days) {
-        LocalDate oneWeekAgo = LocalDate.now().minusDays(6);
+        LocalDate today = LocalDate.now();
+
+        // Determine the start of the current week as Monday
+        LocalDate startOfWeek = today.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
 
         // Use a LinkedHashMap to preserve insertion order
         Map<String, Day> dayOfWeekToDayMap = new LinkedHashMap<>();
@@ -131,16 +135,17 @@ public class DayController {
         // Iterate in reverse order to keep the most recent day for each day of the week
         for (int i = days.size() - 1; i >= 0; i--) {
             Day day = days.get(i);
-            if (!day.getDate().isBefore(oneWeekAgo) && day.getDate().isBefore(LocalDate.now().plusDays(1)) && !dayOfWeekToDayMap.containsKey(day.getDayName())) {
+            LocalDate dayDate = day.getDate();
+            if (!dayDate.isBefore(startOfWeek) && dayDate.isBefore(today.plusDays(1)) && !dayOfWeekToDayMap.containsKey(day.getDayName())) {
                 dayOfWeekToDayMap.put(day.getDayName(), day);
             }
-            // Stop the loop when we have 7 days
-            if (dayOfWeekToDayMap.size() == 7) {
+            // Stop the loop if we reach the current day
+            if (dayDate.isEqual(today)) {
                 break;
             }
         }
 
-        // Return the last seven days as a list
+        // Return the days of the current week as a list
         return new ArrayList<>(dayOfWeekToDayMap.values());
     }
 }
