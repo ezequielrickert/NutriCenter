@@ -142,6 +142,13 @@ const StockEdition = () => {
                 closeModal();
                 const updatedStocks = await axios.get(`http://localhost:8080/stock/${username}`);
                 setStocks(updatedStocks.data);
+                let message = "Stock created successfully";
+                const broadcast = await axios.post(`http://localhost:8080/message/${username}/${message}`);
+                if (broadcast.data === "Message sent successfully") {
+                    console.log("Message sent successfully");
+                } else {
+                    console.error("Error sending message");
+                }
             } else {
                 displayMessage('Error creating stock');
             }

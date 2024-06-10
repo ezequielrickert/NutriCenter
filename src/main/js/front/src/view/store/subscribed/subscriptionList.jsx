@@ -49,7 +49,6 @@ const StoreSubscribers = () => {
                 ))}
             </ul>
             <Footer />
-
         </div>
     );
 };

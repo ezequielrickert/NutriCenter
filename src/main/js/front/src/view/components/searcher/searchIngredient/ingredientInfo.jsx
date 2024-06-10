@@ -13,7 +13,6 @@ const IngredientInfo = () => {
     const [ingredient, setIngredient] = useState(null);
     const navigate = useNavigate();
     const [store, setStore] = useState([]);
-    const [isFollowing, setIsFollowing] = useState(false);
 
     useEffect(() => {
         const validateUser = async () => {
@@ -55,34 +54,11 @@ const IngredientInfo = () => {
 
         fetchIngredient();
         fetchStores();
-        checkFollowing();
     }, [ingredientName, isValidUser, username]);
 
     const handleSearchAgainClick = () => {
         navigate('/searchIngredientHome');
     };
-
-const checkFollowing = async () => {
-    const response = await axios.get('http://localhost:8080/follow/ingredient', {
-        params: {
-            ingredient: ingredientName,
-            customer: username
-        }
-    });
-    setIsFollowing(response.data);
-};
-
-const handleFollowClick = async () => {
-    if (isFollowing) {
-        await axios.delete('http://localhost:8080/follow/ingredient', {
-            data: { ingredient: ingredientName, customer: username }
-        });
-    } else {
-        await axios.put('http://localhost:8080/follow/ingredient', { ingredient: ingredientName, customer: username });
-    }
-
-    setIsFollowing(!isFollowing);
-};
 
     return (
         <div className="container">
@@ -104,9 +80,6 @@ const handleFollowClick = async () => {
                             <div key={store.storeName} className="store-item">{store.storeName}</div>
                         ))}
                     </div>
-                    <button onClick={handleFollowClick}>
-                        {isFollowing ? 'Unfollow' : 'Follow'}
-                    </button>
                 </>
             )}
             <button className="button-margin" onClick={handleSearchAgainClick}>Search Another Ingredient</button>

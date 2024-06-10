@@ -1,6 +1,5 @@
 package org.example.service;
 
-
 import org.example.model.history.CustomerHistory;
 import org.example.model.history.WeightHistory;
 import org.example.model.recipe.Ingredient;
@@ -11,12 +10,9 @@ import org.example.repository.customer.CostumerRepository;
 import org.example.repository.customer.CostumerRepositoryImp;
 import org.example.repository.customerhistory.CustomerHistoryRepository;
 import org.example.repository.customerhistory.CustomerHistoryRepositoryImplementation;
-
-
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Objects;
-
 
 public class CustomerService {
 

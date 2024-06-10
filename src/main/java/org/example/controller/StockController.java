@@ -5,12 +5,14 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.example.model.recipe.Ingredient;
+import org.example.model.roles.Customer;
 import org.example.model.roles.Store;
 import org.example.model.stock.Stock;
+import org.example.service.CustomerMessageService;
 import org.example.service.StockService;
+import org.example.service.StoreService;
 import spark.Spark;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
@@ -23,6 +25,8 @@ public class StockController {
 
         final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
         StockService stockService = new StockService(entityManagerFactory.createEntityManager());
+        StoreService storeService = new StoreService(entityManagerFactory.createEntityManager());
+        CustomerMessageService customerMessageService = new CustomerMessageService(entityManagerFactory.createEntityManager());
 
         Spark.post("/addStock", (req, res) -> {
             String body = req.body();
@@ -64,11 +68,18 @@ public class StockController {
 
         Spark.get("/sellingStores/:ingredientName", (req, res) -> {
             String ingredientName = req.params(":ingredientName");
-            EntityManager entityManager = entityManagerFactory.createEntityManager();
             List<Store> stores = stockService.getStoresByIngredient(ingredientName);
+            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
             return gson.toJson(stores);
         });
 
+        Spark.post("/message/:storeName/:message", (req, res) -> {
+            String storeName = req.params(":storeName");
+            String message = req.params(":message");
+            Store store = storeService.getStoreByUsername(storeName);
+            List<Customer> customers = store.getCustomers();
+            customerMessageService.createMessage(message, customers);
+            return gson.toJson("Message sent successfully");
+        });
     }
-
 }

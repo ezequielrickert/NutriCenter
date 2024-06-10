@@ -1,8 +1,6 @@
 package org.example.service;
 
 import org.example.model.roles.Store;
-import org.example.repository.stock.StockRepository;
-import org.example.repository.stock.StockRepositoryImpl;
 import org.example.repository.store.StoreRepositoryImpl;
 import javax.persistence.EntityManager;
 import java.util.List;
