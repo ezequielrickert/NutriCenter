@@ -17,7 +17,7 @@ import { IngredientResult, IngredientInfo } from '../view';
 import { RecipeResult, RecipeInfo } from '../view';
 import { AccountSettingsPage, Logout } from '../view';
 import {Stock} from "../view";
-import {MealTable, MealHistory, MonthlyHistory, ClientHistory} from "../view";
+import {MealTable, MealHistory, MonthlyHistory, ClientHistory, WeightHistory} from "../view";
 import {NutritionistProfile} from "../view";
 import {UserSearcher, UserResult} from "../view";
 import {StoreProfile} from "../view";
@@ -70,6 +70,7 @@ function App() {
                     <Route path={"/mealHistory"} element={<MealHistory />} />
                     <Route path={"/monthlyHistory"} element={<MonthlyHistory />} />
                     <Route path={"/clientHistory"} element={<ClientHistory />} />
+                    <Route path={"/weightHistory"} element={<WeightHistory />} />
 
                     <Route path={"/customer-subscriptions"} element={<CustomerSubscriptionList />} />
                     <Route path={"/nutritionist-subscriptions"} element={<NutritionistSubscriptionList />} />

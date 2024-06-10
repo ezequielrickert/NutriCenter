@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MonthlyHistory from './monthlyHistory';
 import MealHistory from "./mealHistory";
+import WeightHistory from "./weightHistory";
 import './styles.css'; // Import the CSS file for styling
 
 const ClientHistory = () => {
@@ -35,15 +36,19 @@ const ClientHistory = () => {
     return (
         <div className="client-history-container">
             <h1>Client History</h1>
-            <div className="components-container">
+            <div className="top-components-container">
                 <div className="component">
                     <h2>Monthly History</h2>
-                    <MonthlyHistory />
+                    <MonthlyHistory/>
                 </div>
                 <div className="component">
-                    <h2>Meal History</h2>
-                    <MealHistory />
+                    <h2>Weight History</h2>
+                    <WeightHistory/>
                 </div>
+            </div>
+            <div className="bottom-component">
+                <h2>Meal History</h2>
+                <MealHistory/>
             </div>
         </div>
     );

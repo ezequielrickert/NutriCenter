@@ -1,5 +1,7 @@
 package org.example.model.history;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -11,9 +13,11 @@ public class WeightHistory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long weightHistoryId;
 
+    @Expose
     @Column
     private double weight;
 
+    @Expose
     @Column
     private LocalDate date;
 

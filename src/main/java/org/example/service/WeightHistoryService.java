@@ -1,5 +1,6 @@
 package org.example.service;
 
+import org.example.model.history.Day;
 import org.example.model.history.WeightHistory;
 import org.example.model.roles.Customer;
 import org.example.repository.customer.CostumerRepository;
@@ -11,6 +12,7 @@ import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class WeightHistoryService {
 
@@ -42,4 +44,5 @@ public class WeightHistoryService {
         }
         return weightHistoryList;
     }
+
 }

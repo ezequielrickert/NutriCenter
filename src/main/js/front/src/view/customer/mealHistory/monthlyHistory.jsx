@@ -8,10 +8,14 @@ const MonthlyHistory = () => {
     const username = localStorage.getItem('username');
     const userRole = localStorage.getItem('role');
 
-    const date = new Date();
-    date.setDate(date.getDate() - 6);
-    const initialDate = date.toISOString().split('T')[0];
-    const [selectedDate, setSelectedDate] = useState(initialDate);
+    const today = new Date();
+    const oneYearAgo = new Date();
+    oneYearAgo.setFullYear(today.getFullYear() - 1);
+
+    const initialDate = new Date();
+    initialDate.setDate(initialDate.getDate() - 6);
+    const [selectedDate, setSelectedDate] = useState(initialDate.toISOString().split('T')[0]);
+
     const [calories, setCalories] = useState(0);
     const [cholesterol, setCholesterol] = useState(0);
     const [proteins, setProteins] = useState(0);
@@ -187,8 +191,16 @@ const MonthlyHistory = () => {
     return (
         <div style={{ width: '100%', height: '100%', padding: '10px', boxSizing: 'border-box' }}>
             <div style={{ width: '100%', textAlign: 'center', marginBottom: '10px' }}>
-                <label htmlFor="date">Select date: </label>
-                <input type="date" id="date" name="date" value={selectedDate} onChange={handleDateChange} />
+                <label htmlFor="date">Select date : </label>
+                <input
+                    type="date"
+                    id="date"
+                    name="date"
+                    value={selectedDate}
+                    onChange={handleDateChange}
+                    min={oneYearAgo.toISOString().split('T')[0]}
+                    max={today.toISOString().split('T')[0]}
+                />
             </div>
             <div style={{ flexGrow: 1, width: '100%', height: '100%', position: 'relative' }}>
                 <canvas ref={chartRef} style={{ width: '100%', height: '100%' }} />
@@ -198,3 +210,4 @@ const MonthlyHistory = () => {
 };
 
 export default MonthlyHistory;
+

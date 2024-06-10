@@ -7,6 +7,8 @@ export { default as DashboardCustomer } from './customer/dashboard/dashboardCust
 export { default as MealTable } from './customer/mealHistory/addMeal';
 export { default as MealHistory } from './customer/mealHistory/mealHistory';
 export { default as MonthlyHistory } from './customer/mealHistory/monthlyHistory';
+export { default as ClientHistory } from './customer/mealHistory/clientHistory';
+export { default as WeightHistory } from './customer/mealHistory/weightHistory';
 
 export { default as DashboardNutritionist } from './nutritionist/dashboard/dashboardNutritionist';
 export { default as NutritionistRecipeEditor } from './nutritionist/edition/recipeEditor';
