@@ -61,11 +61,20 @@ public class WeightHistoryController {
 
             List<WeightHistory> requestedEntries = getByDate(weightHistoryList, fromDate);
 
+            List<WeightDateTuple> returnedTupleList = makeToupleList(requestedEntries);
+
             Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
-            return gson.toJson(requestedEntries);
+            return gson.toJson(returnedTupleList);
         }, gson::toJson);
     }
+
+    private List<WeightDateTuple> makeToupleList(List<WeightHistory> requestedEntries) {
+        return requestedEntries.stream()
+                .map(entry -> new WeightDateTuple(entry.getWeight(), entry.getDate().toString()))
+                .collect(Collectors.toList());
+    }
+
 
     private List<WeightHistory> getByDate(List<WeightHistory> weightHistoryList, LocalDate fromDate) {
         return weightHistoryList.stream()

@@ -95,27 +95,35 @@ const WeightHistory = () => {
 
 
     function getWeights(entries) {
-        //return entries.map(entry => entry.weight);
-        return [1.2, 2.0, 3.9, 4.5, 5.5, 6.9, 7.7, 8.1, 9.1, 10.1];
+        return entries.map(entry => entry.weight);
+        //return [1.2, 2.0, 3.9, 4.5, 5.5, 6.9, 7.7, 8.1, 9.1, 10.1];
     }
 
+    //return ['2021-09-01', '2021-09-02', '2021-09-03', '2021-09-04', '2021-09-05', '2021-09-06', '2021-09-07', '2021-09-08', '2021-09-09', '2021-09-10'];
     function getDates(entries) {
-        //return entries.map(entry => entry.date.toISOString());
-        return ['2021-09-01', '2021-09-02', '2021-09-03', '2021-09-04', '2021-09-05', '2021-09-06', '2021-09-07', '2021-09-08', '2021-09-09', '2021-09-10'];
+
+        return entries.map(entry => entry.date);
     }
 
     const createWeightChart = async () => {
         try {
             const response = await axios.get(`http://localhost:8080/getWeight/${username}/${selectedDate}`);
+            console.log("Raw response data:", response.data);
             let entries = JSON.parse(response.data);
+            console.log("Parsed entries:", entries);
+
 
             if (entries && typeof entries === 'object' && !Array.isArray(entries)) {
                 entries = [entries];
             }
 
             if (Array.isArray(entries)) {
+                console.log("Before separating entries; " + entries);
                 const weights = getWeights(entries);
                 const dates = getDates(entries);
+
+                console.log("weights ; " + weights);
+                console.log("dates ; " + dates);
 
                 // Destroy the old chart instance before creating a new one
                 if (chartInstance.current) {
