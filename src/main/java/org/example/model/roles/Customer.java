@@ -39,13 +39,10 @@ public class Customer {
             inverseJoinColumns = @JoinColumn(referencedColumnName = "nutritionistId"))
     private List<Nutritionist> nutritionists;
 
-    public Customer(String customerName, String customerEmail, String customerPassword) {
-        this.customerName = customerName;
-        this.customerEmail = customerEmail;
-        this.customerPassword = customerPassword;
-    }
-
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.MERGE})
+    @JoinTable(name = "customer_store",
+            joinColumns = @JoinColumn(referencedColumnName = "customerId"),
+            inverseJoinColumns = @JoinColumn(referencedColumnName = "storeId"))
     private List<Store> stores;
 
     @ManyToMany
@@ -53,6 +50,12 @@ public class Customer {
 
     @OneToMany
     private List<WeightHistory> weightHistory;
+
+    public Customer(String customerName, String customerEmail, String customerPassword) {
+        this.customerName = customerName;
+        this.customerEmail = customerEmail;
+        this.customerPassword = customerPassword;
+    }
 
     public Customer() {
 

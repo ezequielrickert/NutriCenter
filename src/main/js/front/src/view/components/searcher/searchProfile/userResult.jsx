@@ -34,29 +34,33 @@ const UserResult = () => {
         validateUser();
     }, [token, username]);
 
-useEffect(() => {
-    if (!isValidUser) {
-        return;
-    }
-
-    const fetchNutritionistAndStores = async () => {
-        try {
-            const [nutritionistResults, storeResults] = await Promise.all([
-                axios.get(`http://localhost:8080/nutritionistFill/${nutritionistName}`),
-                axios.get(`http://localhost:8080/storeFill/${nutritionistName}`) // Assuming this is the endpoint to search stores
-            ]);
-
-            const nutritionists = nutritionistResults.data;
-            const stores = storeResults.data;
-            setNutritionists([...nutritionists]);
-            setStores([...stores])
-        } catch (error) {
-            console.error("Error fetching nutritionists and stores", error);
+    useEffect(() => {
+        if (!isValidUser) {
+            return;
         }
-    };
 
-    fetchNutritionistAndStores();
-}, [isValidUser, nutritionistName]);
+        const fetchNutritionistAndStores = async () => {
+            try {
+                const [nutritionistResults, storeResults] = await Promise.all([
+                    axios.get(`http://localhost:8080/nutritionistFill/${nutritionistName}`),
+                    axios.get(`http://localhost:8080/storeFill/${nutritionistName}`) // Assuming this is the endpoint to search stores
+                ]);
+
+                const nutritionists = nutritionistResults.data;
+                const stores = storeResults.data;
+
+                console.log("Fetched Nutritionists: ", nutritionists);
+                console.log("Fetched Stores: ", stores);
+
+                setNutritionists([...nutritionists]);
+                setStores([...stores]);
+            } catch (error) {
+                console.error("Error fetching nutritionists and stores", error);
+            }
+        };
+
+        fetchNutritionistAndStores();
+    }, [isValidUser, nutritionistName]);
 
     const handleSearchAgainClick = () => {
         navigate('/searchProfileHome');

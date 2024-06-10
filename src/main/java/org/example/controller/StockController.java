@@ -1,5 +1,7 @@
 package org.example.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.example.model.recipe.Ingredient;
@@ -36,6 +38,7 @@ public class StockController {
         Spark.get("/stock/:storeName", (req, res) -> {
             String storeName = req.params(":storeName");
             List<Stock> stock = stockService.readStock(storeName);
+            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
             return gson.toJson(stock);
         });
 

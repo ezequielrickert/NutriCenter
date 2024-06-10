@@ -64,5 +64,4 @@ public class NutritionistController {
       return specialGson.toJson(nutritionist);
     });
   }
-
 }

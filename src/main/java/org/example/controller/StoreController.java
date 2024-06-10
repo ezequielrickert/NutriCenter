@@ -33,22 +33,24 @@ public class StoreController {
     Spark.get("/store/:id", (req, resp) -> {
       final String id = req.params(":id");
       Store store = storeService.getStoreByUsername(id);
+      Gson specialGson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
       resp.type("application/json");
-      return store.asJson();
+      return specialGson.toJson(store);
     });
 
     Spark.post("/createStore", (req, res) -> {
       String body = req.body();
-      Store store = gson.fromJson(body, Store.class);
-      String storeName = store.getStoreName();
-      if (!signUpService.validate(storeName)) {
+      JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+      String name =  gson.fromJson(jsonObject.get("storeName"), String.class);
+      if (!signUpService.validate(name)) {
         res.status(401);
         return "Username already exists";
       }
-      String storeMail = store.getStoreMail();
-      String storePassword = store.getStorePassword();
-      storeService.createStore(storeName, storeMail, storePassword);
-      return store;
+      String email = gson.fromJson(jsonObject.get("storeMail"), String.class);
+      String password = gson.fromJson(jsonObject.get("storePassword"), String.class);
+      storeService.createStore(name, email, password);
+      res.status(201);
+      return "Store created successfully";
     }, gson::toJson);
 
     Spark.post("/updateStore", (req, res) -> {
@@ -73,18 +75,17 @@ public class StoreController {
 
     Spark.get("/persisted-store/:id", (req, resp) -> {
       final String id = req.params("id");
-        Store store = storeService.readStore(Long.parseLong(id));
+      Store store = storeService.readStore(Long.parseLong(id));
       resp.type("application/json");
       return store.asJson();
     });
 
     Spark.get("/storeFill/:searchTerm", (req, resp) -> {
-        final String searchTerm = req.params(":searchTerm");
-        List<Store> stores = storeService.getStoresBySearchTerm(searchTerm);
-        resp.type("application/json");
-        return gson.toJson(stores);
+      final String searchTerm = req.params(":searchTerm");
+      List<Store> stores = storeService.getStoresBySearchTerm(searchTerm);
+      Gson specialGson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+      resp.type("application/json");
+      return specialGson.toJson(stores);
     });
-
   }
-
 }

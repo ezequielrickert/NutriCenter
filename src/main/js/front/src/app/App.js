@@ -21,7 +21,7 @@ import { NutritionistProfile } from "../view";
 import { UserSearcher, UserResult } from "../view";
 import { StoreProfile } from "../view";
 import { AddWeight } from "../view";
-import { StockEdition, StockViewer, StockIngredientEditor } from "../view";
+import { StockIngredientEditor, StockEdition, StoreSubscribers } from "../view";
 import { Inbox } from "../view";
 
 function App() {
@@ -59,21 +59,21 @@ function App() {
                     <Route path="/recipeResult/:recipeName" element={<RecipeResult />} />
                     <Route path="/recipeInfo/:recipeId" element={<RecipeInfo />} />
 
-                    <Route path={"/accountSelection"} element={<AccountSettingsPage />} />
+                    <Route path="/accountSelection" element={<AccountSettingsPage />} />
                     <Route path="/logout" element={<Logout />} />
 
                     <Route path="/storeIngredientEditor" element={<StockIngredientEditor />} />
-                    <Route path="/stock" element={<StockEdition />} />
+                    <Route path="/stockEdition" element={<StockEdition />} />
+                    <Route path="/storeSubscribers" element={<StoreSubscribers />} />
+                    <Route path="/mealTable" element={<MealTable />} />
+                    <Route path="/storeProfile/:storeId" element={<StoreProfile />} />
+                    <Route path="/mealHistory" element={<MealHistory />} />
+                    <Route path="/monthlyHistory" element={<MonthlyHistory />} />
 
-                    <Route path={"/mealTable"} element={<MealTable />} />
-                    <Route path={"/storeProfile/:storeId"} element={<StoreProfile />} />
-                    <Route path={"/mealHistory"} element={<MealHistory />} />
-                    <Route path={"/monthlyHistory"} element={<MonthlyHistory />} />
-
-                    <Route path={"/customer-subscriptions"} element={<CustomerSubscriptionList />} />
-                    <Route path={"/nutritionist-subscriptions"} element={<NutritionistSubscriptionList />} />
-                    <Route path={"/addWeight"} element={<AddWeight />} />
-                    <Route path={"/inbox"} element={<Inbox />} />
+                    <Route path="/customer-subscriptions" element={<CustomerSubscriptionList />} />
+                    <Route path="/nutritionist-subscriptions" element={<NutritionistSubscriptionList />} />
+                    <Route path="/addWeight" element={<AddWeight />} />
+                    <Route path="/inbox" element={<Inbox />} />
 
                 </Routes>
             </div>

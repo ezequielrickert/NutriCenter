@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Footer from "../../components/footer";
 
-const CustomerSubscriptionList = () => {
+const StoreSubscribers = () => {
     const [customers, setCustomers] = useState([]);
     const [isValidUser, setIsValidUser] = useState(false);
     const token = localStorage.getItem('token');
@@ -13,7 +13,7 @@ const CustomerSubscriptionList = () => {
         const validateUser = async () => {
             try {
                 const response = await axios.post("http://localhost:8080/validateUser", { username, token });
-                if (response.data === "User is valid" && (userRole === "nutritionist")) {
+                if (response.data === "User is valid" && (userRole === "store")) {
                     setIsValidUser(true);
                 } else {
                     window.location.href = '/universalLogin';
@@ -30,7 +30,7 @@ const CustomerSubscriptionList = () => {
     useEffect(() => {
         const fetchSubscriptions = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/subscription/nutritionist/${username}`);
+                const response = await axios.get(`http://localhost:8080/subscription/store/${username}`);
                 setCustomers(response.data);
             } catch (error) {
                 console.error('There was an error!', error);
@@ -49,8 +49,9 @@ const CustomerSubscriptionList = () => {
                 ))}
             </ul>
             <Footer />
+
         </div>
     );
 };
 
-export default CustomerSubscriptionList;
+export default StoreSubscribers;

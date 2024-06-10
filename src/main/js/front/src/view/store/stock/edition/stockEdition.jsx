@@ -59,7 +59,7 @@ const StockEdition = () => {
                     console.error('Data received from server is not an array');
                 }
             } catch (error) {
-                console.error('There was an error!', error);
+                console.error('There was an error fetching Stock!', error);
             }
         };
 

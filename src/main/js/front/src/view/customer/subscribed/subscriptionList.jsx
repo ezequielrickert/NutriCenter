@@ -4,6 +4,7 @@ import Footer from "../../components/footer";
 
 const CustomerSubscriptionList = () => {
     const [nutritionists, setNutritionists] = useState([]);
+    const [stores, setStores] = useState([]);
     const [isValidUser, setIsValidUser] = useState(false);
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
@@ -28,16 +29,29 @@ const CustomerSubscriptionList = () => {
     }, [token, username]);
 
     useEffect(() => {
-        const fetchSubscriptions = async () => {
+        const fetchNutritionistSubscriptions = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/subscription/customer/${username}`);
+                const response = await axios.get(`http://localhost:8080/NutritionistSubscriptions/customer/${username}`);
                 setNutritionists(response.data);
             } catch (error) {
                 console.error('There was an error!', error);
             }
         };
 
-        fetchSubscriptions();
+        fetchNutritionistSubscriptions();
+    }, []);
+
+    useEffect(() => {
+        const fetchStoreSubscriptions = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/StoreSubscriptions/customer/${username}`);
+                setStores(response.data);
+            } catch (error) {
+                console.error('There was an error!', error);
+            }
+        };
+
+        fetchStoreSubscriptions();
     }, []);
 
     return (
@@ -46,6 +60,12 @@ const CustomerSubscriptionList = () => {
             <ul>
                 {nutritionists.map((nutritionist) => (
                     <li key={nutritionist.nutritionistName}>{nutritionist}</li>
+                ))}
+            </ul>
+            <h1>Subscribed Stores</h1>
+            <ul>
+                {stores.map((store) => (
+                    <li key={store.storeName}>{store}</li>
                 ))}
             </ul>
             <Footer />
