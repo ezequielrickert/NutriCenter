@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Footer from '../../footer';
@@ -77,7 +77,9 @@ const IngredientInfo = () => {
                     <h3 className="text-center my-5">Stores Selling This Ingredient</h3>
                     <div className="horizontal-container">
                         {store.map((store) => (
-                            <div key={store.storeName} className="store-item">{store.storeName}</div>
+                            <div key={store.storeName} className="store-item">
+                                <Link to={`/storeProfile/${store.storeName}`}>{store.storeName}</Link>
+                            </div>
                         ))}
                     </div>
                 </>

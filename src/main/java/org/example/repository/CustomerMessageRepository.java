@@ -27,6 +27,5 @@ public class CustomerMessageRepository {
         return entityManager.createQuery("SELECT c FROM CUSTOMER_MESSAGE c WHERE c.customerId = :customerId", CustomerMessage.class)
                 .setParameter("customerId", customer.getCustomerId())
                 .getResultList();
-
     }
 }
