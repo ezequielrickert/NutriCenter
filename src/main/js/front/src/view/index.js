@@ -4,6 +4,7 @@ export { default as UniversalLogin } from './home/universalLogin';
 export { default as SignUpDefault } from './home/signUpDefault';
 
 export { default as DashboardCustomer } from './customer/dashboard/dashboardCustomer';
+export { default as Inbox } from './customer/inbox/inbox';
 export { default as MealTable } from './customer/mealHistory/addMeal';
 export { default as MealHistory } from './customer/mealHistory/mealHistory';
 export { default as MonthlyHistory } from './customer/mealHistory/monthlyHistory';
@@ -18,8 +19,9 @@ export { default as UserResult} from './components/searcher/searchProfile/userRe
 
 export { default as DashboardStore } from './store/dashboard/dashboardStore';
 export { default as StoreProfile } from './store/profile/storeProfile';
-export { default as StockEdition } from './store/stock/edition/stockEdition';
+export { default as StoreSubscribers } from './store/subscribed/subscriptionList';
 export { default as StockIngredientEditor } from './store/stock/edition/createIngredient';
+export { default as StockEdition } from './store/stock/edition/stockEdition';
 
 export { default as InitialEditor } from './superAdmin/edition/initialEditor';
 export { default as IngredientEditor } from './superAdmin/edition/editors/ingredientEdition';

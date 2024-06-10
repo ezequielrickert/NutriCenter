@@ -59,7 +59,7 @@ const StockEdition = () => {
                     console.error('Data received from server is not an array');
                 }
             } catch (error) {
-                console.error('There was an error!', error);
+                console.error('There was an error fetching Stock!', error);
             }
         };
 
@@ -142,6 +142,13 @@ const StockEdition = () => {
                 closeModal();
                 const updatedStocks = await axios.get(`http://localhost:8080/stock/${username}`);
                 setStocks(updatedStocks.data);
+                let message = `${selectedIngredient.ingredientName} added to ${username} store`;
+                const broadcast = await axios.post(`http://localhost:8080/message/${username}/${message}`);
+                if (broadcast.data === "Message sent successfully") {
+                    console.log("Message sent successfully");
+                } else {
+                    console.error("Error sending message");
+                }
             } else {
                 displayMessage('Error creating stock');
             }
@@ -153,6 +160,7 @@ const StockEdition = () => {
 
     const handleUpdate = async () => {
         if (editingStock) {
+            let previousQuantity = editingStock.quantity;
             const stockData = {
                 storeName: username,
                 ingredientId: selectedIngredient,
@@ -167,6 +175,16 @@ const StockEdition = () => {
                     closeModal();
                     const updatedStocks = await axios.get(`http://localhost:8080/stock/${username}`);
                     setStocks(updatedStocks.data);
+
+                    if (previousQuantity === 0 && quantity > 0) {
+                        let message = `Available stock of ${selectedIngredient.ingredientName} on ${username} store`;
+                        const broadcast = await axios.post(`http://localhost:8080/message/${username}/${message}`);
+                        if (broadcast.data === "Message sent successfully") {
+                            console.log("Message sent successfully");
+                        } else {
+                            console.error("Error sending message");
+                        }
+                    }
                 } else {
                     displayMessage('Error updating stock');
                 }

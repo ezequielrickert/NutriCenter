@@ -6,8 +6,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.example.model.roles.Customer;
 import org.example.model.roles.Nutritionist;
+import org.example.model.roles.Store;
 import org.example.service.CustomerService;
 import org.example.service.NutritionistService;
+import org.example.service.StoreService;
 import spark.Spark;
 
 import javax.persistence.EntityManagerFactory;
@@ -23,6 +25,7 @@ public class SubscriptionController {
         final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
         CustomerService customerService = new CustomerService(entityManagerFactory.createEntityManager());
         NutritionistService nutritionistService = new NutritionistService(entityManagerFactory.createEntityManager());
+        StoreService storeService = new StoreService(entityManagerFactory.createEntityManager());
 
         Spark.post("/subscribe", (req, resp) -> {
             String body = req.body();
@@ -72,7 +75,17 @@ public class SubscriptionController {
             return specialGson.toJson(customerUsernames);
         });
 
-        Spark.get("/subscription/customer/:username", (req, resp) -> {
+        Spark.get("/subscription/store/:username", (req, resp) -> {
+            String username = req.params(":username");
+            Store store = storeService.getStoreByUsername(username);
+            List<Customer> customers = store.getCustomers();
+            List<String> customerUsernames = customers.stream().map(Customer::getCustomerName).toList();
+            Gson specialGson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            resp.type("application/json");
+            return specialGson.toJson(customerUsernames);
+        });
+
+        Spark.get("/NutritionistSubscriptions/customer/:username", (req, resp) -> {
             String username = req.params(":username");
             Customer customer = customerService.getCustomerByName(username);
             List<Nutritionist> nutritionists = customer.getNutritionists();
@@ -80,6 +93,16 @@ public class SubscriptionController {
             Gson specialGson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
             resp.type("application/json");
             return specialGson.toJson(nutritionistUsernames);
+        });
+
+        Spark.get("/StoreSubscriptions/customer/:username", (req, resp) -> {
+            String username = req.params(":username");
+            Customer customer = customerService.getCustomerByName(username);
+            List<Store> stores = customer.getStores();
+            List<String> storeUsernames = stores.stream().map(Store::getStoreName).toList();
+            Gson specialGson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            resp.type("application/json");
+            return specialGson.toJson(storeUsernames);
         });
 
         Spark.get("/subscribe", (req, resp) -> {

@@ -43,5 +43,6 @@ public class Application {
         new SubscriptionController().run();
         new FollowController().run();
         new WeightHistoryController().run();
+        new CustomerMessageController().run();
     }
 }

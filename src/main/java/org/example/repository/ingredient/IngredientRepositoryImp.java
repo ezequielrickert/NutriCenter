@@ -2,6 +2,8 @@ package org.example.repository.ingredient;
 
 import org.example.model.recipe.Allergy;
 import org.example.model.recipe.Ingredient;
+import org.example.model.roles.Customer;
+import org.example.model.roles.Store;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;

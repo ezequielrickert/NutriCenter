@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "STORE")
 public class Store {
@@ -13,17 +14,25 @@ public class Store {
     @GeneratedValue(generator = "userGen", strategy = GenerationType.IDENTITY)
     private Long storeId;
 
+    @Expose
     @Column(nullable = false, unique = true)
     private String storeName;
 
+    @Expose
     @Column(nullable = false, unique = true)
     private String storeMail;
 
+    @Expose
     @Column(nullable = false, unique = false)
     private String storePassword;
 
+    @Expose
     @Column(nullable = true, unique = true)
     private String storePhoneNumber;
+
+    @Expose
+    @ManyToMany(mappedBy = "stores")
+    private List<Customer> customers;
 
     public Store(String name, String mail, String password) {
         this.storeName = name;
@@ -57,6 +66,14 @@ public class Store {
 
     public void setStorePhoneNumber(String storePhoneNumber) {
         this.storePhoneNumber = storePhoneNumber;
+    }
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
     }
 
     public String asJson() {

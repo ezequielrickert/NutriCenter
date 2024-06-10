@@ -57,26 +57,41 @@ const SuperAdminIngredientEdition = () => {
     useEffect(() => {
         axios.get('http://localhost:8080/ingredients')
             .then(response => {
-                const data = JSON.parse(response.data);
-                if (Array.isArray(data)) {
-                    setIngredients(data);
-                } else {
-                    console.error('Data received from server is not an array');
+                try {
+                    const data = JSON.parse(response.data);
+                    if (Array.isArray(data)) {
+                        setIngredients(data);
+                    } else {
+                        console.error('Data received from server is not an array');
+                    }
+                } catch (error) {
+                    console.error('Error parsing ingredients data:', error);
                 }
             })
+            .catch(error => {
+                console.error('Error fetching ingredients:', error);
+            });
     }, []);
 
     useEffect(() => {
         axios.get('http://localhost:8080/allergies')
             .then(response => {
-                const data = JSON.parse(response.data);
-                if (Array.isArray(data)) {
-                    setAllergyOptions(data);
-                } else {
-                    console.error('Data received from server is not an array');
+                try {
+                    const data = JSON.parse(response.data);
+                    if (Array.isArray(data)) {
+                        setAllergyOptions(data);
+                    } else {
+                        console.error('Data received from server is not an array');
+                    }
+                } catch (error) {
+                    console.error('Error parsing allergies data:', error);
                 }
             })
+            .catch(error => {
+                console.error('Error fetching allergies:', error);
+            });
     }, []);
+
 
     useEffect(() => {
         if (editingIngredient) {
@@ -107,7 +122,7 @@ const SuperAdminIngredientEdition = () => {
         setShowMessage(true);
         const timer = setTimeout(() => {
             setShowMessage(false);
-        }, 3000);
+        }, 5000);
         return () => clearTimeout(timer);
     };
 
@@ -178,6 +193,8 @@ const SuperAdminIngredientEdition = () => {
             }
         } catch (err) {
             console.log(err);
+            closeModal();
+            displayMessage('Ingredient already exist');
         }
     };
 

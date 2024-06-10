@@ -1,5 +1,6 @@
 package org.example.model.stock;
 
+import com.google.gson.annotations.Expose;
 import org.example.model.recipe.Ingredient;
 import org.example.model.roles.Store;
 import javax.persistence.*;
@@ -8,20 +9,25 @@ import java.util.List;
 @Entity(name = "STOCK")
 public class Stock {
 
+    @Expose
     @EmbeddedId
     private StockId id;
 
+    @Expose
     @ManyToOne
     @MapsId("storeId")
     private Store store;
 
+    @Expose
     @ManyToOne
     @MapsId("ingredientId")
     private Ingredient ingredient;
 
+    @Expose
     @Column(nullable = false)
     private int quantity;
 
+    @Expose
     @Column
     private String brand;
 
