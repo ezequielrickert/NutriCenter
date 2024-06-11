@@ -36,13 +36,15 @@ public class WeightHistoryService {
     }
 
     private List<WeightHistory> verifyWeightHistory(List<WeightHistory> weightHistoryList, Double weight) {
+        int i = 0;
         for (WeightHistory weightHistory : weightHistoryList) {
             if (Objects.equals(weightHistory.getDate(), LocalDate.now())){
                 Long id = weightHistory.getWeightHistoryId();
                 weightHistoryRepository.updateWeightHistory(id, weight, LocalDate.now());
+                i = 1;
             }
         }
-        if(weightHistoryList.isEmpty()) {
+        if(i == 0) {
             WeightHistory newWeight = weightHistoryRepository.createWeightHistory(weight, LocalDate.now());
             weightHistoryList.add(newWeight);
         }
