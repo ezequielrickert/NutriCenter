@@ -4,11 +4,15 @@ import com.google.gson.*;
 import org.example.controller.*;
 import spark.Spark;
 
+import java.util.TimeZone;
+
 public class Application {
 
     public static final Gson gson = new Gson();
 
     public static void main(String[] args) {
+
+        TimeZone.setDefault(TimeZone.getTimeZone("GMT-3"));
 
         Spark.port(8080);
 
