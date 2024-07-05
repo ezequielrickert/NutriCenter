@@ -1,6 +1,7 @@
 package org.example.model.history;
 
 import com.google.gson.annotations.Expose;
+import org.example.model.roles.Customer;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -20,6 +21,10 @@ public class WeightHistory {
     @Expose
     @Column
     private LocalDate date;
+
+    @ManyToOne
+    @JoinColumn(name = "customerId")
+    private Customer customer;
 
     public WeightHistory() {
 

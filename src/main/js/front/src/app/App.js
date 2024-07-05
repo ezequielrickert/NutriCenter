@@ -25,6 +25,11 @@ import { StockIngredientEditor, StockEdition, StoreSubscribers } from "../view";
 import { Inbox } from "../view";
 
 function App() {
+
+    const handleMessagesRead = () => {
+        console.log("Messages have been marked as read");
+    };
+
     return (
         <Router>
             <div className="App">
@@ -35,7 +40,7 @@ function App() {
                     <Route path="/defaultSignUp" element={<SignUpDefault />} />
                     <Route path="/universalLogin" element={<UniversalLogin />} />
 
-                    <Route path="/dashboardCustomer" element={<DashboardCustomer />} />
+                    <Route path="/dashboardCustomer" element={<DashboardCustomer handleMessagesRead={handleMessagesRead} />} />
 
                     <Route path="/dashboardNutritionist" element={<DashboardNutritionist />} />
                     <Route path="/nutritionistRecipeEditor" element={<NutritionistRecipeEditor />} />

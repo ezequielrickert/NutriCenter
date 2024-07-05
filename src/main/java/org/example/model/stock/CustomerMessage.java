@@ -3,15 +3,16 @@ package org.example.model.stock;
 import com.google.gson.annotations.Expose;
 
 import javax.persistence.*;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Entity(name = "CUSTOMER_MESSAGE")
 public class CustomerMessage {
 
     @Id
+    @Expose
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Expose
     @Column(nullable = false)
     private Long customerId;
 
@@ -19,13 +20,17 @@ public class CustomerMessage {
     @Column(nullable = false)
     private String message;
 
+    @Expose
+    @Column(nullable = false)
+    private boolean isRead = false;
+
     public CustomerMessage(Long customerId, String message) {
         this.customerId = customerId;
         this.message = message;
+        this.isRead = false;
     }
 
     public CustomerMessage() {
-
     }
 
     public Long getId() {
@@ -50,5 +55,13 @@ public class CustomerMessage {
 
     public void setCustomerId(Long customerId) {
         this.customerId = customerId;
+    }
+
+    public boolean isRead() {
+        return isRead;
+    }
+
+    public void setRead(boolean isRead) {
+        this.isRead = isRead;
     }
 }
