@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Footer from '../../components/footer';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Dropdown, Badge } from 'react-bootstrap';
+import Inbox from '../inbox/inbox';
+import ringBell from '../images/ring_bell.png';
+import bell from '../images/bell.png';
 
-const DashboardCustomer = () => {
+const DashboardCustomer = ({ handleMessagesRead }) => {
     const [isValidUser, setIsValidUser] = useState(false);
+    const [messages, setMessages] = useState([]);
+    const [unreadCount, setUnreadCount] = useState(0);
+    const [showInbox, setShowInbox] = useState(false);
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
     const userRole = localStorage.getItem('role');
@@ -27,7 +34,25 @@ const DashboardCustomer = () => {
         validateUser();
     }, [token, username]);
 
-    // if necesario!! para que React no devuelva la pagina al no estar validado
+    const fetchMessages = async () => {
+        try {
+            const response = await axios.get(`http://localhost:8080/message/unread/${username}`);
+            const data = response.data;
+            if (Array.isArray(data)) {
+                setUnreadCount(data.length);
+                setMessages(data.reverse());
+            } else {
+                console.error('Data received from server is not an array');
+            }
+        } catch (error) {
+            console.error('Error fetching messages', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchMessages();
+    }, [username]);
+
     if (!isValidUser) {
         return null;
     }
@@ -39,20 +64,37 @@ const DashboardCustomer = () => {
                 <Link to="/mealTable">
                     <button style={{ marginRight: '10px' }} className="btn btn-primary mt-3">Add Meal</button>
                 </Link>
-                <Link to="/customer-subscriptions">
-                    <button style={{ marginRight: '10px' }} className="btn btn-primary mt-3">View Subscriptions</button>
+                <Link to="/mealSearch">
+                    <button className="btn btn-primary mt-3">Search Meals</button>
                 </Link>
-                <Link to="/clientHistory">
-                    <button style={{ marginRight: '10px' }} className="btn btn-primary mt-3">My History</button>
-                </Link>
-                <Link to="/addWeight">
-                    <button style={{ marginRight: '10px' }} className="btn btn-primary mt-3">Add Weight History</button>
-                </Link>
-                <Link to={"/inbox"}>
-                    <button className="btn btn-primary mt-3">Inbox</button>
-                </Link>
-                <Footer />
+                <div style={{ position: 'relative', display: 'inline-block', marginLeft: '10px' }}>
+                    <Dropdown>
+                        <Dropdown.Toggle variant="light" id="dropdown-basic">
+                            <img src={unreadCount > 0 ? ringBell : bell} alt="Notification Bell" width="40" height="40" />
+                            {unreadCount > 0 && (
+                                <Badge pill bg="danger" style={{ position: 'absolute', top: 0, right: 0 }}>
+                                    {unreadCount}
+                                </Badge>
+                            )}
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                            {messages.length > 0 ? (
+                                <>
+                                    {messages.map((message, index) => (
+                                        <Dropdown.Item key={index}>{message.message}</Dropdown.Item>
+                                    ))}
+                                    <Dropdown.Item onClick={() => setShowInbox(true)}>View all</Dropdown.Item>
+                                </>
+                            ) : (
+                                <Dropdown.Item>No new messages</Dropdown.Item>
+                            )}
+                        </Dropdown.Menu>
+                    </Dropdown>
+                </div>
             </header>
+            {showInbox && <Inbox onMessagesRead={fetchMessages} />}
+            <Footer />
         </div>
     );
 }

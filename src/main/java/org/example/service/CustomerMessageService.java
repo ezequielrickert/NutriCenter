@@ -9,10 +9,10 @@ import java.util.List;
 
 public class CustomerMessageService {
 
-    CustomerMessageRepository customerMessageRepository;
+    private final CustomerMessageRepository customerMessageRepository;
 
     public CustomerMessageService(EntityManager entityManager) {
-        customerMessageRepository = new CustomerMessageRepository(entityManager);
+        this.customerMessageRepository = new CustomerMessageRepository(entityManager);
     }
 
     public void createMessage(String message, List<Customer> customers) {
@@ -21,5 +21,17 @@ public class CustomerMessageService {
 
     public List<CustomerMessage> getMessage(Customer customer) {
         return customerMessageRepository.getMessage(customer);
+    }
+
+    public List<CustomerMessage> getUnreadMessages(Customer customer) {
+        return customerMessageRepository.getUnreadMessages(customer);
+    }
+
+    public void markAsRead(Customer customer) {
+        customerMessageRepository.markAsRead(customer);
+    }
+
+    public void markMessageAsRead(long messageId) {
+        customerMessageRepository.markMessageAsRead(messageId);
     }
 }

@@ -48,7 +48,7 @@ public class Customer {
     @ManyToMany
     private List<Ingredient> ingredients;
 
-    @OneToMany
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<WeightHistory> weightHistory;
 
     public Customer(String customerName, String customerEmail, String customerPassword) {

@@ -26,5 +26,19 @@ public class CustomerMessageController {
             Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
             return gson.toJson(messages);
         });
+
+        Spark.get("/message/unread/:username", (req, res) -> {
+            String username = req.params(":username");
+            Customer customer = customerService.getCustomerByName(username);
+            List<CustomerMessage> messages = customerMessageService.getUnreadMessages(customer);
+            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            return gson.toJson(messages);
+        });
+
+        Spark.put("/message/read/:id", (req, res) -> {
+            long messageId = Long.parseLong(req.params(":id"));
+            customerMessageService.markMessageAsRead(messageId);
+            return "OK";
+        });
     }
 }
