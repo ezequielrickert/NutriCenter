@@ -58,4 +58,13 @@ public class CustomerMessageRepository {
                 .executeUpdate();
         entityManager.getTransaction().commit();
     }
+
+    public void markAllAsRead(Customer customer) {
+        entityManager.getTransaction().begin();
+        entityManager.createQuery(
+                        "UPDATE CUSTOMER_MESSAGE m SET m.isRead = true WHERE m.customerId = :customerId")
+                .setParameter("customerId", customer.getCustomerId())
+                .executeUpdate();
+        entityManager.getTransaction().commit();
+    }
 }

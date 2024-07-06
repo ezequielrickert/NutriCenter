@@ -40,5 +40,11 @@ public class CustomerMessageController {
             customerMessageService.markMessageAsRead(messageId);
             return "OK";
         });
+
+        Spark.put("/message/readAll/:username", (req, res) -> {
+            String username = req.params(":username");
+            customerMessageService.markAllAsRead(username);
+            return "OK";
+        });
     }
 }

@@ -119,11 +119,12 @@ const StockEdition = () => {
     };
 
     const resetModal = () => {
-        if (!editingStock) {
+        if (editingStock) {
             setSelectedIngredient(null);
             setQuantity('');
             setBrand('');
         }
+        setEditingStock(null);
     };
 
 
@@ -217,12 +218,17 @@ const StockEdition = () => {
         }
     };
 
+    const setShowModalCreation = () => {
+        closeModal();
+        setShowModal(true);
+    }
+
     let ingredientOptions = ingredients.map(ingredient => ({ value: ingredient, label: ingredient.ingredientName }));
 
     return (
         <div className="container my-3">
             <h1 className="text-center">Stocks</h1>
-            <Button variant="success" onClick={() => setShowModal(true)} style={{ marginBottom: '20px' }}>Create Stock</Button>
+            <Button variant="success" onClick={() => setShowModalCreation()} style={{ marginBottom: '20px' }}>Create Stock</Button>
             {showMessage && <div className="alert alert-success">{messageContent}</div>}
             <Table striped bordered hover>
                 <thead>

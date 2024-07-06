@@ -3,6 +3,8 @@ package org.example.service;
 import org.example.model.roles.Customer;
 import org.example.model.stock.CustomerMessage;
 import org.example.repository.CustomerMessageRepository;
+import org.example.repository.customer.CostumerRepository;
+import org.example.repository.customer.CostumerRepositoryImp;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -10,9 +12,11 @@ import java.util.List;
 public class CustomerMessageService {
 
     private final CustomerMessageRepository customerMessageRepository;
+    private final CostumerRepository customerRepository;
 
     public CustomerMessageService(EntityManager entityManager) {
         this.customerMessageRepository = new CustomerMessageRepository(entityManager);
+        this.customerRepository = new CostumerRepositoryImp(entityManager);
     }
 
     public void createMessage(String message, List<Customer> customers) {
@@ -33,5 +37,10 @@ public class CustomerMessageService {
 
     public void markMessageAsRead(long messageId) {
         customerMessageRepository.markMessageAsRead(messageId);
+    }
+
+    public void markAllAsRead(String username) {
+        Customer customer = customerRepository.fetchCustomerByUsername(username);
+        customerMessageRepository.markAllAsRead(customer);
     }
 }

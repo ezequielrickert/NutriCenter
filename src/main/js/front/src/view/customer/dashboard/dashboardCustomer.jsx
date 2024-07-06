@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Footer from '../../components/footer';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Dropdown, Badge } from 'react-bootstrap';
-import Inbox from '../inbox/inbox';
 import ringBell from '../images/ring_bell.png';
 import bell from '../images/bell.png';
 
@@ -11,10 +10,10 @@ const DashboardCustomer = ({ handleMessagesRead }) => {
     const [isValidUser, setIsValidUser] = useState(false);
     const [messages, setMessages] = useState([]);
     const [unreadCount, setUnreadCount] = useState(0);
-    const [showInbox, setShowInbox] = useState(false);
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
     const userRole = localStorage.getItem('role');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const validateUser = async () => {
@@ -57,6 +56,8 @@ const DashboardCustomer = ({ handleMessagesRead }) => {
         return null;
     }
 
+    const recentMessages = messages.slice(0, 5);
+
     return (
         <div className="container">
             <header className="text-center my-5">
@@ -64,8 +65,14 @@ const DashboardCustomer = ({ handleMessagesRead }) => {
                 <Link to="/mealTable">
                     <button style={{ marginRight: '10px' }} className="btn btn-primary mt-3">Add Meal</button>
                 </Link>
-                <Link to="/mealSearch">
-                    <button className="btn btn-primary mt-3">Search Meals</button>
+                <Link to="/customer-subscriptions">
+                    <button style={{ marginRight: '10px' }} className="btn btn-primary mt-3">View Subscriptions</button>
+                </Link>
+                <Link to="/clientHistory">
+                    <button style={{ marginRight: '10px' }} className="btn btn-primary mt-3">My History</button>
+                </Link>
+                <Link to="/addWeight">
+                    <button style={{ marginRight: '10px' }} className="btn btn-primary mt-3">Add Weight History</button>
                 </Link>
                 <div style={{ position: 'relative', display: 'inline-block', marginLeft: '10px' }}>
                     <Dropdown>
@@ -81,10 +88,10 @@ const DashboardCustomer = ({ handleMessagesRead }) => {
                         <Dropdown.Menu>
                             {messages.length > 0 ? (
                                 <>
-                                    {messages.map((message, index) => (
+                                    {recentMessages.map((message, index) => (
                                         <Dropdown.Item key={index}>{message.message}</Dropdown.Item>
                                     ))}
-                                    <Dropdown.Item onClick={() => setShowInbox(true)}>View all</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => navigate('/inbox')}>View all</Dropdown.Item>
                                 </>
                             ) : (
                                 <Dropdown.Item>No new messages</Dropdown.Item>
@@ -93,7 +100,6 @@ const DashboardCustomer = ({ handleMessagesRead }) => {
                     </Dropdown>
                 </div>
             </header>
-            {showInbox && <Inbox onMessagesRead={fetchMessages} />}
             <Footer />
         </div>
     );

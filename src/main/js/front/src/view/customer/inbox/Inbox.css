@@ -1,0 +1,40 @@
+.fade-enter {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+.fade-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 500ms, transform 500ms;
+}
+.fade-exit {
+    opacity: 1;
+    transform: translateY(0);
+}
+.fade-exit-active {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 500ms, transform 500ms;
+}
+
+/* Transición para marcar todos como leídos */
+.fade-all-read {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 500ms, transform 500ms;
+}
+
+/* Añadir este estilo al final de tu archivo Inbox.css */
+.message-item {
+    margin-bottom: 10px; /* Espacio entre cada elemento de mensaje */
+}
+
+.message-text {
+    flex: 1; /* Para que el texto ocupe to_do el espacio disponible */
+    overflow-wrap: break-word; /* Para permitir el salto de línea en palabras largas */
+    margin-right: 10px; /* Espacio a la derecha del texto */
+}
+
+.read-button {
+    margin-left: 10px; /* Espacio a la izquierda del botón de eliminar */
+}
