@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './searchRecipe.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Footer from "../../footer";
 
 const SearchRecipeHome = () => {
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('All Categories');
     const [searchTerm, setSearchTerm] = useState('');
+    const [recipes, setRecipes] = useState([]);
     const navigate = useNavigate();
     const [isSearchDisabled, setIsSearchDisabled] = useState(true);
 
@@ -26,13 +27,26 @@ const SearchRecipeHome = () => {
     }, []);
 
     useEffect(() => {
-        // Habilita o deshabilita el botón de búsqueda según si hay término de búsqueda
         setIsSearchDisabled(searchTerm.trim() === '');
     }, [searchTerm]);
 
+    useEffect(() => {
+        // Fetch all recipes in alphabetical order when component mounts
+        const fetchAllRecipes = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/publicRecipes');
+                setRecipes(response.data);
+            } catch (error) {
+                console.error("Error fetching all recipes", error);
+            }
+        };
+
+        fetchAllRecipes();
+    }, []);
+
     const handleSearch = async () => {
         if (searchTerm.trim() === '') {
-            return; // Evita la búsqueda si el término está vacío
+            return;
         }
 
         await performSearch();
@@ -46,21 +60,34 @@ const SearchRecipeHome = () => {
     };
 
     const performSearch = async () => {
-        if (selectedCategory === "All Categories") {
-            const response = await axios.get(`http://localhost:8080/publicRecipes/${searchTerm}`);
-            const recipes = response.data;
-            navigate(`/recipeResult/${searchTerm}`, { state: { recipes } });
-        } else {
-            try {
+        try {
+            if (selectedCategory === "All Categories") {
+                const response = await axios.get(`http://localhost:8080/publicRecipes/${searchTerm}`);
+                setRecipes(response.data);
+            } else {
                 const response = await axios.get('http://localhost:8080/publicRecipesByDietType', {
                     params: { term: searchTerm, diet: selectedCategory }
                 });
-                const recipes = response.data;
-                navigate(`/recipeResult/${searchTerm}`, { state: { recipes } });
-            } catch (error) {
-                console.error("Error fetching recipes", error);
+                setRecipes(response.data);
             }
+        } catch (error) {
+            console.error("Error fetching recipes", error);
         }
+    };
+
+    const handleResetSearch = () => {
+        setSearchTerm('');
+        setSelectedCategory('All Categories');
+        const fetchAllRecipes = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/publicRecipes');
+                setRecipes(response.data);
+            } catch (error) {
+                console.error("Error fetching all recipes", error);
+            }
+        };
+
+        fetchAllRecipes();
     };
 
     return (
@@ -89,8 +116,26 @@ const SearchRecipeHome = () => {
                 >
                     Search
                 </button>
+                <button
+                    className="search-button"
+                    onClick={handleResetSearch}
+                >
+                    Reset
+                </button>
             </div>
-            <button onClick={() => navigate('/searcherSelector')}>Search Another Recipe</button>
+            <div className="recipe-list">
+                {recipes.length > 0 ? (
+                    recipes.map(recipe => (
+                        <div key={recipe.recipeId} className="recipe-item">
+                            <Link to={`/recipeInfo/${recipe.recipeId}`}>
+                                {recipe.recipeName} - {recipe.recipeUsername}
+                            </Link>
+                        </div>
+                    ))
+                ) : (
+                    <p>No recipes available</p>
+                )}
+            </div>
             <Footer />
         </div>
     );

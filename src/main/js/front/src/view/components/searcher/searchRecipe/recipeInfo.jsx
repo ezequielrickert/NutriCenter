@@ -52,7 +52,7 @@ const RecipeInfo = () => {
     }, [recipeId, isValidUser]);
 
     if (error) {
-        return <div>Error: {error.message}</div>;
+        return <div className="container">Error: {error.message}</div>;
     }
 
     const handleSearchAgainClick = () => {
@@ -60,29 +60,36 @@ const RecipeInfo = () => {
     };
 
     return (
-        <div className="recipe-container">
-            {recipe && (
-                <div className="recipe-info">
-                    <h1 className="recipe-title">{recipe.recipeName}</h1>
-                    <p className="recipe-author">Created by: {recipe.recipeUsername}</p>
-                    <p className="recipe-description">Description: {recipe.recipeDescription}</p>
-                    <h2 className="recipe-ingredients-title">Ingredients</h2>
-                    <ul className="recipe-ingredients-list">
-                        {recipe.ingredientList && recipe.ingredientList.map(ingredient => (
-                            <li key={ingredient.ingredientId}
-                                className="recipe-ingredient">{ingredient.ingredientName}</li>
-                        ))}
-                    </ul>
-                    <h2 className="recipe-categories-title">Categories</h2>
-                    <ul className="recipe-categories-list">
-                        {recipe.categoryList && recipe.categoryList.map(category => (
-                            <li key={category.id} className="recipe-category">{category.categoryName}</li>
-                        ))}
-                    </ul>
-                </div>
-            )}
-            <button onClick={handleSearchAgainClick}>Search Another Recipe</button>
-            <Footer/>
+        <div className="container">
+            <div className="recipe-info">
+                {recipe && (
+                    <>
+                        <h1 className="recipe-title">{recipe.recipeName}</h1>
+                        <p className="recipe-author">Created by: {recipe.recipeUsername}</p>
+                        <p className="recipe-description">Description: {recipe.recipeDescription}</p>
+                        <h2 className="recipe-ingredients-title">Ingredients</h2>
+                        <ul className="recipe-ingredients-list">
+                            {recipe.ingredientList && recipe.ingredientList.map(ingredient => (
+                                <li key={ingredient.ingredientId} className="recipe-ingredient">
+                                    {ingredient.ingredientName}
+                                </li>
+                            ))}
+                        </ul>
+                        <h2 className="recipe-categories-title">Categories</h2>
+                        <ul className="recipe-categories-list">
+                            {recipe.categoryList && recipe.categoryList.map(category => (
+                                <li key={category.id} className="recipe-category">
+                                    {category.categoryName}
+                                </li>
+                            ))}
+                        </ul>
+                    </>
+                )}
+                <button onClick={handleSearchAgainClick} className="search-button">
+                    Search Another Recipe
+                </button>
+            </div>
+            <Footer />
         </div>
     );
 }

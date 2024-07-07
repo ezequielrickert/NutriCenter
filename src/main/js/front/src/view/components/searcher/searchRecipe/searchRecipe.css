@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
 * {
     margin: 0;
     padding: 0;
@@ -8,116 +6,139 @@
 }
 
 .container {
-    background: white;
     min-height: 100vh;
-    width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+.recipe-info {
+    max-width: 800px;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.recipe-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.recipe-author {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.recipe-description {
+    margin-bottom: 20px;
+}
+
+.recipe-ingredients-title,
+.recipe-categories-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.recipe-ingredients-list,
+.recipe-categories-list {
+    list-style-type: none;
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+.recipe-ingredient,
+.recipe-category {
+    margin-bottom: 5px;
 }
 
 .search-bar {
     display: flex;
-    align-items: stretch; /* Asegura que los elementos hijos se estiren para igualar la altura del elemento más alto */
-    justify-content: space-between;
-    padding: 10px;
-    width: 80%;
-    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    z-index: 1000;
 }
 
-.search-button {
-    width: 30%;
-}
-
-.search-bar #select, .search-bar input[type="text"], .search-bar .search-button {
-    margin-right: 10px; /* Añade un margen a la derecha de cada elemento excepto el último */
-    height: auto; /* Permite que la altura se ajuste según el contenido */
-}
-
-#select, .search-bar input[type="text"], .search-bar .search-button {
-    /* Asegura que no haya una altura fija para permitir el ajuste automático */
-    padding: 10px 20px; /* Ajusta el padding según sea necesario para mantener la consistencia visual */
-}
-.search-bar #select, .search-bar .search-button {
-    background-color: #007BFF; /* Color de fondo unificado para el selector y el botón */
-    color: white; /* Asegura que el texto sea visible */
+.search-bar #select,
+.search-bar input[type="text"],
+.search-bar .search-button,
+.search-bar .reset-button {
+    margin-right: 10px;
 }
 
 .search-bar input[type="text"] {
-    background-color: #FFFFFF; /* Color de fondo blanco para el campo de búsqueda */
-    color: black; /* Texto en negro para contraste */
-    flex-grow: 2; /* Permite que el input crezca el doble que el selector */
-    border: 1px solid #ccc; /* Borde ligero para definir los límites del input */
-}
-
-.search-bar .search-button {
-    flex-grow: 0; /* Evita que el botón crezca, manteniendo su tamaño basado en el contenido */
-    border: none;
-}
-
-#select {
-    background: #007BFF;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #fff;
-    width: 600px;
-    padding: 25px 20px;
-    cursor: pointer;
-    position: relative;
-    border-radius: 4px;
-    border: none;
-}
-
-#select img {
-    width: 15px;
-}
-
-#select ul {
-    position: absolute;
-    top: 120%;
-    left: 0;
-    list-style: none;
-    width: 100%;
-    color: #555;
-    background-color: #fff;
-    border-radius: 4px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s;
-}
-
-#select ul li {
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.search-bar input {
-    padding: 10px 25px;
-    width: 100%;
-    font-size: 18px;
-    outline: none;
-    border: none;
-}
-
-#select ul.open {
-    max-height: 300px;
-}
-
-.search-button {
-    width: 30%;
-}
-
-.search-button.disabled {
-    opacity: 0.7; /* Opacidad reducida para indicar que está deshabilitado */
-    cursor: not-allowed; /* Cursor no permitido cuando está deshabilitado */
-}
-
-.search-bar {
-    display: flex;
-    align-items: stretch;
-    justify-content: space-between;
+    flex-grow: 2;
     padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.search-bar .search-button,
+.search-bar .reset-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-bar .search-button:hover,
+.search-bar .reset-button:hover {
+    background-color: #0056b3;
+}
+
+.search-bar .search-button.disabled {
+    background-color: #ccc;
+}
+
+.recipe-list {
     width: 80%;
-    border-radius: 5px;
+    margin-top: 100px; /* Adjust this value if needed to ensure it appears below the search bar */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.recipe-item {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-item a {
+    color: #000;
+    text-decoration: none;
+}
+
+.recipe-item a:hover {
+    text-decoration: underline;
+}
+
+.recipe-item p {
+    margin: 5px 0;
+}
+
+.recipe-item:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.footer {
+    margin-top: 20px;
 }
