@@ -127,7 +127,7 @@ const StoreProfile = () => {
                                 <ul>
                                     <li>Ingredient: {stock.ingredient.ingredientName}</li>
                                     <li>Quantity: {stock.quantity}</li>
-                                    <li>Brand: {stock.brand}</li>
+                                    <li>Brand: {stock.id.brandName}</li>
                                 </ul>
                             </div>
                         ))}

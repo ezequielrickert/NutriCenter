@@ -27,10 +27,6 @@ public class Stock {
     @Column(nullable = false)
     private int quantity;
 
-    @Expose
-    @Column
-    private String brand;
-
     public StockId getId() {
         return id;
     }
@@ -64,13 +60,10 @@ public class Stock {
     }
 
     public String getBrand() {
-        return brand;
+        return id.getBrand();
     }
 
     public void setBrand(String brand) {
-        this.brand = brand;
+        this.id.setBrand(brand);
     }
-
-
-    // existing fields, getters and setters...
 }

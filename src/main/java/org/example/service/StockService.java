@@ -4,6 +4,7 @@ import org.example.model.recipe.Ingredient;
 import org.example.model.roles.Customer;
 import org.example.model.roles.Store;
 import org.example.model.stock.Stock;
+import org.example.model.stock.StockId;
 import org.example.repository.ingredient.IngredientRepositoryImp;
 import org.example.repository.stock.StockRepository;
 import org.example.repository.stock.StockRepositoryImpl;
@@ -25,26 +26,34 @@ public class StockService {
         this.ingredientRepository = new IngredientRepositoryImp(entityManager);
     }
 
-    public void createStock(String storeName, Ingredient ingredientsId, int quantity, String brand) {
-        Long storeId = storeRepository.fetchStoreByName(storeName).getStoreId();
+    public void createStock(String storeName, Ingredient ingredient, int quantity, String brand) {
         Store store = storeRepository.fetchStoreByName(storeName);
-        stockRepository.createStock(store, ingredientsId, quantity, brand);
-    }
 
-    public void updateStock(String storeName, Ingredient ingredientsId, int quantity, String brand) {
-        Long storeId = storeRepository.fetchStoreByName(storeName).getStoreId();
-        Store store = storeRepository.fetchStoreByName(storeName);
-        List<Stock> stock = stockRepository.readStock(storeId);
-        for (Stock s : stock) {
-            if (s.getIngredient().getIngredientId().equals(ingredientsId.getIngredientId())) {
-                stockRepository.updateStock(s.getId(), ingredientsId, quantity, brand);
-            }
+        Stock existingStock = stockRepository.findStockByStoreAndIngredientAndBrand(store, ingredient, brand);
+
+        if (existingStock != null) {
+            throw new RuntimeException("El stock ya existe para esta combinación de tienda, ingrediente y marca.");
+        } else {
+            stockRepository.createStock(store, ingredient, quantity, brand);
         }
     }
 
-    public void deleteStock(String storeName, Long ingredientId) {
+    public void updateStock(String storeName, Ingredient ingredient, int quantity, String brand) {
+//        Store store = storeRepository.fetchStoreByName(storeName);
+//
+//        Stock existingStock = stockRepository.findStockByStoreAndIngredientAndBrand(store, ingredient, brand);
+//
+//        if (existingStock != null) {
+//            throw new RuntimeException("El stock ya existe para esta combinación de tienda, ingrediente y marca.");
+//        } else {
+//            StockId stockId =
+//            stockRepository.updateStock(stockId, ingredient, quantity, brand);
+//        }
+    }
+
+    public void deleteStock(String storeName, Long ingredientId, String brand) {
         Long storeId = storeRepository.fetchStoreByName(storeName).getStoreId();
-        stockRepository.deleteStock(storeId, ingredientId);
+        stockRepository.deleteStock(storeId, ingredientId, brand);
     }
 
     public List<Stock> readStock(String storeName) {

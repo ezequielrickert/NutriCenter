@@ -87,7 +87,7 @@ const StockEdition = () => {
         if (editingStock) {
             setSelectedIngredient(editingStock.ingredient);
             setQuantity(editingStock.quantity);
-            setBrand(editingStock.brand);
+            setBrand(editingStock.id.brand);
         }
     }, [editingStock]);
 
@@ -141,21 +141,27 @@ const StockEdition = () => {
             if (response.data === "Stock created successfully") {
                 displayMessage('Stock created successfully');
                 closeModal();
+                closeModal();
+                resetModal();
                 const updatedStocks = await axios.get(`http://localhost:8080/stock/${username}`);
                 setStocks(updatedStocks.data);
-                const broadcast =
-                    await axios.post(`http://localhost:8080/message/${username}/${selectedIngredient.ingredientName}`);
+                let message = `${selectedIngredient.ingredientName} added to ${username} store`;
+                const broadcast = await axios.post(`http://localhost:8080/message/${username}/${message}`);
                 if (broadcast.data === "Message sent successfully") {
                     console.log("Message sent successfully");
                 } else {
                     console.error("Error sending message");
                 }
             } else {
-                displayMessage('Error creating stock');
+                closeModal();
+                resetModal();
+                displayMessage('Stock already exists');
             }
         } catch (error) {
+            closeModal();
+            resetModal();
             console.error("Error creating stock", error);
-            displayMessage('Error creating stock');
+            displayMessage('Stock already exists');
         }
     };
 
@@ -178,8 +184,8 @@ const StockEdition = () => {
                     setStocks(updatedStocks.data);
 
                     if (previousQuantity === 0 && quantity > 0) {
-                        const broadcast=
-                            await axios.post(`http://localhost:8080/message/${username}/${selectedIngredient.ingredientName}/${quantity}`);
+                        let message = `Available stock of ${selectedIngredient.ingredientName} on ${username} store`;
+                        const broadcast = await axios.post(`http://localhost:8080/message/${username}/${message}`);
                         if (broadcast.data === "Message sent successfully") {
                             console.log("Message sent successfully");
                         } else {
@@ -244,7 +250,7 @@ const StockEdition = () => {
                     <tr key={index}>
                         <td>{stock.ingredient.ingredientName}</td>
                         <td>{stock.quantity}</td>
-                        <td>{stock.brand}</td>
+                        <td>{stock.id.brandName}</td>
                         <td>
                             <Button variant="warning" onClick={() => prepareForEdit(stock)} style={{ marginRight: '10px' }}>
                                 Edit

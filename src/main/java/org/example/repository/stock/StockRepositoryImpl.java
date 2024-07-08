@@ -6,9 +6,10 @@ import org.example.model.stock.Stock;
 import org.example.model.stock.StockId;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import java.util.List;
 
-public class StockRepositoryImpl implements StockRepository{
+public class StockRepositoryImpl implements StockRepository {
 
     EntityManager entityManager;
 
@@ -22,7 +23,8 @@ public class StockRepositoryImpl implements StockRepository{
         Store managedStore = entityManager.find(Store.class, store.getStoreId());
         Ingredient managedIngredient = entityManager.find(Ingredient.class, ingredient.getIngredientId());
         Stock stock = new Stock();
-        stock.setId(new StockId(managedStore.getStoreId(), managedIngredient.getIngredientId()));
+        StockId stockId = new StockId(managedStore.getStoreId(), managedIngredient.getIngredientId(), brand);
+        stock.setId(stockId);
         stock.setStore(managedStore);
         stock.setIngredient(managedIngredient);
         stock.setQuantity(quantity);
@@ -43,7 +45,7 @@ public class StockRepositoryImpl implements StockRepository{
 
 
     @Override
-    public void updateStock(StockId stockId, Ingredient ingredientId, int quantity, String brand) {
+    public void updateStock(StockId stockId, Ingredient ingredient, int quantity, String brand) {
         entityManager.getTransaction().begin();
         Stock stock = entityManager.find(Stock.class, stockId);
         stock.setQuantity(quantity);
@@ -52,9 +54,10 @@ public class StockRepositoryImpl implements StockRepository{
     }
 
     @Override
-    public void deleteStock(Long storeId, Long ingredientId) {
+    public void deleteStock(Long storeId, Long ingredientId, String brand) {
         entityManager.getTransaction().begin();
-        Stock stock = entityManager.find(Stock.class, new StockId(storeId, ingredientId));
+        StockId stockId = new StockId(storeId, ingredientId, brand);
+        Stock stock = entityManager.find(Stock.class, stockId);
         entityManager.remove(stock);
         entityManager.getTransaction().commit();
     }
@@ -63,11 +66,29 @@ public class StockRepositoryImpl implements StockRepository{
     public List<Store> getStoresByIngredient(Ingredient ingredient) {
         entityManager.getTransaction().begin();
         List<Store> stores = entityManager.createQuery(
-                        "SELECT s.store FROM STOCK s WHERE s.ingredient = :ingredient", Store.class)
+                        "SELECT DISTINCT s.store FROM STOCK s WHERE s.ingredient = :ingredient", Store.class)
                 .setParameter("ingredient", ingredient)
                 .getResultList();
         entityManager.getTransaction().commit();
         return stores;
     }
 
+    public Stock findStockByStoreAndIngredientAndBrand(Store store, Ingredient ingredient, String brand) {
+        entityManager.getTransaction().begin();
+        try {
+            Stock stock = entityManager.createQuery(
+                            "SELECT s FROM STOCK s WHERE s.store = :store AND s.ingredient = :ingredient AND s.id.brandName = :brand",
+                            Stock.class)
+                    .setParameter("store", store)
+                    .setParameter("ingredient", ingredient)
+                    .setParameter("brand", brand)
+                    .getSingleResult();
+            entityManager.getTransaction().commit();
+            return stock;
+        } catch (
+                NoResultException e) {
+            entityManager.getTransaction().rollback();
+            return null;
+        }
+    }
 }

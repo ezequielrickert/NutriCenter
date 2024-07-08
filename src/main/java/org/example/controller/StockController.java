@@ -62,7 +62,8 @@ public class StockController {
             JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
             String store = gson.fromJson(jsonObject.get("storeName"), String.class);
             Ingredient ingredient = gson.fromJson(jsonObject.get("ingredientId"), Ingredient.class);
-            stockService.deleteStock(store, ingredient.getIngredientId());
+            String brand = gson.fromJson(jsonObject.get("brand"), String.class);
+            stockService.deleteStock(store, ingredient.getIngredientId(), brand);
             return gson.toJson("Stock deleted successfully");
         });
 
