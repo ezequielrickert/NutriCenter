@@ -143,8 +143,8 @@ const StockEdition = () => {
                 closeModal();
                 const updatedStocks = await axios.get(`http://localhost:8080/stock/${username}`);
                 setStocks(updatedStocks.data);
-                let message = `${selectedIngredient.ingredientName} added to ${username} store`;
-                const broadcast = await axios.post(`http://localhost:8080/message/${username}/${message}`);
+                const broadcast =
+                    await axios.post(`http://localhost:8080/message/${username}/${selectedIngredient.ingredientName}`);
                 if (broadcast.data === "Message sent successfully") {
                     console.log("Message sent successfully");
                 } else {
@@ -178,8 +178,8 @@ const StockEdition = () => {
                     setStocks(updatedStocks.data);
 
                     if (previousQuantity === 0 && quantity > 0) {
-                        let message = `Available stock of ${selectedIngredient.ingredientName} on ${username} store`;
-                        const broadcast = await axios.post(`http://localhost:8080/message/${username}/${message}`);
+                        const broadcast=
+                            await axios.post(`http://localhost:8080/message/${username}/${selectedIngredient.ingredientName}/${quantity}`);
                         if (broadcast.data === "Message sent successfully") {
                             console.log("Message sent successfully");
                         } else {

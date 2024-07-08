@@ -39,7 +39,7 @@ const DashboardCustomer = ({ handleMessagesRead }) => {
             const data = response.data;
             if (Array.isArray(data)) {
                 setUnreadCount(data.length);
-                setMessages(data.reverse());
+                setMessages(data);
             } else {
                 console.error('Data received from server is not an array');
             }
@@ -55,6 +55,15 @@ const DashboardCustomer = ({ handleMessagesRead }) => {
     if (!isValidUser) {
         return null;
     }
+
+    const formatMessage = (message) => {
+        const { storeName, ingredientName, quantity } = message;
+        if (quantity !== -1) {
+            return `Stock updated at ${storeName}: ${quantity} of ${ingredientName} added.`;
+        } else {
+            return `New stock created at ${storeName}: ${ingredientName}.`;
+        }
+    };
 
     const recentMessages = messages.slice(0, 5);
 
@@ -89,7 +98,7 @@ const DashboardCustomer = ({ handleMessagesRead }) => {
                             {messages.length > 0 ? (
                                 <>
                                     {recentMessages.map((message, index) => (
-                                        <Dropdown.Item key={index}>{message.message}</Dropdown.Item>
+                                        <Dropdown.Item key={index}>{formatMessage(message)}</Dropdown.Item>
                                     ))}
                                     <Dropdown.Item onClick={() => navigate('/inbox')}>View all</Dropdown.Item>
                                 </>

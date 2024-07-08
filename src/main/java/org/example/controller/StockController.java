@@ -73,12 +73,22 @@ public class StockController {
             return gson.toJson(stores);
         });
 
-        Spark.post("/message/:storeName/:message", (req, res) -> {
+        Spark.post("/message/:storeName/:ingredientName/:quantity", (req, res) -> {
             String storeName = req.params(":storeName");
-            String message = req.params(":message");
+            String ingredientName = req.params(":ingredientName");
+            Integer quantity = Integer.parseInt(req.params(":quantity"));
             Store store = storeService.getStoreByUsername(storeName);
             List<Customer> customers = store.getCustomers();
-            customerMessageService.createMessage(message, customers);
+            customerMessageService.createMessage(customers, storeName, ingredientName, quantity);
+            return gson.toJson("Message sent successfully");
+        });
+
+        Spark.post("/message/:storeName/:ingredientName", (req, res) -> {
+            String storeName = req.params(":storeName");
+            String ingredientName = req.params(":ingredientName");
+            Store store = storeService.getStoreByUsername(storeName);
+            List<Customer> customers = store.getCustomers();
+            customerMessageService.createMessage(customers, storeName, ingredientName, -1);
             return gson.toJson("Message sent successfully");
         });
     }
