@@ -25,19 +25,18 @@ public class StockService {
         this.ingredientRepository = new IngredientRepositoryImp(entityManager);
     }
 
-    public void createStock(String storeName, Ingredient ingredientsId, int quantity, String brand) {
+    public void createStock(String storeName, Ingredient ingredientsId, int quantity, String brand, double price) {
         Long storeId = storeRepository.fetchStoreByName(storeName).getStoreId();
         Store store = storeRepository.fetchStoreByName(storeName);
-        stockRepository.createStock(store, ingredientsId, quantity, brand);
+        stockRepository.createStock(store, ingredientsId, quantity, brand, price);
     }
 
-    public void updateStock(String storeName, Ingredient ingredientsId, int quantity, String brand) {
+    public void updateStock(String storeName, Ingredient ingredientsId, int quantity, String brand, double price) {
         Long storeId = storeRepository.fetchStoreByName(storeName).getStoreId();
-        Store store = storeRepository.fetchStoreByName(storeName);
         List<Stock> stock = stockRepository.readStock(storeId);
         for (Stock s : stock) {
             if (s.getIngredient().getIngredientId().equals(ingredientsId.getIngredientId())) {
-                stockRepository.updateStock(s.getId(), ingredientsId, quantity, brand);
+                stockRepository.updateStock(s.getId(), ingredientsId, quantity, brand, price);
             }
         }
     }

@@ -10,13 +10,15 @@ import java.util.List;
 
 public interface StockRepository {
 
-    void createStock(Store storeId, Ingredient ingredientId, int quantity, String brand);
+    void createStock(Store storeId, Ingredient ingredientId, int quantity, String brand, double price);
 
     List<Stock> readStock(Long storeId);
 
-    void updateStock(StockId stockId, Ingredient ingredientId, int quantity, String brand);
+    void updateStock(StockId stockId, Ingredient ingredientId, int quantity, String brand, double price);
 
     void deleteStock(Long storeId, Long ingredientId) ;
 
     List<Store> getStoresByIngredient(Ingredient ingredient);
+
+
 }

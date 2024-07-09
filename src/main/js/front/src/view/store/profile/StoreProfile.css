@@ -1,0 +1,26 @@
+.table-responsive {
+    width: 100%;
+    overflow-x: auto; /* Ensures the table is scrollable horizontally on small devices */
+}
+
+.table {
+    width: 100%; /* Ensures the table stretches to fill its container */
+    min-width: 600px; /* Optional: Ensures the table has a minimum width for readability */
+}
+
+.quantity-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Ensures the selector takes up the full width of its container */
+}
+
+@media (max-width: 768px) {
+    .table-header {
+        font-size: 12px; /* Reduces font size for smaller devices */
+    }
+    /* Example of hiding less important columns on smaller screens */
+    .table .optional-column {
+        display: none;
+    }
+}

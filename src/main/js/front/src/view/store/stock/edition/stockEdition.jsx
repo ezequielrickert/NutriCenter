@@ -28,6 +28,7 @@ const StockEdition = () => {
     // Form Data
     const [quantity, setQuantity] = useState('');
     const [brand, setBrand] = useState('');
+    const [price, setPrice] = useState(''); // Add price state
     const [editingStock, setEditingStock] = useState(null);
     const [formChanged, setFormChanged] = useState(false);
 
@@ -88,11 +89,12 @@ const StockEdition = () => {
             setSelectedIngredient(editingStock.ingredient);
             setQuantity(editingStock.quantity);
             setBrand(editingStock.brand);
+            setPrice(editingStock.price); // Set price when editing
         }
     }, [editingStock]);
 
     const isFormComplete = () => {
-        return selectedIngredient && quantity && brand;
+        return selectedIngredient && quantity && brand && price;
     };
 
     const displayMessage = (message) => {
@@ -123,6 +125,7 @@ const StockEdition = () => {
             setSelectedIngredient(null);
             setQuantity('');
             setBrand('');
+            setPrice(''); // Reset price
         }
     };
 
@@ -132,7 +135,8 @@ const StockEdition = () => {
             storeName: username,
             ingredientId: selectedIngredient,
             quantity: quantity,
-            brand: brand
+            brand: brand,
+            price: price // Include price in stock data
         };
 
         try {
@@ -165,7 +169,8 @@ const StockEdition = () => {
                 storeName: username,
                 ingredientId: selectedIngredient,
                 quantity: quantity,
-                brand: brand
+                brand: brand,
+                price: price // Include price in stock data
             };
 
             try {
@@ -230,6 +235,7 @@ const StockEdition = () => {
                     <th>Ingredient Name</th>
                     <th>Quantity</th>
                     <th>Brand</th>
+                    <th>Price</th> {/* Add price column */}
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -239,6 +245,7 @@ const StockEdition = () => {
                         <td>{stock.ingredient.ingredientName}</td>
                         <td>{stock.quantity}</td>
                         <td>{stock.brand}</td>
+                        <td>{stock.price}</td> {/* Display price */}
                         <td>
                             <Button variant="warning" onClick={() => prepareForEdit(stock)} style={{ marginRight: '10px' }}>
                                 Edit
@@ -275,6 +282,10 @@ const StockEdition = () => {
                         <Form.Group controlId="formBrand">
                             <Form.Label>Brand</Form.Label>
                             <Form.Control type="text" value={brand} onChange={(e) => { setBrand(e.target.value); setFormChanged(true); }} />
+                        </Form.Group>
+                        <Form.Group controlId="formPrice">
+                            <Form.Label>Price</Form.Label>
+                            <Form.Control type="number" value={price} onChange={(e) => { setPrice(e.target.value); setFormChanged(true); }} min="0" step="0.01" />
                         </Form.Group>
                     </Form>
                 </Modal.Body>

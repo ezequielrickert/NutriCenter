@@ -10,6 +10,7 @@ import org.example.model.roles.Store;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class CostumerRepositoryImp implements CostumerRepository {
@@ -50,6 +51,11 @@ public class CostumerRepositoryImp implements CostumerRepository {
     customer.setCustomerEmail(email);
     customer.setNutritionists(nutritionists);
     customer.setStores(stores);
+    // Ensure the WeightHistory entities are managed
+    weightHistory = weightHistory.stream()
+            .map(wh -> entityManager.contains(wh) ? wh : entityManager.merge(wh))
+            .collect(Collectors.toList());
+    customer.setWeightHistory(weightHistory);
     entityManager.persist(customer);
     entityManager.getTransaction().commit();
   }

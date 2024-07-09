@@ -17,7 +17,7 @@ public class StockRepositoryImpl implements StockRepository{
     }
 
     @Override
-    public void createStock(Store store, Ingredient ingredient, int quantity, String brand) {
+    public void createStock(Store store, Ingredient ingredient, int quantity, String brand, double price) {
         entityManager.getTransaction().begin();
         Store managedStore = entityManager.find(Store.class, store.getStoreId());
         Ingredient managedIngredient = entityManager.find(Ingredient.class, ingredient.getIngredientId());
@@ -27,6 +27,7 @@ public class StockRepositoryImpl implements StockRepository{
         stock.setIngredient(managedIngredient);
         stock.setQuantity(quantity);
         stock.setBrand(brand);
+        stock.setPrice(price);
         entityManager.persist(stock);
         entityManager.getTransaction().commit();
     }
@@ -43,11 +44,12 @@ public class StockRepositoryImpl implements StockRepository{
 
 
     @Override
-    public void updateStock(StockId stockId, Ingredient ingredientId, int quantity, String brand) {
+    public void updateStock(StockId stockId, Ingredient ingredientId, int quantity, String brand, double price) {
         entityManager.getTransaction().begin();
         Stock stock = entityManager.find(Stock.class, stockId);
         stock.setQuantity(quantity);
         stock.setBrand(brand);
+        stock.setPrice(price);
         entityManager.getTransaction().commit();
     }
 

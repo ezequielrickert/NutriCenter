@@ -30,6 +30,10 @@ public class WeightHistoryService {
         Customer customer = costumerRepository.fetchCustomerByUsername(username);
         List<WeightHistory> weightHistoryList = customer.getWeightHistory();
         weightHistoryList = verifyWeightHistory(weightHistoryList, weight);
+        // Ensure the WeightHistory entities are managed
+        weightHistoryList = weightHistoryList.stream()
+                .map(wh -> entityManager.contains(wh) ? wh : entityManager.merge(wh))
+                .collect(Collectors.toList());
         costumerRepository.updateUser(customer.getCustomerId(), customer.getCustomerName(), customer.getCustomerEmail(),
                 customer.getNutritionists(),customer.getStores(), customer.getIngredients(),
                 weightHistoryList);

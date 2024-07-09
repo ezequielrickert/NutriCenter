@@ -1,6 +1,7 @@
 package org.example.model.stock;
 
 import com.google.gson.annotations.Expose;
+import org.checkerframework.checker.units.qual.C;
 import org.example.model.recipe.Ingredient;
 import org.example.model.roles.Store;
 import javax.persistence.*;
@@ -30,6 +31,10 @@ public class Stock {
     @Expose
     @Column
     private String brand;
+
+    @Expose
+    @Column
+    private double price;
 
     public StockId getId() {
         return id;
@@ -71,6 +76,12 @@ public class Stock {
         this.brand = brand;
     }
 
+    public double getPrice() {
+        return price;
+    }
 
-    // existing fields, getters and setters...
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
 }

@@ -35,7 +35,8 @@ public class StockController {
             Ingredient ingredient = gson.fromJson(jsonObject.get("ingredientId"), Ingredient.class);
             int quantity = gson.fromJson(jsonObject.get("quantity"), Integer.class);
             String brand = gson.fromJson(jsonObject.get("brand"), String.class);
-            stockService.createStock(storeName, ingredient, quantity, brand);
+            double price = gson.fromJson(jsonObject.get("price"), Double.class);
+            stockService.createStock(storeName, ingredient, quantity, brand, price);
             return gson.toJson("Stock created successfully");
         });
 
@@ -53,7 +54,8 @@ public class StockController {
             Ingredient ingredient = gson.fromJson(jsonObject.get("ingredientId"), Ingredient.class);
             int quantity = gson.fromJson(jsonObject.get("quantity"), Integer.class);
             String brand = gson.fromJson(jsonObject.get("brand"), String.class);
-            stockService.updateStock(store, ingredient, quantity, brand);
+            double price = gson.fromJson(jsonObject.get("price"), Double.class);
+            stockService.updateStock(store, ingredient, quantity, brand, price);
             return gson.toJson("Stock updated successfully");
         });
 
@@ -80,6 +82,13 @@ public class StockController {
             List<Customer> customers = store.getCustomers();
             customerMessageService.createMessage(message, customers);
             return gson.toJson("Message sent successfully");
+        });
+
+        Spark.post("/purchase", (req, res) -> {
+            String body = req.body();
+            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            String storeName = gson.fromJson(jsonObject.get("storeName"), String.class);
+            return gson.toJson("Purchase successful");
         });
     }
 }

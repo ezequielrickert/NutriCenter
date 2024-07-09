@@ -38,6 +38,7 @@ public class WeightHistoryRepositoryImpl implements WeightHistoryRepository{
         WeightHistory weightHistory = entityManager.find(WeightHistory.class, id);
         weightHistory.setWeight(weight);
         weightHistory.setDate(date);
+        entityManager.merge(weightHistory); // merge instead of persist (update instead of insert
         entityManager.getTransaction().commit();
     }
 
