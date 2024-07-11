@@ -127,7 +127,7 @@ const StoreProfile = () => {
                 ingredient: stock.ingredient.ingredientName,
                 quantity: selectedQuantities[stock.ingredient.ingredientName] || 0,
                 price: stock.price
-            }));
+            })).filter(item => item.quantity > 0); // Filter out items with quantity 0;
 
             const response = await axios.post("http://localhost:8080/purchase", purchaseItems);
 
@@ -183,6 +183,11 @@ const QuantitySelector = ({ value, onChange, maxQuantity }) => {
         // Check if every selected quantity is 0
         return Object.values(selectedQuantities).every(quantity => quantity === 0);
     };
+
+    const totalAmount = stocks.reduce((acc, stock) => {
+        const quantity = selectedQuantities[stock.ingredient.ingredientName] || 0;
+        return acc + (quantity * stock.price);
+    }, 0);
 
     return (
         <div className="container">
@@ -253,6 +258,11 @@ const QuantitySelector = ({ value, onChange, maxQuantity }) => {
                             ))}
                         </ul>
                     </nav>
+                    {userRole === "customer" && (
+                        <div className="d-flex justify-content-end">
+                            <h5>Total amount: ${totalAmount}</h5>
+                        </div>
+                    )}
                     {userRole === "customer" && (
                         <button className="btn btn-success mt-3" onClick={handlePurchase}
                                 disabled={isPurchaseButtonDisabled()}>

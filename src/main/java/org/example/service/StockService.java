@@ -55,4 +55,17 @@ public class StockService {
         Ingredient ingredient = ingredientRepository.getIngredientByName(ingredientName);
         return stockRepository.getStoresByIngredient(ingredient);
     }
+
+    public void purchase(String storeName, String ingredientName, int quantity) {
+        Ingredient ingredient = ingredientRepository.getIngredientByName(ingredientName);
+        Store store = storeRepository.fetchStoreByName(storeName);
+        List<Stock> stock = stockRepository.readStock(store.getStoreId());
+        for (Stock product : stock) {
+            int remain = product.getQuantity() - quantity;
+            boolean matchIngredient = product.getIngredient().getIngredientId().equals(ingredient.getIngredientId());
+            if (matchIngredient && remain >= 0) {
+                stockRepository.updateStock(product.getId(), ingredient, remain, product.getBrand(), product.getPrice());
+            }
+        }
+    }
 }

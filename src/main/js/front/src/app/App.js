@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import '../global.css';
 import {
-    CustomerSubscriptionList,
+    CustomerSubscriptionList, MercadoPago,
     NutritionistRecipeEditor,
     NutritionistSubscriptionList,
     UniversalLogin
@@ -78,6 +78,7 @@ function App() {
                     <Route path={"/addWeight"} element={<AddWeight />} />
                     <Route path={"/inbox"} element={<Inbox />} />
 
+                    <Route path={"/payment/:"} element={<MercadoPago />} />
                 </Routes>
             </div>
         </Router>

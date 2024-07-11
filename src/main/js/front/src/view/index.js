@@ -43,3 +43,5 @@ export { default as CustomerSubscriptionList } from './customer/subscribed/subsc
 export { default as NutritionistSubscriptionList } from './nutritionist/subscribed/subscriptionList';
 
 export { default as AddWeight } from './customer/weighthistory/addWeight';
+
+export { default as MercadoPago } from './components/purchase/MercadoPago';
