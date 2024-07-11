@@ -87,7 +87,9 @@ const StockEdition = () => {
         if (editingStock) {
             setSelectedIngredient(editingStock.ingredient);
             setQuantity(editingStock.quantity);
-            setBrand(editingStock.id.brand);
+            setBrand(editingStock.id.brandName); // Use brandName from StockId
+        } else {
+            resetModal();
         }
     }, [editingStock]);
 
@@ -119,19 +121,17 @@ const StockEdition = () => {
     };
 
     const resetModal = () => {
-        if (editingStock) {
-            setSelectedIngredient(null);
-            setQuantity('');
-            setBrand('');
-        }
+        setSelectedIngredient(null);
+        setQuantity('');
+        setBrand('');
         setEditingStock(null);
+        setFormChanged(false); // Reset formChanged state
     };
-
 
     const handleCreate = async () => {
         const stockData = {
             storeName: username,
-            ingredientId: selectedIngredient,
+            ingredientName: selectedIngredient.ingredientName,
             quantity: quantity,
             brand: brand
         };
@@ -141,8 +141,6 @@ const StockEdition = () => {
             if (response.data === "Stock created successfully") {
                 displayMessage('Stock created successfully');
                 closeModal();
-                closeModal();
-                resetModal();
                 const updatedStocks = await axios.get(`http://localhost:8080/stock/${username}`);
                 setStocks(updatedStocks.data);
                 let message = `${selectedIngredient.ingredientName} added to ${username} store`;
@@ -154,12 +152,10 @@ const StockEdition = () => {
                 }
             } else {
                 closeModal();
-                resetModal();
                 displayMessage('Stock already exists');
             }
         } catch (error) {
             closeModal();
-            resetModal();
             console.error("Error creating stock", error);
             displayMessage('Stock already exists');
         }
@@ -169,8 +165,9 @@ const StockEdition = () => {
         if (editingStock) {
             let previousQuantity = editingStock.quantity;
             const stockData = {
+                stockId: editingStock.id,
                 storeName: username,
-                ingredientId: selectedIngredient,
+                ingredientName: selectedIngredient.ingredientName,
                 quantity: quantity,
                 brand: brand
             };
@@ -193,19 +190,21 @@ const StockEdition = () => {
                         }
                     }
                 } else {
-                    displayMessage('Error updating stock');
+                    closeModal();
+                    displayMessage(response.data); // Muestra el mensaje de error recibido
                 }
             } catch (error) {
+                closeModal();
                 console.error("Error updating stock", error);
-                displayMessage('Error updating stock');
+                displayMessage('Error updating stock 2');
             }
         }
     };
 
+
     const handleDelete = async (stock) => {
         const stockData = {
-            storeName: username,
-            ingredientId: stock.ingredient
+            stockId: stock.id
         };
 
         if (window.confirm('Are you sure you want to delete this stock?')) {
@@ -213,7 +212,7 @@ const StockEdition = () => {
                 const response = await axios.post('http://localhost:8080/deleteStock', stockData);
                 if (response.data === "Stock deleted successfully") {
                     displayMessage('Stock deleted successfully');
-                    setStocks(stocks.filter(s => s.ingredient.ingredientId !== stock.ingredient.ingredientId));
+                    setStocks(stocks.filter(s => s.id !== stock.id));
                 } else {
                     displayMessage('Error deleting stock');
                 }
@@ -225,16 +224,16 @@ const StockEdition = () => {
     };
 
     const setShowModalCreation = () => {
-        closeModal();
+        resetModal();
         setShowModal(true);
-    }
+    };
 
     let ingredientOptions = ingredients.map(ingredient => ({ value: ingredient, label: ingredient.ingredientName }));
 
     return (
         <div className="container my-3">
             <h1 className="text-center">Stocks</h1>
-            <Button variant="success" onClick={() => setShowModalCreation()} style={{ marginBottom: '20px' }}>Create Stock</Button>
+            <Button variant="success" onClick={setShowModalCreation} style={{ marginBottom: '20px' }}>Create Stock</Button>
             {showMessage && <div className="alert alert-success">{messageContent}</div>}
             <Table striped bordered hover>
                 <thead>
@@ -246,47 +245,59 @@ const StockEdition = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {stocks.map((stock, index) => (
-                    <tr key={index}>
+                {stocks.map(stock => (
+                    <tr key={stock.id.ingredientId}>
                         <td>{stock.ingredient.ingredientName}</td>
                         <td>{stock.quantity}</td>
                         <td>{stock.id.brandName}</td>
                         <td>
-                            <Button variant="warning" onClick={() => prepareForEdit(stock)} style={{ marginRight: '10px' }}>
-                                Edit
-                            </Button>
-                            <Button variant="danger" onClick={() => handleDelete(stock)}>
-                                Delete
-                            </Button>
+                            <Button variant="warning" onClick={() => prepareForEdit(stock)} style={{ marginRight: '10px' }}>Edit</Button>
+                            <Button variant="danger" onClick={() => handleDelete(stock)}>Delete</Button>
                         </td>
                     </tr>
                 ))}
                 </tbody>
             </Table>
             <Modal show={showModal} onHide={closeModal}>
-                <Modal.Header>
+                <Modal.Header closeButton>
                     <Modal.Title>{modalTitle}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                        <Form.Group controlId="formIngredient">
+                        <Form.Group controlId="ingredientSelect">
                             <Form.Label>Ingredient</Form.Label>
                             <ReactSelect
                                 options={ingredientOptions}
                                 value={selectedIngredient ? { value: selectedIngredient, label: selectedIngredient.ingredientName } : null}
-                                onChange={selectedOption => { setSelectedIngredient(selectedOption.value); setFormChanged(true); }}
-                                className="basic-single"
-                                classNamePrefix="select"
-                                isDisabled={!!editingStock}
+                                onChange={option => {
+                                    setSelectedIngredient(option.value);
+                                    setFormChanged(true); // Set formChanged to true on change
+                                }}
                             />
                         </Form.Group>
-                        <Form.Group controlId="formQuantity">
+                        <Form.Group controlId="quantityInput">
                             <Form.Label>Quantity</Form.Label>
-                            <Form.Control type="number" value={quantity} onChange={(e) => { setQuantity(e.target.value); setFormChanged(true); }} min="0" />
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter quantity"
+                                value={quantity}
+                                onChange={e => {
+                                    setQuantity(e.target.value);
+                                    setFormChanged(true); // Set formChanged to true on change
+                                }}
+                            />
                         </Form.Group>
-                        <Form.Group controlId="formBrand">
+                        <Form.Group controlId="brandInput">
                             <Form.Label>Brand</Form.Label>
-                            <Form.Control type="text" value={brand} onChange={(e) => { setBrand(e.target.value); setFormChanged(true); }} />
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter brand"
+                                value={brand}
+                                onChange={e => {
+                                    setBrand(e.target.value);
+                                    setFormChanged(true); // Set formChanged to true on change
+                                }}
+                            />
                         </Form.Group>
                     </Form>
                 </Modal.Body>
@@ -294,9 +305,15 @@ const StockEdition = () => {
                     <Button variant="secondary" onClick={closeModal}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={editingStock ? handleUpdate : handleCreate} disabled={!isFormComplete()}>
-                        {buttonText}
-                    </Button>
+                    {buttonText === 'Create' ? (
+                        <Button variant="primary" onClick={handleCreate} disabled={!isFormComplete() || !formChanged}>
+                            {buttonText}
+                        </Button>
+                    ) : (
+                        <Button variant="primary" onClick={handleUpdate} disabled={!isFormComplete() || !formChanged}>
+                            {buttonText}
+                        </Button>
+                    )}
                 </Modal.Footer>
             </Modal>
             <Footer />

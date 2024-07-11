@@ -16,9 +16,13 @@ public interface StockRepository {
 
     void updateStock(StockId stockId, Ingredient ingredient, int quantity, String brand);
 
-    void deleteStock(Long storeId, Long ingredientId, String brand) ;
+    void deleteStock(StockId stockId) ;
 
     List<Store> getStoresByIngredient(Ingredient ingredient);
 
-    Stock findStockByStoreAndIngredientAndBrand(Store store, Ingredient ingredient, String brand);
+    Stock findStockAvoidStockId(StockId stockId, Store store, Ingredient ingredient, String brand);
+
+    StockId fetchStockId(Integer stockId);
+
+    Stock findStock(Store store, Ingredient ingredient, String brand);
 }

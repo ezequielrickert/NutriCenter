@@ -8,7 +8,9 @@ import org.example.model.recipe.Ingredient;
 import org.example.model.roles.Customer;
 import org.example.model.roles.Store;
 import org.example.model.stock.Stock;
+import org.example.model.stock.StockId;
 import org.example.service.CustomerMessageService;
+import org.example.service.IngredientService;
 import org.example.service.StockService;
 import org.example.service.StoreService;
 import spark.Spark;
@@ -26,13 +28,15 @@ public class StockController {
         final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
         StockService stockService = new StockService(entityManagerFactory.createEntityManager());
         StoreService storeService = new StoreService(entityManagerFactory.createEntityManager());
+        IngredientService ingredientService = new IngredientService(entityManagerFactory.createEntityManager());
         CustomerMessageService customerMessageService = new CustomerMessageService(entityManagerFactory.createEntityManager());
 
         Spark.post("/addStock", (req, res) -> {
             String body = req.body();
             JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
             String storeName = gson.fromJson(jsonObject.get("storeName"), String.class);
-            Ingredient ingredient = gson.fromJson(jsonObject.get("ingredientId"), Ingredient.class);
+            String ingredientName = gson.fromJson(jsonObject.get("ingredientName"), String.class);
+            Ingredient ingredient = ingredientService.getIngredientByName(ingredientName);
             int quantity = gson.fromJson(jsonObject.get("quantity"), Integer.class);
             String brand = gson.fromJson(jsonObject.get("brand"), String.class);
             stockService.createStock(storeName, ingredient, quantity, brand);
@@ -49,21 +53,28 @@ public class StockController {
         Spark.post("/updateStock", (req, res) -> {
             String body = req.body();
             JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            StockId actualStockId = gson.fromJson(jsonObject.get("stockId"), StockId.class);
             String store = gson.fromJson(jsonObject.get("storeName"), String.class);
-            Ingredient ingredient = gson.fromJson(jsonObject.get("ingredientId"), Ingredient.class);
+            String ingredientName = gson.fromJson(jsonObject.get("ingredientName"), String.class);
+            Ingredient ingredient = ingredientService.getIngredientByName(ingredientName);
             int quantity = gson.fromJson(jsonObject.get("quantity"), Integer.class);
             String brand = gson.fromJson(jsonObject.get("brand"), String.class);
-            stockService.updateStock(store, ingredient, quantity, brand);
-            return gson.toJson("Stock updated successfully");
+
+            try {
+                stockService.updateStock(actualStockId, store, ingredient, quantity, brand);
+                return gson.toJson("Stock updated successfully");
+            } catch (RuntimeException e) {
+                res.status(400);
+                return gson.toJson(e.getMessage()); // Devuelve el mensaje de error al frontend
+            }
         });
+
 
         Spark.post("/deleteStock", (req, res) -> {
             String body = req.body();
             JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
-            String store = gson.fromJson(jsonObject.get("storeName"), String.class);
-            Ingredient ingredient = gson.fromJson(jsonObject.get("ingredientId"), Ingredient.class);
-            String brand = gson.fromJson(jsonObject.get("brand"), String.class);
-            stockService.deleteStock(store, ingredient.getIngredientId(), brand);
+            StockId stockId = gson.fromJson(jsonObject.get("stockId"), StockId.class);
+            stockService.deleteStock(stockId);
             return gson.toJson("Stock deleted successfully");
         });
 

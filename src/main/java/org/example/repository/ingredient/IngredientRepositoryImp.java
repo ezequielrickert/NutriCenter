@@ -80,13 +80,17 @@ public class IngredientRepositoryImp implements IngredientRepository {
     }
 
     public Ingredient getIngredientByName(String ingredientName) {
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Ingredient> cr = cb.createQuery(Ingredient.class);
-        Root<Ingredient> root = cr.from(Ingredient.class);
-        cr.select(root).where(cb.equal(root.get("ingredientName"), ingredientName));
-
-        Query query = entityManager.createQuery(cr);
-        return (Ingredient) query.getSingleResult();
+        entityManager.getTransaction().begin();
+        try {
+            Ingredient ingredient = entityManager.createQuery("SELECT c FROM INGREDIENT c WHERE c.ingredientName = :ingredientName", Ingredient.class)
+                    .setParameter("ingredientName", ingredientName)
+                    .getSingleResult();
+            entityManager.getTransaction().commit();
+            return ingredient;
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+            return null;
+        }
     }
 
     public List<Ingredient> getIngredientsBeginningWith(String beginning) {

@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Embeddable
 public class StockId implements Serializable {
@@ -23,6 +24,19 @@ public class StockId implements Serializable {
         this.storeId = storeId;
         this.ingredientId = ingredientId;
         this.brandName = brand;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StockId stockId = (StockId) o;
+        return storeId.equals(stockId.storeId) && ingredientId.equals(stockId.ingredientId) && brandName.equals(stockId.brandName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(storeId, ingredientId, brandName);
     }
 
     public Long getStoreId() {

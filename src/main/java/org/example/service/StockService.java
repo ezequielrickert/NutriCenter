@@ -1,7 +1,6 @@
 package org.example.service;
 
 import org.example.model.recipe.Ingredient;
-import org.example.model.roles.Customer;
 import org.example.model.roles.Store;
 import org.example.model.stock.Stock;
 import org.example.model.stock.StockId;
@@ -29,7 +28,7 @@ public class StockService {
     public void createStock(String storeName, Ingredient ingredient, int quantity, String brand) {
         Store store = storeRepository.fetchStoreByName(storeName);
 
-        Stock existingStock = stockRepository.findStockByStoreAndIngredientAndBrand(store, ingredient, brand);
+        Stock existingStock = stockRepository.findStock(store, ingredient, brand);
 
         if (existingStock != null) {
             throw new RuntimeException("El stock ya existe para esta combinación de tienda, ingrediente y marca.");
@@ -38,22 +37,24 @@ public class StockService {
         }
     }
 
-    public void updateStock(String storeName, Ingredient ingredient, int quantity, String brand) {
-//        Store store = storeRepository.fetchStoreByName(storeName);
-//
-//        Stock existingStock = stockRepository.findStockByStoreAndIngredientAndBrand(store, ingredient, brand);
-//
-//        if (existingStock != null) {
-//            throw new RuntimeException("El stock ya existe para esta combinación de tienda, ingrediente y marca.");
-//        } else {
-//            StockId stockId =
-//            stockRepository.updateStock(stockId, ingredient, quantity, brand);
-//        }
+    public void updateStock(StockId stockId, String storeName, Ingredient ingredient, int quantity, String brand) {
+        Store store = storeRepository.fetchStoreByName(storeName);
+
+        try {
+            Stock existingStock = stockRepository.findStockAvoidStockId(stockId, store, ingredient, brand);
+
+            if (existingStock != null) {
+                throw new RuntimeException("El stock ya existe para esta combinación de tienda, ingrediente y marca.");
+            } else {
+                stockRepository.updateStock(stockId, ingredient, quantity, brand);
+            }
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Error al actualizar el stock: " + e.getMessage());
+        }
     }
 
-    public void deleteStock(String storeName, Long ingredientId, String brand) {
-        Long storeId = storeRepository.fetchStoreByName(storeName).getStoreId();
-        stockRepository.deleteStock(storeId, ingredientId, brand);
+    public void deleteStock(StockId stockId) {
+        stockRepository.deleteStock(stockId);
     }
 
     public List<Stock> readStock(String storeName) {
