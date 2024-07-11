@@ -29,7 +29,6 @@ const StockEdition = () => {
     const [quantity, setQuantity] = useState('');
     const [brand, setBrand] = useState('');
     const [editingStock, setEditingStock] = useState(null);
-    const [formChanged, setFormChanged] = useState(false);
 
     useEffect(() => {
         const validateUser = async () => {
@@ -73,7 +72,7 @@ const StockEdition = () => {
                     console.error('Data received from server is not an array');
                 }
             } catch (error) {
-                console.error('There was an error!', error);
+                console.error('There was an error fetching Ingredients!', error);
             }
         };
 
@@ -87,7 +86,11 @@ const StockEdition = () => {
         if (editingStock) {
             setSelectedIngredient(editingStock.ingredient);
             setQuantity(editingStock.quantity);
-            setBrand(editingStock.brand);
+            setBrand(editingStock.id.brand);
+        } else {
+            setSelectedIngredient(null);
+            setQuantity('');
+            setBrand('');
         }
     }, [editingStock]);
 
@@ -115,23 +118,16 @@ const StockEdition = () => {
         setShowModal(false);
         setModalTitle('Create Stock');
         setButtonText('Create');
-        resetModal();
-    };
-
-    const resetModal = () => {
-        if (editingStock) {
-            setSelectedIngredient(null);
-            setQuantity('');
-            setBrand('');
-        }
+        setSelectedIngredient(null);
+        setQuantity('');
+        setBrand('');
         setEditingStock(null);
     };
-
 
     const handleCreate = async () => {
         const stockData = {
             storeName: username,
-            ingredientId: selectedIngredient,
+            ingredientId: selectedIngredient.ingredientId,
             quantity: quantity,
             brand: brand
         };
@@ -140,22 +136,27 @@ const StockEdition = () => {
             const response = await axios.post('http://localhost:8080/addStock', stockData);
             if (response.data === "Stock created successfully") {
                 displayMessage('Stock created successfully');
-                closeModal();
                 const updatedStocks = await axios.get(`http://localhost:8080/stock/${username}`);
                 setStocks(updatedStocks.data);
+                closeModal();
                 const broadcast =
                     await axios.post(`http://localhost:8080/message/${username}/${selectedIngredient.ingredientName}`);
+                closeModal();
                 if (broadcast.data === "Message sent successfully") {
                     console.log("Message sent successfully");
                 } else {
                     console.error("Error sending message");
                 }
             } else {
-                displayMessage('Error creating stock');
+                displayMessage(response.data);
             }
         } catch (error) {
+            if (error.response && error.response.data) {
+                displayMessage(error.response.data);
+            } else {
+                displayMessage('Error creating stock');
+            }
             console.error("Error creating stock", error);
-            displayMessage('Error creating stock');
         }
     };
 
@@ -163,22 +164,20 @@ const StockEdition = () => {
         if (editingStock) {
             let previousQuantity = editingStock.quantity;
             const stockData = {
+                stockId: editingStock.id,
                 storeName: username,
-                ingredientId: selectedIngredient,
                 quantity: quantity,
-                brand: brand
             };
 
             try {
                 const response = await axios.post('http://localhost:8080/updateStock', stockData);
                 if (response.data === "Stock updated successfully") {
                     displayMessage('Stock updated successfully');
-                    closeModal();
                     const updatedStocks = await axios.get(`http://localhost:8080/stock/${username}`);
                     setStocks(updatedStocks.data);
-
+                    closeModal();
                     if (previousQuantity === 0 && quantity > 0) {
-                        const broadcast=
+                        const broadcast =
                             await axios.post(`http://localhost:8080/message/${username}/${selectedIngredient.ingredientName}/${quantity}`);
                         if (broadcast.data === "Message sent successfully") {
                             console.log("Message sent successfully");
@@ -187,19 +186,22 @@ const StockEdition = () => {
                         }
                     }
                 } else {
-                    displayMessage('Error updating stock');
+                    displayMessage(response.data);
                 }
             } catch (error) {
+                if (error.response && error.response.data) {
+                    displayMessage(error.response.data);
+                } else {
+                    displayMessage('Error updating stock');
+                }
                 console.error("Error updating stock", error);
-                displayMessage('Error updating stock');
             }
         }
     };
 
     const handleDelete = async (stock) => {
         const stockData = {
-            storeName: username,
-            ingredientId: stock.ingredient
+            stockId: stock.id
         };
 
         if (window.confirm('Are you sure you want to delete this stock?')) {
@@ -207,28 +209,31 @@ const StockEdition = () => {
                 const response = await axios.post('http://localhost:8080/deleteStock', stockData);
                 if (response.data === "Stock deleted successfully") {
                     displayMessage('Stock deleted successfully');
-                    setStocks(stocks.filter(s => s.ingredient.ingredientId !== stock.ingredient.ingredientId));
+                    setStocks(stocks.filter(s => s.id !== stock.id));
+                } else {
+                    displayMessage(response.data);
+                }
+            } catch (error) {
+                if (error.response && error.response.data) {
+                    displayMessage(error.response.data);
                 } else {
                     displayMessage('Error deleting stock');
                 }
-            } catch (error) {
                 console.error("Error deleting stock", error);
-                displayMessage('Error deleting stock');
             }
         }
     };
 
     const setShowModalCreation = () => {
-        closeModal();
         setShowModal(true);
-    }
+    };
 
     let ingredientOptions = ingredients.map(ingredient => ({ value: ingredient, label: ingredient.ingredientName }));
 
     return (
         <div className="container my-3">
             <h1 className="text-center">Stocks</h1>
-            <Button variant="success" onClick={() => setShowModalCreation()} style={{ marginBottom: '20px' }}>Create Stock</Button>
+            <Button variant="success" onClick={setShowModalCreation} style={{ marginBottom: '20px' }}>Create Stock</Button>
             {showMessage && <div className="alert alert-success">{messageContent}</div>}
             <Table striped bordered hover>
                 <thead>
@@ -244,7 +249,7 @@ const StockEdition = () => {
                     <tr key={index}>
                         <td>{stock.ingredient.ingredientName}</td>
                         <td>{stock.quantity}</td>
-                        <td>{stock.brand}</td>
+                        <td>{stock.id.brand}</td>
                         <td>
                             <Button variant="warning" onClick={() => prepareForEdit(stock)} style={{ marginRight: '10px' }}>
                                 Edit
@@ -267,20 +272,30 @@ const StockEdition = () => {
                             <Form.Label>Ingredient</Form.Label>
                             <ReactSelect
                                 options={ingredientOptions}
-                                value={selectedIngredient ? { value: selectedIngredient, label: selectedIngredient.ingredientName } : null}
-                                onChange={selectedOption => { setSelectedIngredient(selectedOption.value); setFormChanged(true); }}
-                                className="basic-single"
-                                classNamePrefix="select"
+                                value={selectedIngredient ? ingredientOptions.find(option => option.value.ingredientId === selectedIngredient.ingredientId) : null}
+                                onChange={(option) => setSelectedIngredient(option.value)}
                                 isDisabled={!!editingStock}
+                                isClearable={true}
                             />
                         </Form.Group>
                         <Form.Group controlId="formQuantity">
                             <Form.Label>Quantity</Form.Label>
-                            <Form.Control type="number" value={quantity} onChange={(e) => { setQuantity(e.target.value); setFormChanged(true); }} min="0" />
+                            <Form.Control
+                                type="number"
+                                placeholder="Enter quantity"
+                                value={quantity}
+                                onChange={(e) => setQuantity(e.target.value)}
+                            />
                         </Form.Group>
                         <Form.Group controlId="formBrand">
                             <Form.Label>Brand</Form.Label>
-                            <Form.Control type="text" value={brand} onChange={(e) => { setBrand(e.target.value); setFormChanged(true); }} />
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter brand"
+                                value={brand}
+                                onChange={(e) => setBrand(e.target.value)}
+                                disabled={!!editingStock}
+                            />
                         </Form.Group>
                     </Form>
                 </Modal.Body>
