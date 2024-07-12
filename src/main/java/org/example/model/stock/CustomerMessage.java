@@ -18,16 +18,26 @@ public class CustomerMessage {
 
     @Expose
     @Column(nullable = false)
-    private String message;
+    private boolean isRead = false;
 
     @Expose
     @Column(nullable = false)
-    private boolean isRead = false;
+    private String storeName;
 
-    public CustomerMessage(Long customerId, String message) {
+    @Expose
+    @Column(nullable = false)
+    private String ingredientName;
+
+    @Expose
+    @Column
+    private Integer quantity;
+
+    public CustomerMessage(Long customerId, String storeName, String ingredientName, Integer quantity) {
         this.customerId = customerId;
-        this.message = message;
         this.isRead = false;
+        this.storeName = storeName;
+        this.ingredientName = ingredientName;
+        this.quantity = quantity;
     }
 
     public CustomerMessage() {
@@ -39,14 +49,6 @@ public class CustomerMessage {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getMessage() {
-        return message;
     }
 
     public Long getCustomerId() {
@@ -63,5 +65,29 @@ public class CustomerMessage {
 
     public void setRead(boolean isRead) {
         this.isRead = isRead;
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+
+    public String getIngredientName() {
+        return ingredientName;
+    }
+
+    public void setIngredientName(String ingredientName) {
+        this.ingredientName = ingredientName;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 }

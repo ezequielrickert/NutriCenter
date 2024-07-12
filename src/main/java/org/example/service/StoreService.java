@@ -1,5 +1,6 @@
 package org.example.service;
 
+import org.example.model.roles.Customer;
 import org.example.model.roles.Store;
 import org.example.repository.store.StoreRepositoryImpl;
 import javax.persistence.EntityManager;
@@ -12,7 +13,6 @@ public class StoreService {
     public StoreService(EntityManager entityManager) {
         storeRepository = new StoreRepositoryImpl(entityManager);
     }
-
 
     public void createStore(String storeName, String storeEmail, String storePassword) {
         storeRepository.createStore(storeName, storeEmail, storePassword);

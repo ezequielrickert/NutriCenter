@@ -13,13 +13,15 @@ public class CustomerMessageRepository {
         this.entityManager = entityManager;
     }
 
-    public void createMessage(String message, List<Customer> customers) {
+    public void createMessage(List<Customer> customers, String storeName, String ingredientName, Integer quantity) {
         entityManager.getTransaction().begin();
         for (Customer customer : customers) {
             CustomerMessage customerMessage = new CustomerMessage();
-            customerMessage.setMessage(message);
             customerMessage.setCustomerId(customer.getCustomerId());
             customerMessage.setRead(false);
+            customerMessage.setStoreName(storeName);
+            customerMessage.setIngredientName(ingredientName);
+            customerMessage.setQuantity(quantity);
             entityManager.persist(customerMessage);
         }
         entityManager.getTransaction().commit();

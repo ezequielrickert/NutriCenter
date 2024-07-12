@@ -19,8 +19,8 @@ public class CustomerMessageService {
         this.customerRepository = new CostumerRepositoryImp(entityManager);
     }
 
-    public void createMessage(String message, List<Customer> customers) {
-        customerMessageRepository.createMessage(message, customers);
+    public void createMessage(List<Customer> customers, String storeName, String ingredientName, Integer quantity) {
+        customerMessageRepository.createMessage(customers, storeName, ingredientName, quantity);
     }
 
     public List<CustomerMessage> getMessage(Customer customer) {

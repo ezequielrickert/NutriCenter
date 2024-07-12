@@ -3,8 +3,8 @@ package org.example.model.stock;
 import com.google.gson.annotations.Expose;
 import org.example.model.recipe.Ingredient;
 import org.example.model.roles.Store;
+
 import javax.persistence.*;
-import java.util.List;
 
 @Entity(name = "STOCK")
 public class Stock {
@@ -26,10 +26,6 @@ public class Stock {
     @Expose
     @Column(nullable = false)
     private int quantity;
-
-    @Expose
-    @Column
-    private String brand;
 
     public StockId getId() {
         return id;
@@ -62,15 +58,4 @@ public class Stock {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-
-    // existing fields, getters and setters...
 }

@@ -1,22 +1,27 @@
 package org.example.model.stock;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Embeddable
 public class StockId implements Serializable {
 
+    @Expose
+    private Long storeId;
+    @Expose
+    private Long ingredientId;
+    @Expose
+    private String brand;
+
     public StockId() {}
 
-    public StockId(Long storeId, Long ingredientId) {
+    public StockId(Long storeId, Long ingredientId, String brand) {
         this.storeId = storeId;
         this.ingredientId = ingredientId;
+        this.brand = brand;
     }
-
-    private Long storeId;
-
-    private Long ingredientId;
 
     public Long getStoreId() {
         return storeId;

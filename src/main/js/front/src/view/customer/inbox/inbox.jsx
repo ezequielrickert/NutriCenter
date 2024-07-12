@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import Footer from "../../components/footer";
-import axios from "axios";
-import { Button, ListGroup, Container, Modal } from 'react-bootstrap';
-import { FaCheckCircle } from 'react-icons/fa'; // Importar FaCheckCircle
+import { Button, ListGroup, Container, Pagination, Row, Col } from 'react-bootstrap';
+import { FaCheckCircle } from 'react-icons/fa';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import './Inbox.css'; // Archivo CSS para estilos adicionales
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import './Inbox.css';
 
 const Inbox = ({ onMessagesRead }) => {
     const [messages, setMessages] = useState([]);
-    const [selectedMessage, setSelectedMessage] = useState(null);
-    const [markAllReadAnimation, setMarkAllReadAnimation] = useState(false); // Estado para la animación
+    const [markAllReadAnimation, setMarkAllReadAnimation] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const messagesPerPage = 6;
     const username = localStorage.getItem("username");
 
     useEffect(() => {
@@ -18,7 +20,7 @@ const Inbox = ({ onMessagesRead }) => {
                 const response = await axios.get(`http://localhost:8080/message/unread/${username}`);
                 const data = response.data;
                 if (Array.isArray(data)) {
-                    setMessages(data.reverse());
+                    setMessages(data);
                 } else {
                     console.error('Data received from server is not an array');
                 }
@@ -28,7 +30,7 @@ const Inbox = ({ onMessagesRead }) => {
         };
 
         fetchMessages();
-    }, [username, markAllReadAnimation]); // Añade markAllReadAnimation como dependencia
+    }, [username, markAllReadAnimation]);
 
     const handleMarkAsRead = async (messageId) => {
         try {
@@ -43,23 +45,43 @@ const Inbox = ({ onMessagesRead }) => {
     const handleMarkAllAsRead = async () => {
         try {
             await axios.put(`http://localhost:8080/message/readAll/${username}`);
-            setMarkAllReadAnimation(true); // Activar animación al marcar todos como leídos
+            setMarkAllReadAnimation(true);
             setTimeout(() => {
                 setMessages([]);
-                setMarkAllReadAnimation(false); // Desactivar animación después de un tiempo
-            }, 1000); // Tiempo suficiente para que termine la animación CSS
-            onMessagesRead(); // Actualizar mensajes una vez marcados como leídos
+                setMarkAllReadAnimation(false);
+            }, 1000);
+            onMessagesRead();
         } catch (error) {
             console.error('Error marking all messages as read', error);
         }
     };
 
-    const handleShowMessage = (message) => {
-        setSelectedMessage(message);
+    const formatMessage = (message) => {
+        const { storeName, ingredientName, quantity } = message;
+        const camelCaseStoreName = storeName.replace(/\b\w/g, (char) => char.toUpperCase());
+        const formattedStoreName = storeName.endsWith('s') ? `${camelCaseStoreName}' ` : `${camelCaseStoreName}'s `;
+        const formattedIngredientName = ingredientName.replace(/\b\w/g, (char) => char.toUpperCase()); // Convert to Camel Case
+
+        if (quantity !== -1) {
+            return (
+                <span>
+                    Stock updated at <Link to={`/storeProfile/${storeName}`} className="store-link">{formattedStoreName}</Link>store: <span className="quantity">{quantity}</span> of  <Link to={`/ingredientInfo/${ingredientName}`} className="ingredient-link">{formattedIngredientName}</Link> added.
+                </span>
+            );
+        } else {
+            return (
+                <span>
+                    New stock created at <Link to={`/storeProfile/${storeName}`} className="store-link">{formattedStoreName}</Link>store: <Link to={`/ingredientInfo/${ingredientName}`} className="ingredient-link">{formattedIngredientName}</Link>.
+                </span>
+            );
+        }
     };
 
-    const handleCloseModal = () => {
-        setSelectedMessage(null);
+    const totalPages = Math.ceil(messages.length / messagesPerPage);
+    const currentMessages = messages.slice((currentPage - 1) * messagesPerPage, currentPage * messagesPerPage);
+
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
     };
 
     return (
@@ -72,44 +94,45 @@ const Inbox = ({ onMessagesRead }) => {
                     </Button>
                 )}
             </header>
-            {/* Aplicar CSSTransition al contenedor principal de la lista */}
-            <TransitionGroup component={ListGroup}>
-                {messages.length > 0 ? (
-                    messages.map((message) => (
-                        <CSSTransition key={message.id} timeout={500} classNames="fade">
-                            <ListGroup.Item className="d-flex justify-content-between align-items-center message-item">
-                                <span className="message-text" onClick={() => handleShowMessage(message)}>
-                                    {message.message}
-                                </span>
-                                {!message.isRead && (
-                                    <Button variant="outline-success" onClick={() => handleMarkAsRead(message.id)} className="read-button">
-                                        <FaCheckCircle /> {/* Utilizar FaCheckCircle aquí */}
-                                    </Button>
-                                )}
-                            </ListGroup.Item>
+            <Row className="g-3">
+                <TransitionGroup component={null}>
+                    {currentMessages.length > 0 ? (
+                        currentMessages.map((message) => (
+                            <CSSTransition key={message.id} timeout={500} classNames="fade">
+                                <Col key={message.id} xs={12} md={6}>
+                                    <ListGroup.Item className="message-item">
+                                        <span className="message-text">{formatMessage(message)}</span>
+                                        {!message.isRead && (
+                                            <Button variant="outline-success" onClick={(e) => { e.stopPropagation(); handleMarkAsRead(message.id); }}>
+                                                <FaCheckCircle />
+                                            </Button>
+                                        )}
+                                    </ListGroup.Item>
+                                </Col>
+                            </CSSTransition>
+                        ))
+                    ) : (
+                        <CSSTransition key="no-messages" timeout={500} classNames="fade">
+                            <Col xs={12}>
+                                <p className="text-center">No messages found.</p>
+                            </Col>
                         </CSSTransition>
-                    ))
-                ) : (
-                    <CSSTransition key="no-messages" timeout={500} classNames="fade">
-                        <p className="text-center">No messages found.</p>
-                    </CSSTransition>
-                )}
-            </TransitionGroup>
+                    )}
+                </TransitionGroup>
+            </Row>
             <Footer />
-            {selectedMessage && (
-                <Modal show={true} onHide={handleCloseModal}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Message Details</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <p>{selectedMessage.message}</p>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleCloseModal}>
-                            Close
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
+            {totalPages > 1 && (
+                <Pagination className="justify-content-center mt-4">
+                    {[...Array(totalPages)].map((_, index) => (
+                        <Pagination.Item
+                            key={index + 1}
+                            active={index + 1 === currentPage}
+                            onClick={() => handlePageChange(index + 1)}
+                        >
+                            {index + 1}
+                        </Pagination.Item>
+                    ))}
+                </Pagination>
             )}
         </Container>
     );
