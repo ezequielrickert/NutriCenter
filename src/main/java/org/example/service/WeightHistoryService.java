@@ -1,6 +1,6 @@
 package org.example.service;
 
-import org.example.model.history.Day;
+import org.example.model.history.CustomerHistory;
 import org.example.model.history.WeightHistory;
 import org.example.model.roles.Customer;
 import org.example.repository.customer.CostumerRepository;
@@ -29,7 +29,7 @@ public class WeightHistoryService {
     public void addWeight(String username, Double weight) {
         Customer customer = costumerRepository.fetchCustomerByUsername(username);
         List<WeightHistory> weightHistoryList = customer.getWeightHistory();
-        weightHistoryList = verifyWeightHistory(weightHistoryList, weight);
+        weightHistoryList = verifyWeightHistory(weightHistoryList, weight, customer);
         // Ensure the WeightHistory entities are managed
         weightHistoryList = weightHistoryList.stream()
                 .map(wh -> entityManager.contains(wh) ? wh : entityManager.merge(wh))
@@ -39,7 +39,7 @@ public class WeightHistoryService {
                 weightHistoryList);
     }
 
-    private List<WeightHistory> verifyWeightHistory(List<WeightHistory> weightHistoryList, Double weight) {
+    private List<WeightHistory> verifyWeightHistory(List<WeightHistory> weightHistoryList, Double weight, Customer customer) {
         int i = 0;
         for (WeightHistory weightHistory : weightHistoryList) {
             if (Objects.equals(weightHistory.getDate(), LocalDate.now())){
@@ -49,10 +49,16 @@ public class WeightHistoryService {
             }
         }
         if(i == 0) {
-            WeightHistory newWeight = weightHistoryRepository.createWeightHistory(weight, LocalDate.now());
+            WeightHistory newWeight = weightHistoryRepository.createWeightHistory(weight, LocalDate.now(), customer);
             weightHistoryList.add(newWeight);
         }
         return weightHistoryList;
     }
 
+    public List<WeightHistory> getWeightHistory(Customer customer, LocalDate fromDate) {
+        List<WeightHistory> weightHistoryList = weightHistoryRepository.getCustomerHistory(customer.getCustomerId());
+        return weightHistoryList.stream()
+                .filter(wh -> wh.getDate().isAfter(fromDate))
+                .collect(Collectors.toList());
+    }
 }

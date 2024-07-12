@@ -55,7 +55,12 @@ const SearchIngredientPage = () => {
     const handleSearchClick = () => {
         const trimmedSearchTerm = searchTerm.trim();
         if (trimmedSearchTerm) {
-            navigate(`/ingredientResult/${trimmedSearchTerm}`);
+            if (suggestions.length === 1) {
+                navigate(`/ingredientInfo/${suggestions[0]}`);
+            }
+            else {
+                navigate(`/ingredientResult/${trimmedSearchTerm}`);
+            }
         }
     };
 

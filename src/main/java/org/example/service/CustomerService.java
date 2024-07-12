@@ -11,6 +11,7 @@ import org.example.repository.customer.CostumerRepositoryImp;
 import org.example.repository.customerhistory.CustomerHistoryRepository;
 import org.example.repository.customerhistory.CustomerHistoryRepositoryImplementation;
 import javax.persistence.EntityManager;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -124,7 +125,5 @@ public class CustomerService {
         }
         return false;
     }
-
-
 }
 

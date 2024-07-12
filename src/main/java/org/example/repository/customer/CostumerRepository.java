@@ -23,5 +23,4 @@ public interface CostumerRepository {
   Customer fetchCustomerByUsername(String username);
 
   void unsubscribe(String nutritionist, Customer customer);
-
 }
