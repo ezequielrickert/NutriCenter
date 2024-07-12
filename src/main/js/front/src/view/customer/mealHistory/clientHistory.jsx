@@ -3,13 +3,25 @@ import axios from 'axios';
 import MonthlyHistory from './monthlyHistory';
 import MealHistory from "./mealHistory";
 import WeightHistory from "./weightHistory";
-import './styles.css'; // Import the CSS file for styling
+import './styles.css';
+import {useParams} from "react-router-dom"; // Import the CSS file for styling
 
 const ClientHistory = () => {
+    const { customerName } = useParams();
+/*
+    useEffect(() => {
+        localStorage.setItem('customerName', customerName);
+    }, [customerName]);
+*/
+
+    console.log("Customer Name from Params:", customerName);
+
     const [isValidUser, setIsValidUser] = useState(false);
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
+
     const userRole = localStorage.getItem('role');
+
 
     useEffect(() => {
         const validateUser = async () => {
@@ -39,16 +51,16 @@ const ClientHistory = () => {
             <div className="components-container">
                 <div className="component">
                     <h2>Monthly History</h2>
-                    <MonthlyHistory/>
+                    <MonthlyHistory customerName={customerName}/>
                 </div>
                 <div className="component">
                     <h2>Weight History</h2>
-                    <WeightHistory/>
+                    <WeightHistory customerName={customerName}/>
                 </div>
             </div>
             <div className="bottom-component">
                 <h2>Meal History</h2>
-                <MealHistory/>
+                <MealHistory customerName={customerName}/>
             </div>
         </div>
     );

@@ -2,11 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Chart from 'chart.js/auto';
 
-const MonthlyHistory = () => {
-    const [isValidUser, setIsValidUser] = useState(false);
-    const token = localStorage.getItem('token');
-    const username = localStorage.getItem('username');
-    const userRole = localStorage.getItem('role');
+const MonthlyHistory = ({ customerName }) => {
+
+    // Verificar que customerName no es undefined
+    useEffect(() => {
+        console.log("Customer Name in MonthlyHistory:", customerName);
+    }, [customerName]);
 
     const today = new Date();
     const oneYearAgo = new Date();
@@ -26,29 +27,12 @@ const MonthlyHistory = () => {
     const chartRef = useRef(null);
     const chartInstance = useRef(null);
 
-    useEffect(() => {
-        const validateUser = async () => {
-            try {
-                const response = await axios.post("http://localhost:8080/validateUser", { username, token });
-                if (response.data === "User is valid" && userRole === "customer") {
-                    setIsValidUser(true);
-                } else {
-                    window.location.href = '/universalLogin';
-                }
-            } catch (error) {
-                console.error("Error validating user", error);
-                window.location.href = '/universalLogin';
-            }
-        };
 
-        validateUser();
-    }, [token, username, userRole]);
-
+    // Puede ser que haya que cambiar esto para que se cree el chart apenas se entra
+    // Ya que este useEffect se ejecuta cuando se cambia la fecha
     useEffect(() => {
-        if (isValidUser) {
             createPieChart();
-        }
-    }, [isValidUser, selectedDate]);
+    }, [selectedDate]);
 
     useEffect(() => {
         if (chartInstance.current) {
@@ -119,7 +103,7 @@ const MonthlyHistory = () => {
     const createPieChart = async () => {
         try {
             resetValues();
-            const response = await axios.get(`http://localhost:8080/getDaysByDate/${username}/${selectedDate}`);
+            const response = await axios.get(`http://localhost:8080/getDaysByDate/${customerName}/${selectedDate}`);
             console.log('Type of response.data:', typeof response.data);
             let days = JSON.parse(response.data);
 
@@ -184,9 +168,6 @@ const MonthlyHistory = () => {
         setTotalFats(0);
     };
 
-    if (!isValidUser) {
-        return null;
-    }
 
     return (
         <div style={{ width: '100%', height: '100%', padding: '10px', boxSizing: 'border-box' }}>

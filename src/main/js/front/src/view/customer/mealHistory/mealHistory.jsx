@@ -4,11 +4,13 @@ import Footer from "../../components/footer";
 import MonthlyHistory from './monthlyHistory'; // Import the MonthlyHistory component
 
 
-const MealHistory = () => {
-    const [isValidUser, setIsValidUser] = useState(false);
-    const token = localStorage.getItem('token');
-    const username = localStorage.getItem('username');
-    const userRole = localStorage.getItem('role');
+const MealHistory = ({ customerName }) => {
+
+    // Verificar que customerName no es undefined
+    useEffect(() => {
+        console.log("Customer Name in MealHistory:", customerName);
+    }, [customerName]);
+
     const [monday, setMonday] = useState(null);
     const [tuesday, setTuesday] = useState(null);
     const [wednesday, setWednesday] = useState(null);
@@ -57,25 +59,10 @@ const MealHistory = () => {
     }
 
     useEffect(() => {
-        const validateUser = async () => {
-            try {
-                const response = await axios.post("http://localhost:8080/validateUser", {username, token});
-                if (response.data === "User is valid" && userRole === "customer") {
-                    setIsValidUser(true);
-                } else {
-                    window.location.href = '/universalLogin';
-                }
-            } catch (error) {
-                console.error("Error validating user", error);
-                window.location.href = '/universalLogin';
-            }
-        };
-
-
 
         const fetchCustomerDays = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/getDays/${username}`);
+                const response = await axios.get(`http://localhost:8080/getDays/${customerName}`);
                 console.log('Type of response.data:', typeof response.data);
                 let days = JSON.parse(response.data); // Parse the JSON string into an object
 
@@ -99,14 +86,10 @@ const MealHistory = () => {
             }
         };
 
-        validateUser();
         fetchCustomerDays();
-    }, [token, username]);
+    }, [customerName]);
 
     // if necesario!! para que React no devuelva la pagina al no estar validado
-    if (!isValidUser) {
-        return null;
-    }
 
     return (
         <div className="d-flex justify-content-center">

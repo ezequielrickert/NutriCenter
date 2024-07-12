@@ -77,7 +77,7 @@ const DashboardCustomer = ({ handleMessagesRead }) => {
                 <Link to="/customer-subscriptions">
                     <button style={{ marginRight: '10px' }} className="btn btn-primary mt-3">View Subscriptions</button>
                 </Link>
-                <Link to="/clientHistory">
+                <Link to={`/clientHistory/${username}`}>
                     <button style={{ marginRight: '10px' }} className="btn btn-primary mt-3">My History</button>
                 </Link>
                 <Link to="/addWeight">

@@ -5,11 +5,12 @@ import Chart from 'chart.js/auto';
 import config from "bootstrap/js/src/util/config";
 
 
-const WeightHistory = () => {
-    const [isValidUser, setIsValidUser] = useState(false);
-    const token = localStorage.getItem('token');
-    const username = localStorage.getItem('username');
-    const userRole = localStorage.getItem('role');
+const WeightHistory = ({ customerName }) => {
+
+    // Verificar que customerName no es undefined
+    useEffect(() => {
+        console.log("Customer Name in WeightHistory:", customerName);
+    }, [customerName]);
 
     const today = new Date();
     const oneYearAgo = new Date();
@@ -25,29 +26,8 @@ const WeightHistory = () => {
 
 
     useEffect(() => {
-
-        const validateUser = async () => {
-            try {
-                const response = await axios.post("http://localhost:8080/validateUser", { username, token });
-                if (response.data === "User is valid" && userRole === "customer") {
-                    setIsValidUser(true);
-                } else {
-                    window.location.href = '/universalLogin';
-                }
-            } catch (error) {
-                console.error("Error validating user", error);
-                window.location.href = '/universalLogin';
-            }
-        };
-
-        validateUser();
-    }, [token, username, userRole]);
-
-    useEffect(() => {
-        if (isValidUser) {
             createWeightChart();
-        }
-    }, [isValidUser, selectedDate]);
+    }, [selectedDate]);
 
     const handleDateChange = (event) => {
         setSelectedDate(event.target.value);
@@ -107,7 +87,7 @@ const WeightHistory = () => {
 
     const createWeightChart = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/getWeight/${username}/${selectedDate}`);
+            const response = await axios.get(`http://localhost:8080/getWeight/${customerName}/${selectedDate}`);
             console.log("Raw response data:", response.data);
             let entries = JSON.parse(response.data);
             console.log("Parsed entries:", entries);
@@ -138,10 +118,6 @@ const WeightHistory = () => {
             console.error("Error creating weight chart", error);
         }
     };
-
-    if (!isValidUser) {
-        return null;
-    }
 
 
 

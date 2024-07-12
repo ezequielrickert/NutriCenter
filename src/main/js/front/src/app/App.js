@@ -75,7 +75,7 @@ function App() {
                     <Route path={"/mealTable"} element={<MealTable />} />
                     <Route path={"/mealHistory"} element={<MealHistory />} />
                     <Route path={"/monthlyHistory"} element={<MonthlyHistory />} />
-                    <Route path={"/clientHistory"} element={<ClientHistory />} />
+                    <Route path={"/clientHistory/:customerName"} element={<ClientHistory />} />
                     <Route path={"/weightHistory"} element={<WeightHistory />} />
 
                     <Route path={"/customer-subscriptions"} element={<CustomerSubscriptionList />} />

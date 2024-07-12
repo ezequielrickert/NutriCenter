@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Footer from "../../components/footer";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddMeal = () => {
     const [recipes, setRecipes] = useState([]);
@@ -25,7 +27,6 @@ const AddMeal = () => {
         fetchRecipes();
     }, []);
 
-
     const handleMealChange = (event) => {
         setSelectedMeal(event.target.value);
     };
@@ -35,7 +36,7 @@ const AddMeal = () => {
     };
 
     const handleSubmit = (event) => {
-        event.preventDefault()
+        event.preventDefault();
 
         const meal = {
             mealType: selectedMeal,
@@ -46,12 +47,12 @@ const AddMeal = () => {
         axios.post('http://localhost:8080/meal', meal)
             .then(response => {
                 console.log('Meal added successfully');
-                window.location.href = '/mealHistory';
+                toast.success('Meal added successfully');
             })
             .catch(error => {
                 console.error('There was an error adding meal!', error);
+                toast.error('There was an error adding the meal!');
             });
-
     }
 
     return (
@@ -80,7 +81,8 @@ const AddMeal = () => {
                 </div>
                 <button type="submit" className="btn btn-primary mt-3">Add Meal</button>
             </form>
-        <Footer />
+            <Footer />
+            <ToastContainer />
         </div>
     );
 };
