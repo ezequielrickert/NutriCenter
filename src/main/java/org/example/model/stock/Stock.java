@@ -29,10 +29,6 @@ public class Stock {
 
     @Expose
     @Column
-    private String brand;
-
-    @Expose
-    @Column
     private double price;
 
     public StockId getId() {
@@ -65,10 +61,6 @@ public class Stock {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
     }
 
     public double getPrice() {

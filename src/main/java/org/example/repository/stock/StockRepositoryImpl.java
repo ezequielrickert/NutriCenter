@@ -60,16 +60,6 @@ public class StockRepositoryImpl {
         return !query.getResultList().isEmpty();
     }
 
-    public boolean existsByStoreNameAndIngredientIdAndBrandAndNotStockId(String storeName, Long ingredientId, String brand, StockId stockId) {
-        TypedQuery<Stock> query = entityManager.createQuery(
-                "SELECT s FROM STOCK s WHERE s.store.storeName = :storeName AND s.ingredient.id = :ingredientId AND s.id.brand = :brand AND s.id != :stockId", Stock.class);
-        query.setParameter("storeName", storeName);
-        query.setParameter("ingredientId", ingredientId);
-        query.setParameter("brand", brand);
-        query.setParameter("stockId", stockId);
-        return !query.getResultList().isEmpty();
-    }
-
     public List<Store> getStoresByIngredient(Ingredient ingredient) {
         entityManager.getTransaction().begin();
         List<Store> stores = entityManager.createQuery(

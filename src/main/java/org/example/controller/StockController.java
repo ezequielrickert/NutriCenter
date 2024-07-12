@@ -1,8 +1,6 @@
 package org.example.controller;
 
 import com.google.gson.*;
-import com.mercadopago.client.preference.PreferenceItemRequest;
-import com.mercadopago.client.preference.PreferenceRequest;
 import okhttp3.*;
 import org.example.model.recipe.Ingredient;
 import org.example.model.roles.Customer;
@@ -10,7 +8,6 @@ import org.example.model.roles.Store;
 import org.example.model.stock.Stock;
 import org.example.model.stock.StockId;
 import org.example.service.CustomerMessageService;
-import org.example.service.CustomerService;
 import org.example.service.IngredientService;
 import org.example.service.StockService;
 import org.example.service.StoreService;
@@ -20,12 +17,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.example.Application.gson;
-
-import com.mercadopago.MercadoPagoConfig;
 
 public class StockController {
 
@@ -174,7 +168,8 @@ public class StockController {
             String paymentId = req.queryParams("payment_id");
             String status = req.queryParams("status");
             stockService.purchaseCart();
-            return "Payment ID: " + paymentId + " Status: " + status;
+            res.redirect("http://localhost:3000/dashboardCustomer");
+            return null; // Return null since redirect has been issued
         });
 
         Spark.get("/failure", (req, res) -> {

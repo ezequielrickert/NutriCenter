@@ -114,6 +114,83 @@ const StoreProfile = () => {
         }
     };
 
+    const handleQuantityChange = (ingredientName, quantity) => {
+        setSelectedQuantities(prevState => ({
+            ...prevState,
+            [ingredientName]: quantity
+        }));
+    };
+
+    const handlePurchase = async () => {
+        try {
+            const purchaseItems = stocks.map(stock => ({
+                store: store.storeName,
+                ingredient: stock.ingredient.ingredientName,
+                quantity: selectedQuantities[stock.ingredient.ingredientName] || 0,
+                price: stock.price
+            })).filter(item => item.quantity > 0); // Filter out items with quantity 0;
+
+            const response = await axios.post("http://localhost:8080/purchase", purchaseItems);
+
+            if (response.status === 200) {
+                const { init_point } = response.data;
+                window.location.href = init_point; // Redirect to Mercado Pago payment URL
+            } else {
+                console.error('Purchase failed');
+            }
+        } catch (error) {
+            console.error('There was an error!', error);
+        }
+    };
+
+    const QuantitySelector = ({ value, onChange, maxQuantity }) => {
+        const handleDecrease = () => {
+            if (value > 0) {
+                onChange(value - 1);
+            }
+        };
+
+        const handleIncrease = () => {
+            if (value < maxQuantity) {
+                onChange(value + 1);
+            }
+        };
+
+        return (
+            <div className="quantity-selector d-flex align-items-center">
+                <button className="btn btn-outline-secondary" onClick={handleDecrease} disabled={value <= 0}>-</button>
+                <span className="mx-2">{value}</span>
+                <button className="btn btn-outline-secondary" onClick={handleIncrease} disabled={value >= maxQuantity}>+</button>
+            </div>
+        );
+    };
+
+    const filteredStocks = stocks.filter(stock =>
+        stock.ingredient.ingredientName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    const indexOfLastRow = currentPage * rowsPerPage;
+    const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+    const currentStocks = filteredStocks.slice(indexOfFirstRow, indexOfLastRow);
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(filteredStocks.length / rowsPerPage); i++) {
+        pageNumbers.push(i);
+    }
+
+    const isPurchaseButtonDisabled = () => {
+        // Check if every selected quantity is 0
+        return Object.values(selectedQuantities).every(quantity => quantity === 0);
+    };
+
+    const totalAmount = stocks.reduce((acc, stock) => {
+        const quantity = selectedQuantities[stock.ingredient.ingredientName] || 0;
+        return acc + (quantity * stock.price);
+    }, 0);
+
+
     return (
         <div className="container">
             {store && (

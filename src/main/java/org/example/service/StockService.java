@@ -16,9 +16,6 @@ import java.util.List;
 
 public class StockService {
 
-    StockRepository stockRepository;
-    StoreRepository storeRepository;
-    IngredientRepositoryImp ingredientRepository;
     List<CartElement> cart = new ArrayList<>();
     private final StockRepositoryImpl stockRepository;
     private final StoreRepositoryImpl storeRepository;
@@ -65,10 +62,6 @@ public class StockService {
         return stockRepository.existsByStoreNameAndIngredientIdAndBrand(storeName, ingredientId, brand);
     }
 
-    public boolean checkStockExistsForUpdate(StockId stockId, String storeName, Long ingredientId, String brand) {
-        return stockRepository.existsByStoreNameAndIngredientIdAndBrandAndNotStockId(storeName, ingredientId, brand, stockId);
-    }
-
     public List<Store> getStoresByIngredient(String ingredientName) {
         Ingredient ingredient = ingredientRepository.getIngredientByName(ingredientName);
         return stockRepository.getStoresByIngredient(ingredient);
@@ -76,13 +69,13 @@ public class StockService {
 
     public void purchase(String storeName, String ingredientName, int quantity) {
         Ingredient ingredient = ingredientRepository.getIngredientByName(ingredientName);
-        Store store = storeRepository.fetchStoreByName(storeName);
-        List<Stock> stock = stockRepository.readStock(store.getStoreId());
+        List<Stock> stock = stockRepository.findByStoreName(storeName);
         for (Stock product : stock) {
             int remain = product.getQuantity() - quantity;
             boolean matchIngredient = product.getIngredient().getIngredientId().equals(ingredient.getIngredientId());
             if (matchIngredient && remain >= 0) {
-                stockRepository.updateStock(product.getId(), ingredient, remain, product.getBrand(), product.getPrice());
+                product.setQuantity(remain);
+                stockRepository.update(product);
             }
         }
     }
