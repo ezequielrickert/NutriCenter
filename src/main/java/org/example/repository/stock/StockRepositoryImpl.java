@@ -73,7 +73,7 @@ public class StockRepositoryImpl {
     public List<Store> getStoresByIngredient(Ingredient ingredient) {
         entityManager.getTransaction().begin();
         List<Store> stores = entityManager.createQuery(
-                        "SELECT s.store FROM STOCK s WHERE s.ingredient = :ingredient", Store.class)
+                        "SELECT DISTINCT s.store FROM STOCK s WHERE s.ingredient = :ingredient", Store.class)
                 .setParameter("ingredient", ingredient)
                 .getResultList();
         entityManager.getTransaction().commit();

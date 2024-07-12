@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import Footer from "../../components/footer";
 
 const StoreProfile = () => {
     const [isValidUser, setIsValidUser] = useState(false);
@@ -127,7 +128,7 @@ const StoreProfile = () => {
                                 <ul>
                                     <li>Ingredient: {stock.ingredient.ingredientName}</li>
                                     <li>Quantity: {stock.quantity}</li>
-                                    <li>Brand: {stock.brand}</li>
+                                    <li>Brand: {stock.id.brand}</li>
                                 </ul>
                             </div>
                         ))}
@@ -139,6 +140,7 @@ const StoreProfile = () => {
                     )}
                 </>
             )}
+            <Footer />
         </div>
     );
 }
