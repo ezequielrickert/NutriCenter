@@ -8,11 +8,6 @@ import {useParams} from "react-router-dom"; // Import the CSS file for styling
 
 const ClientHistory = () => {
     const { customerName } = useParams();
-/*
-    useEffect(() => {
-        localStorage.setItem('customerName', customerName);
-    }, [customerName]);
-*/
 
     console.log("Customer Name from Params:", customerName);
 
@@ -26,16 +21,24 @@ const ClientHistory = () => {
     useEffect(() => {
         const validateUser = async () => {
             try {
-                const response = await axios.post("http://localhost:8080/validateUser", { username, token });
+                const response = await axios.post("http://localhost:8080/validateUser", {username, token});
                 if (response.data === "User is valid" && userRole === "customer") {
                     setIsValidUser(true);
+                }
+                else if(userRole === "nutritionist"){
+                    /* aca debe chequear si es nutricionista si esta subscripto al usuario correspondiente */
+                    const data = {nutritionist : username, customer : customerName};
+                    const response = await axios.get("http://localhost:8080/subscribe", {params: data});
+                    if (response.data) {
+                        setIsValidUser(true);
+                    }
                 } else {
+                        window.location.href = '/universalLogin';
+                    }
+                } catch (error) {
+                    console.error("Error validating user", error);
                     window.location.href = '/universalLogin';
                 }
-            } catch (error) {
-                console.error("Error validating user", error);
-                window.location.href = '/universalLogin';
-            }
         };
 
         validateUser();

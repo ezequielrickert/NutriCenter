@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'; // Import Link
 import Footer from "../../components/footer";
 
 const CustomerSubscriptionList = () => {
@@ -45,7 +46,11 @@ const CustomerSubscriptionList = () => {
             <h1>Subscribed Customers</h1>
             <ul>
                 {customers.map((customer) => (
-                    <li key={customer.customerName}>{customer}</li>
+                    <li key={customer.customerName}>
+                        <Link to={`/clientHistory/${customer.customerName}`}>
+                            {customer.customerName}
+                        </Link>
+                    </li>
                 ))}
             </ul>
             <Footer />

@@ -69,10 +69,10 @@ public class SubscriptionController {
            String username = req.params(":username");
            Nutritionist nutritionist = nutritionistService.getNutritionistByUsername(username);
            List<Customer> customers = nutritionist.getCustomers();
-           List<String> customerUsernames = customers.stream().map(Customer::getCustomerName).toList();
+           // List<String> customerUsernames = customers.stream().map(Customer::getCustomerName).toList();
             Gson specialGson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
             resp.type("application/json");
-            return specialGson.toJson(customerUsernames);
+            return specialGson.toJson(customers);
         });
 
         Spark.get("/subscription/store/:username", (req, resp) -> {

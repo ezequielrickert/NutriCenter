@@ -63,6 +63,5 @@ public class LoginController {
                 return "User is not valid";
             }
         }, gson::toJson);
-
     }
 }
