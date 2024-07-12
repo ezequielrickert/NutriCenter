@@ -37,6 +37,8 @@ export { default as RecipeResult } from './components/searcher/searchRecipe/reci
 export { default as RecipeInfo } from './components/searcher/searchRecipe/recipeInfo';
 
 export { default as AccountSettingsPage } from './components/account/accountSelection';
+export { default as PurchaseSuccess } from './components/purchase/PurchaseSuccess'
+export { default as PurchaseFailed } from './components/purchase/PurchaseFailed'
 export { default as Logout } from './components/account/logout';
 
 export { default as CustomerSubscriptionList } from './customer/subscribed/subscriptionList';

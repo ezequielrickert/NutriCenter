@@ -168,7 +168,7 @@ public class StockController {
             String paymentId = req.queryParams("payment_id");
             String status = req.queryParams("status");
             stockService.purchaseCart();
-            res.redirect("http://localhost:3000/dashboardCustomer");
+            res.redirect("http://localhost:3000/purchase-success");
             return null; // Return null since redirect has been issued
         });
 
@@ -176,7 +176,8 @@ public class StockController {
             String paymentId = req.queryParams("payment_id");
             String status = req.queryParams("status");
             stockService.emptyCart();
-            return "Payment ID: " + paymentId + " Status: " + status;
+            res.redirect("http://localhost:3000/purchase-failed");
+            return null; // Return null since redirect has been issued
         });
     }
 }

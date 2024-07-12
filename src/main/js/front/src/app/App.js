@@ -15,7 +15,7 @@ import { InitialEditor, IngredientEditor, RecipeEditor } from '../view';
 import { SearcherSelector, SearchIngredientPage, SearchRecipePage } from "../view";
 import { IngredientResult, IngredientInfo } from '../view';
 import { RecipeResult, RecipeInfo } from '../view';
-import { AccountSettingsPage, Logout } from '../view';
+import { AccountSettingsPage, Logout, PurchaseSuccess, PurchaseFailed} from '../view';
 import { MealTable, MealHistory, MonthlyHistory, ClientHistory, WeightHistory } from "../view";
 import { NutritionistProfile } from "../view";
 import { UserSearcher, UserResult } from "../view";
@@ -84,6 +84,8 @@ function App() {
                     <Route path={"/inbox"} element={<Inbox />} />
 
                     <Route path={"/payment/:"} element={<MercadoPago />} />
+                    <Route path={"/purchase-success"} element={<PurchaseSuccess />} />
+                    <Route path={"/purchase-failed"} element={<PurchaseFailed />} />
                 </Routes>
             </div>
         </Router>
