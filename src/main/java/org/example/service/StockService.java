@@ -11,6 +11,7 @@ import org.example.repository.store.StoreRepository;
 import org.example.repository.store.StoreRepositoryImpl;
 
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StockService {
@@ -18,6 +19,7 @@ public class StockService {
     StockRepository stockRepository;
     StoreRepository storeRepository;
     IngredientRepositoryImp ingredientRepository;
+    List<CartElement> cart = new ArrayList<>();
 
     public StockService(EntityManager entityManager) {
         this.stockRepository = new StockRepositoryImpl(entityManager);
@@ -66,6 +68,46 @@ public class StockService {
             if (matchIngredient && remain >= 0) {
                 stockRepository.updateStock(product.getId(), ingredient, remain, product.getBrand(), product.getPrice());
             }
+        }
+    }
+
+    public void addToCart(String storeName, String ingredientName, int quantity){
+        CartElement element = new CartElement(storeName, ingredientName, quantity);
+        cart.add(element);
+    }
+
+    public void purchaseCart(){
+        for(CartElement element : cart){
+            purchase(element.storeName, element.ingredientName, element.quantity);
+        }
+    }
+
+    public void emptyCart(){
+        cart.clear();
+    }
+
+
+    private class CartElement {
+        private final String storeName;
+        private final String ingredientName;
+        private final int quantity;
+
+        public CartElement(String storeName, String ingredientName, int quantity) {
+            this.storeName = storeName;
+            this.ingredientName = ingredientName;
+            this.quantity = quantity;
+        }
+
+        public String getStoreName() {
+            return storeName;
+        }
+
+        public String getIngredientName() {
+            return ingredientName;
+        }
+
+        public int getQuantity() {
+            return quantity;
         }
     }
 }

@@ -106,7 +106,7 @@ public class StockController {
 
                 // Supone que las clases Ingredient y stockService están definidas en otro lugar
                 Ingredient ingredient = ingredientService.getIngredientByName(ingredientName);
-                stockService.purchase(storeName, ingredientName, quantity);
+                stockService.addToCart(storeName, ingredientName, quantity);
 
                 JsonObject itemRequest = new JsonObject();
                 itemRequest.addProperty("id", ingredient.getIngredientId().toString());
@@ -157,14 +157,14 @@ public class StockController {
         Spark.get("/success", (req, res) -> {
             String paymentId = req.queryParams("payment_id");
             String status = req.queryParams("status");
-//            stockService.apply();
+            stockService.purchaseCart();
             return "Payment ID: " + paymentId + " Status: " + status;
         });
 
         Spark.get("/failure", (req, res) -> {
             String paymentId = req.queryParams("payment_id");
             String status = req.queryParams("status");
-//            stockService.clear();
+            stockService.emptyCart();
             return "Payment ID: " + paymentId + " Status: " + status;
         });
     }
