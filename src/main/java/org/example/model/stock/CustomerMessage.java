@@ -3,29 +3,44 @@ package org.example.model.stock;
 import com.google.gson.annotations.Expose;
 
 import javax.persistence.*;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Entity(name = "CUSTOMER_MESSAGE")
 public class CustomerMessage {
 
     @Id
+    @Expose
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Expose
     @Column(nullable = false)
     private Long customerId;
 
     @Expose
     @Column(nullable = false)
-    private String message;
+    private boolean isRead = false;
 
-    public CustomerMessage(Long customerId, String message) {
+    @Expose
+    @Column(nullable = false)
+    private String storeName;
+
+    @Expose
+    @Column(nullable = false)
+    private String ingredientName;
+
+    @Expose
+    @Column
+    private Integer quantity;
+
+    public CustomerMessage(Long customerId, String storeName, String ingredientName, Integer quantity) {
         this.customerId = customerId;
-        this.message = message;
+        this.isRead = false;
+        this.storeName = storeName;
+        this.ingredientName = ingredientName;
+        this.quantity = quantity;
     }
 
     public CustomerMessage() {
-
     }
 
     public Long getId() {
@@ -36,19 +51,43 @@ public class CustomerMessage {
         this.id = id;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
     public Long getCustomerId() {
         return customerId;
     }
 
     public void setCustomerId(Long customerId) {
         this.customerId = customerId;
+    }
+
+    public boolean isRead() {
+        return isRead;
+    }
+
+    public void setRead(boolean isRead) {
+        this.isRead = isRead;
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+
+    public String getIngredientName() {
+        return ingredientName;
+    }
+
+    public void setIngredientName(String ingredientName) {
+        this.ingredientName = ingredientName;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 }

@@ -36,7 +36,7 @@ const ClientHistory = () => {
     return (
         <div className="client-history-container">
             <h1>Client History</h1>
-            <div className="top-components-container">
+            <div className="components-container">
                 <div className="component">
                     <h2>Monthly History</h2>
                     <MonthlyHistory/>

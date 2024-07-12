@@ -1,7 +1,6 @@
 package org.example.model.stock;
 
 import com.google.gson.annotations.Expose;
-import org.checkerframework.checker.units.qual.C;
 import org.example.model.recipe.Ingredient;
 import org.example.model.roles.Store;
 import javax.persistence.*;
@@ -66,10 +65,6 @@ public class Stock {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public String getBrand() {
-        return brand;
     }
 
     public void setBrand(String brand) {

@@ -5,7 +5,6 @@ import com.google.gson.annotations.Expose;
 import org.example.model.history.CustomerHistory;
 import org.example.model.history.WeightHistory;
 import org.example.model.recipe.Ingredient;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.List;
@@ -49,8 +48,7 @@ public class Customer {
     @ManyToMany
     private List<Ingredient> ingredients;
 
-
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<WeightHistory> weightHistory;
 
     public Customer(String customerName, String customerEmail, String customerPassword) {

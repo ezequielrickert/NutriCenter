@@ -43,6 +43,7 @@ public class CostumerRepositoryImp implements CostumerRepository {
     return customer;
   }
 
+
   @Override
   public void updateUser(Long clientId, String username, String email, List<Nutritionist> nutritionists, List<Store> stores, List<Ingredient> ingredients, List<WeightHistory> weightHistory) {
     entityManager.getTransaction().begin();

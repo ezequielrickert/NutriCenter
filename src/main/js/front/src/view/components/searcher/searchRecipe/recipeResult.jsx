@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { useParams, useLocation, Link } from 'react-router-dom';
+import { useNavigate, useParams, useLocation, Link } from 'react-router-dom';
 import Footer from "../../../components/footer";
 import './searchRecipe.css';
 
@@ -10,12 +9,13 @@ const RecipeResult = () => {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
     const userRole = localStorage.getItem('role');
-    const { searchTerm } = useParams();
-    const location = useLocation()
-    const { recipes } = location.state;
+    const { recipeName: searchTerm } = useParams();  // Obtener searchTerm desde la URL
+    const location = useLocation();
+    const { recipes } = location.state || { recipes: [] };
     const navigate = useNavigate();
 
     useEffect(() => {
+
         const validateUser = async () => {
             try {
                 const response = await axios.post("http://localhost:8080/validateUser", { username, token });
@@ -32,7 +32,7 @@ const RecipeResult = () => {
         };
 
         validateUser();
-    }, [token, username]);
+    }, [token, username, searchTerm]);
 
     const handleSearchAgainClick = () => {
         navigate('/searchRecipeHome');
@@ -60,7 +60,7 @@ const RecipeResult = () => {
                     </Link>
                 </div>
             )}
-            <Footer/>
+            <Footer />
         </div>
     );
 }

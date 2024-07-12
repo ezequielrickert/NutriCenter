@@ -8,7 +8,9 @@ import org.example.model.recipe.Ingredient;
 import org.example.model.roles.Customer;
 import org.example.model.roles.Store;
 import org.example.model.stock.Stock;
+import org.example.model.stock.StockId;
 import org.example.service.CustomerMessageService;
+import org.example.service.CustomerService;
 import org.example.service.IngredientService;
 import org.example.service.StockService;
 import org.example.service.StoreService;
@@ -39,13 +41,18 @@ public class StockController {
         Spark.post("/addStock", (req, res) -> {
             String body = req.body();
             JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
-            String storeName = gson.fromJson(jsonObject.get("storeName"), String.class);
-            Ingredient ingredient = gson.fromJson(jsonObject.get("ingredientId"), Ingredient.class);
-            int quantity = gson.fromJson(jsonObject.get("quantity"), Integer.class);
-            String brand = gson.fromJson(jsonObject.get("brand"), String.class);
+            String storeName = jsonObject.get("storeName").getAsString();
+            Long ingredientId = jsonObject.get("ingredientId").getAsLong();
+            int quantity = jsonObject.get("quantity").getAsInt();
+            String brand = jsonObject.get("brand").getAsString();
             double price = gson.fromJson(jsonObject.get("price"), Double.class);
-            stockService.createStock(storeName, ingredient, quantity, brand, price);
-            return gson.toJson("Stock created successfully");
+            boolean stockExists = stockService.checkStockExists(storeName, ingredientId, brand);
+            if (!stockExists) {
+                stockService.createStock(storeName, ingredientId, quantity, brand, price);
+                return gson.toJson("Stock created successfully");
+            } else {
+                return gson.toJson("Stock with the given ingredient and brand already exists in this store");
+            }
         });
 
         Spark.get("/stock/:storeName", (req, res) -> {
@@ -58,22 +65,21 @@ public class StockController {
         Spark.post("/updateStock", (req, res) -> {
             String body = req.body();
             JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
-            String store = gson.fromJson(jsonObject.get("storeName"), String.class);
-            Ingredient ingredient = gson.fromJson(jsonObject.get("ingredientId"), Ingredient.class);
-            int quantity = gson.fromJson(jsonObject.get("quantity"), Integer.class);
-            String brand = gson.fromJson(jsonObject.get("brand"), String.class);
+            StockId stockId = gson.fromJson(jsonObject.get("stockId"), StockId.class);
+            String storeName = jsonObject.get("storeName").getAsString();
+            int quantity = jsonObject.get("quantity").getAsInt();
             double price = gson.fromJson(jsonObject.get("price"), Double.class);
-            stockService.updateStock(store, ingredient, quantity, brand, price);
+            stockService.updateStock(stockId, quantity, price);
             return gson.toJson("Stock updated successfully");
         });
 
         Spark.post("/deleteStock", (req, res) -> {
             String body = req.body();
             JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
-            String store = gson.fromJson(jsonObject.get("storeName"), String.class);
-            Ingredient ingredient = gson.fromJson(jsonObject.get("ingredientId"), Ingredient.class);
-            stockService.deleteStock(store, ingredient.getIngredientId());
-            return gson.toJson("Stock deleted successfully");
+            StockId stockId = gson.fromJson(jsonObject.get("stockId"), StockId.class);
+
+            stockService.deleteStock(stockId);
+            return new Gson().toJson("Stock deleted successfully");
         });
 
         Spark.get("/sellingStores/:ingredientName", (req, res) -> {
@@ -83,12 +89,22 @@ public class StockController {
             return gson.toJson(stores);
         });
 
-        Spark.post("/message/:storeName/:message", (req, res) -> {
+        Spark.post("/message/:storeName/:ingredientName/:quantity", (req, res) -> {
             String storeName = req.params(":storeName");
-            String message = req.params(":message");
+            String ingredientName = req.params(":ingredientName");
+            Integer quantity = Integer.parseInt(req.params(":quantity"));
             Store store = storeService.getStoreByUsername(storeName);
             List<Customer> customers = store.getCustomers();
-            customerMessageService.createMessage(message, customers);
+            customerMessageService.createMessage(customers, storeName, ingredientName, quantity);
+            return gson.toJson("Message sent successfully");
+        });
+
+        Spark.post("/message/:storeName/:ingredientName", (req, res) -> {
+            String storeName = req.params(":storeName");
+            String ingredientName = req.params(":ingredientName");
+            Store store = storeService.getStoreByUsername(storeName);
+            List<Customer> customers = store.getCustomers();
+            customerMessageService.createMessage(customers, storeName, ingredientName, -1);
             return gson.toJson("Message sent successfully");
         });
 

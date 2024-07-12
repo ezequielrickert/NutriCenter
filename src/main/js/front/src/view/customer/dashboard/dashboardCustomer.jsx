@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Footer from '../../components/footer';
-import {Link} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Dropdown, Badge } from 'react-bootstrap';
+import ringBell from '../images/ring_bell.png';
+import bell from '../images/bell.png';
 
-const DashboardCustomer = () => {
+const DashboardCustomer = ({ handleMessagesRead }) => {
     const [isValidUser, setIsValidUser] = useState(false);
+    const [messages, setMessages] = useState([]);
+    const [unreadCount, setUnreadCount] = useState(0);
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
     const userRole = localStorage.getItem('role');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const validateUser = async () => {
@@ -27,10 +33,39 @@ const DashboardCustomer = () => {
         validateUser();
     }, [token, username]);
 
-    // if necesario!! para que React no devuelva la pagina al no estar validado
+    const fetchMessages = async () => {
+        try {
+            const response = await axios.get(`http://localhost:8080/message/unread/${username}`);
+            const data = response.data;
+            if (Array.isArray(data)) {
+                setUnreadCount(data.length);
+                setMessages(data);
+            } else {
+                console.error('Data received from server is not an array');
+            }
+        } catch (error) {
+            console.error('Error fetching messages', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchMessages();
+    }, [username]);
+
     if (!isValidUser) {
         return null;
     }
+
+    const formatMessage = (message) => {
+        const { storeName, ingredientName, quantity } = message;
+        if (quantity !== -1) {
+            return `Stock updated at ${storeName}: ${quantity} of ${ingredientName} added.`;
+        } else {
+            return `New stock created at ${storeName}: ${ingredientName}.`;
+        }
+    };
+
+    const recentMessages = messages.slice(0, 5);
 
     return (
         <div className="container">
@@ -48,11 +83,33 @@ const DashboardCustomer = () => {
                 <Link to="/addWeight">
                     <button style={{ marginRight: '10px' }} className="btn btn-primary mt-3">Add Weight History</button>
                 </Link>
-                <Link to={"/inbox"}>
-                    <button className="btn btn-primary mt-3">Inbox</button>
-                </Link>
-                <Footer />
+                <div style={{ position: 'relative', display: 'inline-block', marginLeft: '10px' }}>
+                    <Dropdown>
+                        <Dropdown.Toggle variant="light" id="dropdown-basic">
+                            <img src={unreadCount > 0 ? ringBell : bell} alt="Notification Bell" width="40" height="40" />
+                            {unreadCount > 0 && (
+                                <Badge pill bg="danger" style={{ position: 'absolute', top: 0, right: 0 }}>
+                                    {unreadCount}
+                                </Badge>
+                            )}
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                            {messages.length > 0 ? (
+                                <>
+                                    {recentMessages.map((message, index) => (
+                                        <Dropdown.Item key={index}>{formatMessage(message)}</Dropdown.Item>
+                                    ))}
+                                    <Dropdown.Item onClick={() => navigate('/inbox')}>View all</Dropdown.Item>
+                                </>
+                            ) : (
+                                <Dropdown.Item>No new messages</Dropdown.Item>
+                            )}
+                        </Dropdown.Menu>
+                    </Dropdown>
+                </div>
             </header>
+            <Footer />
         </div>
     );
 }
