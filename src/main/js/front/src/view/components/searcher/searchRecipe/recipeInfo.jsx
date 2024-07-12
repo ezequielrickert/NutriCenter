@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom'; // Ensure Link is imported
 import Footer from "../../../components/footer";
 import { useNavigate } from 'react-router-dom';
 import './searchRecipe.css';
@@ -71,7 +71,7 @@ const RecipeInfo = () => {
                         <ul className="recipe-ingredients-list">
                             {recipe.ingredientList && recipe.ingredientList.map(ingredient => (
                                 <li key={ingredient.ingredientId} className="recipe-ingredient">
-                                    {ingredient.ingredientName}
+                                    <Link to={`/ingredientInfo/${ingredient.ingredientName}`}>{ingredient.ingredientName}</Link>
                                 </li>
                             ))}
                         </ul>
