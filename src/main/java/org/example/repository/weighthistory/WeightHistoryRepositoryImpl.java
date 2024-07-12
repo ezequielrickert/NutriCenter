@@ -1,9 +1,11 @@
 package org.example.repository.weighthistory;
 
 import org.example.model.history.WeightHistory;
+import org.example.model.roles.Customer;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
+import java.util.List;
 
 public class WeightHistoryRepositoryImpl implements WeightHistoryRepository{
 
@@ -14,11 +16,12 @@ public class WeightHistoryRepositoryImpl implements WeightHistoryRepository{
     }
 
     @Override
-    public WeightHistory createWeightHistory(double weight, LocalDate date) {
+    public WeightHistory createWeightHistory(double weight, LocalDate date, Customer customer) {
         entityManager.getTransaction().begin();
         WeightHistory weightHistory = new WeightHistory();
         weightHistory.setWeight(weight);
         weightHistory.setDate(date);
+        weightHistory.setCustomer(customer);
         entityManager.persist(weightHistory);
         entityManager.getTransaction().commit();
         return weightHistory;
@@ -48,6 +51,16 @@ public class WeightHistoryRepositoryImpl implements WeightHistoryRepository{
         WeightHistory weightHistory = entityManager.find(WeightHistory.class, id);
         entityManager.remove(weightHistory);
         entityManager.getTransaction().commit();
-
     }
+
+    @Override
+    public List<WeightHistory> getCustomerHistory(Long customerId) {
+        entityManager.getTransaction().begin();
+        List<WeightHistory> weightHistoryList = entityManager.createQuery("SELECT wh FROM WeightHistory wh WHERE wh.customer.customerId = :customerId")
+                .setParameter("customerId", customerId)
+                .getResultList();
+        entityManager.getTransaction().commit();
+        return weightHistoryList;
+    }
+
 }

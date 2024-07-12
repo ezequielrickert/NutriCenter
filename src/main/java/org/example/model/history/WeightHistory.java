@@ -23,7 +23,7 @@ public class WeightHistory {
     private LocalDate date;
 
     @ManyToOne
-    @JoinColumn(name = "customerId")
+    @JoinColumn(referencedColumnName = "customerId")
     private Customer customer;
 
     public WeightHistory() {
@@ -53,5 +53,13 @@ public class WeightHistory {
 
     public Long getWeightHistoryId() {
         return weightHistoryId;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

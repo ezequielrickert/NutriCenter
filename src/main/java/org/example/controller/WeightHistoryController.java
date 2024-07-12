@@ -57,7 +57,7 @@ public class WeightHistoryController {
                 return "Customer not found";
             }
 
-            List<WeightHistory> weightHistoryList = customer.getWeightHistory();
+            List<WeightHistory> weightHistoryList = weightHistoryService.getWeightHistory(customer, fromDate);
 
             List<WeightHistory> requestedEntries = getByDate(weightHistoryList, fromDate);
 

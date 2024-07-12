@@ -61,15 +61,18 @@ const SearchRecipeHome = () => {
 
     const performSearch = async () => {
         try {
+            let response;
             if (selectedCategory === "All Categories") {
-                const response = await axios.get(`http://localhost:8080/publicRecipes/${searchTerm}`);
-                setRecipes(response.data);
+                response = await axios.get(`http://localhost:8080/publicRecipes/${searchTerm}`);
             } else {
-                const response = await axios.get('http://localhost:8080/publicRecipesByDietType', {
+                response = await axios.get('http://localhost:8080/publicRecipesByDietType', {
                     params: { term: searchTerm, diet: selectedCategory }
                 });
-                setRecipes(response.data);
             }
+            if(response.data.length === 1) {
+                navigate(`/recipeInfo/${response.data[0].recipeId}`);
+            }
+            setRecipes(response.data);
         } catch (error) {
             console.error("Error fetching recipes", error);
         }
