@@ -63,5 +63,19 @@ public class LoginController {
                 return "User is not valid";
             }
         }, gson::toJson);
+
+        Spark.post("/logout", (req, res) -> {
+            String body = req.body();
+            JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
+            String username = gson.fromJson(jsonObject.get("username"), String.class);
+            String token = gson.fromJson(jsonObject.get("token"), String.class);
+            if (Authenticator.validateUser(username, token)) {
+                Authenticator.invalidateUser(username);
+                return "User is logged out";
+            } else {
+                res.status(401);
+                return "User is not valid";
+            }
+        }, gson::toJson);
     }
 }

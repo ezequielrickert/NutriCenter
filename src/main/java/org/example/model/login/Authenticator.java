@@ -29,4 +29,8 @@ public class Authenticator {
         }
         return false;
     }
+
+    public static void invalidateUser(String username) {
+        savedTokens.remove(username);
+    }
 }

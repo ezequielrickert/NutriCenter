@@ -1,13 +1,25 @@
 import React from 'react';
 import Footer from '../footer';
+import axios from 'axios';
 
 const LogoutPage = () => {
 
     const handleLogout = () => {
-        localStorage.setItem("token", "");
-        localStorage.setItem("username", "");
-        localStorage.setItem("role", "");
-        window.location.href = '/universalLogin';
+        const username = localStorage.getItem("username");
+        const token = localStorage.getItem("token");
+
+        axios.post("/logout", { username, token })
+            .then(response => {
+                // Clear local storage and redirect on successful logout
+                localStorage.setItem("token", "");
+                localStorage.setItem("username", "");
+                localStorage.setItem("role", "");
+                window.location.href = '/universalLogin';
+            })
+            .catch(error => {
+                console.error("Logout failed:", error);
+                // Handle logout failure (optional)
+            });
     }
 
     const handleCancel = () => {
