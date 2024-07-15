@@ -56,18 +56,18 @@ public class StockController {
             return gson.toJson(stock);
         });
 
-        Spark.post("/updateStock", (req, res) -> {
+        Spark.put("/stock", (req, res) -> {
             String body = req.body();
             JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
             StockId stockId = gson.fromJson(jsonObject.get("stockId"), StockId.class);
-            String storeName = jsonObject.get("storeName").getAsString();
-            int quantity = jsonObject.get("quantity").getAsInt();
+            String storeName = gson.fromJson(jsonObject.get("storeName"), String.class);
+            int quantity = gson.fromJson(jsonObject.get("quantity"), Integer.class);
             double price = gson.fromJson(jsonObject.get("price"), Double.class);
             stockService.updateStock(stockId, quantity, price);
             return gson.toJson("Stock updated successfully");
         });
 
-        Spark.post("/deleteStock", (req, res) -> {
+        Spark.delete("/stock", (req, res) -> {
             String body = req.body();
             JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
             StockId stockId = gson.fromJson(jsonObject.get("stockId"), StockId.class);

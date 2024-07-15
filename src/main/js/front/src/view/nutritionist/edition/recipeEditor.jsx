@@ -150,7 +150,7 @@ const NutritionistRecipeEditor = () => {
             isPublic: isPublic === 'public'
         };
 
-        await axios.post("http://localhost:8080/createRecipe", recipeData)
+        await axios.post("http://localhost:8080/recipe", recipeData)
             .then(async res => {
                 console.log(res);
                 // Close the modal
@@ -180,7 +180,7 @@ const NutritionistRecipeEditor = () => {
                 isPublic: isPublic === 'public'
             };
 
-            await axios.post(`http://localhost:8080/updateRecipe`, recipeData)
+            await axios.put(`http://localhost:8080/recipe`, recipeData)
                 .then(async res => {
                     console.log(res);
                     // Close the modal
@@ -206,7 +206,7 @@ const NutritionistRecipeEditor = () => {
         };
         // Display a confirmation popup
         if (window.confirm('Are you sure you want to delete this recipe?')) {
-            axios.post('http://localhost:8080/deleteRecipe', recipeData)
+            axios.delete('http://localhost:8080/recipe', {data:recipeData})
                 .then(res => {
                     console.log(res);
                     setRecipes(recipes.filter(r => r.recipeId !== recipe.recipeId));

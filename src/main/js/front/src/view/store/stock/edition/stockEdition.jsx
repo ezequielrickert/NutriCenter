@@ -178,7 +178,7 @@ const StockEdition = () => {
             };
 
             try {
-                const response = await axios.post('http://localhost:8080/updateStock', stockData);
+                const response = await axios.put('http://localhost:8080/stock', stockData);
                 if (response.data === "Stock updated successfully") {
                     displayMessage('Stock updated successfully');
                     const updatedStocks = await axios.get(`http://localhost:8080/stock/${username}`);
@@ -214,7 +214,7 @@ const StockEdition = () => {
 
         if (window.confirm('Are you sure you want to delete this stock?')) {
             try {
-                const response = await axios.post('http://localhost:8080/deleteStock', stockData);
+                const response = await axios.delete('http://localhost:8080/stock', {data:stockData});
                 if (response.data === "Stock deleted successfully") {
                     displayMessage('Stock deleted successfully');
                     setStocks(stocks.filter(s => s.id !== stock.id));

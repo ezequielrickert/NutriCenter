@@ -38,7 +38,7 @@ public class StoreController {
       return specialGson.toJson(store);
     });
 
-    Spark.post("/createStore", (req, res) -> {
+    Spark.post("/store", (req, res) -> {
       String body = req.body();
       JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
       String name =  gson.fromJson(jsonObject.get("storeName"), String.class);
@@ -53,32 +53,7 @@ public class StoreController {
       return "Store created successfully";
     }, gson::toJson);
 
-    Spark.post("/updateStore", (req, res) -> {
-      String body = req.body();
-      JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
-      Store store = gson.fromJson(jsonObject.get("store"), Store.class);
-      String storeName = gson.fromJson(jsonObject.get("storeName"), String.class);
-      String storeMail = gson.fromJson(jsonObject.get("storeEmail"), String.class);
-      String storePassword = gson.fromJson(jsonObject.get("storePassword"), String.class);
-      storeService.updateStore(store.getStoreId(), storeName, storeMail, storePassword);
-      return store.asJson();
-    }, gson::toJson);
-
-    Spark.post("/deleteStore", (req, res) -> {
-      String body = req.body();
-      JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
-      Store store = gson.fromJson(jsonObject.get("store"), Store.class);
-      Long id = store.getStoreId();
-      storeService.deleteStore(id);
-      return store;
-    }, gson::toJson);
-
-    Spark.get("/persisted-store/:id", (req, resp) -> {
-      final String id = req.params("id");
-      Store store = storeService.readStore(Long.parseLong(id));
-      resp.type("application/json");
-      return store.asJson();
-    });
+    //Saque update y delete porque no se usan
 
     Spark.get("/storeFill/:searchTerm", (req, resp) -> {
       final String searchTerm = req.params(":searchTerm");

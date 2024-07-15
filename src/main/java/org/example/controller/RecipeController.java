@@ -70,7 +70,7 @@ public class RecipeController {
             return gson.toJson(recipes);
         });
 
-        Spark.post("/createRecipe", (req, res) -> {
+        Spark.post("/recipe", (req, res) -> {
             String body = req.body();
             Recipe recipe = gson.fromJson(body, Recipe.class);
             String recipeName = recipe.getRecipeName();
@@ -83,7 +83,7 @@ public class RecipeController {
             return recipe;
         }, gson::toJson);
 
-        Spark.post("/updateRecipe", (req, res) -> {
+        Spark.put("/recipe", (req, res) -> {
             String body = req.body();
             JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
             Recipe recipe = gson.fromJson(jsonObject.get("recipe"), Recipe.class);
@@ -105,7 +105,7 @@ public class RecipeController {
             return recipe;
         }, gson::toJson);
 
-        Spark.post("/deleteRecipe", (req, res) -> {
+        Spark.delete("/recipe", (req, res) -> {
             String body = req.body();
             JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
             Recipe recipe = gson.fromJson(jsonObject.get("recipe"), Recipe.class);

@@ -38,26 +38,5 @@ public class CustomerController {
         return "Customer created successfully";
     }, gson::toJson);
 
-    Spark.get("/persisted-customers/:id", (req, resp) -> {
-        final String id = req.params("id");
-        /* Business Logic */
-        final EntityManager entityManager = entityManagerFactory.createEntityManager();
-        final EntityTransaction tx = entityManager.getTransaction();
-        Customer customer = customerService.readUser(Long.parseLong(id));
-        resp.type("application/json");
-        return customer.asJson();
-      }
-    );
-
-        Spark.get("/getCustomer/:username", (req, res) -> {
-            String username = req.params(":username");
-            Customer customer = customerService.getCustomerByName(username);
-            if (customer == null) {
-                res.status(404); // 404 Not Found status code
-                return "Customer not found";
-            }
-            return gson.toJson(customer);
-        });
-
   }
 }

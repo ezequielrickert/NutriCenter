@@ -42,7 +42,6 @@ public class Application {
         new RecipeController().run();
         new StockController().run();
         new StoreController().run();
-        new SuperAdminController().run();
         new DayController().run();
         new SubscriptionController().run();
         new FollowController().run();
