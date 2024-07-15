@@ -1,15 +1,13 @@
-package org.example;
+package org.example.injection;
 
 import org.example.model.recipe.Allergy;
 import org.example.model.recipe.Category;
-import org.example.model.roles.Customer;
-import org.example.model.roles.Nutritionist;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class RecipeDataInjection {
+public class CategoryAndAllergyDataInjection {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserPU");
         EntityManager em = emf.createEntityManager();
@@ -31,8 +29,24 @@ public class RecipeDataInjection {
             em.persist(category3);
 
             Category category4 = new Category();
-            category3.setCategoryName("Omnivore");
+            category4.setCategoryName("Omnivore");
             em.persist(category4);
+
+            Category category5 = new Category();
+            category5.setCategoryName("Keto");
+            em.persist(category5);
+
+            Category category6 = new Category();
+            category6.setCategoryName("Paleo");
+            em.persist(category6);
+
+            Category category7 = new Category();
+            category7.setCategoryName("Pescatarian");
+            em.persist(category7);
+
+            Category category8 = new Category();
+            category8.setCategoryName("Mediterranean");
+            em.persist(category8);
 
             // Creating and persisting Allergy instances
             Allergy allergy1 = new Allergy("Peanuts", "Common allergy to peanuts.");
@@ -43,6 +57,24 @@ public class RecipeDataInjection {
 
             Allergy allergy3 = new Allergy("Dairy", "Allergy to dairy products.");
             em.persist(allergy3);
+
+            Allergy allergy4 = new Allergy("Gluten", "Allergy to gluten found in wheat, barley, and rye.");
+            em.persist(allergy4);
+
+            Allergy allergy5 = new Allergy("Soy", "Allergy to soy products.");
+            em.persist(allergy5);
+
+            Allergy allergy6 = new Allergy("Tree nuts", "Allergy to tree nuts such as almonds, cashews, and walnuts.");
+            em.persist(allergy6);
+
+            Allergy allergy7 = new Allergy("Eggs", "Allergy to egg proteins.");
+            em.persist(allergy7);
+
+            Allergy allergy8 = new Allergy("Fish", "Allergy to fish proteins.");
+            em.persist(allergy8);
+
+            Allergy allergy9 = new Allergy("None", "No allergy");
+            em.persist(allergy9);
 
             // Commit the transaction
             em.getTransaction().commit();

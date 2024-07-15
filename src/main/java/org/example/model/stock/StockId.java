@@ -23,6 +23,7 @@ public class StockId implements Serializable {
         this.brand = brand;
     }
 
+
     public Long getStoreId() {
         return storeId;
     }
