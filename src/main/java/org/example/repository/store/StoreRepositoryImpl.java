@@ -13,9 +13,9 @@ public class StoreRepositoryImpl implements StoreRepository{
   }
 
   @Override
-  public void createStore(String storeName, String storeEmail, String storePassword) {
+  public void createStore(String storeName, String storeEmail, String storePassword, String storeNumber) {
     entityManager.getTransaction().begin();
-    Store store = new Store(storeName, storeEmail, storePassword);
+    Store store = new Store(storeName, storeEmail, storePassword, storeNumber);
     entityManager.persist(store);
     entityManager.getTransaction().commit();
   }

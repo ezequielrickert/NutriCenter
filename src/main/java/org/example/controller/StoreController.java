@@ -48,7 +48,8 @@ public class StoreController {
       }
       String email = gson.fromJson(jsonObject.get("storeMail"), String.class);
       String password = gson.fromJson(jsonObject.get("storePassword"), String.class);
-      storeService.createStore(name, email, password);
+      String phoneNumber = gson.fromJson(jsonObject.get("phoneNumber"), String.class);
+      storeService.createStore(name, email, password, phoneNumber);
       res.status(201);
       return "Store created successfully";
     }, gson::toJson);

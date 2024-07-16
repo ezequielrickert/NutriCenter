@@ -5,11 +5,13 @@ const SignUpStore = () => {
     const [username, setUsername] = useState('');
     const [mail, setMail] = useState('');
     const [password, setPassword] = useState('');
+    const [phone, setPhone] = useState('');
 
     const signUpData = {
         storeName: username,
         storeMail: mail,
-        storePassword: password
+        storePassword: password,
+        phoneNumber: phone
     }
 
     const handleSubmit = async (event) => {
@@ -43,18 +45,26 @@ const SignUpStore = () => {
     return (
         <div className="container">
             <h1 className="text-center mb-4">Store SignUp</h1>
-            <form onSubmit={handleSubmit} className="mx-auto" style={{ maxWidth: "400px" }}>
+            <form onSubmit={handleSubmit} className="mx-auto" style={{maxWidth: "400px"}}>
                 <div className="mb-3">
                     <label htmlFor="username" className="form-label">Username:</label>
-                    <input type="text" id="username" className="form-control" value={username} onChange={e => setUsername(e.target.value)} />
+                    <input type="text" id="username" className="form-control" value={username}
+                           onChange={e => setUsername(e.target.value)}/>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Enter eMail:</label>
-                    <input type="email" id="email" className="form-control" value={mail} onChange={e => setMail(e.target.value)} />
+                    <input type="email" id="email" className="form-control" value={mail}
+                           onChange={e => setMail(e.target.value)}/>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="phoneNumber" className="form-label">Enter phone:</label>
+                    <input type="phoneNumber" id="phoneNumber" className="form-control" value={phone}
+                           onChange={e => setPhone(e.target.value)}/>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">Enter password:</label>
-                    <input type="password" id="password" className="form-control" value={password} onChange={e => setPassword(e.target.value)} />
+                    <input type="password" id="password" className="form-control" value={password}
+                           onChange={e => setPassword(e.target.value)}/>
                 </div>
                 <div className="d-flex justify-content-between">
                     <input type="submit" className="btn btn-primary flex-fill me-1" value="Sign Up"/>
