@@ -54,21 +54,17 @@ public class DayController {
             List<Day> days = customerHistory.getDays();
 
             if(!days.isEmpty()){
-                Day lastDay = days.get(days.size()-1);
+                Day lastDay = getLastDay(days);
 
                 if(Objects.equals(lastDay.getDayName(), weekDayName)){
                     dayService.updateDay(lastDay.getDayId(), recipe, mealType);
                 }
                 else{
-                    //Dudoso el uso de DayOfWeek.valueOf(weekDayName)
-                    //Day createdDay = dayService.createDay(DayOfWeek.valueOf(weekDayName), customerHistory);
                     customerHistory = customerHistoryService.updateCustomerHistory(customerHistory.getCustomerHistoryId(), DayOfWeek.valueOf(weekDayName));
                     Day createdDay = customerHistory.getDays().get(customerHistory.getDays().size()-1);
                     dayService.updateDay(createdDay.getDayId(), recipe, mealType);
                 }
             }else{
-                //Dudoso el uso de DayOfWeek.valueOf(weekDayName)
-                //Day createdDay = dayService.createDay(DayOfWeek.valueOf(weekDayName), customerHistory);
                 customerHistory = customerHistoryService.updateCustomerHistory(customerHistory.getCustomerHistoryId(),
                         DayOfWeek.valueOf(weekDayName));
                 Day createdDay = customerHistory.getDays().get(customerHistory.getDays().size()-1);
@@ -126,26 +122,32 @@ public class DayController {
     private List<Day> getLastSeven(List<Day> days) {
         LocalDate today = LocalDate.now();
 
-        // Determine the start of the current week as Monday
+
         LocalDate startOfWeek = today.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
 
-        // Use a LinkedHashMap to preserve insertion order
+
         Map<String, Day> dayOfWeekToDayMap = new LinkedHashMap<>();
 
-        // Iterate in reverse order to keep the most recent day for each day of the week
         for (int i = days.size() - 1; i >= 0; i--) {
             Day day = days.get(i);
             LocalDate dayDate = day.getDate();
             if (!dayDate.isBefore(startOfWeek) && dayDate.isBefore(today.plusDays(1)) && !dayOfWeekToDayMap.containsKey(day.getDayName())) {
                 dayOfWeekToDayMap.put(day.getDayName(), day);
             }
-            // Stop the loop if we reach the current day
+
             if (dayDate.isEqual(today)) {
                 break;
             }
         }
 
-        // Return the days of the current week as a list
+
         return new ArrayList<>(dayOfWeekToDayMap.values());
     }
+
+    private Day getLastDay(List<Day> days) {
+        return days.stream()
+                .max(Comparator.comparing(Day::getDate))
+                .orElse(null);
+    }
+
 }
