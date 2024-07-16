@@ -20,10 +20,12 @@ header h1 {
 
 .header-buttons {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    align-items: center;
+    flex-wrap: nowrap; /* Asegúrate de que no se envuelvan */
+    gap: 10px; /* Espacio entre los botones */
 }
+
 
 .header-buttons .btn {
     flex: 1 1 calc(50% - 10px);

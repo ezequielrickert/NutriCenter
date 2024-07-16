@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Footer from "../../components/footer";
+import './customerSubscriptionList.css';
 
-const StoreSubscribers = () => {
+const CustomerSubscriptionList = () => {
     const [customers, setCustomers] = useState([]);
     const [isValidUser, setIsValidUser] = useState(false);
     const token = localStorage.getItem('token');
@@ -13,7 +14,7 @@ const StoreSubscribers = () => {
         const validateUser = async () => {
             try {
                 const response = await axios.post("http://localhost:8080/validateUser", { username, token });
-                if (response.data === "User is valid" && (userRole === "store")) {
+                if (response.data === "User is valid" && userRole === "store") {
                     setIsValidUser(true);
                 } else {
                     window.location.href = '/universalLogin';
@@ -40,17 +41,31 @@ const StoreSubscribers = () => {
         fetchSubscriptions();
     }, []);
 
+    if (!isValidUser) {
+        return null;
+    }
+
     return (
-        <div>
-            <h1>Subscribed Customers</h1>
-            <ul>
-                {customers.map((customer) => (
-                    <li key={customer.customerName}>{customer}</li>
-                ))}
-            </ul>
+        <div className="container mt-5">
+            <h1 className="text-center mb-4">Subscribed Customers</h1>
+            <div className="card">
+                <div className="card-body">
+                    <ul className="list-group">
+                        {customers.length > 0 ? (
+                            customers.map((customer) => (
+                                <li className="list-group-item" key={customer.customerId}>
+                                    {customer.customerName}
+                                </li>
+                            ))
+                        ) : (
+                            <li className="list-group-item">No subscribed customers found.</li>
+                        )}
+                    </ul>
+                </div>
+            </div>
             <Footer />
         </div>
     );
 };
 
-export default StoreSubscribers;
+export default CustomerSubscriptionList;

@@ -72,7 +72,7 @@ const DashboardCustomer = ({ handleMessagesRead }) => {
         <div className="container">
             <header className="text-center my-5">
                 <h1>Welcome to the Customer Dashboard</h1>
-                <div className="header-buttons">
+                <div className="header-buttons d-flex justify-content-center align-items-center my-4">
                     <Link to="/mealTable">
                         <button className="btn btn-primary mt-3">Add Meal</button>
                     </Link>
@@ -85,34 +85,34 @@ const DashboardCustomer = ({ handleMessagesRead }) => {
                     <Link to="/addWeight">
                         <button className="btn btn-primary mt-3">Add Weight History</button>
                     </Link>
-                </div>
-                <div className="notification-dropdown">
-                    <Dropdown>
-                        <Dropdown.Toggle variant="light" id="dropdown-basic">
-                            <img src={unreadCount > 0 ? ringBell : bell} alt="Notification Bell" />
-                            {unreadCount > 0 && (
-                                <Badge pill bg="danger" className="badge">
-                                    {unreadCount}
-                                </Badge>
-                            )}
-                        </Dropdown.Toggle>
+                    <div className="notification-dropdown ms-3">
+                        <Dropdown>
+                            <Dropdown.Toggle variant="light" id="dropdown-basic">
+                                <img src={unreadCount > 0 ? ringBell : bell} alt="Notification Bell"/>
+                                {unreadCount > 0 && (
+                                    <Badge pill bg="danger" className="badge">
+                                        {unreadCount}
+                                    </Badge>
+                                )}
+                            </Dropdown.Toggle>
 
-                        <Dropdown.Menu>
-                            {messages.length > 0 ? (
-                                <>
-                                    {recentMessages.map((message, index) => (
-                                        <Dropdown.Item key={index}>{formatMessage(message)}</Dropdown.Item>
-                                    ))}
-                                    <Dropdown.Item onClick={() => navigate('/inbox')}>View all</Dropdown.Item>
-                                </>
-                            ) : (
-                                <Dropdown.Item>No new messages</Dropdown.Item>
-                            )}
-                        </Dropdown.Menu>
-                    </Dropdown>
+                            <Dropdown.Menu>
+                                {messages.length > 0 ? (
+                                    <>
+                                        {recentMessages.map((message, index) => (
+                                            <Dropdown.Item key={index}>{formatMessage(message)}</Dropdown.Item>
+                                        ))}
+                                        <Dropdown.Item onClick={() => navigate('/inbox')}>View all</Dropdown.Item>
+                                    </>
+                                ) : (
+                                    <Dropdown.Item>No new messages</Dropdown.Item>
+                                )}
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </div>
                 </div>
             </header>
-            <Footer />
+            <Footer/>
         </div>
     );
 }

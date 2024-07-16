@@ -32,7 +32,7 @@ function App() {
 
     return (
         <Router>
-            <div className="App">
+            <div className="custom container">
                 <Routes>
 
                     <Route path="/" element={<InitialPage />} />
