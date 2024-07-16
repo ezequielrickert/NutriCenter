@@ -34,10 +34,11 @@ public class Store {
     @ManyToMany(mappedBy = "stores")
     private List<Customer> customers;
 
-    public Store(String name, String mail, String password) {
+    public Store(String name, String mail, String password, String phoneNumber) {
         this.storeName = name;
         this.storeMail = mail;
         this.storePassword = password;
+        this.storePhoneNumber = phoneNumber;
     }
 
     public Store() {}

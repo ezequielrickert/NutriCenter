@@ -14,8 +14,8 @@ public class StoreService {
         storeRepository = new StoreRepositoryImpl(entityManager);
     }
 
-    public void createStore(String storeName, String storeEmail, String storePassword) {
-        storeRepository.createStore(storeName, storeEmail, storePassword);
+    public void createStore(String storeName, String storeEmail, String storePassword, String phoneNumber) {
+        storeRepository.createStore(storeName, storeEmail, storePassword, phoneNumber);
     }
 
     public Store readStore(Long storeId) {
