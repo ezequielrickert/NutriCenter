@@ -106,7 +106,7 @@ public class StockDataInjection {
             stock1.setStore(store1);
             stock1.setIngredient(avocado);
             stock1.setQuantity(100); // Example quantity
-            stock1.setPrice(2.5);    // Example price
+            stock1.setPrice(2000.5);    // Example price
             em.persist(stock1);
 
             Stock stock2 = new Stock();
@@ -115,7 +115,7 @@ public class StockDataInjection {
             stock2.setStore(store2);
             stock2.setIngredient(broccoli);
             stock2.setQuantity(50);  // Example quantity
-            stock2.setPrice(3.0);    // Example price
+            stock2.setPrice(3500.0);    // Example price
             em.persist(stock2);
 
             Stock stock3 = new Stock();
@@ -124,7 +124,7 @@ public class StockDataInjection {
             stock3.setStore(store3);
             stock3.setIngredient(carrot);
             stock3.setQuantity(75);  // Example quantity
-            stock3.setPrice(1.8);    // Example price
+            stock3.setPrice(1800);    // Example price
             em.persist(stock3);
 
             Stock stock4 = new Stock();
@@ -133,7 +133,7 @@ public class StockDataInjection {
             stock4.setStore(store4);
             stock4.setIngredient(chickenBreast);
             stock4.setQuantity(120); // Example quantity
-            stock4.setPrice(5.5);    // Example price
+            stock4.setPrice(550.5);    // Example price
             em.persist(stock4);
 
             Stock stock5 = new Stock();
@@ -142,7 +142,7 @@ public class StockDataInjection {
             stock5.setStore(store5);
             stock5.setIngredient(almond);
             stock5.setQuantity(200); // Example quantity
-            stock5.setPrice(4.0);    // Example price
+            stock5.setPrice(4200.0);    // Example price
             em.persist(stock5);
 
             // Commit the transaction
