@@ -109,12 +109,12 @@ const SuperAdminIngredientEdition = () => {
     const isFormComplete = () => {
         return newIngredientName
             && newAllergy
-            && newProteins
-            && newSodium
-            && newCalories
-            && newTotalFat
-            && newCholesterol
-            && newTotalCarbohydrate;
+            && (newProteins !== '')
+            && (newSodium !== '')
+            && (newCalories !== '')
+            && (newTotalFat !== '')
+            && (newCholesterol !== '')
+            && (newTotalCarbohydrate !== '');
     };
 
     const displayMessage = (message) => {

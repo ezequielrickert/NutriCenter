@@ -17,7 +17,6 @@ public class Ingredient {
     @Column(nullable = false, unique = true)
     private String ingredientName;
 
-    //this column has stored an Allergy instance not an id
     @Expose(serialize = true)
     @ManyToOne
     @JoinColumn(name = "allergyId", foreignKey = @ForeignKey(name = "fk_allergyId"))
@@ -58,60 +57,43 @@ public class Ingredient {
         this.totalCarbohydrate = totalCarbohydrate;
     }
 
-    public Ingredient() {
+    public Ingredient() { }
 
-    }
+    public void setIngredientId(Long ingredientId) { this.ingredientId = ingredientId; }
 
-    public void setIngredientId(Long ingredientId) {this.ingredientId = ingredientId;}
-
-    public void setIngredientName(String ingredientName) {this.ingredientName = ingredientName;}
+    public void setIngredientName(String ingredientName) { this.ingredientName = ingredientName; }
 
     public void setAllergy(Allergy allergy) { this.allergy = allergy; }
 
     public void setProteins(int proteins) { this.proteins = proteins; }
 
-    public void setSodium(int sodium ) {
-        this.sodium = sodium;
-    }
+    public void setSodium(int sodium) { this.sodium = sodium; }
 
-    public void setCalories(int calories) {
-        this.calories = calories;
-    }
+    public void setCalories(int calories) { this.calories = calories; }
 
     public void setTotalFat(int totalFat) { this.totalFat = totalFat; }
 
-    public void setCholesterol(int cholesterol) {this.cholesterol = cholesterol; }
+    public void setCholesterol(int cholesterol) { this.cholesterol = cholesterol; }
 
-    public void setTotalCarbohydrate(int totalCarbohydrate) {this.totalCarbohydrate = totalCarbohydrate; }
+    public void setTotalCarbohydrate(int totalCarbohydrate) { this.totalCarbohydrate = totalCarbohydrate; }
 
-    public Long getIngredientId() {
-        return ingredientId;
-    }
+    public Long getIngredientId() { return ingredientId; }
 
-    public String getIngredientName() {
-        return ingredientName;
-    }
+    public String getIngredientName() { return ingredientName; }
 
-    public Allergy getAllergy() {
-        return allergy;
-    }
+    public Allergy getAllergy() { return allergy; }
 
     public int getProteins() { return proteins; }
 
-    public int getSodium() {
-        return sodium;
-    }
+    public int getSodium() { return sodium; }
 
-    public int getCalories() {
-        return calories;
-    }
+    public int getCalories() { return calories; }
 
     public int getTotalFat() { return totalFat; }
 
-    public int getCholesterol() {return cholesterol; }
+    public int getCholesterol() { return cholesterol; }
 
-    public int getTotalCarbohydrate() {return totalCarbohydrate; }
-
+    public int getTotalCarbohydrate() { return totalCarbohydrate; }
 
     public String asJson() {
         Gson gson = new Gson();

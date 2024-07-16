@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Footer from "../../components/footer";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const DashboardNutritionist = () => {
     const [isValidUser, setIsValidUser] = useState(false);
@@ -27,7 +27,6 @@ const DashboardNutritionist = () => {
         validateUser();
     }, [token, username]);
 
-    // if necesario!! para que React no devuelva la pagina al no estar validado
     if (!isValidUser) {
         return null;
     }
@@ -36,15 +35,16 @@ const DashboardNutritionist = () => {
         <div className="container">
             <header className="text-center my-5">
                 <h1>Welcome to the Nutritionist Dashboard</h1>
-                <Link to={`/nutritionistProfile/${username}`}>
-                    <button>Go to Nutritionist Profile</button>
-                </Link>
-                <Link to="/nutritionist-subscriptions">
-                    <button>View Subscriptions</button>
-                </Link>
-                { /*add dashboard content here*/ }
-                <Footer />
+                <div className="my-4">
+                    <Link to={`/nutritionistProfile/${username}`} className="btn btn-primary m-1">
+                        Go to Nutritionist Profile
+                    </Link>
+                    <Link to="/nutritionist-subscriptions" className="btn btn-primary m-1">
+                        View Subscriptions
+                    </Link>
+                </div>
             </header>
+            <Footer />
         </div>
     );
 }

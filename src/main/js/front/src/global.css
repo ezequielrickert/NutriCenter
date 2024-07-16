@@ -1,4 +1,11 @@
+body {
+    margin: 0;  /* Elimina cualquier margen por defecto del body */
+    padding: 0;  /* Elimina cualquier padding por defecto del body */
+}
+
 .custom.container {
-    margin-left: 30px;
-    margin-right: 30px;
+    margin: 0 auto;  /* Centra el contenedor */
+    max-width: 1200px;  /* Ajusta este valor según tus necesidades */
+    padding-left: 15px;  /* Ajusta este valor según tus necesidades */
+    padding-right: 15px;  /* Ajusta este valor según tus necesidades */
 }

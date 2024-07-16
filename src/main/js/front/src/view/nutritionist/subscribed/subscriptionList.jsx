@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Import Link
+import { Link } from 'react-router-dom';
 import Footer from "../../components/footer";
+import './customerSubscriptionList.css'; // Asegúrate de crear este archivo CSS
 
 const CustomerSubscriptionList = () => {
     const [customers, setCustomers] = useState([]);
@@ -14,7 +15,7 @@ const CustomerSubscriptionList = () => {
         const validateUser = async () => {
             try {
                 const response = await axios.post("http://localhost:8080/validateUser", { username, token });
-                if (response.data === "User is valid" && (userRole === "nutritionist")) {
+                if (response.data === "User is valid" && userRole === "nutritionist") {
                     setIsValidUser(true);
                 } else {
                     window.location.href = '/universalLogin';
@@ -41,13 +42,17 @@ const CustomerSubscriptionList = () => {
         fetchSubscriptions();
     }, []);
 
+    if (!isValidUser) {
+        return null; // Opcional: puedes mostrar un loader aquí
+    }
+
     return (
-        <div>
-            <h1>Subscribed Customers</h1>
-            <ul>
+        <div className="container mt-5">
+            <h1 className="text-center mb-4">Subscribed Customers</h1>
+            <ul className="list-group">
                 {customers.map((customer) => (
-                    <li key={customer.customerName}>
-                        <Link to={`/clientHistory/${customer.customerName}`}>
+                    <li className="list-group-item" key={customer.customerId}>
+                        <Link to={`/clientHistory/${customer.customerName}`} className="text-decoration-none text-primary">
                             {customer.customerName}
                         </Link>
                     </li>

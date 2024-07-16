@@ -35,16 +35,18 @@ const DashboardStore = () => {
     }
 
     return (
-        <div className="container my-5">
-            <header className="text-center">
+        <div className="container">
+            <header className="text-center my-5">
                 <h1>Welcome to the Store Dashboard</h1>
-                <Link to="/stockEdition">
-                    <button>Create Stock</button>
-                </Link>
-                <Link to="/storeSubscribers">
-                    <button>View Subscriptions</button>
-                </Link>
-                <Footer />
+                <div className="my-4">
+                    <Link to="/stockEdition" className="btn btn-primary m-1">
+                        Create Stock
+                    </Link>
+                    <Link to="/storeSubscribers" className="btn btn-primary m-1">
+                        View Subscriptions
+                    </Link>
+                    <Footer />
+                </div>
             </header>
         </div>
     );
