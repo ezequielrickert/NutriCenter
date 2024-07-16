@@ -11,13 +11,14 @@ const WeightHistory = ({ customerName }) => {
     date.setDate(date.getDate() - 6);
     const initialDate = date.toISOString().split('T')[0];
     const [selectedDate, setSelectedDate] = useState(initialDate);
-    const [isLoading, setIsLoading] = useState(false); // State to control loading
+    const [isLoading, setIsLoading] = useState(false);
+    const [chartData, setChartData] = useState({ weights: [], dates: [] });
 
     const chartRef = useRef(null);
     const chartInstance = useRef(null);
 
     useEffect(() => {
-        createWeightChart();
+        fetchWeightData();
     }, [selectedDate]);
 
     const handleDateChange = (event) => {
@@ -25,10 +26,6 @@ const WeightHistory = ({ customerName }) => {
     };
 
     const buildChart = (weights, dates) => {
-        if (chartInstance.current) {
-            chartInstance.current.destroy();
-        }
-
         const data = {
             labels: dates,
             datasets: [
@@ -52,7 +49,7 @@ const WeightHistory = ({ customerName }) => {
                 plugins: {
                     title: {
                         display: true,
-                        text: (ctx) => 'Point Style: ' + ctx.chart.data.datasets[0].pointStyle,
+                        text: 'Weight History',
                     }
                 }
             }
@@ -60,52 +57,51 @@ const WeightHistory = ({ customerName }) => {
 
         if (chartRef.current) {
             const myChartRef = chartRef.current.getContext('2d');
+
+            if (chartInstance.current) {
+                chartInstance.current.destroy();
+            }
+
             chartInstance.current = new Chart(myChartRef, config);
         }
     };
 
-    const getWeights = (entries) => {
-        return entries.map(entry => entry.weight);
-    };
-
-    const getDates = (entries) => {
-        return entries.map(entry => entry.date);
-    };
-
-    const createWeightChart = async () => {
-        setIsLoading(true); // Set loading state when fetching starts
+    const fetchWeightData = async () => {
+        setIsLoading(true);
         try {
             const response = await axios.get(`http://localhost:8080/getWeight/${customerName}/${selectedDate}`);
-            let entries = JSON.parse(response.data);
+            let entries = response.data;
 
-            if (entries && typeof entries === 'object' && !Array.isArray(entries)) {
+            if (typeof entries === 'string') {
+                entries = JSON.parse(entries);
+            }
+
+            if (!Array.isArray(entries)) {
                 entries = [entries];
             }
 
-            if (Array.isArray(entries)) {
-                const weights = getWeights(entries);
-                const dates = getDates(entries);
-
-                // Destroy the old chart instance before creating a new one
+            if (entries.length > 0) {
+                const weights = entries.map(entry => entry.weight);
+                const dates = entries.map(entry => entry.date);
+                setChartData({ weights, dates });
+            } else {
+                setChartData({ weights: [], dates: [] });
                 if (chartInstance.current) {
                     chartInstance.current.destroy();
                 }
-
-                buildChart(weights, dates);
-            } else {
-                console.error("Error: Expected 'entries' to be an array but received:", entries);
             }
         } catch (error) {
-            console.error("Error creating weight chart", error);
+            console.error("Error fetching weight data", error);
         } finally {
-            setIsLoading(false); // Always set loading to false when request completes
+            setIsLoading(false);
         }
     };
 
-    // Display loading message or component based on loading state
-    if (isLoading) {
-        return <p>Loading...</p>;
-    }
+    useEffect(() => {
+        if (chartData.weights.length > 0 && chartData.dates.length > 0) {
+            buildChart(chartData.weights, chartData.dates);
+        }
+    }, [chartData]);
 
     return (
         <div style={{ width: '100%', height: '100%', padding: '10px', boxSizing: 'border-box' }}>
@@ -122,7 +118,11 @@ const WeightHistory = ({ customerName }) => {
                 />
             </div>
             <div style={{ flexGrow: 1, width: '100%', height: '100%', position: 'relative' }}>
-                <canvas ref={chartRef} style={{ width: '100%', height: '100%' }} />
+                {isLoading ? (
+                    <p>Loading...</p>
+                ) : (
+                    <canvas ref={chartRef} style={{ width: '100%', height: '100%' }} />
+                )}
             </div>
         </div>
     );
