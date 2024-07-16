@@ -57,3 +57,39 @@ h2 {
     padding: 10px;
     box-sizing: border-box;
 }
+
+.client-history-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.scrollable-container {
+    max-height: 500px; /* Ajusta la altura según sea necesario */
+    overflow-y: auto;
+    padding-right: 10px; /* Espacio para la barra de desplazamiento */
+}
+
+.components-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.component, .bottom-component {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.component h2, .bottom-component h2 {
+    margin-top: 0;
+}
+
+.component:last-child, .bottom-component {
+    margin-bottom: 0;
+}

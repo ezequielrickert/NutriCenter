@@ -33,12 +33,12 @@ const ClientHistory = () => {
                         setIsValidUser(true);
                     }
                 } else {
-                        window.location.href = '/universalLogin';
-                    }
-                } catch (error) {
-                    console.error("Error validating user", error);
                     window.location.href = '/universalLogin';
                 }
+            } catch (error) {
+                console.error("Error validating user", error);
+                window.location.href = '/universalLogin';
+            }
         };
 
         validateUser();
@@ -51,19 +51,21 @@ const ClientHistory = () => {
     return (
         <div className="client-history-container">
             <h1>Client History</h1>
-            <div className="components-container">
-                <div className="component">
-                    <h2>Monthly History</h2>
-                    <MonthlyHistory customerName={customerName}/>
+            <div className="scrollable-container">
+                <div className="components-container">
+                    <div className="component">
+                        <h2>Monthly History</h2>
+                        <MonthlyHistory customerName={customerName}/>
+                    </div>
+                    <div className="component">
+                        <h2>Weight History</h2>
+                        <WeightHistory customerName={customerName}/>
+                    </div>
                 </div>
-                <div className="component">
-                    <h2>Weight History</h2>
-                    <WeightHistory customerName={customerName}/>
+                <div className="bottom-component">
+                    <h2>Meal History</h2>
+                    <MealHistory customerName={customerName}/>
                 </div>
-            </div>
-            <div className="bottom-component">
-                <h2>Meal History</h2>
-                <MealHistory customerName={customerName}/>
             </div>
         </div>
     );

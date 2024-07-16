@@ -5,7 +5,7 @@ body {
 
 .custom.container {
     margin: 0 auto;  /* Centra el contenedor */
-    max-width: 1200px;  /* Ajusta este valor según tus necesidades */
-    padding-left: 15px;  /* Ajusta este valor según tus necesidades */
-    padding-right: 15px;  /* Ajusta este valor según tus necesidades */
+    max-width: 1500px;  /* Ajusta este valor según tus necesidades */
+    padding-left: 10px;  /* Ajusta este valor según tus necesidades */
+    padding-right: 10px;  /* Ajusta este valor según tus necesidades */
 }

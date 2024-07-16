@@ -3,6 +3,7 @@ import axios from 'axios';
 import Footer from "../../components/footer";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './AddWeight.css';  // Asegúrate de importar el archivo CSS
 
 const AddWeight = () => {
     const [weight, setWeight] = useState('');
@@ -33,7 +34,6 @@ const AddWeight = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // Check if weight is greater than 0
         if (parseFloat(weight) <= 0) {
             toast.error('Weight must be greater than 0!');
             return;
@@ -60,24 +60,31 @@ const AddWeight = () => {
         }
     };
 
+    if (!isValidUser) {
+        return null;
+    }
+
     return (
-        <div className="container">
-            <form onSubmit={handleSubmit} className="form-group">
-                <label>
-                    Weight:
-                    <input
-                        type="number"
-                        step="0.01"
-                        value={weight}
-                        onChange={(event) => setWeight(event.target.value)}
-                        required
-                        className="form-control"
-                    />
-                </label>
-                <button type="submit" className="btn btn-primary" disabled={isLoading}>
-                    {isLoading ? 'Loading...' : 'Add Weight'}
-                </button>
-            </form>
+        <div className="add-weight-container">
+            <div className="form-wrapper">
+                <h1>Add Weight</h1>
+                <form onSubmit={handleSubmit} className="form-group">
+                    <label>
+                        Weight:
+                        <input
+                            type="number"
+                            step="0.01"
+                            value={weight}
+                            onChange={(event) => setWeight(event.target.value)}
+                            required
+                            className="form-control"
+                        />
+                    </label>
+                    <button type="submit" className="btn btn-primary" disabled={isLoading}>
+                        {isLoading ? 'Loading...' : 'Add Weight'}
+                    </button>
+                </form>
+            </div>
             <Footer />
             <ToastContainer />
         </div>
