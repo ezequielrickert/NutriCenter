@@ -15,7 +15,7 @@ const SignUpStore =  () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        await axios.post("http://localhost:8080/createStore",  signUpData )
+        await axios.post("http://localhost:8080/store",  signUpData )
             .then(async res => {
                 await axios.post("http://localhost:8080/authenticateUser", {username, password})
                     .then(res => {

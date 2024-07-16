@@ -166,7 +166,7 @@ const SuperAminRecipeEdition = () => {
             isPublic: true
         };
 
-        await axios.post("http://localhost:8080/createRecipe", recipeData)
+        await axios.post("http://localhost:8080/recipe", recipeData)
             .then(async res => {
                 console.log(res);
                 // Close the modal
@@ -196,7 +196,7 @@ const SuperAminRecipeEdition = () => {
                 isPublic: isPublic === 'public'
             };
 
-            await axios.post(`http://localhost:8080/updateRecipe`, recipeData)
+            await axios.put(`http://localhost:8080/recipe`, recipeData)
                 .then(async res => {
                     console.log(res);
                     // Close the modal
@@ -221,7 +221,7 @@ const SuperAminRecipeEdition = () => {
                 recipe: recipeToDelete
             };
 
-            axios.post('http://localhost:8080/deleteRecipe', recipeData)
+            axios.delete('http://localhost:8080/recipe', { data: recipeData})
                 .then(res => {
                     console.log(res);
                     setRecipes(recipes.filter(r => r.recipeName !== recipeToDelete.recipeName));

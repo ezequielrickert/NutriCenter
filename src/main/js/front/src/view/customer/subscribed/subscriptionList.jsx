@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Footer from "../../components/footer";
+import {Link} from "react-router-dom";
 
 const CustomerSubscriptionList = () => {
     const [nutritionists, setNutritionists] = useState([]);
@@ -59,13 +60,21 @@ const CustomerSubscriptionList = () => {
             <h1>Subscribed Nutritionists</h1>
             <ul>
                 {nutritionists.map((nutritionist) => (
-                    <li key={nutritionist.nutritionistName}>{nutritionist}</li>
+                    <li key={nutritionist.nutritionistId}>
+                        <Link to={`/nutritionistProfile/${nutritionist.nutritionistName}`}>
+                            {nutritionist.nutritionistName}
+                        </Link>
+                    </li>
                 ))}
             </ul>
             <h1>Subscribed Stores</h1>
             <ul>
                 {stores.map((store) => (
-                    <li key={store.storeName}>{store}</li>
+                    <li key={store.storeId}>
+                        <Link to={`/storeProfile/${store.storeName}`}>
+                            {store.storeName}
+                        </Link>
+                    </li>
                 ))}
             </ul>
             <Footer />

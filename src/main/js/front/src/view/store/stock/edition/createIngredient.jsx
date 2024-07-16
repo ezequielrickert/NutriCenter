@@ -73,7 +73,7 @@ const StoreCreateIngredient = () => {
         };
 
         try {
-            const response = await axios.post("http://localhost:8080/createIngredient", ingredientData);
+            const response = await axios.post("http://localhost:8080/ingredient", ingredientData);
             console.log(response);
             toast.success('Ingredient created successfully!');
             const formElements = document.querySelectorAll('.form-control');

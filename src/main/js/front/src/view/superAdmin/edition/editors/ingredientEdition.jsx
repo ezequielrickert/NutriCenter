@@ -177,7 +177,7 @@ const SuperAdminIngredientEdition = () => {
         };
 
         try {
-            const res = await axios.post("http://localhost:8080/createIngredient", ingredientData);
+            const res = await axios.post("http://localhost:8080/ingredient", ingredientData);
             console.log(res);
             // Close the modal
             closeModal();
@@ -214,7 +214,7 @@ const SuperAdminIngredientEdition = () => {
             };
 
             try {
-                const res = await axios.post(`http://localhost:8080/updateIngredient`, ingredientData);
+                const res = await axios.put(`http://localhost:8080/ingredient`, ingredientData);
                 console.log(res);
                 // Close the modal
                 closeModal();
@@ -240,7 +240,7 @@ const SuperAdminIngredientEdition = () => {
                 ingredient: ingredientToDelete
             };
 
-            axios.post('http://localhost:8080/deleteIngredient', ingredientData)
+            axios.delete('http://localhost:8080/ingredient', { data: ingredientData })
                 .then(res => {
                     console.log(res);
                     setIngredients(ingredients.filter(r => r.ingredientId !== ingredientToDelete.ingredientId));

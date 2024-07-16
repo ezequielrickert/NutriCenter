@@ -27,7 +27,7 @@ public class IngredientController {
         final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
         IngredientService ingredientService = new IngredientService(entityManagerFactory.createEntityManager());
 
-        Spark.post("/createIngredient", (req, res) -> {
+        Spark.post("/ingredient", (req, res) -> {
             String body = req.body();
             Ingredient ingredient = gson.fromJson(body, Ingredient.class);
             String ingredientName = ingredient.getIngredientName();
@@ -42,7 +42,7 @@ public class IngredientController {
             return ingredient;
         }, gson::toJson);
 
-        Spark.post("/updateIngredient", (req, res) -> {
+        Spark.put("/ingredient", (req, res) -> {
             String body = req.body();
             JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
             Ingredient ingredient = gson.fromJson(jsonObject.get("ingredient"), Ingredient.class);
@@ -59,7 +59,8 @@ public class IngredientController {
             return ingredient.asJson();
         }, gson::toJson);
 
-        Spark.post("/deleteIngredient", (req, res) -> {
+        //Revisar error al hacer un persist de receta
+        Spark.delete("/ingredient", (req, res) -> {
             String body = req.body();
             JsonObject jsonObject = JsonParser.parseString(body).getAsJsonObject();
             Ingredient ingredient = gson.fromJson(jsonObject.get("ingredient"), Ingredient.class);

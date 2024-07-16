@@ -24,6 +24,7 @@ public class SubscriptionController {
 
         final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("UserPU");
         CustomerService customerService = new CustomerService(entityManagerFactory.createEntityManager());
+        CustomerService customerService2 = new CustomerService(entityManagerFactory.createEntityManager());
         NutritionistService nutritionistService = new NutritionistService(entityManagerFactory.createEntityManager());
         StoreService storeService = new StoreService(entityManagerFactory.createEntityManager());
 
@@ -79,30 +80,30 @@ public class SubscriptionController {
             String username = req.params(":username");
             Store store = storeService.getStoreByUsername(username);
             List<Customer> customers = store.getCustomers();
-            List<String> customerUsernames = customers.stream().map(Customer::getCustomerName).toList();
+            // List<String> customerUsernames = customers.stream().map(Customer::getCustomerName).toList();
             Gson specialGson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
             resp.type("application/json");
-            return specialGson.toJson(customerUsernames);
+            return specialGson.toJson(customers);
         });
 
         Spark.get("/NutritionistSubscriptions/customer/:username", (req, resp) -> {
             String username = req.params(":username");
             Customer customer = customerService.getCustomerByName(username);
             List<Nutritionist> nutritionists = customer.getNutritionists();
-            List<String> nutritionistUsernames = nutritionists.stream().map(Nutritionist::getNutritionistName).toList();
+            // List<String> nutritionistUsernames = nutritionists.stream().map(Nutritionist::getNutritionistName).toList();
             Gson specialGson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
             resp.type("application/json");
-            return specialGson.toJson(nutritionistUsernames);
+            return specialGson.toJson(nutritionists);
         });
 
         Spark.get("/StoreSubscriptions/customer/:username", (req, resp) -> {
             String username = req.params(":username");
-            Customer customer = customerService.getCustomerByName(username);
+            Customer customer = customerService2.getCustomerByName(username);
             List<Store> stores = customer.getStores();
-            List<String> storeUsernames = stores.stream().map(Store::getStoreName).toList();
+            // List<String> storeUsernames = stores.stream().map(Store::getStoreName).toList();
             Gson specialGson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
             resp.type("application/json");
-            return specialGson.toJson(storeUsernames);
+            return specialGson.toJson(stores);
         });
 
         Spark.get("/subscribe", (req, resp) -> {

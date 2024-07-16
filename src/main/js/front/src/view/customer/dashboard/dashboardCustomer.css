@@ -1,0 +1,67 @@
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+
+header {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #343a40;
+}
+
+.header-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.header-buttons .btn {
+    flex: 1 1 calc(50% - 10px);
+    max-width: 180px;
+    margin: 5px;
+}
+
+.notification-icon {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.notification-icon img {
+    width: 40px;
+    height: 40px;
+}
+
+.notification-icon .badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.notification-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.notification-dropdown img {
+    width: 40px;
+    height: 40px;
+}
+
+.notification-dropdown .badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+}

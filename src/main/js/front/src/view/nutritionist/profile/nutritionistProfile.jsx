@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const NutritionistProfile = () => {
     const [isValidUser, setIsValidUser] = useState(false);
@@ -11,14 +11,13 @@ const NutritionistProfile = () => {
     const [nutritionist, setNutritionist] = useState(null);
     const [recipes, setRecipes] = useState([]);
     const [isSubscribed, setIsSubscribed] = useState(false);
-
+    const navigate = useNavigate();
 
     useEffect(() => {
         const validateUser = async () => {
             try {
                 const response = await axios.post("http://localhost:8080/validateUser", { username, token });
-                if (response.data === "User is valid" && ((userRole === "nutritionist") || (userRole === "superAdmin") ||
-                    (userRole === "customer") || (userRole === "store"))) {
+                if (response.data === "User is valid" && ["nutritionist", "superAdmin", "customer", "store"].includes(userRole)) {
                     setIsValidUser(true);
                 } else {
                     window.location.href = '/universalLogin';
@@ -72,7 +71,6 @@ const NutritionistProfile = () => {
         }
     }, [isValidUser, nutritionistId, username]);
 
-
     const handleSubscribe = async () => {
         try {
             const response = await axios.post("http://localhost:8080/subscribe", {
@@ -109,25 +107,63 @@ const NutritionistProfile = () => {
         }
     };
 
+    const handleRecipeClick = (recipe) => {
+        if ((isSubscribed && !recipe.isPublic) || recipe.isPublic) {
+            navigate(`/recipeInfo/${recipe.recipeId}`);
+        }
+    };
+
+    const publicRecipes = recipes.filter(recipe => recipe.isPublic);
+    const privateRecipes = recipes.filter(recipe => !recipe.isPublic);
+
     return (
         <div className="container">
-            {nutritionist && recipes && (
+            {nutritionist && (
                 <>
                     <h1 className="text-center my-5">{nutritionist.nutritionistName}</h1>
                     <ul className="list-group">
                         <li className="list-group-item">Email: {nutritionist.nutritionistEmail}</li>
                         <li className="list-group-item">Diploma: {nutritionist.educationDiploma}</li>
                     </ul>
-                    <h3 className="text-center my-5">Recipes:</h3>
+                    {userRole === "customer" && (
+                        <div className="center-content">
+                            <button
+                                className="btn btn-primary mt-3"
+                                onClick={isSubscribed ? handleUnsubscribe : handleSubscribe}
+                            >
+                                {isSubscribed ? 'Unsubscribe' : 'Subscribe'}
+                            </button>
+                        </div>
+                    )}
+                    <h3 className="text-center my-5">Recetas Públicas:</h3>
                     <div className="horizontal-container">
-                        {recipes.map((recipe) => (
-                            <div key={recipe.recipeName} className="store-item">{recipe.recipeName}</div>
+                        {publicRecipes.map((recipe) => (
+                            <div
+                                key={recipe.recipeId}
+                                className="store-item"
+                                onClick={() => handleRecipeClick(recipe)}
+                                style={{ cursor: 'pointer' }}
+                            >
+                                {recipe.recipeName}
+                            </div>
                         ))}
                     </div>
                     {userRole === "customer" && (
-                        <button onClick={isSubscribed ? handleUnsubscribe : handleSubscribe}>
-                            {isSubscribed ? 'Unsubscribe' : 'Subscribe'}
-                        </button>
+                        <>
+                            <h3 className="text-center my-5">Recetas Privadas:</h3>
+                            <div className="horizontal-container">
+                                {privateRecipes.map((recipe) => (
+                                    <div
+                                        key={recipe.recipeId}
+                                        className="store-item"
+                                        onClick={() => handleRecipeClick(recipe)}
+                                        style={{ cursor: 'pointer' }}
+                                    >
+                                        {recipe.recipeName}
+                                    </div>
+                                ))}
+                            </div>
+                        </>
                     )}
                 </>
             )}

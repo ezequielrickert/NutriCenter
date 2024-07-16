@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Dropdown, Badge } from 'react-bootstrap';
 import ringBell from '../images/ring_bell.png';
 import bell from '../images/bell.png';
+import './dashboardCustomer.css';
 
 const DashboardCustomer = ({ handleMessagesRead }) => {
     const [isValidUser, setIsValidUser] = useState(false);
@@ -71,24 +72,26 @@ const DashboardCustomer = ({ handleMessagesRead }) => {
         <div className="container">
             <header className="text-center my-5">
                 <h1>Welcome to the Customer Dashboard</h1>
-                <Link to="/mealTable">
-                    <button style={{ marginRight: '10px' }} className="btn btn-primary mt-3">Add Meal</button>
-                </Link>
-                <Link to="/customer-subscriptions">
-                    <button style={{ marginRight: '10px' }} className="btn btn-primary mt-3">View Subscriptions</button>
-                </Link>
-                <Link to={`/clientHistory/${username}`}>
-                    <button style={{ marginRight: '10px' }} className="btn btn-primary mt-3">My History</button>
-                </Link>
-                <Link to="/addWeight">
-                    <button style={{ marginRight: '10px' }} className="btn btn-primary mt-3">Add Weight History</button>
-                </Link>
-                <div style={{ position: 'relative', display: 'inline-block', marginLeft: '10px' }}>
+                <div className="header-buttons">
+                    <Link to="/mealTable">
+                        <button className="btn btn-primary mt-3">Add Meal</button>
+                    </Link>
+                    <Link to="/customer-subscriptions">
+                        <button className="btn btn-primary mt-3">View Subscriptions</button>
+                    </Link>
+                    <Link to={`/clientHistory/${username}`}>
+                        <button className="btn btn-primary mt-3">My History</button>
+                    </Link>
+                    <Link to="/addWeight">
+                        <button className="btn btn-primary mt-3">Add Weight History</button>
+                    </Link>
+                </div>
+                <div className="notification-dropdown">
                     <Dropdown>
                         <Dropdown.Toggle variant="light" id="dropdown-basic">
-                            <img src={unreadCount > 0 ? ringBell : bell} alt="Notification Bell" width="40" height="40" />
+                            <img src={unreadCount > 0 ? ringBell : bell} alt="Notification Bell" />
                             {unreadCount > 0 && (
-                                <Badge pill bg="danger" style={{ position: 'absolute', top: 0, right: 0 }}>
+                                <Badge pill bg="danger" className="badge">
                                     {unreadCount}
                                 </Badge>
                             )}
